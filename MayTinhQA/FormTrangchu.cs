@@ -27,7 +27,7 @@ namespace MayTinhQA
             if (MessageBox.Show("Bạn có muốn đăng xuất?", "Thông báo", MessageBoxButtons.YesNo,MessageBoxIcon.Information)==DialogResult.Yes)
             {
                 this.Hide();
-                frmdangnhap dangnhap = new frmdangnhap();
+                FormLogin dangnhap = new FormLogin();
                 dangnhap.ShowDialog();
             }
         }

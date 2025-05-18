@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.txtAccount = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txttaikhoan = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtmatkhau = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnLogin = new Guna.UI2.WinForms.Guna2Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -42,25 +42,25 @@
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // txtAccount
+            // txttaikhoan
             // 
-            this.txtAccount.BorderRadius = 12;
-            this.txtAccount.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtAccount.DefaultText = "Tên đăng nhập";
-            this.txtAccount.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtAccount.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtAccount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtAccount.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtAccount.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtAccount.Font = new System.Drawing.Font("Montserrat SemiBold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAccount.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtAccount.Location = new System.Drawing.Point(46, 168);
-            this.txtAccount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtAccount.Name = "txtAccount";
-            this.txtAccount.PlaceholderText = "";
-            this.txtAccount.SelectedText = "";
-            this.txtAccount.Size = new System.Drawing.Size(354, 60);
-            this.txtAccount.TabIndex = 0;
+            this.txttaikhoan.BorderRadius = 12;
+            this.txttaikhoan.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txttaikhoan.DefaultText = "";
+            this.txttaikhoan.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txttaikhoan.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txttaikhoan.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txttaikhoan.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txttaikhoan.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txttaikhoan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txttaikhoan.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txttaikhoan.Location = new System.Drawing.Point(34, 136);
+            this.txttaikhoan.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txttaikhoan.Name = "txttaikhoan";
+            this.txttaikhoan.PlaceholderText = "";
+            this.txttaikhoan.SelectedText = "";
+            this.txttaikhoan.Size = new System.Drawing.Size(266, 49);
+            this.txttaikhoan.TabIndex = 0;
             // 
             // guna2Elipse1
             // 
@@ -71,11 +71,12 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
-            this.label1.Font = new System.Drawing.Font("Montserrat", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(57, 25);
+            this.label1.Location = new System.Drawing.Point(43, 20);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(342, 51);
+            this.label1.Size = new System.Drawing.Size(256, 36);
             this.label1.TabIndex = 1;
             this.label1.Text = "Quang Anh CRM";
             // 
@@ -85,29 +86,30 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(475, 100);
+            this.panel1.Size = new System.Drawing.Size(356, 81);
             this.panel1.TabIndex = 2;
             // 
-            // txtPassword
+            // txtmatkhau
             // 
-            this.txtPassword.BorderRadius = 12;
-            this.txtPassword.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtPassword.DefaultText = "Mật khẩu";
-            this.txtPassword.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtPassword.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtPassword.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtPassword.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtPassword.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtPassword.Font = new System.Drawing.Font("Montserrat SemiBold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtPassword.Location = new System.Drawing.Point(45, 280);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PlaceholderText = "";
-            this.txtPassword.SelectedText = "";
-            this.txtPassword.Size = new System.Drawing.Size(354, 60);
-            this.txtPassword.TabIndex = 3;
+            this.txtmatkhau.BorderRadius = 12;
+            this.txtmatkhau.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtmatkhau.DefaultText = "";
+            this.txtmatkhau.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtmatkhau.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtmatkhau.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtmatkhau.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtmatkhau.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtmatkhau.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtmatkhau.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtmatkhau.Location = new System.Drawing.Point(34, 228);
+            this.txtmatkhau.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtmatkhau.Name = "txtmatkhau";
+            this.txtmatkhau.PlaceholderText = "";
+            this.txtmatkhau.SelectedText = "";
+            this.txtmatkhau.Size = new System.Drawing.Size(266, 49);
+            this.txtmatkhau.TabIndex = 3;
             // 
             // btnLogin
             // 
@@ -117,23 +119,26 @@
             this.btnLogin.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnLogin.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnLogin.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
-            this.btnLogin.Font = new System.Drawing.Font("Montserrat", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(123, 370);
+            this.btnLogin.Location = new System.Drawing.Point(92, 301);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(223, 61);
+            this.btnLogin.Size = new System.Drawing.Size(167, 50);
             this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "Đăng nhập";
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.White;
-            this.label2.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(41, 136);
+            this.label2.Location = new System.Drawing.Point(31, 110);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(170, 27);
+            this.label2.Size = new System.Drawing.Size(129, 20);
             this.label2.TabIndex = 5;
             this.label2.Text = "Tên đăng nhập";
             // 
@@ -141,11 +146,12 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.White;
-            this.label3.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(40, 248);
+            this.label3.Location = new System.Drawing.Point(30, 202);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(111, 27);
+            this.label3.Size = new System.Drawing.Size(83, 20);
             this.label3.TabIndex = 6;
             this.label3.Text = "Mật khẩu";
             // 
@@ -153,41 +159,46 @@
             // 
             this.labelForgotPassword.AutoSize = true;
             this.labelForgotPassword.BackColor = System.Drawing.Color.White;
-            this.labelForgotPassword.Font = new System.Drawing.Font("Montserrat Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelForgotPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelForgotPassword.ForeColor = System.Drawing.Color.Black;
-            this.labelForgotPassword.Location = new System.Drawing.Point(289, 451);
+            this.labelForgotPassword.Location = new System.Drawing.Point(217, 366);
+            this.labelForgotPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelForgotPassword.Name = "labelForgotPassword";
-            this.labelForgotPassword.Size = new System.Drawing.Size(151, 24);
+            this.labelForgotPassword.Size = new System.Drawing.Size(113, 17);
             this.labelForgotPassword.TabIndex = 7;
             this.labelForgotPassword.Text = "Quên mật khẩu?";
+            this.labelForgotPassword.Click += new System.EventHandler(this.labelForgotPassword_Click);
             // 
             // labelOut
             // 
             this.labelOut.AutoSize = true;
             this.labelOut.BackColor = System.Drawing.Color.White;
-            this.labelOut.Font = new System.Drawing.Font("Montserrat Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelOut.ForeColor = System.Drawing.Color.Black;
-            this.labelOut.Location = new System.Drawing.Point(41, 451);
+            this.labelOut.Location = new System.Drawing.Point(31, 366);
+            this.labelOut.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelOut.Name = "labelOut";
-            this.labelOut.Size = new System.Drawing.Size(59, 24);
+            this.labelOut.Size = new System.Drawing.Size(56, 17);
             this.labelOut.TabIndex = 8;
-            this.labelOut.Text = "Thoát";
+            this.labelOut.Text = "Đăng kí";
+            this.labelOut.Click += new System.EventHandler(this.labelOut_Click);
             // 
             // FormLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(475, 513);
+            this.ClientSize = new System.Drawing.Size(356, 417);
             this.Controls.Add(this.labelOut);
             this.Controls.Add(this.labelForgotPassword);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.txtPassword);
+            this.Controls.Add(this.txtmatkhau);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.txtAccount);
+            this.Controls.Add(this.txttaikhoan);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormLogin";
@@ -200,11 +211,11 @@
 
         #endregion
 
-        private Guna.UI2.WinForms.Guna2TextBox txtAccount;
+        private Guna.UI2.WinForms.Guna2TextBox txttaikhoan;
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2Button btnLogin;
-        private Guna.UI2.WinForms.Guna2TextBox txtPassword;
+        private Guna.UI2.WinForms.Guna2TextBox txtmatkhau;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label labelForgotPassword;
         private System.Windows.Forms.Label label3;

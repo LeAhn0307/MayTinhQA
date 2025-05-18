@@ -35,5 +35,15 @@ namespace MayTinhQA
         {
 
         }
+
+        private void btnDashBoard_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCustomer_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
