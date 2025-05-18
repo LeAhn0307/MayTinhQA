@@ -32,27 +32,31 @@ namespace MayTinhQA
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-
+            if (MessageBox.Show("Bạn có muốn đăng xuất?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                this.Hide();
+                FormLogin dangnhap = new FormLogin();
+                dangnhap.ShowDialog();
+            }
         }
 
         private void btnDashBoard_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
+
 
         }
 
         private void btnCustomer_Click(object sender, EventArgs e)
         {
 
-=======
             UC_Home uC = new UC_Home();
             addUserControl(uC);
+            
         }
-        private void btnCustomer_Click(object sender, EventArgs e)
+
+        private void guna2Button1_Click(object sender, EventArgs e)
         {
-            UC_Customer uC = new UC_Customer();
-            addUserControl(uC);
->>>>>>> 4d0282639e0ad6dd74b5b395fca0d319dbe040bb
+            this.Close();
         }
     }
 }

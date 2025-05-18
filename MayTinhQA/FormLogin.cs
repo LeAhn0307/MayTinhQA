@@ -33,7 +33,7 @@ namespace MayTinhQA
                     Session.CurrentUser = user;
                     MessageBox.Show("Đăng nhập thành công!");
                     this.Hide();
-                    frmhome home = new frmhome();
+                    FormDashboard home = new FormDashboard();
                     home.ShowDialog();
                     this.Close();
                 }
