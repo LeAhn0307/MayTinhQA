@@ -9,6 +9,16 @@ create Table khachhang (
   diachi text,
   ngaysinh date
 )
+  CREATE TABLE thanhpho (
+  idthanhpho INT IDENTITY PRIMARY KEY,
+  tenthanhpho NVARCHAR(100) NOT NULL
+)
+
+CREATE TABLE quanhuyen (
+  idquanhuyen INT IDENTITY PRIMARY KEY,
+  idthanhpho INT FOREIGN KEY REFERENCES thanhpho(idthanhpho),
+  tenquanhuyen NVARCHAR(100) NOT NULL
+)
 create Table loaikhachhang(
 idkhachhang int foreign key references khachhang(idkhachhang),
 loaikhachhang nvarchar(100),
@@ -169,4 +179,36 @@ update nhanvien set tennhanvien = N'ccc' where idnhanvien = 2
 Select chitietdonhang.idchitietdh,khachhang.tenkhachhang,sanpham.tensanpham,chitietdonhang.soluong,FORMAT(sanpham.gia, 'N0', 'vi-VN'),FORMAT((chitietdonhang.soluong*sanpham.gia),'N0', 'vi-VN')as ThanhTien From chitietdonhang inner join khachhang on khachhang.idkhachhang=chitietdonhang.idkhachhang inner join sanpham on sanpham.idsanpham=chitietdonhang.idsanpham 
 
 insert into donhang(trangthai,idkhachhang) Values (N'Chờ',(SELECT idkhachhang FROM khachhang WHERE tenkhachhang =N''))
+INSERT INTO quanhuyen (idthanhpho, tenquanhuyen) VALUES
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hà Nội'), N'Ba Đình'),
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hà Nội'), N'Hoàn Kiếm'),
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hà Nội'), N'Tây Hồ'),
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hà Nội'), N'Long Biên'),
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hà Nội'), N'Cầu Giấy'),
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hà Nội'), N'Dông Đa'),
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hà Nội'), N'Thanh Xuân'),
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hà Nội'), N'Hà Đông'),
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hà Nội'), N'Sơn Tây'),
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hà Nội'), N'Sóc Sơn'),
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hà Nội'), N'Gia Lâm'),
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hà Nội'), N'Đông Anh'),
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hà Nội'), N'Ứng Hòa'),
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hà Nội'), N'Mê Linh'),
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hà Nội'), N'Mỹ Đức'),
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hà Nội'), N'Phú Xuyên'),
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hà Nội'), N'Chương Mỹ'),
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hà Nội'), N'Thường Tín'),
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hà Nội'), N'Tây Hồ');
 
+INSERT INTO quanhuyen (idthanhpho, tenquanhuyen) VALUES
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hải Phòng'), N'Hồng Bàng'),
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hải Phòng'), N'Ngô Quyền'),
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hải Phòng'), N'Lê Chân'),
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hải Phòng'), N'Kiến An'),
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hải Phòng'), N'Dương Kinh'),
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hải Phòng'), N'Thủy Nguyên'),
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hải Phòng'), N'Trúc Sơn'),
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hải Phòng'), N'An Lão'),
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hải Phòng'), N'Kiến Thụy'),
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hải Phòng'), N'Vĩnh Bảo'),
+((SELECT idthanhpho FROM thanhpho WHERE tenthanhpho = N'Hải Phòng'), N'Tiên Lãng');
