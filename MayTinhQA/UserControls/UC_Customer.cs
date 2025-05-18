@@ -15,6 +15,7 @@ namespace MayTinhQA.UserControls
         public UC_Customer()
         {
             InitializeComponent();
+
         }
 
         private void dgvInformation_CellContentClick(object sender, DataGridViewCellEventArgs e)
