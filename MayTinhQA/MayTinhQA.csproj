@@ -33,8 +33,44 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EPPlus, Version=8.0.5.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.8.0.5\lib\net462\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.Interfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=a694d7f3b0907a61, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.Interfaces.8.0.0\lib\net462\EPPlus.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.3.0.1\lib\netstandard2.0\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Xml, Version=8.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Xml.8.0.2\lib\net462\System.Security.Cryptography.Xml.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,9 +82,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaoHanh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaoHanh.Designer.cs">
+      <DependentUpon>BaoHanh.cs</DependentUpon>
+    </Compile>
     <Compile Include="Connection.cs" />
     <Compile Include="Const.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="DoiTra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DoiTra.Designer.cs">
+      <DependentUpon>DoiTra.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormDonHang.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +139,12 @@
     <Compile Include="FormTrangchu.Designer.cs">
       <DependentUpon>FormTrangchu.cs</DependentUpon>
     </Compile>
+    <Compile Include="HanhViKh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HanhViKh.Designer.cs">
+      <DependentUpon>HanhViKh.cs</DependentUpon>
+    </Compile>
     <Compile Include="HoaDon.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +164,12 @@
       <DependentUpon>LichSu.cs</DependentUpon>
     </Compile>
     <Compile Include="Modify.cs" />
+    <Compile Include="NhuCauSp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NhuCauSp.Designer.cs">
+      <DependentUpon>NhuCauSp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Phanloaikh.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -120,6 +180,12 @@
       <DependentUpon>SanPham.cs</DependentUpon>
     </Compile>
     <Compile Include="TaiKhoan.cs" />
+    <EmbeddedResource Include="BaoHanh.resx">
+      <DependentUpon>BaoHanh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DoiTra.resx">
+      <DependentUpon>DoiTra.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDonHang.resx">
       <DependentUpon>FormDonHang.cs</DependentUpon>
     </EmbeddedResource>
@@ -141,6 +207,9 @@
     <EmbeddedResource Include="FormTrangchu.resx">
       <DependentUpon>FormTrangchu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HanhViKh.resx">
+      <DependentUpon>HanhViKh.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HoaDon.resx">
       <DependentUpon>HoaDon.cs</DependentUpon>
     </EmbeddedResource>
@@ -149,6 +218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LichSu.resx">
       <DependentUpon>LichSu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NhuCauSp.resx">
+      <DependentUpon>NhuCauSp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -163,6 +235,7 @@
     <EmbeddedResource Include="SanPham.resx">
       <DependentUpon>SanPham.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

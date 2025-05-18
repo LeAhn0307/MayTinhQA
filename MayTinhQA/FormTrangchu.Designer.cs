@@ -32,23 +32,25 @@ namespace MayTinhQA
             this.btndangxuat = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.DMquanlykhachhang = new System.Windows.Forms.ToolStripMenuItem();
-            this.DMquanlygiaodich = new System.Windows.Forms.ToolStripMenuItem();
-            this.DMquanlydvkh = new System.Windows.Forms.ToolStripMenuItem();
-            this.DMquanlynhanvien = new System.Windows.Forms.ToolStripMenuItem();
-            this.DMthongke = new System.Windows.Forms.ToolStripMenuItem();
             this.DMkhachhang = new System.Windows.Forms.ToolStripMenuItem();
             this.DMphanhoi = new System.Windows.Forms.ToolStripMenuItem();
+            this.DMquanlygiaodich = new System.Windows.Forms.ToolStripMenuItem();
             this.DMdonhang = new System.Windows.Forms.ToolStripMenuItem();
             this.DMhoadon = new System.Windows.Forms.ToolStripMenuItem();
+            this.DMkhuyenmai = new System.Windows.Forms.ToolStripMenuItem();
             this.DMlichsu = new System.Windows.Forms.ToolStripMenuItem();
+            this.DMquanlydvkh = new System.Windows.Forms.ToolStripMenuItem();
             this.DMbaohanh = new System.Windows.Forms.ToolStripMenuItem();
             this.DMdoitra = new System.Windows.Forms.ToolStripMenuItem();
-            this.DMkhuyenmai = new System.Windows.Forms.ToolStripMenuItem();
-            this.DMlichsugiaodich = new System.Windows.Forms.ToolStripMenuItem();
-            this.phảnHồiCủaKháchHàngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DMquanlynhanvien = new System.Windows.Forms.ToolStripMenuItem();
             this.DMquanlysp = new System.Windows.Forms.ToolStripMenuItem();
+            this.DMthongke = new System.Windows.Forms.ToolStripMenuItem();
+            this.DMlichsugiaodich = new System.Windows.Forms.ToolStripMenuItem();
+            this.DMphanhoikh = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.DMhanhvikh = new System.Windows.Forms.ToolStripMenuItem();
+            this.DMnhucausp = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -95,44 +97,6 @@ namespace MayTinhQA
             this.DMquanlykhachhang.Click += new System.EventHandler(this.khachHangToolStripMenuItem_Click_1);
             this.DMquanlykhachhang.DoubleClick += new System.EventHandler(this.khachHangToolStripMenuItem_DoubleClick);
             // 
-            // DMquanlygiaodich
-            // 
-            this.DMquanlygiaodich.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.DMdonhang,
-            this.DMhoadon,
-            this.DMkhuyenmai,
-            this.DMlichsu});
-            this.DMquanlygiaodich.Name = "DMquanlygiaodich";
-            this.DMquanlygiaodich.Size = new System.Drawing.Size(167, 29);
-            this.DMquanlygiaodich.Text = "Quản lý giao dịch";
-            this.DMquanlygiaodich.Click += new System.EventHandler(this.donBanToolStripMenuItem_Click_1);
-            // 
-            // DMquanlydvkh
-            // 
-            this.DMquanlydvkh.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.DMbaohanh,
-            this.DMdoitra});
-            this.DMquanlydvkh.Name = "DMquanlydvkh";
-            this.DMquanlydvkh.Size = new System.Drawing.Size(247, 29);
-            this.DMquanlydvkh.Text = "Quản lý dịch vụ khách hàng";
-            this.DMquanlydvkh.Click += new System.EventHandler(this.taiKhoanToolStripMenuItem_Click_1);
-            // 
-            // DMquanlynhanvien
-            // 
-            this.DMquanlynhanvien.Name = "DMquanlynhanvien";
-            this.DMquanlynhanvien.Size = new System.Drawing.Size(170, 29);
-            this.DMquanlynhanvien.Text = "Quản lý nhân viên";
-            this.DMquanlynhanvien.Click += new System.EventHandler(this.danhmucNV_Click);
-            // 
-            // DMthongke
-            // 
-            this.DMthongke.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.DMlichsugiaodich,
-            this.phảnHồiCủaKháchHàngToolStripMenuItem});
-            this.DMthongke.Name = "DMthongke";
-            this.DMthongke.Size = new System.Drawing.Size(102, 29);
-            this.DMthongke.Text = "Thống kê";
-            // 
             // DMkhachhang
             // 
             this.DMkhachhang.Name = "DMkhachhang";
@@ -145,6 +109,18 @@ namespace MayTinhQA
             this.DMphanhoi.Name = "DMphanhoi";
             this.DMphanhoi.Size = new System.Drawing.Size(206, 34);
             this.DMphanhoi.Text = "Phản hồi";
+            // 
+            // DMquanlygiaodich
+            // 
+            this.DMquanlygiaodich.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DMdonhang,
+            this.DMhoadon,
+            this.DMkhuyenmai,
+            this.DMlichsu});
+            this.DMquanlygiaodich.Name = "DMquanlygiaodich";
+            this.DMquanlygiaodich.Size = new System.Drawing.Size(167, 29);
+            this.DMquanlygiaodich.Text = "Quản lý giao dịch";
+            this.DMquanlygiaodich.Click += new System.EventHandler(this.donBanToolStripMenuItem_Click_1);
             // 
             // DMdonhang
             // 
@@ -160,25 +136,6 @@ namespace MayTinhQA
             this.DMhoadon.Text = "Hoá đơn";
             this.DMhoadon.Click += new System.EventHandler(this.DMhoadon_Click);
             // 
-            // DMlichsu
-            // 
-            this.DMlichsu.Name = "DMlichsu";
-            this.DMlichsu.Size = new System.Drawing.Size(206, 34);
-            this.DMlichsu.Text = "Lịch sử";
-            this.DMlichsu.Click += new System.EventHandler(this.DMlichsu_Click);
-            // 
-            // DMbaohanh
-            // 
-            this.DMbaohanh.Name = "DMbaohanh";
-            this.DMbaohanh.Size = new System.Drawing.Size(270, 34);
-            this.DMbaohanh.Text = "Bảo hành";
-            // 
-            // DMdoitra
-            // 
-            this.DMdoitra.Name = "DMdoitra";
-            this.DMdoitra.Size = new System.Drawing.Size(270, 34);
-            this.DMdoitra.Text = "Đổi trả";
-            // 
             // DMkhuyenmai
             // 
             this.DMkhuyenmai.Name = "DMkhuyenmai";
@@ -186,17 +143,41 @@ namespace MayTinhQA
             this.DMkhuyenmai.Text = "Khuyến mại";
             this.DMkhuyenmai.Click += new System.EventHandler(this.DMkhuyenmai_Click);
             // 
-            // DMlichsugiaodich
+            // DMlichsu
             // 
-            this.DMlichsugiaodich.Name = "DMlichsugiaodich";
-            this.DMlichsugiaodich.Size = new System.Drawing.Size(311, 34);
-            this.DMlichsugiaodich.Text = "Lịch sử giao dịch";
+            this.DMlichsu.Name = "DMlichsu";
+            this.DMlichsu.Size = new System.Drawing.Size(206, 34);
+            this.DMlichsu.Text = "Lịch sử";
+            this.DMlichsu.Click += new System.EventHandler(this.DMlichsu_Click);
             // 
-            // phảnHồiCủaKháchHàngToolStripMenuItem
+            // DMquanlydvkh
             // 
-            this.phảnHồiCủaKháchHàngToolStripMenuItem.Name = "phảnHồiCủaKháchHàngToolStripMenuItem";
-            this.phảnHồiCủaKháchHàngToolStripMenuItem.Size = new System.Drawing.Size(311, 34);
-            this.phảnHồiCủaKháchHàngToolStripMenuItem.Text = "Phản hồi của khách hàng";
+            this.DMquanlydvkh.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DMbaohanh,
+            this.DMdoitra});
+            this.DMquanlydvkh.Name = "DMquanlydvkh";
+            this.DMquanlydvkh.Size = new System.Drawing.Size(247, 29);
+            this.DMquanlydvkh.Text = "Quản lý dịch vụ khách hàng";
+            this.DMquanlydvkh.Click += new System.EventHandler(this.taiKhoanToolStripMenuItem_Click_1);
+            // 
+            // DMbaohanh
+            // 
+            this.DMbaohanh.Name = "DMbaohanh";
+            this.DMbaohanh.Size = new System.Drawing.Size(188, 34);
+            this.DMbaohanh.Text = "Bảo hành";
+            // 
+            // DMdoitra
+            // 
+            this.DMdoitra.Name = "DMdoitra";
+            this.DMdoitra.Size = new System.Drawing.Size(188, 34);
+            this.DMdoitra.Text = "Đổi trả";
+            // 
+            // DMquanlynhanvien
+            // 
+            this.DMquanlynhanvien.Name = "DMquanlynhanvien";
+            this.DMquanlynhanvien.Size = new System.Drawing.Size(170, 29);
+            this.DMquanlynhanvien.Text = "Quản lý nhân viên";
+            this.DMquanlynhanvien.Click += new System.EventHandler(this.danhmucNV_Click);
             // 
             // DMquanlysp
             // 
@@ -204,6 +185,29 @@ namespace MayTinhQA
             this.DMquanlysp.Size = new System.Drawing.Size(172, 29);
             this.DMquanlysp.Text = "Quản lý sản phẩm";
             this.DMquanlysp.Click += new System.EventHandler(this.DMquanlysp_Click);
+            // 
+            // DMthongke
+            // 
+            this.DMthongke.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DMlichsugiaodich,
+            this.DMphanhoikh,
+            this.DMhanhvikh,
+            this.DMnhucausp});
+            this.DMthongke.Name = "DMthongke";
+            this.DMthongke.Size = new System.Drawing.Size(102, 29);
+            this.DMthongke.Text = "Thống kê";
+            // 
+            // DMlichsugiaodich
+            // 
+            this.DMlichsugiaodich.Name = "DMlichsugiaodich";
+            this.DMlichsugiaodich.Size = new System.Drawing.Size(311, 34);
+            this.DMlichsugiaodich.Text = "Lịch sử giao dịch";
+            // 
+            // DMphanhoikh
+            // 
+            this.DMphanhoikh.Name = "DMphanhoikh";
+            this.DMphanhoikh.Size = new System.Drawing.Size(311, 34);
+            this.DMphanhoikh.Text = "Phản hồi của khách hàng";
             // 
             // pictureBox2
             // 
@@ -224,6 +228,18 @@ namespace MayTinhQA
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
+            // 
+            // DMhanhvikh
+            // 
+            this.DMhanhvikh.Name = "DMhanhvikh";
+            this.DMhanhvikh.Size = new System.Drawing.Size(311, 34);
+            this.DMhanhvikh.Text = "Hành vi khách hàng";
+            // 
+            // DMnhucausp
+            // 
+            this.DMnhucausp.Name = "DMnhucausp";
+            this.DMnhucausp.Size = new System.Drawing.Size(311, 34);
+            this.DMnhucausp.Text = "Nhu cầu sản phẩm";
             // 
             // frmhome
             // 
@@ -264,9 +280,11 @@ namespace MayTinhQA
         private System.Windows.Forms.ToolStripMenuItem DMdoitra;
         private System.Windows.Forms.ToolStripMenuItem DMthongke;
         private System.Windows.Forms.ToolStripMenuItem DMlichsugiaodich;
-        private System.Windows.Forms.ToolStripMenuItem phảnHồiCủaKháchHàngToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DMphanhoikh;
         private System.Windows.Forms.ToolStripMenuItem DMquanlysp;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.ToolStripMenuItem DMhanhvikh;
+        private System.Windows.Forms.ToolStripMenuItem DMnhucausp;
     }
 }
