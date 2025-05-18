@@ -28,22 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.labelName = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnDashBoard = new Guna.UI2.WinForms.Guna2Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnLogout = new Guna.UI2.WinForms.Guna2Button();
             this.btnReport = new Guna.UI2.WinForms.Guna2Button();
             this.btnActivity = new Guna.UI2.WinForms.Guna2Button();
             this.btnCustomer = new Guna.UI2.WinForms.Guna2Button();
-            this.btnCommunicate = new Guna.UI2.WinForms.Guna2Button();
-            this.btnWishlist = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -70,6 +72,7 @@
             this.labelName.TabIndex = 3;
             this.labelName.Text = "Chào A!";
             // 
+<<<<<<< HEAD
             // pictureBox2
             // 
             this.pictureBox2.Image = global::MayTinhQA.Properties.Resources.user_icon;
@@ -92,11 +95,15 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
+=======
+>>>>>>> 4d0282639e0ad6dd74b5b395fca0d319dbe040bb
             // btnDashBoard
             // 
-            this.btnDashBoard.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.btnDashBoard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
+            this.btnDashBoard.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.btnDashBoard.Checked = true;
             this.btnDashBoard.CheckedState.CustomBorderColor = System.Drawing.Color.White;
-            this.btnDashBoard.CheckedState.FillColor = System.Drawing.Color.White;
+            this.btnDashBoard.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
             this.btnDashBoard.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.btnDashBoard.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnDashBoard.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -116,6 +123,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
+            this.panel2.Controls.Add(this.guna2Button1);
             this.panel2.Controls.Add(this.btnLogout);
             this.panel2.Controls.Add(this.btnReport);
             this.panel2.Controls.Add(this.btnActivity);
@@ -139,10 +147,16 @@
             this.btnLogout.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
             this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogout.ForeColor = System.Drawing.Color.White;
+<<<<<<< HEAD
             this.btnLogout.Location = new System.Drawing.Point(855, 4);
             this.btnLogout.Margin = new System.Windows.Forms.Padding(2);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(98, 37);
+=======
+            this.btnLogout.Location = new System.Drawing.Point(995, 3);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(156, 45);
+>>>>>>> 4d0282639e0ad6dd74b5b395fca0d319dbe040bb
             this.btnLogout.TabIndex = 4;
             this.btnLogout.Text = "Đăng xuất";
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
@@ -150,6 +164,9 @@
             // btnReport
             // 
             this.btnReport.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.btnReport.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.btnReport.CheckedState.CustomBorderColor = System.Drawing.Color.White;
+            this.btnReport.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
             this.btnReport.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.btnReport.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnReport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -168,6 +185,9 @@
             // btnActivity
             // 
             this.btnActivity.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.btnActivity.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.btnActivity.CheckedState.CustomBorderColor = System.Drawing.Color.White;
+            this.btnActivity.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
             this.btnActivity.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.btnActivity.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnActivity.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -187,6 +207,9 @@
             // btnCustomer
             // 
             this.btnCustomer.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.btnCustomer.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.btnCustomer.CheckedState.CustomBorderColor = System.Drawing.Color.White;
+            this.btnCustomer.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
             this.btnCustomer.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.btnCustomer.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnCustomer.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -203,8 +226,9 @@
             this.btnCustomer.Text = "Khách hàng";
             this.btnCustomer.Click += new System.EventHandler(this.btnCustomer_Click);
             // 
-            // btnCommunicate
+            // guna2Button1
             // 
+<<<<<<< HEAD
             this.btnCommunicate.BackColor = System.Drawing.SystemColors.HighlightText;
             this.btnCommunicate.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.btnCommunicate.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -221,9 +245,26 @@
             this.btnCommunicate.TabIndex = 3;
             this.btnCommunicate.Text = "Liên lạc";
             this.btnCommunicate.Visible = false;
+=======
+            this.guna2Button1.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.guna2Button1.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 3);
+            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
+            this.guna2Button1.Font = new System.Drawing.Font("Montserrat", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2Button1.ForeColor = System.Drawing.Color.Red;
+            this.guna2Button1.Location = new System.Drawing.Point(1157, 3);
+            this.guna2Button1.Name = "guna2Button1";
+            this.guna2Button1.Size = new System.Drawing.Size(115, 45);
+            this.guna2Button1.TabIndex = 5;
+            this.guna2Button1.Text = "Thoát";
+>>>>>>> 4d0282639e0ad6dd74b5b395fca0d319dbe040bb
             // 
-            // btnWishlist
+            // panel3
             // 
+<<<<<<< HEAD
             this.btnWishlist.BackColor = System.Drawing.SystemColors.HighlightText;
             this.btnWishlist.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.btnWishlist.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -240,14 +281,52 @@
             this.btnWishlist.TabIndex = 4;
             this.btnWishlist.Text = "Wishlist";
             this.btnWishlist.Visible = false;
+=======
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 134);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1282, 597);
+            this.panel3.TabIndex = 5;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::MayTinhQA.Properties.Resources.user_icon;
+            this.pictureBox2.Location = new System.Drawing.Point(1211, 8);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(61, 61);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 2;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::MayTinhQA.Properties.Resources.QA;
+            this.pictureBox1.Location = new System.Drawing.Point(9, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(252, 76);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
+            // guna2DragControl1
+            // 
+            this.guna2DragControl1.DockIndicatorTransparencyValue = 0.6D;
+            this.guna2DragControl1.TargetControl = this.panel1;
+            this.guna2DragControl1.UseTransparentDrag = true;
+>>>>>>> 4d0282639e0ad6dd74b5b395fca0d319dbe040bb
             // 
             // FormDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(962, 594);
             this.Controls.Add(this.btnWishlist);
             this.Controls.Add(this.btnCommunicate);
+=======
+            this.ClientSize = new System.Drawing.Size(1282, 731);
+            this.Controls.Add(this.panel3);
+>>>>>>> 4d0282639e0ad6dd74b5b395fca0d319dbe040bb
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -257,9 +336,9 @@
             this.Text = "CRM QuangAnh";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -273,10 +352,11 @@
         private Guna.UI2.WinForms.Guna2Button btnCustomer;
         private Guna.UI2.WinForms.Guna2Button btnReport;
         private Guna.UI2.WinForms.Guna2Button btnActivity;
-        private Guna.UI2.WinForms.Guna2Button btnCommunicate;
-        private Guna.UI2.WinForms.Guna2Button btnWishlist;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label labelName;
         private Guna.UI2.WinForms.Guna2Button btnLogout;
+        private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private System.Windows.Forms.Panel panel3;
+        private Guna.UI2.WinForms.Guna2DragControl guna2DragControl1;
     }
 }
