@@ -47,10 +47,10 @@ namespace MayTinhQA
             this.DMthongke = new System.Windows.Forms.ToolStripMenuItem();
             this.DMlichsugiaodich = new System.Windows.Forms.ToolStripMenuItem();
             this.DMphanhoikh = new System.Windows.Forms.ToolStripMenuItem();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.DMhanhvikh = new System.Windows.Forms.ToolStripMenuItem();
             this.DMnhucausp = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -209,6 +209,19 @@ namespace MayTinhQA
             this.DMphanhoikh.Size = new System.Drawing.Size(311, 34);
             this.DMphanhoikh.Text = "Phản hồi của khách hàng";
             // 
+            // DMhanhvikh
+            // 
+            this.DMhanhvikh.Name = "DMhanhvikh";
+            this.DMhanhvikh.Size = new System.Drawing.Size(311, 34);
+            this.DMhanhvikh.Text = "Hành vi khách hàng";
+            this.DMhanhvikh.Click += new System.EventHandler(this.DMhanhvikh_Click);
+            // 
+            // DMnhucausp
+            // 
+            this.DMnhucausp.Name = "DMnhucausp";
+            this.DMnhucausp.Size = new System.Drawing.Size(311, 34);
+            this.DMnhucausp.Text = "Nhu cầu sản phẩm";
+            // 
             // pictureBox2
             // 
             this.pictureBox2.Image = global::MayTinhQA.Properties.Resources.QA1;
@@ -228,18 +241,6 @@ namespace MayTinhQA
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
-            // 
-            // DMhanhvikh
-            // 
-            this.DMhanhvikh.Name = "DMhanhvikh";
-            this.DMhanhvikh.Size = new System.Drawing.Size(311, 34);
-            this.DMhanhvikh.Text = "Hành vi khách hàng";
-            // 
-            // DMnhucausp
-            // 
-            this.DMnhucausp.Name = "DMnhucausp";
-            this.DMnhucausp.Size = new System.Drawing.Size(311, 34);
-            this.DMnhucausp.Text = "Nhu cầu sản phẩm";
             // 
             // frmhome
             // 

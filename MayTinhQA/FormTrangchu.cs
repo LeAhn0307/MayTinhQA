@@ -125,5 +125,11 @@ namespace MayTinhQA
             frmkhachhang khachhang = new frmkhachhang();
             khachhang.ShowDialog();
         }
+
+        private void DMhanhvikh_Click(object sender, EventArgs e)
+        {
+            frmhanhvikh hanhvi = new frmhanhvikh();
+            hanhvi.ShowDialog();
+        }
     }
 }
