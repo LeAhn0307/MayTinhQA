@@ -15,23 +15,30 @@ namespace MayTinhQA
     public partial class frmhanhvikh : Form
     {
         private string connectionString = "Data Source=DESKTOP-2023ILB\\SQLEXPRESS01;Initial Catalog=crm;Integrated Security=True";
+
         public frmhanhvikh()
         {
             InitializeComponent();
+            chartgiaodich.Size = new Size(400, 300); // Tăng kích thước biểu đồ
+            chartphankhuc.Size = new Size(400, 300); // Tăng kích thước biểu đồ
         }
 
         private void frmhanhvikh_Load(object sender, EventArgs e)
         {
             dgvthongke.Columns.Clear();
+            dgvthongke.Columns.Add("Ngay", "Ngày");
             dgvthongke.Columns.Add("TenKhachHang", "Tên Khách Hàng");
             dgvthongke.Columns.Add("SoLanMua", "Số Lần Mua");
             dgvthongke.Columns.Add("TongGiaTri", "Tổng Giá Trị");
+
             dgvphankhuc.Columns.Clear();
             dgvphankhuc.Columns.Add("TenKhachHang", "Tên Khách Hàng");
             dgvphankhuc.Columns.Add("PhanKhuc", "Phân Khúc");
-            if (chartxuhuong.Series.IndexOf("Số Giao Dịch") >= 0)
+
+            // Biểu đồ giao dịch
+            if (chartgiaodich.Series.IndexOf("Số Giao Dịch") >= 0)
             {
-                chartxuhuong.Series["Số Giao Dịch"].Points.Clear(); // Xóa dữ liệu cũ
+                chartgiaodich.Series["Số Giao Dịch"].Points.Clear(); 
             }
             else
             {
@@ -39,33 +46,47 @@ namespace MayTinhQA
                 {
                     ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column
                 };
-                chartxuhuong.Series.Add(series);
+                chartgiaodich.Series.Add(series);
             }
+
+            // Biểu đồ phân khúc
+            if (chartphankhuc.Series.IndexOf("Phân Khúc Khách Hàng") < 0)
+            {
+                var series = new System.Windows.Forms.DataVisualization.Charting.Series("Phân Khúc Khách Hàng")
+                {
+                    ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie
+                };
+                chartphankhuc.Series.Add(series);
+            }
+
             ThongKeMuaSam();
             PhanKhucKhachHang();
-            BieuDo();
+            BieuDoGiaoDich();
+            BieuDoPhanKhuc();
         }
+
         private void ThongKeMuaSam()
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = @"
-                SELECT 
-                    k.tenkhachhang AS TenKhachHang,
-                    COUNT(g.idgiaodich) AS SoLanMua,
-                    SUM(c.dongia * c.soluong) AS TongGiaTri
-                FROM 
-                    khachhang k
-                LEFT JOIN 
-                    giaodich g ON k.idkhachhang = g.idkhachhang
-                LEFT JOIN 
-                    hoadon h ON g.idhoadon = h.idhoadon
-                LEFT JOIN 
-                    chitietdonhang c ON g.idchitietdh = c.idchitietdh
-                GROUP BY 
-                    k.tenkhachhang
-                ORDER BY 
-                    TongGiaTri DESC;";
+        SELECT 
+            CAST(h.ngaytao AS DATE) AS Ngay,
+            k.tenkhachhang AS TenKhachHang,
+            COUNT(g.idgiaodich) AS SoLanMua,
+            SUM(c.dongia * c.soluong) AS TongGiaTri
+        FROM 
+            khachhang k
+        LEFT JOIN 
+            giaodich g ON k.idkhachhang = g.idkhachhang
+        LEFT JOIN 
+            hoadon h ON g.idhoadon = h.idhoadon
+        LEFT JOIN 
+            chitietdonhang c ON g.idchitietdh = c.idchitietdh
+        GROUP BY 
+            k.tenkhachhang, CAST(h.ngaytao AS DATE)
+        ORDER BY 
+            Ngay DESC;";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -74,42 +95,49 @@ namespace MayTinhQA
                     while (reader.Read())
                     {
                         dgvthongke.Rows.Add(
+                            reader["Ngay"], 
                             reader["TenKhachHang"],
                             reader["SoLanMua"],
-                            string.Format("{0:C}", reader["TongGiaTri"])); // Định dạng tiền tệ
+                            string.Format("{0:C}", reader["TongGiaTri"]));
                     }
                 }
             }
         }
-        private void BieuDo()
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                string query = @"
-                SELECT 
-                    CAST(h.ngaytao AS DATE) AS Ngay,
-                    COUNT(g.idgiaodich) AS SoGiaoDich
-                FROM 
-                    giaodich g
-                JOIN 
-                    hoadon h ON g.idhoadon = h.idhoadon
-                GROUP BY 
-                    CAST(h.ngaytao AS DATE)
-                ORDER BY 
-                    Ngay;";
 
-                using (SqlCommand command = new SqlCommand(query, connection))
+        private void BieuDoGiaoDich()
+        {
+            chartgiaodich.Series["Số Giao Dịch"].Points.Clear();
+
+            foreach (DataGridViewRow row in dgvthongke.Rows)
+            {
+                if (row.Cells["SoLanMua"].Value != null && row.Cells["TenKhachHang"].Value != null && row.Cells["Ngay"].Value != null)
                 {
-                    connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
-                    chartxuhuong.Series["Số Giao Dịch"].Points.Clear();
-                    while (reader.Read())
-                    {
-                        chartxuhuong.Series["Số Giao Dịch"].Points.AddXY(reader["Ngay"], reader["SoGiaoDich"]);
-                    }
+                    int soLanMua = Convert.ToInt32(row.Cells["SoLanMua"].Value);
+                    string ngay = row.Cells["Ngay"].Value.ToString();
+
+                    var point = chartgiaodich.Series["Số Giao Dịch"].Points.AddXY(ngay, soLanMua);
+                    chartgiaodich.Series["Số Giao Dịch"].Points[point].Label = soLanMua.ToString();
+
                 }
             }
         }
+
+        private void BieuDoPhanKhuc()
+        {
+            chartphankhuc.Series["Phân Khúc Khách Hàng"].Points.Clear();
+
+            foreach (DataGridViewRow row in dgvphankhuc.Rows)
+            {
+                if (row.Cells["PhanKhuc"].Value != null)
+                {
+                    string phanKhuc = row.Cells["PhanKhuc"].Value.ToString();
+                    int soKhachHang = 1;
+                    var point = chartphankhuc.Series["Phân Khúc Khách Hàng"].Points.AddXY(phanKhuc, soKhachHang);
+                    chartphankhuc.Series["Phân Khúc Khách Hàng"].Points[point].Label = phanKhuc;
+                }
+            }
+        }
+
         private void PhanKhucKhachHang()
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -135,7 +163,7 @@ namespace MayTinhQA
                 {
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
-                    dgvphankhuc.Rows.Clear(); // Xóa dữ liệu cũ
+                    dgvphankhuc.Rows.Clear();
                     while (reader.Read())
                     {
                         dgvphankhuc.Rows.Add(

@@ -202,6 +202,7 @@ namespace MayTinhQA
             this.DMlichsugiaodich.Name = "DMlichsugiaodich";
             this.DMlichsugiaodich.Size = new System.Drawing.Size(311, 34);
             this.DMlichsugiaodich.Text = "Lịch sử giao dịch";
+            this.DMlichsugiaodich.Click += new System.EventHandler(this.DMlichsugiaodich_Click);
             // 
             // DMphanhoikh
             // 

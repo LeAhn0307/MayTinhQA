@@ -131,5 +131,11 @@ namespace MayTinhQA
             frmhanhvikh hanhvi = new frmhanhvikh();
             hanhvi.ShowDialog();
         }
+
+        private void DMlichsugiaodich_Click(object sender, EventArgs e)
+        {
+            frmlichsu lichsu = new frmlichsu();
+            lichsu.ShowDialog();
+        }
     }
 }

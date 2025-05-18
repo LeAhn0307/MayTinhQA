@@ -14,11 +14,19 @@ namespace MayTinhQA
 {
     public partial class frmlichsu : Form
     {
-        private string connectionString = "";
+        private string connectionString = "Data Source=DESKTOP-2023ILB\\SQLEXPRESS01;Initial Catalog=crm;Integrated Security=True";
         public frmlichsu()
         {
             InitializeComponent();
+            dgvlichsugiaodich.Columns.Clear();
+            dgvlichsugiaodich.Columns.Add("idgiaodich", "ID Giao Dịch");
+            dgvlichsugiaodich.Columns.Add("TenKhachHang", "Tên Khách Hàng");
+            dgvlichsugiaodich.Columns.Add("idhoadon", "ID Hóa Đơn");
+            dgvlichsugiaodich.Columns.Add("idchitietdh", "ID Chi Tiết Đơn Hàng");
+            dgvlichsugiaodich.Columns.Add("soluong", "Số Lượng");
+            dgvlichsugiaodich.Columns.Add("dongia", "Đơn Giá");
             LoadLichSuGiaoDich();
+            LoadThongKeGiaoDich();
         }
         private void LoadLichSuGiaoDich()
         {
@@ -27,11 +35,11 @@ namespace MayTinhQA
                 string query = @"
                 SELECT 
                     g.idgiaodich,
-                    k.hoten AS TenKhachHang,
+                    k.tenkhachhang AS TenKhachHang,
                     h.idhoadon,
                     c.idchitietdh,
                     c.soluong,
-                    c.gia
+                    c.dongia
                 FROM 
                     giaodich g
                 JOIN 
@@ -55,7 +63,7 @@ namespace MayTinhQA
                             reader["idhoadon"],
                             reader["idchitietdh"],
                             reader["soluong"],
-                            reader["gia"]);
+                            reader["dongia"]);
                     }
                 }
             }
@@ -80,11 +88,11 @@ namespace MayTinhQA
                 string query = @"
             SELECT 
                 g.idgiaodich,
-                k.hoten AS TenKhachHang,
+                k.tenkhachhang AS TenKhachHang,
                 h.idhoadon,
                 c.idchitietdh,
                 c.soluong,
-                c.gia
+                c.dongia
             FROM 
                 giaodich g
             JOIN 
@@ -104,7 +112,7 @@ namespace MayTinhQA
                     command.Parameters.AddWithValue("@IdHoaDon", txttktheomahoadon.Text);
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
-                    dgvlichsugiaodich.Rows.Clear(); // Xóa dữ liệu cũ
+                    dgvlichsugiaodich.Rows.Clear(); 
                     while (reader.Read())
                     {
                         dgvlichsugiaodich.Rows.Add(
@@ -113,7 +121,7 @@ namespace MayTinhQA
                             reader["idhoadon"],
                             reader["idchitietdh"],
                             reader["soluong"],
-                            reader["gia"]);
+                            reader["dongia"]);
                     }
                 }
             }
