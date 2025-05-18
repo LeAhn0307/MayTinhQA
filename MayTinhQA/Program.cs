@@ -13,7 +13,7 @@ namespace MayTinhQA
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmhome());
+            Application.Run(new FormLogin());
         }
     }
 }
