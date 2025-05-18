@@ -46,8 +46,8 @@ namespace MayTinhQA
 
         private void labelForgotPassword_Click(object sender, EventArgs e)
         {
-            frmquenmk quenmatkhau = new frmquenmk();
-            quenmatkhau.ShowDialog();
+            FormForgotPassword quenMk = new FormForgotPassword();
+            quenMk.ShowDialog();
         }
 
         private void labelOut_Click(object sender, EventArgs e)

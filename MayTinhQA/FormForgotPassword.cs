@@ -15,6 +15,36 @@ namespace MayTinhQA
         public FormForgotPassword()
         {
             InitializeComponent();
+            label3.Text = "";
+        }
+        Modify modify = new Modify();
+        private void btnResend_Click(object sender, EventArgs e)
+        {
+            string email = txtemaildangki.Text;
+            if (email.Trim() == "")
+            {
+                MessageBox.Show("Vui lòng nhập email dăng kí!");
+            }
+            else
+            {
+                string sql = "select * from users where email = '" + email + "'";
+                if (modify.users(sql).Count != 0)
+                {
+                    label3.ForeColor = Color.Blue;
+                    label3.Text = "Mật khẩu:" + modify.users(sql)[0].Matkhau;
+                }
+                else
+                {
+                    label3.ForeColor = Color.Red;
+                    label3.Text = "Email này chưa được đăng kí";
+                }
+            }
+        }
+
+        private void labelLogin_Click(object sender, EventArgs e)
+        {
+            FormLogin formLogin = new FormLogin();
+            formLogin.ShowDialog();
         }
     }
 }

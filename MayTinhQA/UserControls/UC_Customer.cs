@@ -183,14 +183,14 @@ namespace MayTinhQA.UserControls
             isAdding = true;
             isEditing = false;
 
-            txthovatenkhach.Clear();
-            txtemailkhach.Clear();
-            txtsdtkhach.Clear();
-            txtdiachikhach.Clear();
-            dtpkhach.Value = DateTime.Now;
-            txtidkhachhang.Clear();
-            btnluu.Visible = true;
-            btnhuy.Visible = true;
+            //txthovatenkhach.Clear();
+            //txtemailkhach.Clear();
+            //txtsdtkhach.Clear();
+            //txtdiachikhach.Clear();
+            //dtpkhach.Value = DateTime.Now;
+            //txtidkhachhang.Clear();
+            //btnluu.Visible = true;
+            //btnhuy.Visible = true;
         }
 
         private void btnxoa_Click(object sender, EventArgs e)
@@ -258,12 +258,12 @@ namespace MayTinhQA.UserControls
         }
         private void EnableTextBoxes(bool enable)
         {
-            txtidkhachhang.ReadOnly = !enable;
-            txthovatenkhach.ReadOnly = !enable;
-            dtpkhach.Enabled = enable;
-            txtemailkhach.ReadOnly = !enable;
-            txtdiachikhach.ReadOnly = !enable;
-            txtsdtkhach.ReadOnly = !enable;
+            //txtidkhachhang.ReadOnly = !enable;
+            //txthovatenkhach.ReadOnly = !enable;
+            //dtpkhach.Enabled = enable;
+            //txtemailkhach.ReadOnly = !enable;
+            //txtdiachikhach.ReadOnly = !enable;
+            //txtsdtkhach.ReadOnly = !enable;
         }
 
         private void btnsua_Click(object sender, EventArgs e)
@@ -275,22 +275,22 @@ namespace MayTinhQA.UserControls
             if (selectedRow != null)
             {
                 // Gán dữ liệu từ DataGridView vào các TextBox
-                txtidkhachhang.Text = selectedRow.Cells["idkhachhang"].Value?.ToString();
-                txthovatenkhach.Text = selectedRow.Cells["tenkhachhang"].Value?.ToString();
+                //txtidkhachhang.Text = selectedRow.Cells["idkhachhang"].Value?.ToString();
+                //txthovatenkhach.Text = selectedRow.Cells["tenkhachhang"].Value?.ToString();
 
-                string rawDate = selectedRow.Cells["ngaysinh"].Value?.ToString();
-                if (DateTime.TryParse(rawDate, out DateTime parsedDate))
-                {
-                    dtpkhach.Value = parsedDate;
-                }
-                else
-                {
-                    dtpkhach.Value = DateTime.Now;
-                }
+                //string rawDate = selectedRow.Cells["ngaysinh"].Value?.ToString();
+                //if (DateTime.TryParse(rawDate, out DateTime parsedDate))
+                //{
+                //    dtpkhach.Value = parsedDate;
+                //}
+                //else
+                //{
+                //    dtpkhach.Value = DateTime.Now;
+                //}
 
-                txtemailkhach.Text = selectedRow.Cells["email"].Value?.ToString();
-                txtdiachikhach.Text = selectedRow.Cells["diachi"].Value?.ToString();
-                txtsdtkhach.Text = selectedRow.Cells["dienthoai"].Value?.ToString();
+                //txtemailkhach.Text = selectedRow.Cells["email"].Value?.ToString();
+                //txtdiachikhach.Text = selectedRow.Cells["diachi"].Value?.ToString();
+                //txtsdtkhach.Text = selectedRow.Cells["dienthoai"].Value?.ToString();
 
                 // Đặt cờ đang chỉnh sửa
                 isEditing = true;
@@ -298,8 +298,8 @@ namespace MayTinhQA.UserControls
 
                 EnableTextBoxes(true);
 
-                btnluu.Visible = true;
-                btnhuy.Visible = true;
+                //btnluu.Visible = true;
+                //btnhuy.Visible = true;
 
             }
             else
@@ -328,21 +328,21 @@ namespace MayTinhQA.UserControls
 
         private void btntimkiem_Click(object sender, EventArgs e)
         {
-            string tk = txttimkiem.Text.Trim();
-            if (string.IsNullOrWhiteSpace(tk))
-            {
-                MessageBox.Show("Vui lòng nhập tên hoặc id khách hàng!", "Thông báo", MessageBoxButtons.OK);
-                return;
-            }
-            DataTable table = Database.TimKiem(tk);
-            if (table.Rows.Count == 0)
-            {
-                MessageBox.Show("Không tìm thấy khách hàng!", "Thông báo", MessageBoxButtons.OK);
-            }
-            else
-            {
-                dgvKhachhang.DataSource = table;
-            }
+            //string tk = txttimkiem.Text.Trim();
+            //if (string.IsNullOrWhiteSpace(tk))
+            //{
+            //    MessageBox.Show("Vui lòng nhập tên hoặc id khách hàng!", "Thông báo", MessageBoxButtons.OK);
+            //    return;
+            //}
+            //DataTable table = Database.TimKiem(tk);
+            //if (table.Rows.Count == 0)
+            //{
+            //    MessageBox.Show("Không tìm thấy khách hàng!", "Thông báo", MessageBoxButtons.OK);
+            //}
+            //else
+            //{
+            //    dgvKhachhang.DataSource = table;
+            //}
         }
     }
 }
