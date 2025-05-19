@@ -51,6 +51,8 @@ namespace MayTinhQA
             this.label7 = new System.Windows.Forms.Label();
             this.btnluu = new System.Windows.Forms.Button();
             this.btnhuy = new System.Windows.Forms.Button();
+            this.comboBoxtp = new System.Windows.Forms.ComboBox();
+            this.comboBoxq = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKhachhang)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,7 +98,7 @@ namespace MayTinhQA
             this.txtdiachikhach.Location = new System.Drawing.Point(110, 129);
             this.txtdiachikhach.Margin = new System.Windows.Forms.Padding(2);
             this.txtdiachikhach.Name = "txtdiachikhach";
-            this.txtdiachikhach.Size = new System.Drawing.Size(163, 20);
+            this.txtdiachikhach.Size = new System.Drawing.Size(64, 20);
             this.txtdiachikhach.TabIndex = 12;
             // 
             // txtsdtkhach
@@ -240,7 +242,7 @@ namespace MayTinhQA
             "Trung thành",
             "Tiềm năng",
             "Ngủ quên"});
-            this.cbloaikhach.Location = new System.Drawing.Point(398, 121);
+            this.cbloaikhach.Location = new System.Drawing.Point(487, 102);
             this.cbloaikhach.Name = "cbloaikhach";
             this.cbloaikhach.Size = new System.Drawing.Size(177, 21);
             this.cbloaikhach.TabIndex = 17;
@@ -249,7 +251,7 @@ namespace MayTinhQA
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(306, 124);
+            this.label7.Location = new System.Drawing.Point(395, 105);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(87, 13);
@@ -278,11 +280,31 @@ namespace MayTinhQA
             this.btnhuy.UseVisualStyleBackColor = true;
             this.btnhuy.Click += new System.EventHandler(this.btnhuy_Click);
             // 
+            // comboBoxtp
+            // 
+            this.comboBoxtp.FormattingEnabled = true;
+            this.comboBoxtp.Location = new System.Drawing.Point(180, 127);
+            this.comboBoxtp.Name = "comboBoxtp";
+            this.comboBoxtp.Size = new System.Drawing.Size(93, 21);
+            this.comboBoxtp.TabIndex = 20;
+            this.comboBoxtp.Text = "Thành phố";
+            // 
+            // comboBoxq
+            // 
+            this.comboBoxq.FormattingEnabled = true;
+            this.comboBoxq.Location = new System.Drawing.Point(279, 127);
+            this.comboBoxq.Name = "comboBoxq";
+            this.comboBoxq.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxq.TabIndex = 21;
+            this.comboBoxq.Text = "Quận,huyện";
+            // 
             // frmkhachhang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(663, 371);
+            this.Controls.Add(this.comboBoxq);
+            this.Controls.Add(this.comboBoxtp);
             this.Controls.Add(this.btnhuy);
             this.Controls.Add(this.btnluu);
             this.Controls.Add(this.cbloaikhach);
@@ -339,5 +361,7 @@ namespace MayTinhQA
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnluu;
         private System.Windows.Forms.Button btnhuy;
+        private System.Windows.Forms.ComboBox comboBoxtp;
+        private System.Windows.Forms.ComboBox comboBoxq;
     }
 }

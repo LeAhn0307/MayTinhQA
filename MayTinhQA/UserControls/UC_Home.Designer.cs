@@ -22,9 +22,9 @@
 
         private void InitializeComponent()
         {
-            this.labelName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
+
             // labelName
             // 
             this.labelName.AutoSize = true;
@@ -35,16 +35,13 @@
             this.labelName.TabIndex = 4;
             this.labelName.Text = "Phần mềm Quản lý quan hệ khách hàng của công ty Quang Anh";
             // 
+
             // UC_Home
             // 
-            this.Controls.Add(this.labelName);
             this.Name = "UC_Home";
             this.Size = new System.Drawing.Size(1282, 597);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
-
-        private System.Windows.Forms.Label labelName;
     }
 }
