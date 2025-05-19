@@ -16,6 +16,8 @@ namespace MayTinhQA
         public FormDashboard()
         {
             InitializeComponent();
+            UC_Home uC = new UC_Home();
+            addUserControl(uC);
         }
         private void addUserControl(UserControl uc)
         {
