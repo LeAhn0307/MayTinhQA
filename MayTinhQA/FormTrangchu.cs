@@ -24,12 +24,7 @@ namespace MayTinhQA
         }
         private void btndangxuat_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn có muốn đăng xuất?", "Thông báo", MessageBoxButtons.YesNo,MessageBoxIcon.Information)==DialogResult.Yes)
-            {
-                this.Hide();
-                FormLogin dangnhap = new FormLogin();
-                dangnhap.ShowDialog();
-            }
+            
         }
 
         private void khachHangToolStripMenuItem_Click_1(object sender, EventArgs e)

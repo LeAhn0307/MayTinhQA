@@ -52,7 +52,19 @@ namespace MayTinhQA
         private int currentEditingRowIndex = -1;
         private void napdgvKhachHang()
         {
-            DataTable dt = Database.Query("select * from khachhang");
+            DataTable dt = Database.Query(@"
+SELECT 
+    k.idkhachhang,
+    k.tenkhachhang,
+    k.ngaysinh,
+    k.email,
+    k.dienthoai,
+    
+    CAST(k.diachi AS VARCHAR(MAX)) + ', ' + q.tenquanhuyen + ', ' + t.tenthanhpho AS diachidaydu
+FROM khachhang k
+INNER JOIN quanhuyen q ON k.idquanhuyen = q.idquanhuyen
+INNER JOIN thanhpho t ON k.idthanhpho = t.idthanhpho
+WHERE t.tenthanhpho IN (N'Hà Nội', N'Hải Phòng');");
             dgvKhachhang.DataSource = null; // Ngắt DataSource cũ nếu có
 
             dgvKhachhang.Columns.Clear(); // Xóa tất cả cột cũ
@@ -185,9 +197,28 @@ namespace MayTinhQA
                 dgvKhachhang.Invalidate(); // Vẽ lại header
             }
         }
-        
 
+        private void LoadThanhPho()
+        {
+            DataTable dt = Database.Query("SELECT idthanhpho, tenthanhpho FROM thanhpho");
+            comboBoxtp.DataSource = dt;
+            comboBoxtp.DisplayMember = "tenthanhpho";
+            comboBoxtp.ValueMember = "idthanhpho";
 
+            // Tùy chọn: chọn mặc định thành phố đầu tiên
+            if (comboBoxtp.Items.Count > 0)
+                comboBoxtp.SelectedIndex = 0;
+        }
+        private void LoadQuanHuyenTheoThanhPho(int idThanhPho)
+        {
+            DataTable dt = Database.Query($"SELECT idquanhuyen, tenquanhuyen FROM quanhuyen WHERE idthanhpho = {idThanhPho}");
+            comboBoxq.DataSource = dt;
+            comboBoxq.DisplayMember = "tenquanhuyen";
+            comboBoxq.ValueMember = "idquanhuyen";
+
+            if (comboBoxq.Items.Count > 0)
+                comboBoxq.SelectedIndex = 0;
+        }
         private void btnthem_Click(object sender, EventArgs e)
         {
             if (isAdding || isEditing)
@@ -361,6 +392,15 @@ namespace MayTinhQA
         private void frmkhachhang_Load_1(object sender, EventArgs e)
         {
             LoadComboBox();
+      
+            LoadThanhPho();
+            comboBoxtp.SelectedIndexChanged += (s, args) =>
+            {
+                if (comboBoxtp.SelectedValue != null && int.TryParse(comboBoxtp.SelectedValue.ToString(), out int idThanhPho))
+                {
+                    LoadQuanHuyenTheoThanhPho(idThanhPho);
+                }
+            };
         }
 
         private void btntimkiem_Click(object sender, EventArgs e)
@@ -423,6 +463,10 @@ namespace MayTinhQA
                     string diachi = txtdiachikhach.Text.Trim();
                     string ngaysinh = dtpkhach.Value.ToString("yyyy-MM-dd");
 
+                    // Lấy id thành phố và quận từ ComboBox (giả sử bạn dùng ComboBox để chọn)
+                    int idThanhPho = (int)comboBoxtp.SelectedValue;  // ComboBox bound with id
+                    int idQuan = (int)comboBoxq.SelectedValue;          // ComboBox bound with id
+
                     if (string.IsNullOrWhiteSpace(hoten) || string.IsNullOrWhiteSpace(email))
                     {
                         MessageBox.Show("Vui lòng nhập đầy đủ họ tên và email.", "Thông báo", MessageBoxButtons.OK);
@@ -430,8 +474,8 @@ namespace MayTinhQA
                     }
 
                     string insertKH = $@"
-INSERT INTO khachhang (tenkhachhang, email, dienthoai, diachi, ngaysinh)
-VALUES (N'{hoten}', '{email}', '{sdt}', N'{diachi}', '{ngaysinh}')";
+INSERT INTO khachhang (tenkhachhang, email, dienthoai, diachi, ngaysinh, idthanhpho, idquanhuyen)
+VALUES (N'{hoten}', '{email}', '{sdt}', N'{diachi}', '{ngaysinh}', {idThanhPho}, {idQuan})";
 
                     Database.Excute(insertKH);
 
@@ -456,6 +500,7 @@ SELECT TOP 1 idkhachhang FROM khachhang ORDER BY idkhachhang DESC");
                 {
                     MessageBox.Show("Lỗi thêm khách hàng: " + ex.Message);
                 }
+            
             }
             else if (isEditing)
             {
