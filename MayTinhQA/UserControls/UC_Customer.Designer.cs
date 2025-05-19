@@ -250,5 +250,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
         private Guna.UI2.WinForms.Guna2ComboBox cbbFilter;
         private System.Windows.Forms.DataGridViewTextBoxColumn Action;
+
     }
 }
