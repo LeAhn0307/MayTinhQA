@@ -97,7 +97,6 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             this.dgvKhachhang.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvKhachhang.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Montserrat", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -137,7 +136,7 @@
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvKhachhang.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvKhachhang.RowHeadersVisible = false;
-            this.dgvKhachhang.RowHeadersWidth = 51;
+            this.dgvKhachhang.RowHeadersWidth = 48;
             this.dgvKhachhang.RowTemplate.Height = 24;
             this.dgvKhachhang.Size = new System.Drawing.Size(1283, 386);
             this.dgvKhachhang.TabIndex = 6;

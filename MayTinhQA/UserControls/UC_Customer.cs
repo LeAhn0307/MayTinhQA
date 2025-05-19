@@ -44,6 +44,20 @@ namespace MayTinhQA.UserControls
 
             dgvKhachhang.AllowUserToAddRows = false;
             dgvKhachhang.RowHeadersVisible = false;
+
+            var editColumn = new DataGridViewButtonColumn();
+            editColumn.Name = "Edit";
+            editColumn.HeaderText = "Sửa";
+            editColumn.Text = "Sửa";
+            editColumn.UseColumnTextForButtonValue = true;
+            editColumn.FlatStyle = FlatStyle.Flat;
+            editColumn.DefaultCellStyle.BackColor = Color.FromArgb(76, 175, 80);
+            editColumn.DefaultCellStyle.ForeColor = Color.White;
+            editColumn.DefaultCellStyle.SelectionBackColor = Color.FromArgb(56, 141, 61);
+            editColumn.DefaultCellStyle.SelectionForeColor = Color.White;
+            editColumn.Width = 60;
+            dgvKhachhang.Columns.Add(editColumn);
+
         }
         private bool isAdding = false;
         private bool isEditing = false;
