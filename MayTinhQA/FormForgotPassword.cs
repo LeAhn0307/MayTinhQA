@@ -43,6 +43,7 @@ namespace MayTinhQA
 
         private void labelLogin_Click(object sender, EventArgs e)
         {
+            this.Hide();
             FormLogin formLogin = new FormLogin();
             formLogin.ShowDialog();
         }

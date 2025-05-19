@@ -46,14 +46,21 @@ namespace MayTinhQA
 
         private void labelForgotPassword_Click(object sender, EventArgs e)
         {
+            this.Hide();
             FormForgotPassword quenMk = new FormForgotPassword();
             quenMk.ShowDialog();
         }
 
         private void labelOut_Click(object sender, EventArgs e)
         {
-            frmdangki dangki = new frmdangki();
+            this.Hide();
+            FormSignUp dangki = new FormSignUp();
             dangki.ShowDialog();
+        }
+
+        private void picClose_Click(object sender, EventArgs e)
+        {
+           this.Close();
         }
     }
 }
