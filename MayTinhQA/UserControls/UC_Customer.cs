@@ -19,6 +19,7 @@ namespace MayTinhQA.UserControls
         public UC_Customer()
         {
             InitializeComponent();
+
             dgvKhachhang.CellValueChanged += DgvKhachhang_CellValueChanged;
             dgvKhachhang.CurrentCellDirtyStateChanged += (s, e) =>
             {
@@ -105,6 +106,7 @@ namespace MayTinhQA.UserControls
             // Bỏ phần vẽ chữ
             headerLabelArea = Rectangle.Empty;
             return;
+
         }
         private void DgvKhachhang_MouseClick(object sender, MouseEventArgs e)
         {
@@ -171,6 +173,7 @@ namespace MayTinhQA.UserControls
         {
 
         }
+
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -344,5 +347,6 @@ namespace MayTinhQA.UserControls
             //    dgvKhachhang.DataSource = table;
             //}
         }
+
     }
 }

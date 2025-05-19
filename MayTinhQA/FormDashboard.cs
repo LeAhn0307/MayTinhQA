@@ -16,6 +16,8 @@ namespace MayTinhQA
         public FormDashboard()
         {
             InitializeComponent();
+            UC_Home uC = new UC_Home();
+            addUserControl(uC);
         }
         private void addUserControl(UserControl uc)
         {
@@ -42,21 +44,20 @@ namespace MayTinhQA
 
         private void btnDashBoard_Click(object sender, EventArgs e)
         {
-
-
-        }
-
-        private void btnCustomer_Click(object sender, EventArgs e)
-        {
-
             UC_Home uC = new UC_Home();
             addUserControl(uC);
-            
         }
+
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
             this.Close();
+
+        private void btnCustomer_Click(object sender, EventArgs e)
+        {
+            UC_Customer uC = new UC_Customer();
+            addUserControl(uC);
+
         }
     }
 }

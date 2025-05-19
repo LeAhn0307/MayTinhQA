@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+
             this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnAdd = new Guna.UI2.WinForms.Guna2Button();
             this.dgvKhachhang = new Guna.UI2.WinForms.Guna2DataGridView();
@@ -41,14 +43,20 @@
             this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+
             this.btnxoa = new Guna.UI2.WinForms.Guna2Button();
             this.btnsua = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKhachhang)).BeginInit();
+
+            this.cbbFilter = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.Action = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvInformation)).BeginInit();
             this.SuspendLayout();
             // 
             // txtSearch
             // 
+            this.txtSearch.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
             this.txtSearch.BorderRadius = 12;
             this.txtSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtSearch.DefaultText = "Tìm kiếm khách hàng...";
@@ -57,7 +65,9 @@
             this.txtSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtSearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtSearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
             this.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtSearch.Location = new System.Drawing.Point(16, 13);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -85,6 +95,7 @@
             this.btnAdd.Text = "+ Thêm khách hàng ";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+
             // dgvKhachhang
             // 
             this.dgvKhachhang.AllowUserToResizeRows = false;
@@ -105,11 +116,13 @@
             this.dgvKhachhang.ColumnHeadersHeight = 4;
             this.dgvKhachhang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.dgvKhachhang.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+
             this.CustomerID,
             this.CustomerName,
             this.BornDate,
             this.Address,
             this.PhoneNumber,
+
             this.Email});
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
@@ -160,9 +173,12 @@
             this.dgvKhachhang.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             this.dgvKhachhang.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvInformation_CellContentClick);
             this.dgvKhachhang.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKhachhang_RowEnter);
+
             // 
             // CustomerID
             // 
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Montserrat", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CustomerID.DefaultCellStyle = dataGridViewCellStyle3;
             this.CustomerID.HeaderText = "Mã khách hàng";
             this.CustomerID.MinimumWidth = 6;
             this.CustomerID.Name = "CustomerID";
@@ -197,6 +213,7 @@
             this.Email.MinimumWidth = 6;
             this.Email.Name = "Email";
             // 
+
             // btnxoa
             // 
             this.btnxoa.BorderRadius = 12;
@@ -250,15 +267,45 @@
             this.guna2Button1.TabIndex = 5;
             this.guna2Button1.Text = "Tìm kiếm";
             this.guna2Button1.Click += new System.EventHandler(this.btntimkiem_Click);
+
+            // cbbFilter
+            // 
+            this.cbbFilter.BackColor = System.Drawing.Color.Transparent;
+            this.cbbFilter.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
+            this.cbbFilter.BorderRadius = 12;
+            this.cbbFilter.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbbFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbFilter.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbbFilter.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbbFilter.Font = new System.Drawing.Font("Montserrat", 10.2F);
+            this.cbbFilter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbbFilter.ItemHeight = 30;
+            this.cbbFilter.Location = new System.Drawing.Point(21, 99);
+            this.cbbFilter.Name = "cbbFilter";
+            this.cbbFilter.Size = new System.Drawing.Size(140, 36);
+            this.cbbFilter.TabIndex = 7;
+            // 
+            // Action
+            // 
+            this.Action.HeaderText = "";
+            this.Action.MinimumWidth = 6;
+            this.Action.Name = "Action";
+
             // 
             // UC_Customer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+
             this.Controls.Add(this.dgvKhachhang);
             this.Controls.Add(this.guna2Button1);
             this.Controls.Add(this.btnsua);
             this.Controls.Add(this.btnxoa);
+
+            this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.cbbFilter);
+            this.Controls.Add(this.dgvInformation);
+
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.txtSearch);
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -281,8 +328,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Address;
         private System.Windows.Forms.DataGridViewTextBoxColumn PhoneNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
+
         private Guna.UI2.WinForms.Guna2Button btnxoa;
         private Guna.UI2.WinForms.Guna2Button btnsua;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
+
+        private Guna.UI2.WinForms.Guna2ComboBox cbbFilter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Action;
+
+
     }
 }
