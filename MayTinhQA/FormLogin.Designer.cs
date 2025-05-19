@@ -39,9 +39,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.labelForgotPassword = new System.Windows.Forms.Label();
             this.labelOut = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.picClose = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picClose)).BeginInit();
             this.SuspendLayout();
             // 
             // txttaikhoan
@@ -75,7 +75,7 @@
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(57, 25);
+            this.label1.Location = new System.Drawing.Point(64, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(316, 42);
             this.label1.TabIndex = 1;
@@ -84,7 +84,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
-            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.picClose);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -181,15 +181,15 @@
             this.labelOut.Text = "Đăng kí";
             this.labelOut.Click += new System.EventHandler(this.labelOut_Click);
             // 
-            // pictureBox1
+            // picClose
             // 
-            this.pictureBox1.Image = global::MayTinhQA.Properties.Resources.close_icon;
-            this.pictureBox1.Location = new System.Drawing.Point(436, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(35, 36);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.picClose.Image = global::MayTinhQA.Properties.Resources.white_cross;
+            this.picClose.Location = new System.Drawing.Point(436, 2);
+            this.picClose.Name = "picClose";
+            this.picClose.Size = new System.Drawing.Size(35, 36);
+            this.picClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picClose.TabIndex = 2;
+            this.picClose.TabStop = false;
             // 
             // FormLogin
             // 
@@ -212,7 +212,7 @@
             this.Text = "FormLogin";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picClose)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -230,6 +230,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label labelOut;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox picClose;
     }
 }
