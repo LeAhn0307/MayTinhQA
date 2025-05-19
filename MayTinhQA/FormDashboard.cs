@@ -52,7 +52,7 @@ namespace MayTinhQA
         private void guna2Button1_Click(object sender, EventArgs e)
         {
             this.Close();
-
+        }
         private void btnCustomer_Click(object sender, EventArgs e)
         {
             UC_Customer uC = new UC_Customer();

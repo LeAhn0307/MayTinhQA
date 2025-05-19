@@ -295,5 +295,11 @@
   <ItemGroup>
     <None Include="Resources\QA1.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\x-mark-24.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_icon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
