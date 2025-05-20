@@ -181,6 +181,12 @@
       <DependentUpon>SanPham.cs</DependentUpon>
     </Compile>
     <Compile Include="TaiKhoan.cs" />
+    <Compile Include="UserControls\UC_Activities.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UC_Activities.Designer.cs">
+      <DependentUpon>UC_Activities.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UC_Customer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -192,6 +198,12 @@
     </Compile>
     <Compile Include="UserControls\UC_Home.Designer.cs">
       <DependentUpon>UC_Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_Reports.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UC_Reports.Designer.cs">
+      <DependentUpon>UC_Reports.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="FormDashboard.resx">
       <DependentUpon>FormDashboard.cs</DependentUpon>
@@ -239,11 +251,17 @@
     <EmbeddedResource Include="SanPham.resx">
       <DependentUpon>SanPham.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UC_Activities.resx">
+      <DependentUpon>UC_Activities.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UC_Customer.resx">
       <DependentUpon>UC_Customer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UC_Home.resx">
       <DependentUpon>UC_Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UC_Reports.resx">
+      <DependentUpon>UC_Reports.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
