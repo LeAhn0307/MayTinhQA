@@ -9,6 +9,7 @@ create Table khachhang (
   diachi text,
   ngaysinh date
 )
+alter table khachhang add ghichu text
 create Table loaikhachhang(
 idkhachhang int foreign key references khachhang(idkhachhang),
 loaikhachhang nvarchar(100),
