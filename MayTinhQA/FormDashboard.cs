@@ -29,7 +29,8 @@ namespace MayTinhQA
 
         private void btnActivity_Click(object sender, EventArgs e)
         {
-            
+            UC_Activities uC = new UC_Activities();
+            addUserControl(uC);
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -58,6 +59,12 @@ namespace MayTinhQA
             UC_Customer uC = new UC_Customer();
             addUserControl(uC);
 
+        }
+
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            UC_Reports uC = new UC_Reports();
+            addUserControl(uC);
         }
     }
 }

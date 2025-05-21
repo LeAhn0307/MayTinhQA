@@ -7,18 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LiveCharts;
-using LiveCharts.Wpf;
 
-namespace MayTinhQA.UserControls
+namespace MayTinhQA
 {
-    public partial class UC_Home : UserControl
+    public partial class FormAddCutomer : Form
     {
-        public UC_Home()
+        public FormAddCutomer()
         {
             InitializeComponent();
-            
         }
-        
     }
 }

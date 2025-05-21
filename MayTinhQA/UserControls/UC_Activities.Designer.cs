@@ -36,14 +36,15 @@
             this.guna2DateTimePicker1 = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.btnFilter = new Guna.UI2.WinForms.Guna2Button();
             this.guna2DataGridView2 = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ActivityType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ActivityType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Employee = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -121,8 +122,9 @@
             this.guna2DataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Date,
             this.ActivityType,
-            this.Name,
-            this.Status});
+            this.CustomerName,
+            this.Status,
+            this.Employee});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -169,30 +171,6 @@
             this.guna2DataGridView2.ThemeStyle.RowsStyle.Height = 24;
             this.guna2DataGridView2.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.guna2DataGridView2.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            // 
-            // Date
-            // 
-            this.Date.HeaderText = "Thời gian";
-            this.Date.MinimumWidth = 6;
-            this.Date.Name = "Date";
-            // 
-            // ActivityType
-            // 
-            this.ActivityType.HeaderText = "Hoạt động";
-            this.ActivityType.MinimumWidth = 6;
-            this.ActivityType.Name = "ActivityType";
-            // 
-            // Name
-            // 
-            this.Name.HeaderText = "Tên khách hàng";
-            this.Name.MinimumWidth = 6;
-            this.Name.Name = "Name";
-            // 
-            // Status
-            // 
-            this.Status.HeaderText = "Trạng thái";
-            this.Status.MinimumWidth = 6;
-            this.Status.Name = "Status";
             // 
             // guna2Button1
             // 
@@ -262,6 +240,36 @@
             this.guna2Button4.TabIndex = 16;
             this.guna2Button4.Text = "Đánh dấu đã xong";
             // 
+            // Date
+            // 
+            this.Date.HeaderText = "Thời gian";
+            this.Date.MinimumWidth = 6;
+            this.Date.Name = "Date";
+            // 
+            // ActivityType
+            // 
+            this.ActivityType.HeaderText = "Hoạt động";
+            this.ActivityType.MinimumWidth = 6;
+            this.ActivityType.Name = "ActivityType";
+            // 
+            // CustomerName
+            // 
+            this.CustomerName.HeaderText = "Tên khách hàng";
+            this.CustomerName.MinimumWidth = 6;
+            this.CustomerName.Name = "CustomerName";
+            // 
+            // Status
+            // 
+            this.Status.HeaderText = "Trạng thái";
+            this.Status.MinimumWidth = 6;
+            this.Status.Name = "Status";
+            // 
+            // Employee
+            // 
+            this.Employee.HeaderText = "Nhân viên quản lý";
+            this.Employee.MinimumWidth = 6;
+            this.Employee.Name = "Employee";
+            // 
             // UC_Activities
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -287,13 +295,14 @@
         private Guna.UI2.WinForms.Guna2DateTimePicker guna2DateTimePicker1;
         private Guna.UI2.WinForms.Guna2Button btnFilter;
         private Guna.UI2.WinForms.Guna2DataGridView guna2DataGridView2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ActivityType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
         private Guna.UI2.WinForms.Guna2Button guna2Button3;
         private Guna.UI2.WinForms.Guna2Button guna2Button4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ActivityType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Employee;
     }
 }
