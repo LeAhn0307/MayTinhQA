@@ -58,13 +58,45 @@ namespace MayTinhQA
         {
             UC_Customer uC = new UC_Customer();
             addUserControl(uC);
-
+            guna2GroupBox1.Visible = true;
+            guna2GroupBox1.BringToFront();
         }
 
         private void btnReport_Click(object sender, EventArgs e)
         {
             UC_Reports uC = new UC_Reports();
             addUserControl(uC);
+        }
+
+        private void btnHistory_Click(object sender, EventArgs e)
+        {
+            UC_CustomerHistory uC = new UC_CustomerHistory();
+            addUserControl(uC);
+            guna2GroupBox1.Visible = false;
+
+        }
+
+        private void btnBehaviour_Click(object sender, EventArgs e)
+        {
+            UC_Behaviour uC = new UC_Behaviour();
+            addUserControl(uC);
+            guna2GroupBox1.Visible = false;
+
+        }
+
+        private void btnNeeds_Click(object sender, EventArgs e)
+        {
+            UC_CustomerNeeds uC = new UC_CustomerNeeds();
+            addUserControl(uC);
+            guna2GroupBox1.Visible = false;
+        }
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            base.OnMouseDown(e);
+            if (guna2GroupBox1.Visible && !guna2GroupBox1.Bounds.Contains(e.Location))
+            {
+                guna2GroupBox1.Visible = false;
+            }
         }
     }
 }

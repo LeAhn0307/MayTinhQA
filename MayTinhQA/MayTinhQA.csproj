@@ -87,6 +87,7 @@
       <HintPath>..\packages\System.Security.Cryptography.Xml.8.0.2\lib\net462\System.Security.Cryptography.Xml.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -193,11 +194,29 @@
     <Compile Include="UserControls\UC_Activities.Designer.cs">
       <DependentUpon>UC_Activities.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UC_Behaviour.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UC_Behaviour.Designer.cs">
+      <DependentUpon>UC_Behaviour.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UC_Customer.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\UC_Customer.Designer.cs">
       <DependentUpon>UC_Customer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_CustomerHistory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UC_CustomerHistory.Designer.cs">
+      <DependentUpon>UC_CustomerHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_CustomerNeeds.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UC_CustomerNeeds.Designer.cs">
+      <DependentUpon>UC_CustomerNeeds.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UC_Home.cs">
       <SubType>UserControl</SubType>
@@ -263,8 +282,17 @@
     <EmbeddedResource Include="UserControls\UC_Activities.resx">
       <DependentUpon>UC_Activities.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UC_Behaviour.resx">
+      <DependentUpon>UC_Behaviour.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UC_Customer.resx">
       <DependentUpon>UC_Customer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UC_CustomerHistory.resx">
+      <DependentUpon>UC_CustomerHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UC_CustomerNeeds.resx">
+      <DependentUpon>UC_CustomerNeeds.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UC_Home.resx">
       <DependentUpon>UC_Home.cs</DependentUpon>
