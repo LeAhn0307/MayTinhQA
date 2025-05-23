@@ -16,7 +16,9 @@ namespace MayTinhQA
         public FormDashboard()
         {
             InitializeComponent();
-            UC_Home uC = new UC_Home();
+            //UC_Home uC = new UC_Home();
+            //addUserControl(uC);
+            UC_Image uC = new UC_Image();
             addUserControl(uC);
         }
         private void addUserControl(UserControl uc)
@@ -29,6 +31,7 @@ namespace MayTinhQA
 
         private void btnActivity_Click(object sender, EventArgs e)
         {
+            guna2GroupBox1.Visible = !guna2GroupBox1.Visible;
             UC_Activities uC = new UC_Activities();
             addUserControl(uC);
         }
@@ -45,7 +48,9 @@ namespace MayTinhQA
 
         private void btnDashBoard_Click(object sender, EventArgs e)
         {
-            UC_Home uC = new UC_Home();
+            //UC_Home uC = new UC_Home();
+            //addUserControl(uC);
+            UC_Image uC = new UC_Image();
             addUserControl(uC);
         }
 
@@ -56,10 +61,12 @@ namespace MayTinhQA
         }
         private void btnCustomer_Click(object sender, EventArgs e)
         {
+            
+            //guna2GroupBox1.Visible = true;
+            //guna2GroupBox1.BringToFront();
             UC_Customer uC = new UC_Customer();
             addUserControl(uC);
-            guna2GroupBox1.Visible = true;
-            guna2GroupBox1.BringToFront();
+
         }
 
         private void btnReport_Click(object sender, EventArgs e)
@@ -97,6 +104,11 @@ namespace MayTinhQA
             {
                 guna2GroupBox1.Visible = false;
             }
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

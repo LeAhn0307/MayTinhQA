@@ -51,10 +51,10 @@ namespace MayTinhQA.UserControls
             editColumn.Text = "Sửa";
             editColumn.UseColumnTextForButtonValue = true;
             editColumn.FlatStyle = FlatStyle.Flat;
-            editColumn.DefaultCellStyle.BackColor = Color.FromArgb(76, 175, 80);
-            editColumn.DefaultCellStyle.ForeColor = Color.White;
-            editColumn.DefaultCellStyle.SelectionBackColor = Color.FromArgb(56, 141, 61);
-            editColumn.DefaultCellStyle.SelectionForeColor = Color.White;
+            //editColumn.DefaultCellStyle.BackColor = Color.FromArgb(76, 175, 80);
+            //editColumn.DefaultCellStyle.ForeColor = Color.White;
+            //editColumn.DefaultCellStyle.SelectionBackColor = Color.FromArgb(56, 141, 61);
+            //editColumn.DefaultCellStyle.SelectionForeColor = Color.White;
             editColumn.Width = 60;
             dgvKhachhang.Columns.Add(editColumn);
 
@@ -208,6 +208,8 @@ namespace MayTinhQA.UserControls
             //txtidkhachhang.Clear();
             //btnluu.Visible = true;
             //btnhuy.Visible = true;
+            FormAddCutomer frmkh = new FormAddCutomer();
+            frmkh.ShowDialog();
         }
 
         private void btnxoa_Click(object sender, EventArgs e)

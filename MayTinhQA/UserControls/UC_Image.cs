@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace MayTinhQA.UserControls
 {
-    public partial class UC_Activities : UserControl
+    public partial class UC_Image : UserControl
     {
-        public UC_Activities()
+        public UC_Image()
         {
             InitializeComponent();
-        }
-
-        private void guna2Button1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

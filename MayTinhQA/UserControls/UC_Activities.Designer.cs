@@ -36,15 +36,15 @@
             this.guna2DateTimePicker1 = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.btnFilter = new Guna.UI2.WinForms.Guna2Button();
             this.guna2DataGridView2 = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ActivityType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Employee = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -172,6 +172,36 @@
             this.guna2DataGridView2.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.guna2DataGridView2.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             // 
+            // Date
+            // 
+            this.Date.HeaderText = "Thời gian";
+            this.Date.MinimumWidth = 6;
+            this.Date.Name = "Date";
+            // 
+            // ActivityType
+            // 
+            this.ActivityType.HeaderText = "Hoạt động";
+            this.ActivityType.MinimumWidth = 6;
+            this.ActivityType.Name = "ActivityType";
+            // 
+            // CustomerName
+            // 
+            this.CustomerName.HeaderText = "Tên khách hàng";
+            this.CustomerName.MinimumWidth = 6;
+            this.CustomerName.Name = "CustomerName";
+            // 
+            // Status
+            // 
+            this.Status.HeaderText = "Trạng thái";
+            this.Status.MinimumWidth = 6;
+            this.Status.Name = "Status";
+            // 
+            // Employee
+            // 
+            this.Employee.HeaderText = "Nhân viên quản lý";
+            this.Employee.MinimumWidth = 6;
+            this.Employee.Name = "Employee";
+            // 
             // guna2Button1
             // 
             this.guna2Button1.BorderRadius = 12;
@@ -188,6 +218,7 @@
             this.guna2Button1.Size = new System.Drawing.Size(213, 45);
             this.guna2Button1.TabIndex = 13;
             this.guna2Button1.Text = "Thêm hoạt động";
+            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
             // 
             // guna2Button2
             // 
@@ -239,36 +270,6 @@
             this.guna2Button4.Size = new System.Drawing.Size(265, 45);
             this.guna2Button4.TabIndex = 16;
             this.guna2Button4.Text = "Đánh dấu đã xong";
-            // 
-            // Date
-            // 
-            this.Date.HeaderText = "Thời gian";
-            this.Date.MinimumWidth = 6;
-            this.Date.Name = "Date";
-            // 
-            // ActivityType
-            // 
-            this.ActivityType.HeaderText = "Hoạt động";
-            this.ActivityType.MinimumWidth = 6;
-            this.ActivityType.Name = "ActivityType";
-            // 
-            // CustomerName
-            // 
-            this.CustomerName.HeaderText = "Tên khách hàng";
-            this.CustomerName.MinimumWidth = 6;
-            this.CustomerName.Name = "CustomerName";
-            // 
-            // Status
-            // 
-            this.Status.HeaderText = "Trạng thái";
-            this.Status.MinimumWidth = 6;
-            this.Status.Name = "Status";
-            // 
-            // Employee
-            // 
-            this.Employee.HeaderText = "Nhân viên quản lý";
-            this.Employee.MinimumWidth = 6;
-            this.Employee.Name = "Employee";
             // 
             // UC_Activities
             // 
