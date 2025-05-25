@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace MayTinhQA.UserControls
 {
@@ -19,7 +20,6 @@ namespace MayTinhQA.UserControls
         public UC_Customer()
         {
             InitializeComponent();
-
             dgvKhachhang.CellValueChanged += DgvKhachhang_CellValueChanged;
             dgvKhachhang.CurrentCellDirtyStateChanged += (s, e) =>
             {
@@ -47,7 +47,7 @@ namespace MayTinhQA.UserControls
 
             var editColumn = new DataGridViewButtonColumn();
             editColumn.Name = "Edit";
-            editColumn.HeaderText = "Sửa";
+            editColumn.HeaderText = "";
             editColumn.Text = "Sửa";
             editColumn.UseColumnTextForButtonValue = true;
             editColumn.FlatStyle = FlatStyle.Flat;
@@ -57,34 +57,37 @@ namespace MayTinhQA.UserControls
             //editColumn.DefaultCellStyle.SelectionForeColor = Color.White;
             editColumn.Width = 60;
             dgvKhachhang.Columns.Add(editColumn);
-
+            
         }
         private bool isAdding = false;
         private bool isEditing = false;
         private int currentEditingRowIndex = -1;
-        private void napdgvKhachHang()
+        public void napdgvKhachHang()
         {
-            DataTable dt = Database.Query("select * from khachhang");
+            DataTable dt = Database.Query("SELECT kh.idkhachhang, kh.tenkhachhang, kh.email, kh.dienthoai,kh.ngaysinh, CONCAT(kh.diachi, ', ', q.tenquanhuyen, ', ', tp.tenthanhpho) AS diachi,ghichu FROM khachhang kh JOIN thanhpho tp ON kh.idthanhpho = tp.idthanhpho JOIN quanhuyen q ON kh.idquanhuyen = q.idquanhuyen");
             dgvKhachhang.DataSource = null; // Ngắt DataSource cũ nếu có
 
             dgvKhachhang.Columns.Clear(); // Xóa tất cả cột cũ
+            dgvKhachhang.DataSource = dt;
+            if (!dgvKhachhang.Columns.Contains("check"))
+            {
+                DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
+                chk.HeaderText = "";
+                chk.Name = "check";
+                chk.Width = 30;
+                chk.Resizable = DataGridViewTriState.False;
+                chk.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                chk.ReadOnly = false;
 
-            // Thêm cột checkbox thủ công trước
-            DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
-            chk.HeaderText = "";
-            chk.Name = "check";
-            chk.Width = 30;
-            chk.Resizable = DataGridViewTriState.False;
-            chk.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            chk.ReadOnly = false;
-            dgvKhachhang.Columns.Add(chk);
+                dgvKhachhang.Columns.Insert(0, chk); // Thêm vào vị trí đầu
+            }
 
             // Bây giờ gán DataSource - cột sẽ tự động thêm sau
-            dgvKhachhang.DataSource = dt;
+            
 
             // Đặt lại tiêu đề cột (bây giờ đã có các cột từ dt)
             if (dgvKhachhang.Columns.Contains("idkhachhang"))
-                dgvKhachhang.Columns["idkhachhang"].HeaderText = "ID Khách Hàng";
+                dgvKhachhang.Columns["idkhachhang"].HeaderText = "ID";
             if (dgvKhachhang.Columns.Contains("tenkhachhang"))
                 dgvKhachhang.Columns["tenkhachhang"].HeaderText = "Họ Tên";
             if (dgvKhachhang.Columns.Contains("ngaysinh"))
@@ -95,6 +98,8 @@ namespace MayTinhQA.UserControls
                 dgvKhachhang.Columns["dienthoai"].HeaderText = "Điện Thoại";
             if (dgvKhachhang.Columns.Contains("diachi"))
                 dgvKhachhang.Columns["diachi"].HeaderText = "Địa Chỉ";
+            if (dgvKhachhang.Columns.Contains("ghichu"))
+                dgvKhachhang.Columns["ghichu"].HeaderText = "Ghi chú";
 
             dgvKhachhang.ClearSelection();
             dgvKhachhang.CurrentCell = null;
@@ -107,19 +112,21 @@ namespace MayTinhQA.UserControls
 
             Rectangle rect = dgvKhachhang.GetCellDisplayRectangle(0, -1, true);
 
-            int checkboxSize = 18;
-            int padding = 3;
+            int checkboxSize = 14; // Kích thước checkbox (tuỳ chỉnh nếu cần)
 
-            int xCheckbox = rect.X + 5;
+            // Tính toán vị trí căn giữa
+            int xCheckbox = rect.X + (rect.Width - checkboxSize) / 2;
             int yCheckbox = rect.Y + (rect.Height - checkboxSize) / 2;
+
             headerCheckBoxArea = new Rectangle(xCheckbox, yCheckbox, checkboxSize, checkboxSize);
 
-            ControlPaint.DrawCheckBox(e.Graphics, headerCheckBoxArea,
-                isHeaderCheckBoxChecked ? ButtonState.Checked : ButtonState.Normal);
+            ControlPaint.DrawCheckBox(
+                e.Graphics,
+                headerCheckBoxArea,
+                isHeaderCheckBoxChecked ? ButtonState.Checked : ButtonState.Normal
+            );
 
-            // Bỏ phần vẽ chữ
             headerLabelArea = Rectangle.Empty;
-            return;
 
         }
         private void DgvKhachhang_MouseClick(object sender, MouseEventArgs e)
@@ -188,27 +195,11 @@ namespace MayTinhQA.UserControls
 
         }
 
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (isAdding || isEditing)
-            {
-                MessageBox.Show("Bạn chưa lưu thông tin hiện tại!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             isAdding = true;
-            isEditing = false;
-
-            //txthovatenkhach.Clear();
-            //txtemailkhach.Clear();
-            //txtsdtkhach.Clear();
-            //txtdiachikhach.Clear();
-            //dtpkhach.Value = DateTime.Now;
-            //txtidkhachhang.Clear();
-            //btnluu.Visible = true;
-            //btnhuy.Visible = true;
-            FormAddCutomer frmkh = new FormAddCutomer();
+            FormAddCutomer frmkh = new FormAddCutomer(this);
+            frmkh.BatCheDoThem();
             frmkh.ShowDialog();
         }
 
@@ -249,19 +240,16 @@ namespace MayTinhQA.UserControls
                 try
                 {
                     // Xóa bảng con trước, theo thứ tự tránh lỗi FK
-                    Database.Excute($"DELETE FROM giaodich WHERE idkhachhang = {idkh}");
                     Database.Excute($"DELETE FROM thongke WHERE idphanhoi IN (SELECT idphanhoi FROM phanhoi WHERE idkhachhang = {idkh})");
-                    Database.Excute($"DELETE FROM thongke WHERE idgiaodich IN (SELECT idgiaodich FROM giaodich WHERE idkhachhang = {idkh})");
-                    Database.Excute($"DELETE FROM thongke WHERE idcongno IN (SELECT idcongno FROM congno WHERE idkhachhang = {idkh})");
-
-                    Database.Excute($"DELETE FROM congno WHERE idkhachhang = {idkh}");
-                    Database.Excute($"DELETE FROM hoadon WHERE idkhachhang = {idkh}");
+                    Database.Excute($"DELETE FROM thongke WHERE iddonhang IN (SELECT iddonhang FROM donhang WHERE idkhachhang = {idkh})");
                     Database.Excute($"DELETE FROM chitietdonhang WHERE idkhachhang = {idkh}");
                     Database.Excute($"DELETE FROM dichvu WHERE idkhachhang = {idkh}");
                     Database.Excute($"DELETE FROM danhmuc WHERE idkhachhang = {idkh}");
                     Database.Excute($"DELETE FROM phanhoi WHERE idkhachhang = {idkh}");
                     Database.Excute($"DELETE FROM donhang WHERE idkhachhang = {idkh}");
+                    Database.Excute($"DELETE FROM khuyenmai  WHERE idkhachhang = {idkh}"); // Nếu liên quan
                     Database.Excute($"DELETE FROM loaikhachhang WHERE idkhachhang = {idkh}");
+                    Database.Excute($"DELETE FROM khachhang WHERE idkhachhang = {idkh}");
 
                     // Cuối cùng xóa khách hàng
                     Database.Excute($"DELETE FROM khachhang WHERE idkhachhang = {idkh}");
@@ -275,57 +263,7 @@ namespace MayTinhQA.UserControls
             MessageBox.Show("Đã xóa khách hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             napdgvKhachHang();
         }
-        private void EnableTextBoxes(bool enable)
-        {
-            //txtidkhachhang.ReadOnly = !enable;
-            //txthovatenkhach.ReadOnly = !enable;
-            //dtpkhach.Enabled = enable;
-            //txtemailkhach.ReadOnly = !enable;
-            //txtdiachikhach.ReadOnly = !enable;
-            //txtsdtkhach.ReadOnly = !enable;
-        }
 
-        private void btnsua_Click(object sender, EventArgs e)
-        {
-            DataGridViewRow selectedRow = dgvKhachhang.Rows
-       .Cast<DataGridViewRow>()
-       .FirstOrDefault(r => Convert.ToBoolean(r.Cells["check"].Value) == true);
-
-            if (selectedRow != null)
-            {
-                // Gán dữ liệu từ DataGridView vào các TextBox
-                //txtidkhachhang.Text = selectedRow.Cells["idkhachhang"].Value?.ToString();
-                //txthovatenkhach.Text = selectedRow.Cells["tenkhachhang"].Value?.ToString();
-
-                //string rawDate = selectedRow.Cells["ngaysinh"].Value?.ToString();
-                //if (DateTime.TryParse(rawDate, out DateTime parsedDate))
-                //{
-                //    dtpkhach.Value = parsedDate;
-                //}
-                //else
-                //{
-                //    dtpkhach.Value = DateTime.Now;
-                //}
-
-                //txtemailkhach.Text = selectedRow.Cells["email"].Value?.ToString();
-                //txtdiachikhach.Text = selectedRow.Cells["diachi"].Value?.ToString();
-                //txtsdtkhach.Text = selectedRow.Cells["dienthoai"].Value?.ToString();
-
-                // Đặt cờ đang chỉnh sửa
-                isEditing = true;
-                currentEditingRowIndex = selectedRow.Index;
-
-                EnableTextBoxes(true);
-
-                //btnluu.Visible = true;
-                //btnhuy.Visible = true;
-
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng tích chọn một khách hàng bằng checkbox để sửa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
         private void dgvKhachhang_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (isEditing)
@@ -364,5 +302,15 @@ namespace MayTinhQA.UserControls
             //}
         }
 
+        private void dgvKhachhang_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+           if (e.RowIndex >= 0 && dgvKhachhang.Columns[e.ColumnIndex].Name == "Edit")
+    {
+        int idkhachhang = Convert.ToInt32(dgvKhachhang.Rows[e.RowIndex].Cells["idkhachhang"].Value);
+        FormAddCutomer formAddCutomer = new FormAddCutomer(this, idkhachhang);
+        formAddCutomer.ShowDialog();
+        napdgvKhachHang();
+    }
+        }
     }
 }
