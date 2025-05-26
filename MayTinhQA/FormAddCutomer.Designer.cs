@@ -49,7 +49,9 @@
             this.comboBoxq = new Guna.UI2.WinForms.Guna2ComboBox();
             this.txtidkhachhang = new Guna.UI2.WinForms.Guna2TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2GradientPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // txthovatenkhach
@@ -152,7 +154,7 @@
             this.txtsdtkhach.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtsdtkhach.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtsdtkhach.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtsdtkhach.Location = new System.Drawing.Point(337, 157);
+            this.txtsdtkhach.Location = new System.Drawing.Point(301, 156);
             this.txtsdtkhach.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtsdtkhach.Name = "txtsdtkhach";
             this.txtsdtkhach.PlaceholderText = "";
@@ -166,7 +168,7 @@
             this.label5.BackColor = System.Drawing.Color.White;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(333, 212);
+            this.label5.Location = new System.Drawing.Point(297, 211);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(51, 20);
             this.label5.TabIndex = 14;
@@ -184,7 +186,7 @@
             this.txtemailkhach.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtemailkhach.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtemailkhach.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtemailkhach.Location = new System.Drawing.Point(337, 242);
+            this.txtemailkhach.Location = new System.Drawing.Point(301, 241);
             this.txtemailkhach.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtemailkhach.Name = "txtemailkhach";
             this.txtemailkhach.PlaceholderText = "";
@@ -195,6 +197,7 @@
             // guna2GradientPanel1
             // 
             this.guna2GradientPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
+            this.guna2GradientPanel1.Controls.Add(this.guna2PictureBox1);
             this.guna2GradientPanel1.Controls.Add(this.labelName);
             this.guna2GradientPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2GradientPanel1.Location = new System.Drawing.Point(0, 0);
@@ -268,7 +271,7 @@
             this.btnhuy.FillColor = System.Drawing.Color.Red;
             this.btnhuy.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnhuy.ForeColor = System.Drawing.Color.White;
-            this.btnhuy.Location = new System.Drawing.Point(226, 378);
+            this.btnhuy.Location = new System.Drawing.Point(301, 378);
             this.btnhuy.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnhuy.Name = "btnhuy";
             this.btnhuy.Size = new System.Drawing.Size(135, 50);
@@ -279,6 +282,7 @@
             // comboBoxtp
             // 
             this.comboBoxtp.BackColor = System.Drawing.Color.Transparent;
+            this.comboBoxtp.BorderRadius = 12;
             this.comboBoxtp.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.comboBoxtp.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxtp.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
@@ -294,6 +298,7 @@
             // comboBoxq
             // 
             this.comboBoxq.BackColor = System.Drawing.Color.Transparent;
+            this.comboBoxq.BorderRadius = 12;
             this.comboBoxq.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.comboBoxq.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxq.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
@@ -332,16 +337,29 @@
             this.label6.BackColor = System.Drawing.Color.White;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(333, 132);
+            this.label6.Location = new System.Drawing.Point(297, 131);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(106, 20);
             this.label6.TabIndex = 12;
             this.label6.Text = "Số điện thoại";
             // 
+            // guna2PictureBox1
+            // 
+            this.guna2PictureBox1.Image = global::MayTinhQA.Properties.Resources.white_cross;
+            this.guna2PictureBox1.ImageRotate = 0F;
+            this.guna2PictureBox1.Location = new System.Drawing.Point(638, -1);
+            this.guna2PictureBox1.Name = "guna2PictureBox1";
+            this.guna2PictureBox1.Size = new System.Drawing.Size(45, 45);
+            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.guna2PictureBox1.TabIndex = 5;
+            this.guna2PictureBox1.TabStop = false;
+            this.guna2PictureBox1.Click += new System.EventHandler(this.guna2PictureBox1_Click);
+            // 
             // FormAddCutomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(683, 453);
             this.Controls.Add(this.comboBoxq);
             this.Controls.Add(this.comboBoxtp);
@@ -366,6 +384,7 @@
             this.Text = "FormAddCutomer";
             this.guna2GradientPanel1.ResumeLayout(false);
             this.guna2GradientPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -393,5 +412,6 @@
         private Guna.UI2.WinForms.Guna2ComboBox comboBoxtp;
         private System.Windows.Forms.Label label6;
         private Guna.UI2.WinForms.Guna2TextBox txtidkhachhang;
+        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
     }
 }

@@ -152,5 +152,10 @@ WHERE idkhachhang = {id}";
                 MessageBox.Show("Không có thao tác nào để hủy.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void guna2PictureBox1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
