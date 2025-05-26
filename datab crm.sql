@@ -99,6 +99,8 @@ create Table phieudoitra (
 create Table dichvu (
   iddichvu int  primary key,
   tendichvu nvarchar(100),
+  ngaykhoitao DATETIME DEFAULT GETDATE(),
+  trangthai NVARCHAR(50),
   mota nvarchar(100),
   idnhanvien int foreign key references nhanvien(idnhanvien),
   idkhachhang int foreign key references khachhang(idkhachhang),

@@ -39,6 +39,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtemailkhach = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
+            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.labelName = new System.Windows.Forms.Label();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
@@ -50,6 +51,7 @@
             this.txtidkhachhang = new Guna.UI2.WinForms.Guna2TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.guna2GradientPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // txthovatenkhach
@@ -64,7 +66,7 @@
             this.txthovatenkhach.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txthovatenkhach.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txthovatenkhach.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txthovatenkhach.Location = new System.Drawing.Point(0, 156);
+            this.txthovatenkhach.Location = new System.Drawing.Point(13, 156);
             this.txthovatenkhach.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txthovatenkhach.Name = "txthovatenkhach";
             this.txthovatenkhach.PlaceholderText = "";
@@ -78,7 +80,7 @@
             this.label2.BackColor = System.Drawing.Color.White;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(8, 132);
+            this.label2.Location = new System.Drawing.Point(21, 132);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(127, 20);
             this.label2.TabIndex = 6;
@@ -90,7 +92,7 @@
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(8, 212);
+            this.label1.Location = new System.Drawing.Point(21, 212);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(83, 20);
             this.label1.TabIndex = 8;
@@ -102,7 +104,7 @@
             this.label3.BackColor = System.Drawing.Color.White;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(8, 291);
+            this.label3.Location = new System.Drawing.Point(21, 291);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 20);
             this.label3.TabIndex = 10;
@@ -120,7 +122,7 @@
             this.txtdiachikhach.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtdiachikhach.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtdiachikhach.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtdiachikhach.Location = new System.Drawing.Point(0, 316);
+            this.txtdiachikhach.Location = new System.Drawing.Point(13, 316);
             this.txtdiachikhach.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtdiachikhach.Name = "txtdiachikhach";
             this.txtdiachikhach.PlaceholderText = "";
@@ -134,7 +136,7 @@
             this.label4.BackColor = System.Drawing.Color.White;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(8, 66);
+            this.label4.Location = new System.Drawing.Point(21, 66);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(116, 20);
             this.label4.TabIndex = 12;
@@ -152,7 +154,7 @@
             this.txtsdtkhach.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtsdtkhach.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtsdtkhach.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtsdtkhach.Location = new System.Drawing.Point(337, 157);
+            this.txtsdtkhach.Location = new System.Drawing.Point(314, 156);
             this.txtsdtkhach.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtsdtkhach.Name = "txtsdtkhach";
             this.txtsdtkhach.PlaceholderText = "";
@@ -166,7 +168,7 @@
             this.label5.BackColor = System.Drawing.Color.White;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(333, 212);
+            this.label5.Location = new System.Drawing.Point(310, 211);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(51, 20);
             this.label5.TabIndex = 14;
@@ -184,7 +186,7 @@
             this.txtemailkhach.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtemailkhach.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtemailkhach.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtemailkhach.Location = new System.Drawing.Point(337, 242);
+            this.txtemailkhach.Location = new System.Drawing.Point(314, 241);
             this.txtemailkhach.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtemailkhach.Name = "txtemailkhach";
             this.txtemailkhach.PlaceholderText = "";
@@ -195,12 +197,25 @@
             // guna2GradientPanel1
             // 
             this.guna2GradientPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
+            this.guna2GradientPanel1.Controls.Add(this.guna2PictureBox1);
             this.guna2GradientPanel1.Controls.Add(this.labelName);
             this.guna2GradientPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2GradientPanel1.Location = new System.Drawing.Point(0, 0);
             this.guna2GradientPanel1.Name = "guna2GradientPanel1";
             this.guna2GradientPanel1.Size = new System.Drawing.Size(683, 63);
             this.guna2GradientPanel1.TabIndex = 15;
+            // 
+            // guna2PictureBox1
+            // 
+            this.guna2PictureBox1.Image = global::MayTinhQA.Properties.Resources.white_cross;
+            this.guna2PictureBox1.ImageRotate = 0F;
+            this.guna2PictureBox1.Location = new System.Drawing.Point(645, 0);
+            this.guna2PictureBox1.Name = "guna2PictureBox1";
+            this.guna2PictureBox1.Size = new System.Drawing.Size(35, 35);
+            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.guna2PictureBox1.TabIndex = 5;
+            this.guna2PictureBox1.TabStop = false;
+            this.guna2PictureBox1.Click += new System.EventHandler(this.guna2PictureBox1_Click);
             // 
             // labelName
             // 
@@ -232,7 +247,7 @@
             this.dtpkhach.FillColor = System.Drawing.Color.White;
             this.dtpkhach.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dtpkhach.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dtpkhach.Location = new System.Drawing.Point(0, 239);
+            this.dtpkhach.Location = new System.Drawing.Point(13, 239);
             this.dtpkhach.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtpkhach.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtpkhach.Name = "dtpkhach";
@@ -250,7 +265,7 @@
             this.btnluu.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
             this.btnluu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnluu.ForeColor = System.Drawing.Color.White;
-            this.btnluu.Location = new System.Drawing.Point(12, 378);
+            this.btnluu.Location = new System.Drawing.Point(25, 378);
             this.btnluu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnluu.Name = "btnluu";
             this.btnluu.Size = new System.Drawing.Size(185, 50);
@@ -268,7 +283,7 @@
             this.btnhuy.FillColor = System.Drawing.Color.Red;
             this.btnhuy.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnhuy.ForeColor = System.Drawing.Color.White;
-            this.btnhuy.Location = new System.Drawing.Point(226, 378);
+            this.btnhuy.Location = new System.Drawing.Point(314, 378);
             this.btnhuy.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnhuy.Name = "btnhuy";
             this.btnhuy.Size = new System.Drawing.Size(135, 50);
@@ -279,6 +294,7 @@
             // comboBoxtp
             // 
             this.comboBoxtp.BackColor = System.Drawing.Color.Transparent;
+            this.comboBoxtp.BorderRadius = 12;
             this.comboBoxtp.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.comboBoxtp.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxtp.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
@@ -286,7 +302,7 @@
             this.comboBoxtp.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.comboBoxtp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.comboBoxtp.ItemHeight = 30;
-            this.comboBoxtp.Location = new System.Drawing.Point(301, 316);
+            this.comboBoxtp.Location = new System.Drawing.Point(314, 316);
             this.comboBoxtp.Name = "comboBoxtp";
             this.comboBoxtp.Size = new System.Drawing.Size(140, 36);
             this.comboBoxtp.TabIndex = 19;
@@ -294,6 +310,7 @@
             // comboBoxq
             // 
             this.comboBoxq.BackColor = System.Drawing.Color.Transparent;
+            this.comboBoxq.BorderRadius = 12;
             this.comboBoxq.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.comboBoxq.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxq.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
@@ -301,7 +318,7 @@
             this.comboBoxq.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.comboBoxq.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.comboBoxq.ItemHeight = 30;
-            this.comboBoxq.Location = new System.Drawing.Point(478, 316);
+            this.comboBoxq.Location = new System.Drawing.Point(491, 316);
             this.comboBoxq.Name = "comboBoxq";
             this.comboBoxq.Size = new System.Drawing.Size(140, 36);
             this.comboBoxq.TabIndex = 20;
@@ -318,7 +335,7 @@
             this.txtidkhachhang.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtidkhachhang.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtidkhachhang.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtidkhachhang.Location = new System.Drawing.Point(0, 91);
+            this.txtidkhachhang.Location = new System.Drawing.Point(13, 91);
             this.txtidkhachhang.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtidkhachhang.Name = "txtidkhachhang";
             this.txtidkhachhang.PlaceholderText = "";
@@ -332,7 +349,7 @@
             this.label6.BackColor = System.Drawing.Color.White;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(333, 132);
+            this.label6.Location = new System.Drawing.Point(310, 131);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(106, 20);
             this.label6.TabIndex = 12;
@@ -342,6 +359,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(683, 453);
             this.Controls.Add(this.comboBoxq);
             this.Controls.Add(this.comboBoxtp);
@@ -366,6 +384,7 @@
             this.Text = "FormAddCutomer";
             this.guna2GradientPanel1.ResumeLayout(false);
             this.guna2GradientPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -393,5 +412,6 @@
         private Guna.UI2.WinForms.Guna2ComboBox comboBoxtp;
         private System.Windows.Forms.Label label6;
         private Guna.UI2.WinForms.Guna2TextBox txtidkhachhang;
+        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
     }
 }
