@@ -20,30 +20,30 @@ namespace MayTinhQA.UserControls
         {
             InitializeComponent();
 
-            dgvKhachhang.CellValueChanged += DgvKhachhang_CellValueChanged;
-            dgvKhachhang.CurrentCellDirtyStateChanged += (s, e) =>
+            dgvDichVu.CellValueChanged += DgvKhachhang_CellValueChanged;
+            dgvDichVu.CurrentCellDirtyStateChanged += (s, e) =>
             {
-                if (dgvKhachhang.IsCurrentCellDirty)
+                if (dgvDichVu.IsCurrentCellDirty)
                 {
-                    dgvKhachhang.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                    dgvDichVu.CommitEdit(DataGridViewDataErrorContexts.Commit);
                 }
             };
 
-            dgvKhachhang.Paint += DgvKhachhang_Paint;
-            dgvKhachhang.MouseClick += DgvKhachhang_MouseClick;
+            dgvDichVu.Paint += DgvKhachhang_Paint;
+            dgvDichVu.MouseClick += DgvKhachhang_MouseClick;
 
             napdgvKhachHang();
 
             
-            dgvKhachhang.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
+            dgvDichVu.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
 
             
-            dgvKhachhang.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
-            dgvKhachhang.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
-            dgvKhachhang.RowTemplate.Height = 24;
+            dgvDichVu.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
+            dgvDichVu.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+            dgvDichVu.RowTemplate.Height = 24;
 
-            dgvKhachhang.AllowUserToAddRows = false;
-            dgvKhachhang.RowHeadersVisible = false;
+            dgvDichVu.AllowUserToAddRows = false;
+            dgvDichVu.RowHeadersVisible = false;
 
             var editColumn = new DataGridViewButtonColumn();
             editColumn.Name = "Edit";
@@ -51,12 +51,8 @@ namespace MayTinhQA.UserControls
             editColumn.Text = "Sửa";
             editColumn.UseColumnTextForButtonValue = true;
             editColumn.FlatStyle = FlatStyle.Flat;
-            //editColumn.DefaultCellStyle.BackColor = Color.FromArgb(76, 175, 80);
-            //editColumn.DefaultCellStyle.ForeColor = Color.White;
-            //editColumn.DefaultCellStyle.SelectionBackColor = Color.FromArgb(56, 141, 61);
-            //editColumn.DefaultCellStyle.SelectionForeColor = Color.White;
             editColumn.Width = 60;
-            dgvKhachhang.Columns.Add(editColumn);
+            dgvDichVu.Columns.Add(editColumn);
 
         }
         private bool isAdding = false;
@@ -65,9 +61,9 @@ namespace MayTinhQA.UserControls
         private void napdgvKhachHang()
         {
             DataTable dt = Database.Query("select * from khachhang");
-            dgvKhachhang.DataSource = null; // Ngắt DataSource cũ nếu có
+            dgvDichVu.DataSource = null; // Ngắt DataSource cũ nếu có
 
-            dgvKhachhang.Columns.Clear(); // Xóa tất cả cột cũ
+            dgvDichVu.Columns.Clear(); // Xóa tất cả cột cũ
 
             // Thêm cột checkbox thủ công trước
             DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
@@ -77,35 +73,35 @@ namespace MayTinhQA.UserControls
             chk.Resizable = DataGridViewTriState.False;
             chk.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             chk.ReadOnly = false;
-            dgvKhachhang.Columns.Add(chk);
+            dgvDichVu.Columns.Add(chk);
 
             // Bây giờ gán DataSource - cột sẽ tự động thêm sau
-            dgvKhachhang.DataSource = dt;
+            dgvDichVu.DataSource = dt;
 
             // Đặt lại tiêu đề cột (bây giờ đã có các cột từ dt)
-            if (dgvKhachhang.Columns.Contains("idkhachhang"))
-                dgvKhachhang.Columns["idkhachhang"].HeaderText = "ID Khách Hàng";
-            if (dgvKhachhang.Columns.Contains("tenkhachhang"))
-                dgvKhachhang.Columns["tenkhachhang"].HeaderText = "Họ Tên";
-            if (dgvKhachhang.Columns.Contains("ngaysinh"))
-                dgvKhachhang.Columns["ngaysinh"].HeaderText = "Ngày Sinh";
-            if (dgvKhachhang.Columns.Contains("email"))
-                dgvKhachhang.Columns["email"].HeaderText = "Email";
-            if (dgvKhachhang.Columns.Contains("dienthoai"))
-                dgvKhachhang.Columns["dienthoai"].HeaderText = "Điện Thoại";
-            if (dgvKhachhang.Columns.Contains("diachi"))
-                dgvKhachhang.Columns["diachi"].HeaderText = "Địa Chỉ";
+            if (dgvDichVu.Columns.Contains("idkhachhang"))
+                dgvDichVu.Columns["idkhachhang"].HeaderText = "ID Khách Hàng";
+            if (dgvDichVu.Columns.Contains("tenkhachhang"))
+                dgvDichVu.Columns["tenkhachhang"].HeaderText = "Họ Tên";
+            if (dgvDichVu.Columns.Contains("ngaysinh"))
+                dgvDichVu.Columns["ngaysinh"].HeaderText = "Ngày Sinh";
+            if (dgvDichVu.Columns.Contains("email"))
+                dgvDichVu.Columns["email"].HeaderText = "Email";
+            if (dgvDichVu.Columns.Contains("dienthoai"))
+                dgvDichVu.Columns["dienthoai"].HeaderText = "Điện Thoại";
+            if (dgvDichVu.Columns.Contains("diachi"))
+                dgvDichVu.Columns["diachi"].HeaderText = "Địa Chỉ";
 
-            dgvKhachhang.ClearSelection();
-            dgvKhachhang.CurrentCell = null;
+            dgvDichVu.ClearSelection();
+            dgvDichVu.CurrentCell = null;
 
-            dgvKhachhang.ReadOnly = false;
+            dgvDichVu.ReadOnly = false;
         }
         private void DgvKhachhang_Paint(object sender, PaintEventArgs e)
         {
-            if (dgvKhachhang.Columns.Count == 0) return;
+            if (dgvDichVu.Columns.Count == 0) return;
 
-            Rectangle rect = dgvKhachhang.GetCellDisplayRectangle(0, -1, true);
+            Rectangle rect = dgvDichVu.GetCellDisplayRectangle(0, -1, true);
 
             int checkboxSize = 18;
             int padding = 3;
@@ -133,25 +129,25 @@ namespace MayTinhQA.UserControls
                 }
 
                 isHeaderCheckBoxChecked = !isHeaderCheckBoxChecked;
-                dgvKhachhang.Invalidate(); // Vẽ lại header
+                dgvDichVu.Invalidate(); // Vẽ lại header
 
                 isHeaderCheckBoxClicked = true;
 
-                foreach (DataGridViewRow row in dgvKhachhang.Rows)
+                foreach (DataGridViewRow row in dgvDichVu.Rows)
                 {
                     row.Cells["check"].Value = isHeaderCheckBoxChecked;
                 }
 
-                dgvKhachhang.EndEdit();
+                dgvDichVu.EndEdit();
 
                 isHeaderCheckBoxClicked = false;
             }
         }
         private void DgvKhachhang_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == dgvKhachhang.Columns["check"].Index && !isHeaderCheckBoxClicked)
+            if (e.ColumnIndex == dgvDichVu.Columns["check"].Index && !isHeaderCheckBoxClicked)
             {
-                bool isChecked = Convert.ToBoolean(dgvKhachhang.Rows[e.RowIndex].Cells["check"].Value);
+                bool isChecked = Convert.ToBoolean(dgvDichVu.Rows[e.RowIndex].Cells["check"].Value);
 
                 if (isEditing)
                 {
@@ -161,8 +157,8 @@ namespace MayTinhQA.UserControls
                         MessageBox.Show("Bạn đang chỉnh sửa khách hàng. Vui lòng lưu hoặc hủy trước khi chọn khách hàng khác.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                         // Quay lại checkbox cũ: giữ checkbox dòng đang sửa luôn được chọn
-                        dgvKhachhang.Rows[e.RowIndex].Cells["check"].Value = false;
-                        dgvKhachhang.Rows[currentEditingRowIndex].Cells["check"].Value = true;
+                        dgvDichVu.Rows[e.RowIndex].Cells["check"].Value = false;
+                        dgvDichVu.Rows[currentEditingRowIndex].Cells["check"].Value = true;
 
                         return;
                     }
@@ -172,15 +168,15 @@ namespace MayTinhQA.UserControls
                         if (!isChecked)
                         {
                             MessageBox.Show("Không thể bỏ chọn checkbox khách hàng đang chỉnh sửa. Vui lòng lưu hoặc hủy trước.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            dgvKhachhang.Rows[e.RowIndex].Cells["check"].Value = true;
+                            dgvDichVu.Rows[e.RowIndex].Cells["check"].Value = true;
                             return;
                         }
                     }
                 }
-                bool allChecked = dgvKhachhang.Rows.Cast<DataGridViewRow>()
+                bool allChecked = dgvDichVu.Rows.Cast<DataGridViewRow>()
                     .All(r => Convert.ToBoolean(r.Cells["check"].EditedFormattedValue));
                 isHeaderCheckBoxChecked = allChecked;
-                dgvKhachhang.Invalidate(); // Vẽ lại header
+                dgvDichVu.Invalidate(); // Vẽ lại header
             }
         }
         private void dgvInformation_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -217,7 +213,7 @@ namespace MayTinhQA.UserControls
             List<int> selectedIds = new List<int>();
 
             // Duyệt qua tất cả các dòng trong DataGridView
-            foreach (DataGridViewRow row in dgvKhachhang.Rows)
+            foreach (DataGridViewRow row in dgvDichVu.Rows)
             {
                 // Kiểm tra nếu checkbox được chọn
                 if (Convert.ToBoolean(row.Cells["check"].Value) == true)
@@ -287,7 +283,7 @@ namespace MayTinhQA.UserControls
 
         private void btnsua_Click(object sender, EventArgs e)
         {
-            DataGridViewRow selectedRow = dgvKhachhang.Rows
+            DataGridViewRow selectedRow = dgvDichVu.Rows
        .Cast<DataGridViewRow>()
        .FirstOrDefault(r => Convert.ToBoolean(r.Cells["check"].Value) == true);
 
@@ -332,8 +328,8 @@ namespace MayTinhQA.UserControls
             {
                 if (currentEditingRowIndex != -1 && e.RowIndex != currentEditingRowIndex)
                 {
-                    dgvKhachhang.ClearSelection();
-                    dgvKhachhang.Rows[currentEditingRowIndex].Selected = true;
+                    dgvDichVu.ClearSelection();
+                    dgvDichVu.Rows[currentEditingRowIndex].Selected = true;
                     MessageBox.Show("Bạn đang chỉnh sửa. Vui lòng lưu hoặc hủy trước khi chọn khách hàng khác!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
