@@ -99,7 +99,7 @@
             this.picClose.Location = new System.Drawing.Point(436, 2);
             this.picClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.picClose.Name = "picClose";
-            this.picClose.Size = new System.Drawing.Size(35, 36);
+            this.picClose.Size = new System.Drawing.Size(35, 35);
             this.picClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picClose.TabIndex = 2;
             this.picClose.TabStop = false;

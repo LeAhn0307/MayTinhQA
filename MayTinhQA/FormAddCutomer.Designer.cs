@@ -39,6 +39,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtemailkhach = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
+            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.labelName = new System.Windows.Forms.Label();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
@@ -49,7 +50,6 @@
             this.comboBoxq = new Guna.UI2.WinForms.Guna2ComboBox();
             this.txtidkhachhang = new Guna.UI2.WinForms.Guna2TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2GradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -205,6 +205,18 @@
             this.guna2GradientPanel1.Size = new System.Drawing.Size(683, 63);
             this.guna2GradientPanel1.TabIndex = 15;
             // 
+            // guna2PictureBox1
+            // 
+            this.guna2PictureBox1.Image = global::MayTinhQA.Properties.Resources.white_cross;
+            this.guna2PictureBox1.ImageRotate = 0F;
+            this.guna2PictureBox1.Location = new System.Drawing.Point(645, 0);
+            this.guna2PictureBox1.Name = "guna2PictureBox1";
+            this.guna2PictureBox1.Size = new System.Drawing.Size(35, 35);
+            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.guna2PictureBox1.TabIndex = 5;
+            this.guna2PictureBox1.TabStop = false;
+            this.guna2PictureBox1.Click += new System.EventHandler(this.guna2PictureBox1_Click);
+            // 
             // labelName
             // 
             this.labelName.AutoSize = true;
@@ -342,18 +354,6 @@
             this.label6.Size = new System.Drawing.Size(106, 20);
             this.label6.TabIndex = 12;
             this.label6.Text = "Số điện thoại";
-            // 
-            // guna2PictureBox1
-            // 
-            this.guna2PictureBox1.Image = global::MayTinhQA.Properties.Resources.white_cross;
-            this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(638, -1);
-            this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(45, 45);
-            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.guna2PictureBox1.TabIndex = 5;
-            this.guna2PictureBox1.TabStop = false;
-            this.guna2PictureBox1.Click += new System.EventHandler(this.guna2PictureBox1_Click);
             // 
             // FormAddCutomer
             // 
