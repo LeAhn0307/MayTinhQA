@@ -18,25 +18,25 @@ namespace MayTinhQA.UserControls
         public UC_Behaviour()
         {
             InitializeComponent();
-            chartgiaodich.Size = new Size(400, 300); // Tăng kích thước biểu đồ
-            chartphankhuc.Size = new Size(400, 300); // Tăng kích thước biểu đồ
+            //chart1.Size = new Size(400, 300); // Tăng kích thước biểu đồ
+            //chart2.Size = new Size(400, 300); // Tăng kích thước biểu đồ
         }
         private void frmhanhvikh_Load(object sender, EventArgs e)
         {
-            dgvthongke.Columns.Clear();
-            dgvthongke.Columns.Add("Ngay", "Ngày");
-            dgvthongke.Columns.Add("TenKhachHang", "Tên Khách Hàng");
-            dgvthongke.Columns.Add("SoLanMua", "Số Lần Mua");
-            dgvthongke.Columns.Add("TongGiaTri", "Tổng Giá Trị");
+        /*    guna2DataGridView1.Columns.Clear();
+            guna2DataGridView1.Columns.Add("Ngay", "Ngày");
+            guna2DataGridView1.Columns.Add("TenKhachHang", "Tên Khách Hàng");
+            guna2DataGridView1.Columns.Add("SoLanMua", "Số Lần Mua");
+            guna2DataGridView1.Columns.Add("TongGiaTri", "Tổng Giá Trị");
 
-            dgvphankhuc.Columns.Clear();
-            dgvphankhuc.Columns.Add("TenKhachHang", "Tên Khách Hàng");
-            dgvphankhuc.Columns.Add("PhanKhuc", "Phân Khúc");
+            guna2DataGridView2.Columns.Clear();
+            guna2DataGridView2.Columns.Add("TenKhachHang", "Tên Khách Hàng");
+            guna2DataGridView2.Columns.Add("PhanKhuc", "Phân Khúc");
 
             // Biểu đồ giao dịch
-            if (chartgiaodich.Series.IndexOf("Số Giao Dịch") >= 0)
+            if (chart1.Series.IndexOf("Số Giao Dịch") >= 0)
             {
-                chartgiaodich.Series["Số Giao Dịch"].Points.Clear();
+                chart1.Series["Số Giao Dịch"].Points.Clear();
             }
             else
             {
@@ -44,7 +44,7 @@ namespace MayTinhQA.UserControls
                 {
                     ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column
                 };
-                chartgiaodich.Series.Add(series);
+                chart1.Series.Add(series);
             }
 
             // Biểu đồ phân khúc
@@ -60,7 +60,7 @@ namespace MayTinhQA.UserControls
             ThongKeMuaSam();
             PhanKhucKhachHang();
             BieuDoGiaoDich();
-            BieuDoPhanKhuc();
+            BieuDoPhanKhuc();*/
         }
 
         private void ThongKeMuaSam()
@@ -92,7 +92,7 @@ namespace MayTinhQA.UserControls
                     SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        dgvthongke.Rows.Add(
+                        guna2DataGridView1.Rows.Add(
                             reader["Ngay"],
                             reader["TenKhachHang"],
                             reader["SoLanMua"],
@@ -104,17 +104,17 @@ namespace MayTinhQA.UserControls
 
         private void BieuDoGiaoDich()
         {
-            chartgiaodich.Series["Số Giao Dịch"].Points.Clear();
+            chart1.Series["Số Giao Dịch"].Points.Clear();
 
-            foreach (DataGridViewRow row in dgvthongke.Rows)
+            foreach (DataGridViewRow row in guna2DataGridView1.Rows)
             {
                 if (row.Cells["SoLanMua"].Value != null && row.Cells["TenKhachHang"].Value != null && row.Cells["Ngay"].Value != null)
                 {
                     int soLanMua = Convert.ToInt32(row.Cells["SoLanMua"].Value);
                     string ngay = row.Cells["Ngay"].Value.ToString();
 
-                    var point = chartgiaodich.Series["Số Giao Dịch"].Points.AddXY(ngay, soLanMua);
-                    chartgiaodich.Series["Số Giao Dịch"].Points[point].Label = soLanMua.ToString();
+                    var point = chart1.Series["Số Giao Dịch"].Points.AddXY(ngay, soLanMua);
+                    chart1.Series["Số Giao Dịch"].Points[point].Label = soLanMua.ToString();
 
                 }
             }
@@ -122,16 +122,16 @@ namespace MayTinhQA.UserControls
 
         private void BieuDoPhanKhuc()
         {
-            chartphankhuc.Series["Phân Khúc Khách Hàng"].Points.Clear();
+            chart2.Series["Phân Khúc Khách Hàng"].Points.Clear();
 
-            foreach (DataGridViewRow row in dgvphankhuc.Rows)
+            foreach (DataGridViewRow row in guna2DataGridView2.Rows)
             {
                 if (row.Cells["PhanKhuc"].Value != null)
                 {
                     string phanKhuc = row.Cells["PhanKhuc"].Value.ToString();
                     int soKhachHang = 1;
-                    var point = chartphankhuc.Series["Phân Khúc Khách Hàng"].Points.AddXY(phanKhuc, soKhachHang);
-                    chartphankhuc.Series["Phân Khúc Khách Hàng"].Points[point].Label = phanKhuc;
+                    var point = chart2.Series["Phân Khúc Khách Hàng"].Points.AddXY(phanKhuc, soKhachHang);
+                    chart2.Series["Phân Khúc Khách Hàng"].Points[point].Label = phanKhuc;
                 }
             }
         }
@@ -161,15 +161,57 @@ namespace MayTinhQA.UserControls
                 {
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
-                    dgvphankhuc.Rows.Clear();
+                    guna2DataGridView2.Rows.Clear();
                     while (reader.Read())
                     {
-                        dgvphankhuc.Rows.Add(
+                        guna2DataGridView2.Rows.Add(
                             reader["TenKhachHang"],
                             reader["PhanKhuc"]);
                     }
                 }
             }
+        }
+
+        private void UC_Behaviour_Load(object sender, EventArgs e)
+        {
+            guna2DataGridView1.Columns.Clear();
+            guna2DataGridView1.Columns.Add("Ngay", "Ngày");
+            guna2DataGridView1.Columns.Add("TenKhachHang", "Tên Khách Hàng");
+            guna2DataGridView1.Columns.Add("SoLanMua", "Số Lần Mua");
+            guna2DataGridView1.Columns.Add("TongGiaTri", "Tổng Giá Trị");
+
+            guna2DataGridView2.Columns.Clear();
+            guna2DataGridView2.Columns.Add("TenKhachHang", "Tên Khách Hàng");
+            guna2DataGridView2.Columns.Add("PhanKhuc", "Phân Khúc");
+
+            // Biểu đồ giao dịch
+            if (chart1.Series.IndexOf("Số Giao Dịch") >= 0)
+            {
+                chart1.Series["Số Giao Dịch"].Points.Clear();
+            }
+            else
+            {
+                var series = new System.Windows.Forms.DataVisualization.Charting.Series("Số Giao Dịch")
+                {
+                    ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column
+                };
+                chart1.Series.Add(series);
+            }
+
+            // Biểu đồ phân khúc
+            if (chart2.Series.IndexOf("Phân Khúc Khách Hàng") < 0)
+            {
+                var series = new System.Windows.Forms.DataVisualization.Charting.Series("Phân Khúc Khách Hàng")
+                {
+                    ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie
+                };
+                chart2.Series.Add(series);
+            }
+
+            ThongKeMuaSam();
+            PhanKhucKhachHang();
+            BieuDoGiaoDich();
+            BieuDoPhanKhuc();
         }
     }
 }
