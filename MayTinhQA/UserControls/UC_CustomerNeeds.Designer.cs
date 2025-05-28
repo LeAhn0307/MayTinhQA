@@ -36,6 +36,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dgvKetQua = new System.Windows.Forms.DataGridView();
             this.btnphantich = new System.Windows.Forms.Button();
+            this.btntopsale = new Guna.UI2.WinForms.Guna2Button();
+            this.txttopsale = new Guna.UI2.WinForms.Guna2TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKetQua)).BeginInit();
             this.SuspendLayout();
             // 
@@ -108,10 +110,47 @@
             this.btnphantich.UseVisualStyleBackColor = true;
             this.btnphantich.Click += new System.EventHandler(this.btnphantich_Click);
             // 
+            // btntopsale
+            // 
+            this.btntopsale.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btntopsale.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btntopsale.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btntopsale.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btntopsale.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btntopsale.ForeColor = System.Drawing.Color.White;
+            this.btntopsale.Location = new System.Drawing.Point(782, 85);
+            this.btntopsale.Name = "btntopsale";
+            this.btntopsale.Size = new System.Drawing.Size(335, 45);
+            this.btntopsale.TabIndex = 16;
+            this.btntopsale.Text = "Sản phẩm bán chạy nhất";
+            this.btntopsale.Click += new System.EventHandler(this.btntopsale_Click);
+            // 
+            // txttopsale
+            // 
+            this.txttopsale.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txttopsale.DefaultText = "";
+            this.txttopsale.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txttopsale.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txttopsale.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txttopsale.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txttopsale.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txttopsale.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txttopsale.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txttopsale.Location = new System.Drawing.Point(782, 145);
+            this.txttopsale.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txttopsale.Name = "txttopsale";
+            this.txttopsale.PlaceholderText = "";
+            this.txttopsale.SelectedText = "";
+            this.txttopsale.Size = new System.Drawing.Size(335, 60);
+            this.txttopsale.TabIndex = 17;
+            this.txttopsale.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // UC_CustomerNeeds
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.txttopsale);
+            this.Controls.Add(this.btntopsale);
             this.Controls.Add(this.dtpketthuc);
             this.Controls.Add(this.dtpbatdau);
             this.Controls.Add(this.cbxsp);
@@ -139,5 +178,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvKetQua;
         private System.Windows.Forms.Button btnphantich;
+        private Guna.UI2.WinForms.Guna2Button btntopsale;
+        private Guna.UI2.WinForms.Guna2TextBox txttopsale;
     }
 }

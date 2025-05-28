@@ -18,49 +18,6 @@ namespace MayTinhQA.UserControls
         public UC_Behaviour()
         {
             InitializeComponent();
-            //chart1.Size = new Size(400, 300); // Tăng kích thước biểu đồ
-            //chart2.Size = new Size(400, 300); // Tăng kích thước biểu đồ
-        }
-        private void frmhanhvikh_Load(object sender, EventArgs e)
-        {
-        /*    guna2DataGridView1.Columns.Clear();
-            guna2DataGridView1.Columns.Add("Ngay", "Ngày");
-            guna2DataGridView1.Columns.Add("TenKhachHang", "Tên Khách Hàng");
-            guna2DataGridView1.Columns.Add("SoLanMua", "Số Lần Mua");
-            guna2DataGridView1.Columns.Add("TongGiaTri", "Tổng Giá Trị");
-
-            guna2DataGridView2.Columns.Clear();
-            guna2DataGridView2.Columns.Add("TenKhachHang", "Tên Khách Hàng");
-            guna2DataGridView2.Columns.Add("PhanKhuc", "Phân Khúc");
-
-            // Biểu đồ giao dịch
-            if (chart1.Series.IndexOf("Số Giao Dịch") >= 0)
-            {
-                chart1.Series["Số Giao Dịch"].Points.Clear();
-            }
-            else
-            {
-                var series = new System.Windows.Forms.DataVisualization.Charting.Series("Số Giao Dịch")
-                {
-                    ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column
-                };
-                chart1.Series.Add(series);
-            }
-
-            // Biểu đồ phân khúc
-            if (chartphankhuc.Series.IndexOf("Phân Khúc Khách Hàng") < 0)
-            {
-                var series = new System.Windows.Forms.DataVisualization.Charting.Series("Phân Khúc Khách Hàng")
-                {
-                    ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie
-                };
-                chartphankhuc.Series.Add(series);
-            }
-
-            ThongKeMuaSam();
-            PhanKhucKhachHang();
-            BieuDoGiaoDich();
-            BieuDoPhanKhuc();*/
         }
 
         private void ThongKeMuaSam()
@@ -117,6 +74,7 @@ namespace MayTinhQA.UserControls
 
                 }
             }
+            chartgd.Invalidate();
         }
 
         private void BieuDoPhanKhuc()
@@ -133,6 +91,7 @@ namespace MayTinhQA.UserControls
                     chartpk.Series["Phân Khúc Khách Hàng"].Points[point].Label = phanKhuc;
                 }
             }
+            chartpk.Invalidate();
         }
 
         private void PhanKhucKhachHang()
@@ -209,6 +168,40 @@ namespace MayTinhQA.UserControls
             PhanKhucKhachHang();
             BieuDoGiaoDich();
             BieuDoPhanKhuc();
+        }
+
+        private void btntopcus_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+        SELECT TOP 1 
+            k.tenkhachhang AS TenKhachHang,
+            COUNT(d.iddonhang) AS SoLanMua
+        FROM 
+            khachhang k
+        LEFT JOIN 
+            donhang d ON k.idkhachhang = d.idkhachhang
+        GROUP BY 
+            k.tenkhachhang
+        ORDER BY 
+            SoLanMua DESC;";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        string tenKhachHang = reader["TenKhachHang"].ToString();
+                        txttopcus.Text = tenKhachHang;
+                    }
+                    else
+                    {
+                        txttopcus.Text = "Không có dữ liệu khách hàng!";
+                    }
+                }
+            }
         }
     }
 }

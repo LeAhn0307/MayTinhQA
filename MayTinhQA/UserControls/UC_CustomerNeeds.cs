@@ -24,6 +24,7 @@ namespace MayTinhQA.UserControls
             dgvKetQua.Columns.Add("TongDoanhThu", "Tổng Doanh Thu");
             dgvKetQua.Columns.Add("TanSuatMua", "Tần Suất Mua");
             loadSanPham();
+            txttopsale.ReadOnly = true;
         }
         private void loadSanPham()
         {
@@ -90,6 +91,43 @@ namespace MayTinhQA.UserControls
                             reader["TongSoLuong"],
                             reader["TongDoanhThu"],
                             reader["TanSuatMua"]);
+                    }
+                }
+            }
+        }
+
+        private void btntopsale_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection con = new SqlConnection(connecttionString))
+            {
+                string sql = @"
+                SELECT TOP 1 
+                    s.tensanpham AS TenSanPham,
+                    SUM(c.soluong) AS TongSoLuong,
+                    SUM(c.soluong * c.dongia) AS TongDoanhThu
+                FROM 
+                    chitietdonhang c
+                JOIN 
+                    sanpham s ON c.idsanpham = s.idsanpham
+                JOIN 
+                    donhang d ON c.iddonhang = d.iddonhang
+                GROUP BY 
+                    s.tensanpham
+                ORDER BY 
+                    TongSoLuong DESC;";
+
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        string topProduct = reader["TenSanPham"].ToString();
+                        txttopsale.Text = topProduct;
+                    }
+                    else
+                    {
+                        txttopsale.Text = "Không có sản phẩm nào!";
                     }
                 }
             }
