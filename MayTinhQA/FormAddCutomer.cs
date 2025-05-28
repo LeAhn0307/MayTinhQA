@@ -171,8 +171,6 @@ namespace MayTinhQA
                     MessageBox.Show("Cập nhật khách hàng thành công!", "Thông báo", MessageBoxButtons.OK);
 
                     isEditing = false;
-                    btnluu.Visible = false;
-                    btnhuy.Visible = false;
                     currentEditingRowIndex = -1;
                     UC_Customer.napdgvKhachHang();
                     this.Close();
@@ -276,6 +274,11 @@ namespace MayTinhQA
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void guna2PictureBox1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -16,11 +16,12 @@ namespace MayTinhQA
         public FormDashboard()
         {
             InitializeComponent();
-            //UC_Home uC = new UC_Home();
-            //addUserControl(uC);
-            UC_Image uC = new UC_Image();
+            UC_Home uC = new UC_Home();
             addUserControl(uC);
+            //UC_Image uC = new UC_Image();
+            //addUserControl(uC);
         }
+        
         private void addUserControl(UserControl uc)
         {
             uc.Dock = DockStyle.Fill;
@@ -31,7 +32,7 @@ namespace MayTinhQA
 
         private void btnActivity_Click(object sender, EventArgs e)
         {
-            guna2GroupBox1.Visible = !guna2GroupBox1.Visible;
+            
             UC_Activities uC = new UC_Activities();
             addUserControl(uC);
         }
@@ -48,10 +49,11 @@ namespace MayTinhQA
 
         private void btnDashBoard_Click(object sender, EventArgs e)
         {
-            //UC_Home uC = new UC_Home();
-            //addUserControl(uC);
-            UC_Image uC = new UC_Image();
+            UC_Home uC = new UC_Home();
             addUserControl(uC);
+            //UC_Image uC = new UC_Image();
+            //addUserControl(uC);
+
         }
 
 
@@ -61,53 +63,32 @@ namespace MayTinhQA
         }
         private void btnCustomer_Click(object sender, EventArgs e)
         {
-            
-            //guna2GroupBox1.Visible = true;
-            //guna2GroupBox1.BringToFront();
             UC_Customer uC = new UC_Customer();
             addUserControl(uC);
-
         }
 
         private void btnReport_Click(object sender, EventArgs e)
         {
-            UC_Reports uC = new UC_Reports();
-            addUserControl(uC);
+            //UC_Reports uC = new UC_Reports();
+            //addUserControl(uC);
         }
 
         private void btnHistory_Click(object sender, EventArgs e)
         {
             UC_CustomerHistory uC = new UC_CustomerHistory();
             addUserControl(uC);
-            guna2GroupBox1.Visible = false;
-
         }
 
         private void btnBehaviour_Click(object sender, EventArgs e)
         {
             UC_Behaviour uC = new UC_Behaviour();
             addUserControl(uC);
-            guna2GroupBox1.Visible = false;
-
         }
 
         private void btnNeeds_Click(object sender, EventArgs e)
         {
             UC_CustomerNeeds uC = new UC_CustomerNeeds();
             addUserControl(uC);
-            guna2GroupBox1.Visible = false;
-        }
-        protected override void OnMouseDown(MouseEventArgs e)
-        {
-            base.OnMouseDown(e);
-            if (guna2GroupBox1.Visible && !guna2GroupBox1.Bounds.Contains(e.Location))
-            {
-                guna2GroupBox1.Visible = false;
-            }
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
 
         }
     }

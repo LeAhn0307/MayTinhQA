@@ -34,10 +34,10 @@ namespace MayTinhQA.UserControls
 
             napdgvKhachHang();
 
-            
+
             dgvKhachhang.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
 
-            
+
             dgvKhachhang.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
             dgvKhachhang.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
             dgvKhachhang.RowTemplate.Height = 24;
@@ -45,19 +45,19 @@ namespace MayTinhQA.UserControls
             dgvKhachhang.AllowUserToAddRows = false;
             dgvKhachhang.RowHeadersVisible = false;
 
-            var editColumn = new DataGridViewButtonColumn();
-            editColumn.Name = "Edit";
-            editColumn.HeaderText = "";
-            editColumn.Text = "Sửa";
-            editColumn.UseColumnTextForButtonValue = true;
-            editColumn.FlatStyle = FlatStyle.Flat;
-            //editColumn.DefaultCellStyle.BackColor = Color.FromArgb(76, 175, 80);
-            //editColumn.DefaultCellStyle.ForeColor = Color.White;
-            //editColumn.DefaultCellStyle.SelectionBackColor = Color.FromArgb(56, 141, 61);
-            //editColumn.DefaultCellStyle.SelectionForeColor = Color.White;
-            editColumn.Width = 60;
-            dgvKhachhang.Columns.Add(editColumn);
-            
+            //var editColumn = new DataGridViewButtonColumn();
+            //editColumn.Name = "Edit";
+            //editColumn.HeaderText = "";
+            //editColumn.Text = "Sửa";
+            //editColumn.UseColumnTextForButtonValue = true;
+            //editColumn.FlatStyle = FlatStyle.Flat;
+            ////editColumn.DefaultCellStyle.BackColor = Color.FromArgb(76, 175, 80);
+            ////editColumn.DefaultCellStyle.ForeColor = Color.White;
+            ////editColumn.DefaultCellStyle.SelectionBackColor = Color.FromArgb(56, 141, 61);
+            ////editColumn.DefaultCellStyle.SelectionForeColor = Color.White;
+            //editColumn.Width = 60;
+            //dgvKhachhang.Columns.Add(editColumn);
+
         }
         private bool isAdding = false;
         private bool isEditing = false;
@@ -83,7 +83,7 @@ namespace MayTinhQA.UserControls
             }
 
             // Bây giờ gán DataSource - cột sẽ tự động thêm sau
-            
+
 
             // Đặt lại tiêu đề cột (bây giờ đã có các cột từ dt)
             if (dgvKhachhang.Columns.Contains("idkhachhang"))
@@ -105,6 +105,17 @@ namespace MayTinhQA.UserControls
             dgvKhachhang.CurrentCell = null;
 
             dgvKhachhang.ReadOnly = false;
+            if (!dgvKhachhang.Columns.Contains("Edit"))
+            {
+                DataGridViewButtonColumn editColumn = new DataGridViewButtonColumn();
+                editColumn.Name = "Edit";
+                editColumn.HeaderText = "";
+                editColumn.Text = "Sửa";
+                editColumn.UseColumnTextForButtonValue = true;
+                editColumn.FlatStyle = FlatStyle.Flat;
+                editColumn.Width = 60;
+                dgvKhachhang.Columns.Add(editColumn);
+            }
         }
         private void DgvKhachhang_Paint(object sender, PaintEventArgs e)
         {
@@ -304,13 +315,13 @@ namespace MayTinhQA.UserControls
 
         private void dgvKhachhang_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-           if (e.RowIndex >= 0 && dgvKhachhang.Columns[e.ColumnIndex].Name == "Edit")
-    {
-        int idkhachhang = Convert.ToInt32(dgvKhachhang.Rows[e.RowIndex].Cells["idkhachhang"].Value);
-        FormAddCutomer formAddCutomer = new FormAddCutomer(this, idkhachhang);
-        formAddCutomer.ShowDialog();
-        napdgvKhachHang();
-    }
+            if (e.RowIndex >= 0 && dgvKhachhang.Columns[e.ColumnIndex].Name == "Edit")
+            {
+                int idkhachhang = Convert.ToInt32(dgvKhachhang.Rows[e.RowIndex].Cells["idkhachhang"].Value);
+                FormAddCutomer formAddCutomer = new FormAddCutomer(this, idkhachhang);
+                formAddCutomer.ShowDialog();
+                napdgvKhachHang();
+            }
         }
     }
 }

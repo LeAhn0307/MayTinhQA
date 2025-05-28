@@ -28,120 +28,88 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.chartphankhuc = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chartgiaodich = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.dgvthongke = new System.Windows.Forms.DataGridView();
-            this.dgvphankhuc = new System.Windows.Forms.DataGridView();
-            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.chartphankhuc)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chartgiaodich)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvthongke)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvphankhuc)).BeginInit();
-            this.guna2Panel1.SuspendLayout();
-            this.guna2Panel2.SuspendLayout();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            this.chartpk = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.dgvgd = new System.Windows.Forms.DataGridView();
+            this.chartgd = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.dgvpk = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.chartpk)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvgd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartgd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvpk)).BeginInit();
             this.SuspendLayout();
             // 
-            // chartphankhuc
+            // chartpk
             // 
-            chartArea9.Name = "ChartArea1";
-            this.chartphankhuc.ChartAreas.Add(chartArea9);
-            legend9.Name = "Legend1";
-            this.chartphankhuc.Legends.Add(legend9);
-            this.chartphankhuc.Location = new System.Drawing.Point(700, 328);
-            this.chartphankhuc.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.chartphankhuc.Name = "chartphankhuc";
-            series9.ChartArea = "ChartArea1";
-            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series9.Legend = "Legend1";
-            series9.Name = "Phân Khúc Khách Hàng";
-            this.chartphankhuc.Series.Add(series9);
-            this.chartphankhuc.Size = new System.Drawing.Size(465, 192);
-            this.chartphankhuc.TabIndex = 4;
-            this.chartphankhuc.Text = "chart1";
+            chartArea1.Name = "ChartArea1";
+            this.chartpk.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartpk.Legends.Add(legend1);
+            this.chartpk.Location = new System.Drawing.Point(482, 223);
+            this.chartpk.Name = "chartpk";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "Phân Khúc Khách Hàng";
+            this.chartpk.Series.Add(series1);
+            this.chartpk.Size = new System.Drawing.Size(460, 268);
+            this.chartpk.TabIndex = 4;
+            this.chartpk.Text = "chart2";
             // 
-            // chartgiaodich
+            // dgvgd
             // 
-            chartArea10.Name = "ChartArea1";
-            this.chartgiaodich.ChartAreas.Add(chartArea10);
-            legend10.Name = "Legend1";
-            this.chartgiaodich.Legends.Add(legend10);
-            this.chartgiaodich.Location = new System.Drawing.Point(52, 333);
-            this.chartgiaodich.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.chartgiaodich.Name = "chartgiaodich";
-            series10.ChartArea = "ChartArea1";
-            series10.Legend = "Legend1";
-            series10.Name = "Số Giao Dịch";
-            this.chartgiaodich.Series.Add(series10);
-            this.chartgiaodich.Size = new System.Drawing.Size(487, 187);
-            this.chartgiaodich.TabIndex = 5;
-            this.chartgiaodich.Text = "chart1";
+            this.dgvgd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvgd.Location = new System.Drawing.Point(3, 0);
+            this.dgvgd.Name = "dgvgd";
+            this.dgvgd.RowHeadersWidth = 62;
+            this.dgvgd.RowTemplate.Height = 28;
+            this.dgvgd.Size = new System.Drawing.Size(460, 208);
+            this.dgvgd.TabIndex = 5;
             // 
-            // dgvthongke
+            // chartgd
             // 
-            this.dgvthongke.BackgroundColor = System.Drawing.Color.White;
-            this.dgvthongke.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvthongke.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvthongke.Location = new System.Drawing.Point(37, 24);
-            this.dgvthongke.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dgvthongke.Name = "dgvthongke";
-            this.dgvthongke.RowHeadersWidth = 62;
-            this.dgvthongke.RowTemplate.Height = 28;
-            this.dgvthongke.Size = new System.Drawing.Size(487, 262);
-            this.dgvthongke.TabIndex = 6;
+            chartArea2.Name = "ChartArea1";
+            this.chartgd.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartgd.Legends.Add(legend2);
+            this.chartgd.Location = new System.Drawing.Point(3, 223);
+            this.chartgd.Name = "chartgd";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Số Giao Dịch";
+            this.chartgd.Series.Add(series2);
+            this.chartgd.Size = new System.Drawing.Size(460, 268);
+            this.chartgd.TabIndex = 3;
+            this.chartgd.Text = "chart1";
             // 
-            // dgvphankhuc
+            // dgvpk
             // 
-            this.dgvphankhuc.BackgroundColor = System.Drawing.Color.White;
-            this.dgvphankhuc.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvphankhuc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvphankhuc.Location = new System.Drawing.Point(50, 24);
-            this.dgvphankhuc.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dgvphankhuc.Name = "dgvphankhuc";
-            this.dgvphankhuc.RowHeadersWidth = 62;
-            this.dgvphankhuc.RowTemplate.Height = 28;
-            this.dgvphankhuc.Size = new System.Drawing.Size(465, 262);
-            this.dgvphankhuc.TabIndex = 7;
-            // 
-            // guna2Panel1
-            // 
-            this.guna2Panel1.Controls.Add(this.dgvphankhuc);
-            this.guna2Panel1.Location = new System.Drawing.Point(641, 13);
-            this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(565, 539);
-            this.guna2Panel1.TabIndex = 8;
-            // 
-            // guna2Panel2
-            // 
-            this.guna2Panel2.Controls.Add(this.dgvthongke);
-            this.guna2Panel2.Location = new System.Drawing.Point(15, 13);
-            this.guna2Panel2.Name = "guna2Panel2";
-            this.guna2Panel2.Size = new System.Drawing.Size(590, 539);
-            this.guna2Panel2.TabIndex = 9;
+            this.dgvpk.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvpk.Location = new System.Drawing.Point(482, 0);
+            this.dgvpk.Name = "dgvpk";
+            this.dgvpk.RowHeadersWidth = 62;
+            this.dgvpk.RowTemplate.Height = 28;
+            this.dgvpk.Size = new System.Drawing.Size(460, 208);
+            this.dgvpk.TabIndex = 6;
             // 
             // UC_Behaviour
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.chartgiaodich);
-            this.Controls.Add(this.chartphankhuc);
-            this.Controls.Add(this.guna2Panel1);
-            this.Controls.Add(this.guna2Panel2);
+            this.Controls.Add(this.dgvpk);
+            this.Controls.Add(this.dgvgd);
+            this.Controls.Add(this.chartpk);
+            this.Controls.Add(this.chartgd);
             this.Name = "UC_Behaviour";
-            this.Size = new System.Drawing.Size(1282, 597);
-            ((System.ComponentModel.ISupportInitialize)(this.chartphankhuc)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chartgiaodich)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvthongke)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvphankhuc)).EndInit();
-            this.guna2Panel1.ResumeLayout(false);
-            this.guna2Panel2.ResumeLayout(false);
+            this.Size = new System.Drawing.Size(1015, 541);
+            this.Load += new System.EventHandler(this.UC_Behaviour_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.chartpk)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvgd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartgd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvpk)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -153,5 +121,9 @@
         private System.Windows.Forms.DataGridView dgvphankhuc;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartpk;
+        private System.Windows.Forms.DataGridView dgvgd;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartgd;
+        private System.Windows.Forms.DataGridView dgvpk;
     }
 }

@@ -7,18 +7,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+<<<<<<< HEAD
+=======
+using System.IO;
+>>>>>>> bfadcffae2824bad21f894aae8373a9a331a4d1f
 using System.Data;
 using System.Data.SqlClient;
 
-namespace MayTinhQA.UserControls
+namespace MayTinhQA
 {
-    public partial class UC_CustomerNeeds : UserControl
+    public partial class frmnhucausp : Form
     {
+<<<<<<< HEAD
+        private string connecttionString = "Data Source=.\\SQLEXPRESS;Initial Catalog=crm;Integrated Security=True";
+=======
         private string connecttionString = "Data Source=DESKTOP-2023ILB\\SQLEXPRESS01;Initial Catalog=crm;Integrated Security=True";
-        public UC_CustomerNeeds()
+>>>>>>> bfadcffae2824bad21f894aae8373a9a331a4d1f
+        public frmnhucausp()
         {
             InitializeComponent();
-            dgvKetQua.Columns.Clear();
+            dgvKetQua.Columns.Clear(); 
             dgvKetQua.Columns.Add("TenSanPham", "Tên Sản Phẩm");
             dgvKetQua.Columns.Add("TongSoLuong", "Tổng Số Lượng");
             dgvKetQua.Columns.Add("TongDoanhThu", "Tổng Doanh Thu");
@@ -30,7 +38,7 @@ namespace MayTinhQA.UserControls
             using (SqlConnection con = new SqlConnection(connecttionString))
             {
                 string sql = "select tensanpham from sanpham";
-                using (SqlCommand command = new SqlCommand(sql, con))
+                using(SqlCommand command = new SqlCommand(sql , con))
                 {
                     con.Open();
                     SqlDataReader reader = command.ExecuteReader();
@@ -52,37 +60,58 @@ namespace MayTinhQA.UserControls
             }
             DateTime ngaybatdau = dtpbatdau.Value;
             DateTime ngayketthuc = dtpketthuc.Value;
-
-            using (SqlConnection con = new SqlConnection(connecttionString))
+            using(SqlConnection con = new SqlConnection(connecttionString))
             {
                 string sql = @"
-        SELECT 
+            SELECT 
+<<<<<<< HEAD
             s.tensanpham AS TenSanPham,
             SUM(c.soluong) AS TongSoLuong,
             SUM(c.soluong * c.dongia) AS TongDoanhThu,
-            COUNT(c.idchitietdh) AS TanSuatMua
+            COUNT(g.idgiaodich) AS TanSuatMua
         FROM 
-            chitietdonhang c
+            giaodich g
         JOIN 
+            hoadon h ON g.idhoadon = h.idhoadon
+        JOIN 
+            chitietdonhang c ON g.idchitietdh = c.idchitietdh
+        JOIN
             sanpham s ON c.idsanpham = s.idsanpham
-        JOIN 
-            donhang d ON c.iddonhang = d.iddonhang
         WHERE 
-            d.ngaytao BETWEEN @NgayBatDau AND @NgayKetThuc
+            h.ngaytao BETWEEN @NgayBatDau AND @NgayKetThuc
             AND s.tensanpham = @TenSanPham
         GROUP BY 
             s.tensanpham
         ORDER BY 
             TongSoLuong DESC;";
-
-                using (SqlCommand command = new SqlCommand(sql, con))
+=======
+                s.tensanpham AS TenSanPham,
+                SUM(c.soluong) AS TongSoLuong,
+                SUM(c.soluong * c.dongia) AS TongDoanhThu,
+                COUNT(g.idgiaodich) AS TanSuatMua
+            FROM 
+                giaodich g
+            JOIN 
+                hoadon h on g.idhoadon = h.idhoadon
+            JOIN 
+                chitietdonhang c ON g.idchitietdh = c.idchitietdh
+            JOIN
+                sanpham s ON c.idsanpham = s.idsanpham
+            WHERE 
+                h.ngaytao BETWEEN @NgayBatDau AND @NgayKetThuc
+            GROUP BY 
+                s.tensanpham
+            ORDER BY 
+                TongSoLuong DESC;";
+>>>>>>> bfadcffae2824bad21f894aae8373a9a331a4d1f
+                using(SqlCommand command = new SqlCommand(sql, con))
                 {
                     command.Parameters.AddWithValue("@NgayBatDau", ngaybatdau);
                     command.Parameters.AddWithValue("@NgayKetThuc", ngayketthuc);
                     command.Parameters.AddWithValue("@TenSanPham", selectedProduct);
                     con.Open();
                     SqlDataReader reader = command.ExecuteReader();
-                    dgvKetQua.Rows.Clear();
+                    dgvKetQua.Rows.Clear(); 
                     while (reader.Read())
                     {
                         dgvKetQua.Rows.Add(

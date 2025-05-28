@@ -2,25 +2,39 @@ create database crm
 use crm 
 
 create Table khachhang (
-  idkhachhang int identity primary key,
+  idkhachhang int primary key,
   tenkhachhang nvarchar(100),
   email	varchar(100),
   dienthoai	nvarchar(100),
-  diachi text,
-  ngaysinh date
+  diachi nvarchar(max),
+  ngaysinh date,
+  idthanhpho int foreign key references thanhpho(idthanhpho),
+  idquanhuyen int foreign key references quanhuyen(idquanhuyen),
+  ghichu nvarchar(max)
 )
-alter table khachhang add ghichu text
+alter table khachhang add ghichu nvarchar(max)
+INSERT INTO khachhang (idkhachhang, tenkhachhang, email, dienthoai, diachi, ngaysinh, idthanhpho, idquanhuyen)
+VALUES ({id},N'{hoten}', '{email}', '{sdt}', N'{diachi}', '{ngaysinh}', {idThanhPho}, {idQuan})"
 create Table loaikhachhang(
 idkhachhang int foreign key references khachhang(idkhachhang),
 loaikhachhang nvarchar(100),
 )
+create table thanhpho(
+idthanhpho int primary key,
+tenthanhpho nvarchar(100)
+)
+create table quanhuyen(
+idquanhuyen int  primary key,
+idthanhpho int foreign key references thanhpho(idthanhpho),
+tenquanhuyen nvarchar(100)
+)
 create Table vaitro (
-  idvaitro int identity primary key,
+  idvaitro int  primary key,
   tenvaitro varchar(100)
 )
 
 create Table users (
-  idusers int identity primary key,
+  idusers int  primary key,
   tennguoidung varchar(100),
   matkhau text,
   email varchar(100),
@@ -28,45 +42,37 @@ create Table users (
 )
 
 create Table loaisanpham (
-  idloaisanpham  int identity primary key,
+  idloaisanpham  int  primary key,
   tenloaisanpham nvarchar(100)
 )
 insert into loaisanpham values(N'Laptop')
 
 create Table donhang (
-  iddonhang int identity primary key,
+  iddonhang int  primary key,
   trangthai nvarchar(100),
+  ngaytao datetime default getdate(),
   idkhachhang int foreign key references khachhang(idkhachhang)
 )
-
 create Table sanpham (
-  idsanpham int identity primary key,
+  idsanpham int  primary key,
   tensanpham nvarchar(100),
   gia money,
   idloaisanpham int foreign key references loaisanpham(idloaisanpham),
   soluong int,
   mota nvarchar(100),
 )
-
-
-
 create table chucvu (
-  idchucvu int identity primary key,
+  idchucvu int  primary key,
   tenchucvu nvarchar(100)
 )
-
 create Table nhanvien (
-  idnhanvien int identity primary key,
+  idnhanvien int  primary key,
   tennhanvien nvarchar(100),
   chucvu int foreign key references chucvu(idchucvu),
   idusers int foreign key references users(idusers)
 ) 
-create table thanhtoan (
-  idthanhtoan int identity primary key,
-  loaithanhtoan nvarchar(100) 
-)
 create table phanhoi (
-  idphanhoi int identity primary key,
+  idphanhoi int  primary key,
   idkhachhang int foreign key references khachhang(idkhachhang),
   thongtinphanhoi nvarchar(100)
 )
@@ -76,35 +82,38 @@ create Table danhmuc (
   idphanhoi int foreign key references phanhoi(idphanhoi)
 )
 create Table phieubaohanh (
-  idphieudoitra int identity primary key,
-  ngaytao date,
-  ngaybatdau date,
-  ngayketthuc date,
+  idphieubaohanh int  primary key,
+  ngaytao datetime default getdate(),
+  ngaybatdau datetime,
+  ngayketthuc datetime,
   idsanpham int foreign key references sanpham(idsanpham),
   idnhanvien int foreign key references nhanvien(idnhanvien)
 )
 create Table phieudoitra (
-  idphieubaohanh int identity primary key,
-  ngaytao date,
+  idphieudoitra int  primary key,
+  ngaytao datetime default getdate(),
   idsanpham int foreign key references sanpham(idsanpham),
   idnhanvien int foreign key references nhanvien(idnhanvien)
 )
 
 create Table dichvu (
-  iddichvu int identity primary key,
+  iddichvu int  primary key,
   tendichvu nvarchar(100),
+  ngaykhoitao DATETIME DEFAULT GETDATE(),
+  trangthai NVARCHAR(50),
   mota nvarchar(100),
   idnhanvien int foreign key references nhanvien(idnhanvien),
-  idkhachhang int foreign key references khachhang(idkhachhang)
+  idkhachhang int foreign key references khachhang(idkhachhang),
+  idloaidichvu int foreign key references loaidichvu(idloaidichvu)
 )
 
-create Table loaikhuyenmai (
-  idloaikhuyenmai int identity primary key,
-  loaikhuyenmai nvarchar(100)
+create Table loaidichvu (
+  idloaidichvu int  primary key,
+  tenloaidichvu nvarchar(100)
 )
 
 create Table khuyenmai (
-  idkhuyenmai int identity primary key,
+  idkhuyenmai int  primary key,
   magiamgia varchar(100),
   giatri decimal(3,0),
   ngaybatdau date,
@@ -112,52 +121,31 @@ create Table khuyenmai (
   idnhanvien int foreign key references nhanvien(idnhanvien),
   idloaikhuyenmai int foreign key references loaikhuyenmai(idloaikhuyenmai)
 )
-
+create Table loaikhuyenmai (
+  idloaikhuyenmai int  primary key,
+  tenloaikhuyenmai nvarchar(100)
+)
 create Table chitietdonhang (
-  idchitietdh int identity primary key,
+  idchitietdh int  primary key,
   iddonhang int foreign key references donhang(iddonhang),
   idkhachhang int foreign key references khachhang(idkhachhang),
   idsanpham int foreign key references sanpham(idsanpham),
   soluong int,
-  idgiamgia int foreign key references khuyenmai(idkhuyenmai),
+  idkhuyenmai int foreign key references khuyenmai(idkhuyenmai),
   dongia money,
   idnhanvien int foreign key references nhanvien(idnhanvien),
-  idthanhtoan int foreign key references thanhtoan(idthanhtoan)
 )
 
-create Table hoadon (
-  idhoadon int identity primary key,
-  idnhanvien int foreign key references nhanvien(idnhanvien),
-  idkhachhang int foreign key references khachhang(idkhachhang),
-  iddonhang int foreign key references donhang(iddonhang),
-  idchitietdh int foreign key references chitietdonhang(idchitietdh),
-  tongtien money,
-  ngaytao date
-)
-
-create Table congno (
-  idcongno int identity primary key,
-  tongtien money,
-  trangthai nvarchar(100),
-  idkhachhang int foreign key references khachhang(idkhachhang),
-  idhoadon int foreign key references hoadon(idhoadon)
-)
-create table giaodich (
-  idgiaodich int identity primary key,
-  idkhachhang int foreign key references khachhang(idkhachhang),
-  idhoadon int foreign key references hoadon(idhoadon),
-  idchitietdh int foreign key references chitietdonhang(idchitietdh),
-)
 create table thongke (
-idcongno int foreign key references congno(idcongno),
+idkhachhang int foreign key references khachhang(idkhachhang),
 idphanhoi int foreign key references phanhoi(idphanhoi),
-idgiaodich int foreign key references giaodich(idgiaodich),
+iddonhang int foreign key references donhang(iddonhang)
 )
 
-insert into vaitro values(N'Admin')
-insert into vaitro values(N'User')
+insert into vaitro values(1,N'Admin')
+insert into vaitro values(2,N'User')
 
-insert into users values('Admin1','123456','admin1@gmail.com',1)
+insert into users values(1,'Admin1','123456','ggnhulon1234@gmail.com',1)
 SET IDENTITY_INSERT users ON;
 insert into chucvu(idchucvu,tenchucvu) values(2,N'nhan vien ban hang')
 SET IDENTITY_INSERT users OFF;
@@ -169,5 +157,6 @@ update nhanvien set tennhanvien = N'ccc' where idnhanvien = 2
 
 Select chitietdonhang.idchitietdh,khachhang.tenkhachhang,sanpham.tensanpham,chitietdonhang.soluong,FORMAT(sanpham.gia, 'N0', 'vi-VN'),FORMAT((chitietdonhang.soluong*sanpham.gia),'N0', 'vi-VN')as ThanhTien From chitietdonhang inner join khachhang on khachhang.idkhachhang=chitietdonhang.idkhachhang inner join sanpham on sanpham.idsanpham=chitietdonhang.idsanpham 
 
-insert into donhang(trangthai,idkhachhang) Values (N'Chờ',(SELECT idkhachhang FROM khachhang WHERE tenkhachhang =N''))
+SELECT kh.idkhachhang, kh.tenkhachhang, kh.email, kh.dienthoai,kh.ngaysinh, CONCAT(kh.diachi, ', ', q.tenquanhuyen, ', ', tp.tenthanhpho) AS diachi FROM khachhang kh JOIN thanhpho tp ON kh.idthanhpho = tp.idthanhpho JOIN quanhuyen q ON kh.idquanhuyen = q.idquanhuyen
 
+alter table khuyenmai add idkhachhang int foreign key references khachhang(idkhachhang)

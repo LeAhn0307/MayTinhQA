@@ -37,11 +37,9 @@ namespace MayTinhQA
             this.panel2 = new System.Windows.Forms.Panel();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.btnLogout = new Guna.UI2.WinForms.Guna2Button();
-            this.btnReport = new Guna.UI2.WinForms.Guna2Button();
             this.btnActivity = new Guna.UI2.WinForms.Guna2Button();
             this.btnCustomer = new Guna.UI2.WinForms.Guna2Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.btnHistory = new Guna.UI2.WinForms.Guna2Button();
             this.btnNeeds = new Guna.UI2.WinForms.Guna2Button();
             this.btnBehaviour = new Guna.UI2.WinForms.Guna2Button();
@@ -51,8 +49,6 @@ namespace MayTinhQA
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.guna2GroupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -115,9 +111,11 @@ namespace MayTinhQA
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
+            this.panel2.Controls.Add(this.btnHistory);
+            this.panel2.Controls.Add(this.btnNeeds);
             this.panel2.Controls.Add(this.guna2Button1);
+            this.panel2.Controls.Add(this.btnBehaviour);
             this.panel2.Controls.Add(this.btnLogout);
-            this.panel2.Controls.Add(this.btnReport);
             this.panel2.Controls.Add(this.btnActivity);
             this.panel2.Controls.Add(this.btnCustomer);
             this.panel2.Controls.Add(this.btnDashBoard);
@@ -158,34 +156,13 @@ namespace MayTinhQA
             this.btnLogout.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
             this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogout.ForeColor = System.Drawing.Color.White;
-            this.btnLogout.Location = new System.Drawing.Point(995, 2);
+            this.btnLogout.Location = new System.Drawing.Point(1124, 4);
             this.btnLogout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(156, 46);
             this.btnLogout.TabIndex = 4;
             this.btnLogout.Text = "Đăng xuất";
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
-            // 
-            // btnReport
-            // 
-            this.btnReport.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.btnReport.CheckedState.CustomBorderColor = System.Drawing.Color.White;
-            this.btnReport.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
-            this.btnReport.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 3);
-            this.btnReport.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnReport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnReport.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnReport.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnReport.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
-            this.btnReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReport.ForeColor = System.Drawing.Color.White;
-            this.btnReport.Location = new System.Drawing.Point(585, 5);
-            this.btnReport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(237, 46);
-            this.btnReport.TabIndex = 3;
-            this.btnReport.Text = "Báo cáo thống kê";
-            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // btnActivity
             // 
@@ -201,10 +178,10 @@ namespace MayTinhQA
             this.btnActivity.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
             this.btnActivity.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnActivity.ForeColor = System.Drawing.Color.White;
-            this.btnActivity.Location = new System.Drawing.Point(398, 4);
+            this.btnActivity.Location = new System.Drawing.Point(340, 5);
             this.btnActivity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnActivity.Name = "btnActivity";
-            this.btnActivity.Size = new System.Drawing.Size(181, 46);
+            this.btnActivity.Size = new System.Drawing.Size(165, 46);
             this.btnActivity.TabIndex = 2;
             this.btnActivity.Text = "Hoạt động";
             this.btnActivity.Click += new System.EventHandler(this.btnActivity_Click);
@@ -226,36 +203,19 @@ namespace MayTinhQA
             this.btnCustomer.Location = new System.Drawing.Point(157, 5);
             this.btnCustomer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCustomer.Name = "btnCustomer";
-            this.btnCustomer.Size = new System.Drawing.Size(237, 46);
+            this.btnCustomer.Size = new System.Drawing.Size(177, 46);
             this.btnCustomer.TabIndex = 1;
             this.btnCustomer.Text = "Khách hàng";
             this.btnCustomer.Click += new System.EventHandler(this.btnCustomer_Click);
             // 
             // panel3
             // 
-            this.panel3.BackgroundImage = global::MayTinhQA.Properties.Resources.QA2;
-            this.panel3.Controls.Add(this.guna2GroupBox1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 134);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1283, 597);
             this.panel3.TabIndex = 5;
-            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
-            // 
-            // guna2GroupBox1
-            // 
-            this.guna2GroupBox1.Controls.Add(this.btnHistory);
-            this.guna2GroupBox1.Controls.Add(this.btnNeeds);
-            this.guna2GroupBox1.Controls.Add(this.btnBehaviour);
-            this.guna2GroupBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2GroupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.guna2GroupBox1.Location = new System.Drawing.Point(157, 1);
-            this.guna2GroupBox1.Name = "guna2GroupBox1";
-            this.guna2GroupBox1.Size = new System.Drawing.Size(241, 193);
-            this.guna2GroupBox1.TabIndex = 9;
-            this.guna2GroupBox1.Text = "guna2GroupBox1";
-            this.guna2GroupBox1.Visible = false;
             // 
             // btnHistory
             // 
@@ -271,10 +231,10 @@ namespace MayTinhQA
             this.btnHistory.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
             this.btnHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHistory.ForeColor = System.Drawing.Color.White;
-            this.btnHistory.Location = new System.Drawing.Point(3, 55);
+            this.btnHistory.Location = new System.Drawing.Point(511, 5);
             this.btnHistory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnHistory.Name = "btnHistory";
-            this.btnHistory.Size = new System.Drawing.Size(237, 46);
+            this.btnHistory.Size = new System.Drawing.Size(218, 46);
             this.btnHistory.TabIndex = 6;
             this.btnHistory.Text = "Lịch sử giao dịch";
             this.btnHistory.Click += new System.EventHandler(this.btnHistory_Click);
@@ -293,10 +253,10 @@ namespace MayTinhQA
             this.btnNeeds.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
             this.btnNeeds.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNeeds.ForeColor = System.Drawing.Color.White;
-            this.btnNeeds.Location = new System.Drawing.Point(3, 147);
+            this.btnNeeds.Location = new System.Drawing.Point(971, 5);
             this.btnNeeds.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnNeeds.Name = "btnNeeds";
-            this.btnNeeds.Size = new System.Drawing.Size(237, 46);
+            this.btnNeeds.Size = new System.Drawing.Size(152, 46);
             this.btnNeeds.TabIndex = 8;
             this.btnNeeds.Text = "Nhu cầu ";
             this.btnNeeds.Click += new System.EventHandler(this.btnNeeds_Click);
@@ -315,10 +275,10 @@ namespace MayTinhQA
             this.btnBehaviour.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
             this.btnBehaviour.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBehaviour.ForeColor = System.Drawing.Color.White;
-            this.btnBehaviour.Location = new System.Drawing.Point(3, 101);
+            this.btnBehaviour.Location = new System.Drawing.Point(735, 5);
             this.btnBehaviour.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBehaviour.Name = "btnBehaviour";
-            this.btnBehaviour.Size = new System.Drawing.Size(237, 46);
+            this.btnBehaviour.Size = new System.Drawing.Size(230, 46);
             this.btnBehaviour.TabIndex = 7;
             this.btnBehaviour.Text = "Hành vi khách hàng";
             this.btnBehaviour.Click += new System.EventHandler(this.btnBehaviour_Click);
@@ -346,8 +306,6 @@ namespace MayTinhQA
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.guna2GroupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -359,7 +317,6 @@ namespace MayTinhQA
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel2;
         private Guna.UI2.WinForms.Guna2Button btnCustomer;
-        private Guna.UI2.WinForms.Guna2Button btnReport;
         private Guna.UI2.WinForms.Guna2Button btnActivity;
         private System.Windows.Forms.PictureBox pictureBox2;
         private Guna.UI2.WinForms.Guna2Button btnLogout;
@@ -370,6 +327,5 @@ namespace MayTinhQA
         private Guna.UI2.WinForms.Guna2Button btnHistory;
         private Guna.UI2.WinForms.Guna2Button btnNeeds;
         private Guna.UI2.WinForms.Guna2Button btnBehaviour;
-        private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox1;
     }
 }
