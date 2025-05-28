@@ -62,5 +62,21 @@ namespace MayTinhQA
         {
            this.Close();
         }
+        private bool isPasswordVisible = false;
+        private void guna2PictureBox1_Click(object sender, EventArgs e)
+        {
+            isPasswordVisible = !isPasswordVisible;
+
+            txtmatkhau.UseSystemPasswordChar = !isPasswordVisible;
+
+            if (isPasswordVisible)
+            {
+                guna2PictureBox1.Image = Properties.Resources._65000;  // Mở - hiển thị mật khẩu
+            }
+            else
+            {
+                guna2PictureBox1.Image = Properties.Resources.Capture; // Đóng - ẩn mật khẩu
+            }
+        }
     }
 }

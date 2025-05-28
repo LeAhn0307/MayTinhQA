@@ -63,6 +63,26 @@ namespace MayTinhQA.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _65000 {
+            get {
+                object obj = ResourceManager.GetObject("65000", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Capture {
+            get {
+                object obj = ResourceManager.GetObject("Capture", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap close_icon {
             get {
                 object obj = ResourceManager.GetObject("close_icon", resourceCulture);
