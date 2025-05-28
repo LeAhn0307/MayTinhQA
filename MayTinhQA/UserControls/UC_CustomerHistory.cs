@@ -19,12 +19,11 @@ namespace MayTinhQA.UserControls
         {
             InitializeComponent();
             dgvlichsugiaodich.Columns.Clear();
-            dgvlichsugiaodich.Columns.Add("idgiaodich", "ID Giao Dịch");
+            dgvlichsugiaodich.Columns.Add("idDonHang", "ID Đơn Hàng");
             dgvlichsugiaodich.Columns.Add("TenKhachHang", "Tên Khách Hàng");
-            dgvlichsugiaodich.Columns.Add("idhoadon", "ID Hóa Đơn");
-            dgvlichsugiaodich.Columns.Add("idchitietdh", "ID Chi Tiết Đơn Hàng");
-            dgvlichsugiaodich.Columns.Add("soluong", "Số Lượng");
-            dgvlichsugiaodich.Columns.Add("dongia", "Đơn Giá");
+            dgvlichsugiaodich.Columns.Add("idChiTietDH", "ID Chi Tiết Đơn Hàng");
+            dgvlichsugiaodich.Columns.Add("SoLuong", "Số Lượng");
+            dgvlichsugiaodich.Columns.Add("DonGia", "Đơn Giá");
             LoadLichSuGiaoDich();
             LoadThongKeGiaoDich();
         }
@@ -34,22 +33,19 @@ namespace MayTinhQA.UserControls
             {
                 string query = @"
                 SELECT 
-                    g.idgiaodich,
+                    d.iddonhang AS idDonHang,
                     k.tenkhachhang AS TenKhachHang,
-                    h.idhoadon,
-                    c.idchitietdh,
+                    c.idchitietdh AS idChiTietDH,
                     c.soluong,
-                    c.dongia
+                    c.dongia AS DonGia
                 FROM 
-                    giaodich g
+                    donhang d
                 JOIN 
-                    khachhang k ON g.idkhachhang = k.idkhachhang
+                    khachhang k ON d.idkhachhang = k.idkhachhang
                 JOIN 
-                    hoadon h ON g.idhoadon = h.idhoadon
-                JOIN 
-                    chitietdonhang c ON g.idchitietdh = c.idchitietdh
+                    chitietdonhang c ON d.iddonhang = c.iddonhang
                 ORDER BY 
-                    g.idgiaodich DESC;";
+                    d.iddonhang DESC;";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -58,12 +54,11 @@ namespace MayTinhQA.UserControls
                     while (reader.Read())
                     {
                         dgvlichsugiaodich.Rows.Add(
-                            reader["idgiaodich"],
+                            reader["idDonHang"],
                             reader["TenKhachHang"],
-                            reader["idhoadon"],
-                            reader["idchitietdh"],
+                            reader["idChiTietDH"],
                             reader["soluong"],
-                            reader["dongia"]);
+                            reader["DonGia"]);
                     }
                 }
             }
@@ -72,7 +67,7 @@ namespace MayTinhQA.UserControls
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT COUNT(*) AS TongSoGiaoDich FROM giaodich";
+                string query = "SELECT COUNT(*) AS TongSoDonHang FROM donhang";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     connection.Open();
@@ -85,42 +80,39 @@ namespace MayTinhQA.UserControls
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = @"
-            SELECT 
-                g.idgiaodich,
-                k.tenkhachhang AS TenKhachHang,
-                h.idhoadon,
-                c.idchitietdh,
-                c.soluong,
-                c.dongia
-            FROM 
-                giaodich g
-            JOIN 
-                khachhang k ON g.idkhachhang = k.idkhachhang
-            JOIN 
-                hoadon h ON g.idhoadon = h.idhoadon
-            JOIN 
-                chitietdonhang c ON g.idchitietdh = c.idchitietdh
-            WHERE 
-                k.hoten LIKE @TenKhachHang OR h.idhoadon = @IdHoaDon
-            ORDER BY 
-                g.idgiaodich DESC;";
+        SELECT 
+            d.iddonhang AS idDonHang,
+            k.tenkhachhang AS TenKhachHang,
+            c.idchitietdh AS idChiTietDH,
+            c.soluong,
+            c.dongia AS DonGia
+        FROM 
+            donhang d
+        JOIN 
+            khachhang k ON d.idkhachhang = k.idkhachhang
+        JOIN 
+            chitietdonhang c ON d.iddonhang = c.iddonhang
+        WHERE 
+            k.tenkhachhang LIKE @TenKhachHang 
+            OR d.iddonhang = @IdDonHang
+        ORDER BY 
+            d.iddonhang DESC;";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@TenKhachHang", "%" + txttktheotenkhach.Text + "%");
-                    command.Parameters.AddWithValue("@IdHoaDon", txttktheomahoadon.Text);
+                    command.Parameters.AddWithValue("@IdDonHang", string.IsNullOrEmpty(txttktheoiddonhang.Text) ? (object)DBNull.Value : Convert.ToInt32(txttktheoiddonhang.Text));
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
                     dgvlichsugiaodich.Rows.Clear();
                     while (reader.Read())
                     {
                         dgvlichsugiaodich.Rows.Add(
-                            reader["idgiaodich"],
+                            reader["idDonHang"],
                             reader["TenKhachHang"],
-                            reader["idhoadon"],
-                            reader["idchitietdh"],
+                            reader["idChiTietDH"],
                             reader["soluong"],
-                            reader["dongia"]);
+                            reader["DonGia"]);
                     }
                 }
             }

@@ -95,7 +95,7 @@
             this.dgvKetQua.Name = "dgvKetQua";
             this.dgvKetQua.RowHeadersWidth = 62;
             this.dgvKetQua.RowTemplate.Height = 28;
-            this.dgvKetQua.Size = new System.Drawing.Size(634, 214);
+            this.dgvKetQua.Size = new System.Drawing.Size(756, 214);
             this.dgvKetQua.TabIndex = 9;
             // 
             // btnphantich
