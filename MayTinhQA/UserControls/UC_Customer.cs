@@ -20,6 +20,7 @@ namespace MayTinhQA.UserControls
         public UC_Customer()
         {
             InitializeComponent();
+            dgvKhachhang.DataBindingComplete += dgvKhachhang_DataBindingComplete;
             dgvKhachhang.CellValueChanged += DgvKhachhang_CellValueChanged;
             dgvKhachhang.CurrentCellDirtyStateChanged += (s, e) =>
             {
@@ -36,27 +37,13 @@ namespace MayTinhQA.UserControls
 
 
             dgvKhachhang.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
-
-
             dgvKhachhang.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
             dgvKhachhang.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
             dgvKhachhang.RowTemplate.Height = 24;
-
             dgvKhachhang.AllowUserToAddRows = false;
             dgvKhachhang.RowHeadersVisible = false;
 
-            //var editColumn = new DataGridViewButtonColumn();
-            //editColumn.Name = "Edit";
-            //editColumn.HeaderText = "";
-            //editColumn.Text = "Sửa";
-            //editColumn.UseColumnTextForButtonValue = true;
-            //editColumn.FlatStyle = FlatStyle.Flat;
-            ////editColumn.DefaultCellStyle.BackColor = Color.FromArgb(76, 175, 80);
-            ////editColumn.DefaultCellStyle.ForeColor = Color.White;
-            ////editColumn.DefaultCellStyle.SelectionBackColor = Color.FromArgb(56, 141, 61);
-            ////editColumn.DefaultCellStyle.SelectionForeColor = Color.White;
-            //editColumn.Width = 60;
-            //dgvKhachhang.Columns.Add(editColumn);
+
 
         }
         private bool isAdding = false;
@@ -64,11 +51,13 @@ namespace MayTinhQA.UserControls
         private int currentEditingRowIndex = -1;
         public void napdgvKhachHang()
         {
+            
             DataTable dt = Database.Query("SELECT kh.idkhachhang, kh.tenkhachhang, kh.email, kh.dienthoai,kh.ngaysinh, CONCAT(kh.diachi, ', ', q.tenquanhuyen, ', ', tp.tenthanhpho) AS diachi,ghichu FROM khachhang kh JOIN thanhpho tp ON kh.idthanhpho = tp.idthanhpho JOIN quanhuyen q ON kh.idquanhuyen = q.idquanhuyen");
-            dgvKhachhang.DataSource = null; // Ngắt DataSource cũ nếu có
-
-            dgvKhachhang.Columns.Clear(); // Xóa tất cả cột cũ
+            dgvKhachhang.DataSource = null; 
+            dgvKhachhang.Columns.Clear(); 
             dgvKhachhang.DataSource = dt;
+
+
             if (!dgvKhachhang.Columns.Contains("check"))
             {
                 DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
@@ -79,15 +68,20 @@ namespace MayTinhQA.UserControls
                 chk.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 chk.ReadOnly = false;
 
-                dgvKhachhang.Columns.Insert(0, chk); // Thêm vào vị trí đầu
+                dgvKhachhang.Columns.Insert(0, chk);
             }
-
-            // Bây giờ gán DataSource - cột sẽ tự động thêm sau
-
-
-            // Đặt lại tiêu đề cột (bây giờ đã có các cột từ dt)
+            if (!dgvKhachhang.Columns.Contains("stt"))
+            {
+                DataGridViewTextBoxColumn sttColumn = new DataGridViewTextBoxColumn();
+                sttColumn.HeaderText = "STT";
+                sttColumn.Name = "stt";
+                sttColumn.Width = 50;
+                sttColumn.ReadOnly = true;
+                sttColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgvKhachhang.Columns.Insert(1, sttColumn);
+            }
             if (dgvKhachhang.Columns.Contains("idkhachhang"))
-                dgvKhachhang.Columns["idkhachhang"].HeaderText = "ID";
+                dgvKhachhang.Columns["idkhachhang"].Visible = false;
             if (dgvKhachhang.Columns.Contains("tenkhachhang"))
                 dgvKhachhang.Columns["tenkhachhang"].HeaderText = "Họ Tên";
             if (dgvKhachhang.Columns.Contains("ngaysinh"))
@@ -114,9 +108,55 @@ namespace MayTinhQA.UserControls
                 editColumn.UseColumnTextForButtonValue = true;
                 editColumn.FlatStyle = FlatStyle.Flat;
                 editColumn.Width = 60;
+                editColumn.DefaultCellStyle.Font = new Font("Segoe UI", 10);
                 dgvKhachhang.Columns.Add(editColumn);
             }
+            dgvKhachhang_DataBindingComplete(null, null);
+            if (dgvKhachhang.Columns.Contains("stt"))
+            {
+                dgvKhachhang.Columns["stt"].HeaderText = "STT";
+                dgvKhachhang.Columns["stt"].Width = 50;
+                dgvKhachhang.Columns["stt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgvKhachhang.Columns["stt"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgvKhachhang.Columns["stt"].DefaultCellStyle.Font = dgvKhachhang.DefaultCellStyle.Font;
+            }
+   
+
         }
+        private void dgvKhachhang_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            Font defaultFont = new Font("Segoe UI", 10); // Font chữ chung
+            dgvKhachhang.DefaultCellStyle.Font = defaultFont;
+            dgvKhachhang.DefaultCellStyle.ForeColor = Color.DarkSlateBlue; // Màu chữ
+
+            // Đặt font và màu cho header (tiêu đề cột)
+            dgvKhachhang.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgvKhachhang.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvKhachhang.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
+
+            // Thiết lập màu nền cho toàn bộ lưới nếu muốn
+            dgvKhachhang.BackgroundColor = Color.White;
+            foreach (DataGridViewRow row in dgvKhachhang.Rows)
+            {
+                row.DefaultCellStyle.Font = defaultFont;
+
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    cell.Style.Font = defaultFont;
+                }
+            }
+            
+            if (!dgvKhachhang.Columns.Contains("stt")) return;
+
+            for (int i = 0; i < dgvKhachhang.Rows.Count; i++)
+            {
+                if (!dgvKhachhang.Rows[i].IsNewRow)
+                {
+                    dgvKhachhang.Rows[i].Cells["stt"].Value = (i + 1).ToString();
+                }
+            }
+        }
+        
         private void DgvKhachhang_Paint(object sender, PaintEventArgs e)
         {
             if (dgvKhachhang.Columns.Count == 0) return;
@@ -218,11 +258,9 @@ namespace MayTinhQA.UserControls
         {
             List<int> selectedIds = new List<int>();
 
-            // Duyệt qua tất cả các dòng trong DataGridView
             foreach (DataGridViewRow row in dgvKhachhang.Rows)
             {
-                // Kiểm tra nếu checkbox được chọn
-                if (Convert.ToBoolean(row.Cells["check"].Value) == true)
+                if (row.Cells["check"].Value != null && Convert.ToBoolean(row.Cells["check"].Value))
                 {
                     if (int.TryParse(row.Cells["idkhachhang"].Value?.ToString(), out int id))
                     {
@@ -231,26 +269,19 @@ namespace MayTinhQA.UserControls
                 }
             }
 
-            // Nếu không có khách hàng nào được chọn
             if (selectedIds.Count == 0)
             {
                 MessageBox.Show("Vui lòng chọn ít nhất một khách hàng để xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Xác nhận xóa
             DialogResult result = MessageBox.Show($"Bạn có chắc chắn muốn xóa {selectedIds.Count} khách hàng đã chọn không?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.No)
-            {
-                return;
-            }
+            if (result == DialogResult.No) return;
 
-            // Thực hiện xóa từng khách hàng
             foreach (int idkh in selectedIds)
             {
                 try
                 {
-                    // Xóa bảng con trước, theo thứ tự tránh lỗi FK
                     Database.Excute($"DELETE FROM thongke WHERE idphanhoi IN (SELECT idphanhoi FROM phanhoi WHERE idkhachhang = {idkh})");
                     Database.Excute($"DELETE FROM thongke WHERE iddonhang IN (SELECT iddonhang FROM donhang WHERE idkhachhang = {idkh})");
                     Database.Excute($"DELETE FROM chitietdonhang WHERE idkhachhang = {idkh}");
@@ -258,11 +289,8 @@ namespace MayTinhQA.UserControls
                     Database.Excute($"DELETE FROM danhmuc WHERE idkhachhang = {idkh}");
                     Database.Excute($"DELETE FROM phanhoi WHERE idkhachhang = {idkh}");
                     Database.Excute($"DELETE FROM donhang WHERE idkhachhang = {idkh}");
-                    Database.Excute($"DELETE FROM khuyenmai  WHERE idkhachhang = {idkh}"); // Nếu liên quan
+                    Database.Excute($"DELETE FROM khuyenmai WHERE idkhachhang = {idkh}");
                     Database.Excute($"DELETE FROM loaikhachhang WHERE idkhachhang = {idkh}");
-                    Database.Excute($"DELETE FROM khachhang WHERE idkhachhang = {idkh}");
-
-                    // Cuối cùng xóa khách hàng
                     Database.Excute($"DELETE FROM khachhang WHERE idkhachhang = {idkh}");
                 }
                 catch (Exception ex)
@@ -272,6 +300,7 @@ namespace MayTinhQA.UserControls
             }
 
             MessageBox.Show("Đã xóa khách hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             napdgvKhachHang();
         }
 
@@ -319,10 +348,18 @@ namespace MayTinhQA.UserControls
         {
             if (e.RowIndex >= 0 && dgvKhachhang.Columns[e.ColumnIndex].Name == "Edit")
             {
+                isEditing = true;
+                currentEditingRowIndex = e.RowIndex;
+
                 int idkhachhang = Convert.ToInt32(dgvKhachhang.Rows[e.RowIndex].Cells["idkhachhang"].Value);
                 FormAddCutomer formAddCutomer = new FormAddCutomer(this, idkhachhang);
+                formAddCutomer.FormClosed += (s, args) =>
+                {
+                    isEditing = false;
+                    currentEditingRowIndex = -1;
+                    napdgvKhachHang();
+                };
                 formAddCutomer.ShowDialog();
-                napdgvKhachHang();
             }
         }
     }
