@@ -52,28 +52,29 @@ namespace MayTinhQA.UserControls
             }
             DateTime ngaybatdau = dtpbatdau.Value;
             DateTime ngayketthuc = dtpketthuc.Value;
+
             using (SqlConnection con = new SqlConnection(connecttionString))
             {
                 string sql = @"
-            SELECT 
-                s.tensanpham AS TenSanPham,
-                SUM(c.soluong) AS TongSoLuong,
-                SUM(c.soluong * c.dongia) AS TongDoanhThu,
-                COUNT(g.idgiaodich) AS TanSuatMua
-            FROM 
-                giaodich g
-            JOIN 
-                hoadon h on g.idhoadon = h.idhoadon
-            JOIN 
-                chitietdonhang c ON g.idchitietdh = c.idchitietdh
-            JOIN
-                sanpham s ON c.idsanpham = s.idsanpham
-            WHERE 
-                h.ngaytao BETWEEN @NgayBatDau AND @NgayKetThuc
-            GROUP BY 
-                s.tensanpham
-            ORDER BY 
-                TongSoLuong DESC;";
+        SELECT 
+            s.tensanpham AS TenSanPham,
+            SUM(c.soluong) AS TongSoLuong,
+            SUM(c.soluong * c.dongia) AS TongDoanhThu,
+            COUNT(c.idchitietdh) AS TanSuatMua
+        FROM 
+            chitietdonhang c
+        JOIN 
+            sanpham s ON c.idsanpham = s.idsanpham
+        JOIN 
+            donhang d ON c.iddonhang = d.iddonhang
+        WHERE 
+            d.ngaytao BETWEEN @NgayBatDau AND @NgayKetThuc
+            AND s.tensanpham = @TenSanPham
+        GROUP BY 
+            s.tensanpham
+        ORDER BY 
+            TongSoLuong DESC;";
+
                 using (SqlCommand command = new SqlCommand(sql, con))
                 {
                     command.Parameters.AddWithValue("@NgayBatDau", ngaybatdau);

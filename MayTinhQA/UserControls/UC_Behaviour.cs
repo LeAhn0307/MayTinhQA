@@ -69,20 +69,18 @@ namespace MayTinhQA.UserControls
             {
                 string query = @"
         SELECT 
-            CAST(h.ngaytao AS DATE) AS Ngay,
+            CAST(d.ngaytao AS DATE) AS Ngay,
             k.tenkhachhang AS TenKhachHang,
-            COUNT(g.idgiaodich) AS SoLanMua,
+            COUNT(c.idchitietdh) AS SoLanMua,
             SUM(c.dongia * c.soluong) AS TongGiaTri
         FROM 
             khachhang k
         LEFT JOIN 
-            giaodich g ON k.idkhachhang = g.idkhachhang
+            donhang d ON k.idkhachhang = d.idkhachhang
         LEFT JOIN 
-            hoadon h ON g.idhoadon = h.idhoadon
-        LEFT JOIN 
-            chitietdonhang c ON g.idchitietdh = c.idchitietdh
+            chitietdonhang c ON d.iddonhang = c.iddonhang
         GROUP BY 
-            k.tenkhachhang, CAST(h.ngaytao AS DATE)
+            k.tenkhachhang, CAST(d.ngaytao AS DATE)
         ORDER BY 
             Ngay DESC;";
 
@@ -90,6 +88,7 @@ namespace MayTinhQA.UserControls
                 {
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
+                    guna2DataGridView1.Rows.Clear();
                     while (reader.Read())
                     {
                         guna2DataGridView1.Rows.Add(
@@ -141,21 +140,21 @@ namespace MayTinhQA.UserControls
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = @"
-                SELECT 
-                    k.tenkhachhang AS TenKhachHang,
-                    CASE 
-                        WHEN COUNT(g.idgiaodich) > 5 THEN 'Trung Thanh'
-                        WHEN COUNT(g.idgiaodich) BETWEEN 1 AND 5 THEN 'Moi'
-                        ELSE 'Khong Hoat Dong'
-                    END AS PhanKhuc
-                FROM 
-                    khachhang k
-                LEFT JOIN 
-                    giaodich g ON k.idkhachhang = g.idkhachhang
-                GROUP BY 
-                    k.tenkhachhang
-                ORDER BY 
-                    PhanKhuc;";
+        SELECT 
+            k.tenkhachhang AS TenKhachHang,
+            CASE 
+                WHEN COUNT(d.iddonhang) > 5 THEN 'Trung Thanh'
+                WHEN COUNT(d.iddonhang) BETWEEN 1 AND 5 THEN 'Moi'
+                ELSE 'Khong Hoat Dong'
+            END AS PhanKhuc
+        FROM 
+            khachhang k
+        LEFT JOIN 
+            donhang d ON k.idkhachhang = d.idkhachhang
+        GROUP BY 
+            k.tenkhachhang
+        ORDER BY 
+            PhanKhuc;";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
