@@ -236,7 +236,7 @@ namespace MayTinhQA
             try
             {
                 string query = idThanhPho == -1 ?
-                    "SELECT -1 AS idquanhuyen, 'Chọn quận/huyện' AS tenquanhuyen" :
+                    "SELECT -1 AS idquanhuyen, N'Chọn quận/huyện' AS tenquanhuyen" :
                     $"SELECT idquanhuyen, tenquanhuyen FROM quanhuyen WHERE idthanhpho = {idThanhPho}";
 
                 DataTable dt = Database.Query(query);

@@ -313,7 +313,9 @@ namespace MayTinhQA.UserControls
             //}
         }
 
-        private void dgvKhachhang_CellClick(object sender, DataGridViewCellEventArgs e)
+        
+
+        private void dgvKhachhang_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && dgvKhachhang.Columns[e.ColumnIndex].Name == "Edit")
             {
