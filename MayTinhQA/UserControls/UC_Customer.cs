@@ -42,9 +42,6 @@ namespace MayTinhQA.UserControls
             dgvKhachhang.RowTemplate.Height = 24;
             dgvKhachhang.AllowUserToAddRows = false;
             dgvKhachhang.RowHeadersVisible = false;
-
-
-
         }
         private bool isAdding = false;
         private bool isEditing = false;

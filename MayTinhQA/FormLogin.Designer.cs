@@ -33,6 +33,7 @@
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.picClose = new System.Windows.Forms.PictureBox();
             this.txtmatkhau = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnLogin = new Guna.UI2.WinForms.Guna2Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -40,10 +41,10 @@
             this.labelForgotPassword = new System.Windows.Forms.Label();
             this.labelOut = new System.Windows.Forms.Label();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.picClose = new System.Windows.Forms.PictureBox();
+            this.checkboxkeeplogin = new Guna.UI2.WinForms.Guna2CheckBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picClose)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // txttaikhoan
@@ -91,10 +92,22 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(356, 81);
             this.panel1.TabIndex = 2;
+            // 
+            // picClose
+            // 
+            this.picClose.Image = global::MayTinhQA.Properties.Resources.white_cross;
+            this.picClose.Location = new System.Drawing.Point(327, 2);
+            this.picClose.Margin = new System.Windows.Forms.Padding(2);
+            this.picClose.Name = "picClose";
+            this.picClose.Size = new System.Drawing.Size(26, 28);
+            this.picClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picClose.TabIndex = 2;
+            this.picClose.TabStop = false;
+            this.picClose.Click += new System.EventHandler(this.picClose_Click);
             // 
             // txtmatkhau
             // 
@@ -108,13 +121,14 @@
             this.txtmatkhau.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtmatkhau.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtmatkhau.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtmatkhau.Location = new System.Drawing.Point(34, 228);
+            this.txtmatkhau.Location = new System.Drawing.Point(34, 215);
             this.txtmatkhau.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtmatkhau.Name = "txtmatkhau";
             this.txtmatkhau.PlaceholderText = "";
             this.txtmatkhau.SelectedText = "";
             this.txtmatkhau.Size = new System.Drawing.Size(266, 49);
             this.txtmatkhau.TabIndex = 3;
+            this.txtmatkhau.UseSystemPasswordChar = true;
             // 
             // btnLogin
             // 
@@ -126,8 +140,8 @@
             this.btnLogin.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(92, 301);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLogin.Location = new System.Drawing.Point(94, 314);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(2);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(167, 50);
             this.btnLogin.TabIndex = 4;
@@ -153,7 +167,7 @@
             this.label3.BackColor = System.Drawing.Color.White;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(30, 202);
+            this.label3.Location = new System.Drawing.Point(30, 189);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(83, 20);
@@ -166,7 +180,7 @@
             this.labelForgotPassword.BackColor = System.Drawing.Color.White;
             this.labelForgotPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelForgotPassword.ForeColor = System.Drawing.Color.Black;
-            this.labelForgotPassword.Location = new System.Drawing.Point(217, 366);
+            this.labelForgotPassword.Location = new System.Drawing.Point(222, 378);
             this.labelForgotPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelForgotPassword.Name = "labelForgotPassword";
             this.labelForgotPassword.Size = new System.Drawing.Size(113, 17);
@@ -180,7 +194,7 @@
             this.labelOut.BackColor = System.Drawing.Color.White;
             this.labelOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelOut.ForeColor = System.Drawing.Color.Black;
-            this.labelOut.Location = new System.Drawing.Point(31, 366);
+            this.labelOut.Location = new System.Drawing.Point(31, 378);
             this.labelOut.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelOut.Name = "labelOut";
             this.labelOut.Size = new System.Drawing.Size(56, 17);
@@ -192,7 +206,7 @@
             // 
             this.guna2PictureBox1.Image = global::MayTinhQA.Properties.Resources._65000;
             this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(262, 241);
+            this.guna2PictureBox1.Location = new System.Drawing.Point(262, 228);
             this.guna2PictureBox1.Name = "guna2PictureBox1";
             this.guna2PictureBox1.Size = new System.Drawing.Size(27, 22);
             this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -200,17 +214,23 @@
             this.guna2PictureBox1.TabStop = false;
             this.guna2PictureBox1.Click += new System.EventHandler(this.guna2PictureBox1_Click);
             // 
-            // picClose
+            // checkboxkeeplogin
             // 
-            this.picClose.Image = global::MayTinhQA.Properties.Resources.white_cross;
-            this.picClose.Location = new System.Drawing.Point(327, 2);
-            this.picClose.Margin = new System.Windows.Forms.Padding(2);
-            this.picClose.Name = "picClose";
-            this.picClose.Size = new System.Drawing.Size(26, 28);
-            this.picClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picClose.TabIndex = 2;
-            this.picClose.TabStop = false;
-            this.picClose.Click += new System.EventHandler(this.picClose_Click);
+            this.checkboxkeeplogin.AutoSize = true;
+            this.checkboxkeeplogin.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.checkboxkeeplogin.CheckedState.BorderRadius = 0;
+            this.checkboxkeeplogin.CheckedState.BorderThickness = 0;
+            this.checkboxkeeplogin.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.checkboxkeeplogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
+            this.checkboxkeeplogin.Location = new System.Drawing.Point(35, 272);
+            this.checkboxkeeplogin.Name = "checkboxkeeplogin";
+            this.checkboxkeeplogin.Size = new System.Drawing.Size(140, 21);
+            this.checkboxkeeplogin.TabIndex = 10;
+            this.checkboxkeeplogin.Text = "Giữ tôi đăng nhập";
+            this.checkboxkeeplogin.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.checkboxkeeplogin.UncheckedState.BorderRadius = 0;
+            this.checkboxkeeplogin.UncheckedState.BorderThickness = 0;
+            this.checkboxkeeplogin.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             // 
             // FormLogin
             // 
@@ -218,6 +238,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(356, 419);
+            this.Controls.Add(this.checkboxkeeplogin);
             this.Controls.Add(this.guna2PictureBox1);
             this.Controls.Add(this.labelOut);
             this.Controls.Add(this.labelForgotPassword);
@@ -228,14 +249,15 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.txttaikhoan);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormLogin";
+            this.Load += new System.EventHandler(this.FormLogin_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picClose)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -255,5 +277,6 @@
         private System.Windows.Forms.Label labelOut;
         private System.Windows.Forms.PictureBox picClose;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
+        private Guna.UI2.WinForms.Guna2CheckBox checkboxkeeplogin;
     }
 }

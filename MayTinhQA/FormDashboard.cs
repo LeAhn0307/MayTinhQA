@@ -41,6 +41,10 @@ namespace MayTinhQA
         {
             if (MessageBox.Show("Bạn có muốn đăng xuất?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
             {
+                Properties.Settings.Default.SavedUsername = "";
+                Properties.Settings.Default.SavedPassword = "";
+                Properties.Settings.Default.IsRemembered = false;
+                Properties.Settings.Default.Save();
                 this.Hide();
                 FormLogin dangnhap = new FormLogin();
                 dangnhap.ShowDialog();
