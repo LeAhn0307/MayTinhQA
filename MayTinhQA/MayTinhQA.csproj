@@ -105,6 +105,12 @@
     <Compile Include="Connection.cs" />
     <Compile Include="Const.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="FormAddActivities.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddActivities.Designer.cs">
+      <DependentUpon>FormAddActivities.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormAddCutomer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,6 +248,9 @@
     <Compile Include="UserControls\UC_Reports.Designer.cs">
       <DependentUpon>UC_Reports.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FormAddActivities.resx">
+      <DependentUpon>FormAddActivities.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAddCutomer.resx">
       <DependentUpon>FormAddCutomer.cs</DependentUpon>
     </EmbeddedResource>
