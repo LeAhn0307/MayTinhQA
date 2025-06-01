@@ -280,5 +280,20 @@ namespace MayTinhQA
         {
             this.Close();
         }
+
+        private void comboBoxq_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtpkhach_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
