@@ -138,7 +138,7 @@ namespace MayTinhQA.UserControls
         private void guna2Button1_Click(object sender, EventArgs e)
         {
             isAdding = true;
-            FormAddHoatDong frmdv = new FormAddHoatDong(this);
+            FormAddActivities frmdv = new FormAddActivities(this);
             //frmkh.BatCheDoThem();
             //frmkh.ShowDialog();
         }
@@ -279,7 +279,7 @@ namespace MayTinhQA.UserControls
                 currentEditingRowIndex = e.RowIndex;
 
                 int iddicvu = Convert.ToInt32(dvghoatdong.Rows[e.RowIndex].Cells["iddichvu"].Value);
-                FormAddHoatDong formAddHD = new FormAddHoatDong(this, iddicvu);
+                FormAddActivities formAddHD = new FormAddActivities(this, iddicvu);
                 formAddHD.FormClosed += (s, args) =>
                 {
                     isEditing = false;
