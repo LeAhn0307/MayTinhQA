@@ -16,6 +16,7 @@ namespace MayTinhQA.UserControls
         private Rectangle headerLabelArea;
         private bool isHeaderCheckBoxChecked = false;
         private bool isHeaderCheckBoxClicked = false;
+        private CheckBox headerCheckBox = new CheckBox();
         public UC_Activities()
         {
             InitializeComponent();
@@ -29,9 +30,10 @@ namespace MayTinhQA.UserControls
                 }
             };
 
-            dvghoatdong.Paint += dvghoatdong_Paint;
-            dvghoatdong.MouseClick += dvghoatdong_MouseClick;
-
+            
+            dvghoatdong.Scroll += dvghoatdong_Scroll_1;
+            
+            dvghoatdong.CellClick += dvghoatdong_CellClick;
             napdgvhoatdong();
 
 
@@ -51,7 +53,7 @@ namespace MayTinhQA.UserControls
             dvghoatdong.DataSource = null;
             dvghoatdong.Columns.Clear();
             dvghoatdong.DataSource = dt;
-
+            dvghoatdong.ReadOnly = false;
 
             if (!dvghoatdong.Columns.Contains("check"))
             {
@@ -62,7 +64,6 @@ namespace MayTinhQA.UserControls
                 chk.Resizable = DataGridViewTriState.False;
                 chk.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 chk.ReadOnly = false;
-
                 dvghoatdong.Columns.Insert(0, chk);
             }
             if (!dvghoatdong.Columns.Contains("stt"))
@@ -77,19 +78,32 @@ namespace MayTinhQA.UserControls
             }
             if (dvghoatdong.Columns.Contains("iddichvu"))
                 dvghoatdong.Columns["iddichvu"].Visible = false;
+            if (dvghoatdong.Columns.Contains("tendichvu"))
+                dvghoatdong.Columns["tendichvu"].HeaderText = "Tên dịch vụ";
             if (dvghoatdong.Columns.Contains("ngaykhoitao"))
-                dvghoatdong.Columns["ngaykhoitao"].HeaderText = "Ngày tạo";
+                dvghoatdong.Columns["ngaykhoitao"].HeaderText = "Ngày thực hiện";
             if (dvghoatdong.Columns.Contains("trangthai"))
                 dvghoatdong.Columns["trangthai"].HeaderText = "Trạng thái";
-            if (dvghoatdong.Columns.Contains("loaidichvu"))
-                dvghoatdong.Columns["loaidichvu"].HeaderText = "Loại dịch vụ";
-            if (dvghoatdong.Columns.Contains("idkhachhang"))
-                dvghoatdong.Columns["idkhachhang"].HeaderText = "Điện Thoại";
-            if (dvghoatdong.Columns.Contains("idnhanvien"))
-                dvghoatdong.Columns["idnhanvien"].HeaderText = "Địa Chỉ";
+            if (dvghoatdong.Columns.Contains("tenkhachhang"))
+                dvghoatdong.Columns["tenkhachhang"].HeaderText = "Tên khách hàng";
+            if (dvghoatdong.Columns.Contains("tennhanvien"))
+                dvghoatdong.Columns["tennhanvien"].HeaderText = "Nhân viên phụ trách";
             if (dvghoatdong.Columns.Contains("mota"))
-                dvghoatdong.Columns["mota"].HeaderText = "Ghi chú";
+                dvghoatdong.Columns["mota"].HeaderText = "Mô tả";
+            dvghoatdong.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
 
+            if (dvghoatdong.Columns.Contains("tendichvu"))
+                dvghoatdong.Columns["tendichvu"].Width = 160;
+            if (dvghoatdong.Columns.Contains("ngaykhoitao"))
+                dvghoatdong.Columns["ngaykhoitao"].Width = 160;
+            if (dvghoatdong.Columns.Contains("trangthai"))
+                dvghoatdong.Columns["trangthai"].Width = 160;
+            if (dvghoatdong.Columns.Contains("tenkhachhang"))
+                dvghoatdong.Columns["tenkhachhang"].Width = 160;
+            if (dvghoatdong.Columns.Contains("tennhanvien"))
+                dvghoatdong.Columns["tennhanvien"].Width = 160;
+            if (dvghoatdong.Columns.Contains("mota"))
+                dvghoatdong.Columns["mota"].Width = 162;
             dvghoatdong.ClearSelection();
             dvghoatdong.CurrentCell = null;
 
@@ -115,15 +129,38 @@ namespace MayTinhQA.UserControls
                 dvghoatdong.Columns["stt"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dvghoatdong.Columns["stt"].DefaultCellStyle.Font = dvghoatdong.DefaultCellStyle.Font;
             }
+            if (dvghoatdong.Controls.Contains(headerCheckBox))
+                dvghoatdong.Controls.Remove(headerCheckBox);
+
+            
+  
         }
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            //isAdding = true;
-            //FormAddCutomer frmkh = new FormAddCutomer(this);
+            isAdding = true;
+            FormAddHoatDong frmdv = new FormAddHoatDong(this);
             //frmkh.BatCheDoThem();
             //frmkh.ShowDialog();
         }
+        private void HeaderCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (isEditing)
+            {
+                MessageBox.Show("Bạn đang chỉnh sửa. Vui lòng lưu hoặc huỷ trước.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
+                headerCheckBox.CheckedChanged -= HeaderCheckBox_CheckedChanged;
+                headerCheckBox.Checked = !headerCheckBox.Checked;
+                headerCheckBox.CheckedChanged += HeaderCheckBox_CheckedChanged;
+                return;
+            }
+
+            foreach (DataGridViewRow row in dvghoatdong.Rows)
+            {
+                row.Cells["check"].Value = headerCheckBox.Checked;
+            }
+
+            dvghoatdong.EndEdit();
+        }
         private void dvghoatdong_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             Font defaultFont = new Font("Segoe UI", 10); // Cỡ chữ chuẩn
@@ -141,7 +178,6 @@ namespace MayTinhQA.UserControls
             }
 
             if (!dvghoatdong.Columns.Contains("stt")) return;
-
             for (int i = 0; i < dvghoatdong.Rows.Count; i++)
             {
                 if (!dvghoatdong.Rows[i].IsNewRow)
@@ -150,44 +186,6 @@ namespace MayTinhQA.UserControls
                 }
             }
         }
-
-        private void dvghoatdong_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex == dvghoatdong.Columns["check"].Index && !isHeaderCheckBoxClicked)
-            {
-                bool isChecked = Convert.ToBoolean(dvghoatdong.Rows[e.RowIndex].Cells["check"].Value);
-
-                if (isEditing)
-                {
-                    if (e.RowIndex != currentEditingRowIndex)
-                    {
-                        // Nếu đang chỉnh sửa, không cho phép chọn checkbox khác
-                        MessageBox.Show("Bạn đang chỉnh sửa khách hàng. Vui lòng lưu hoặc hủy trước khi chọn khách hàng khác.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                        // Quay lại checkbox cũ: giữ checkbox dòng đang sửa luôn được chọn
-                        dvghoatdong.Rows[e.RowIndex].Cells["check"].Value = false;
-                        dvghoatdong.Rows[currentEditingRowIndex].Cells["check"].Value = true;
-
-                        return;
-                    }
-                    else
-                    {
-                        // Nếu đang chỉnh sửa dòng đó, không cho bỏ tích checkbox
-                        if (!isChecked)
-                        {
-                            MessageBox.Show("Không thể bỏ chọn checkbox khách hàng đang chỉnh sửa. Vui lòng lưu hoặc hủy trước.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            dvghoatdong.Rows[e.RowIndex].Cells["check"].Value = true;
-                            return;
-                        }
-                    }
-                }
-                bool allChecked = dvghoatdong.Rows.Cast<DataGridViewRow>()
-                    .All(r => Convert.ToBoolean(r.Cells["check"].Value));
-                isHeaderCheckBoxChecked = allChecked;
-                dvghoatdong.Invalidate(); // Vẽ lại header
-            }
-        }
-
         private void dvghoatdong_Paint(object sender, PaintEventArgs e)
         {
             if (dvghoatdong.Columns.Count == 0) return;
@@ -196,8 +194,8 @@ namespace MayTinhQA.UserControls
 
             int checkboxSize = 14; // Kích thước checkbox (tuỳ chỉnh nếu cần)
 
-            // Tính toán vị trí căn giữa
-            int xCheckbox = rect.X + (rect.Width - checkboxSize) / 2;
+            // ✅ Trừ đi phần cuộn ngang để checkbox di chuyển cùng header
+            int xCheckbox = rect.X + (rect.Width - checkboxSize) / 2 - dvghoatdong.HorizontalScrollingOffset;
             int yCheckbox = rect.Y + (rect.Height - checkboxSize) / 2;
 
             headerCheckBoxArea = new Rectangle(xCheckbox, yCheckbox, checkboxSize, checkboxSize);
@@ -207,8 +205,6 @@ namespace MayTinhQA.UserControls
                 headerCheckBoxArea,
                 isHeaderCheckBoxChecked ? ButtonState.Checked : ButtonState.Normal
             );
-
-            headerLabelArea = Rectangle.Empty;
         }
 
         private void dvghoatdong_MouseClick(object sender, MouseEventArgs e)
@@ -236,24 +232,85 @@ namespace MayTinhQA.UserControls
                 isHeaderCheckBoxClicked = false;
             }
         }
+        private void dvghoatdong_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dvghoatdong.Columns["check"].Index && !isHeaderCheckBoxClicked)
+            {
+                bool isChecked = Convert.ToBoolean(dvghoatdong.Rows[e.RowIndex].Cells["check"].Value);
+                if (isEditing)
+                {
+                    if (e.RowIndex != currentEditingRowIndex)
+                    {
+                        // Nếu đang chỉnh sửa, không cho phép chọn checkbox khác
+                        MessageBox.Show("Bạn đang chỉnh sửa khách hàng. Vui lòng lưu hoặc hủy trước khi chọn khách hàng khác.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        // Quay lại checkbox cũ: giữ checkbox dòng đang sửa luôn được chọn
+                        dvghoatdong.Rows[e.RowIndex].Cells["check"].Value = false;
+                        dvghoatdong.Rows[currentEditingRowIndex].Cells["check"].Value = true;
+
+                        return;
+                    }
+                    else
+                    {
+                        // Nếu đang chỉnh sửa dòng đó, không cho bỏ tích checkbox
+                        if (!isChecked)
+                        {
+                            MessageBox.Show("Không thể bỏ chọn checkbox khách hàng đang chỉnh sửa. Vui lòng lưu hoặc hủy trước.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            dvghoatdong.Rows[e.RowIndex].Cells["check"].Value = true;
+                            return;
+                        }
+                    }
+                }
+                bool allChecked = dvghoatdong.Rows.Cast<DataGridViewRow>()
+    .All(r => Convert.ToBoolean(r.Cells["check"].Value));
+
+                headerCheckBox.CheckedChanged -= HeaderCheckBox_CheckedChanged;
+                headerCheckBox.Checked = allChecked;
+                headerCheckBox.CheckedChanged += HeaderCheckBox_CheckedChanged; // Vẽ lại header
+            }
+        }
+
 
         private void dvghoatdong_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (e.RowIndex >= 0 && dvghoatdong.Columns[e.ColumnIndex].Name == "Edit")
-            //{
-            //    isEditing = true;
-            //    currentEditingRowIndex = e.RowIndex;
+            if (e.RowIndex >= 0 && dvghoatdong.Columns[e.ColumnIndex].Name == "Edit")
+            {
+                isEditing = true;
+                currentEditingRowIndex = e.RowIndex;
 
-            //    int idkhachhang = Convert.ToInt32(dvghoatdong.Rows[e.RowIndex].Cells["idkhachhang"].Value);
-            //    FormAddCutomer formAddCutomer = new FormAddCutomer(this, idkhachhang);
-            //    formAddCutomer.FormClosed += (s, args) =>
-            //    {
-            //        isEditing = false;
-            //        currentEditingRowIndex = -1;
-            //        napdgvhoatdong();
-            //    };
-            //    formAddCutomer.ShowDialog();
-            //}
+                int iddicvu = Convert.ToInt32(dvghoatdong.Rows[e.RowIndex].Cells["iddichvu"].Value);
+                FormAddHoatDong formAddHD = new FormAddHoatDong(this, iddicvu);
+                formAddHD.FormClosed += (s, args) =>
+                {
+                    isEditing = false;
+                    currentEditingRowIndex = -1;
+                    napdgvhoatdong();
+                };
+                formAddHD.ShowDialog();
+            }
         }
+       
+        private void dvghoatdong_RowEnter_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (isEditing)
+            {
+                if (currentEditingRowIndex != -1 && e.RowIndex != currentEditingRowIndex)
+                {
+                    dvghoatdong.ClearSelection();
+                    dvghoatdong.Rows[currentEditingRowIndex].Selected = true;
+                    MessageBox.Show("Bạn đang chỉnh sửa. Vui lòng lưu hoặc hủy trước khi chọn khách hàng khác!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+        }
+
+        private void dvghoatdong_Scroll_1(object sender, ScrollEventArgs e)
+        {
+            if (e.ScrollOrientation == ScrollOrientation.HorizontalScroll)
+            {
+                dvghoatdong.Invalidate();
+            }
+        }
+        
     }
 }

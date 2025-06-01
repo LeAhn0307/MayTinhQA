@@ -48,7 +48,6 @@ namespace MayTinhQA.UserControls
         private int currentEditingRowIndex = -1;
         public void napdgvKhachHang()
         {
-            
             DataTable dt = Database.Query("SELECT kh.idkhachhang, kh.tenkhachhang, kh.email, kh.dienthoai,kh.ngaysinh, CONCAT(kh.diachi, ', ', q.tenquanhuyen, ', ', tp.tenthanhpho) AS diachi,ghichu FROM khachhang kh JOIN thanhpho tp ON kh.idthanhpho = tp.idthanhpho JOIN quanhuyen q ON kh.idquanhuyen = q.idquanhuyen");
             dgvKhachhang.DataSource = null; 
             dgvKhachhang.Columns.Clear(); 
@@ -77,20 +76,44 @@ namespace MayTinhQA.UserControls
                 sttColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgvKhachhang.Columns.Insert(1, sttColumn);
             }
+            dgvKhachhang.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             if (dgvKhachhang.Columns.Contains("idkhachhang"))
                 dgvKhachhang.Columns["idkhachhang"].Visible = false;
             if (dgvKhachhang.Columns.Contains("tenkhachhang"))
+            {
                 dgvKhachhang.Columns["tenkhachhang"].HeaderText = "Họ Tên";
+                dgvKhachhang.Columns["tenkhachhang"].Width = 128;
+            }
+
             if (dgvKhachhang.Columns.Contains("ngaysinh"))
+            {
                 dgvKhachhang.Columns["ngaysinh"].HeaderText = "Ngày Sinh";
+                dgvKhachhang.Columns["ngaysinh"].Width = 128;
+            }
+
             if (dgvKhachhang.Columns.Contains("email"))
+            {
                 dgvKhachhang.Columns["email"].HeaderText = "Email";
+                dgvKhachhang.Columns["email"].Width = 128;
+            }
+
             if (dgvKhachhang.Columns.Contains("dienthoai"))
+            {
                 dgvKhachhang.Columns["dienthoai"].HeaderText = "Điện Thoại";
+                dgvKhachhang.Columns["dienthoai"].Width = 128;
+            }
+
             if (dgvKhachhang.Columns.Contains("diachi"))
+            {
                 dgvKhachhang.Columns["diachi"].HeaderText = "Địa Chỉ";
+                dgvKhachhang.Columns["diachi"].Width = 128;
+            }
+
             if (dgvKhachhang.Columns.Contains("ghichu"))
+            {
                 dgvKhachhang.Columns["ghichu"].HeaderText = "Ghi chú";
+                dgvKhachhang.Columns["ghichu"].Width = 320;
+            }
 
             dgvKhachhang.ClearSelection();
             dgvKhachhang.CurrentCell = null;
@@ -117,19 +140,12 @@ namespace MayTinhQA.UserControls
                 dgvKhachhang.Columns["stt"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgvKhachhang.Columns["stt"].DefaultCellStyle.Font = dgvKhachhang.DefaultCellStyle.Font;
             }
-   
-
         }
         private void dgvKhachhang_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             Font defaultFont = new Font("Segoe UI", 10); // Cỡ chữ chuẩn
             dgvKhachhang.DefaultCellStyle.Font = defaultFont;
             dgvKhachhang.DefaultCellStyle.ForeColor = Color.Black; // Màu chữ
-
-            //// Đặt font và màu cho header (tiêu đề cột)
-            //dgvKhachhang.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-            //dgvKhachhang.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            //dgvKhachhang.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
 
             foreach (DataGridViewRow row in dgvKhachhang.Rows)
             {
@@ -160,8 +176,8 @@ namespace MayTinhQA.UserControls
 
             int checkboxSize = 14; // Kích thước checkbox (tuỳ chỉnh nếu cần)
 
-            // Tính toán vị trí căn giữa
-            int xCheckbox = rect.X + (rect.Width - checkboxSize) / 2;
+            // ✅ Trừ đi phần cuộn ngang để checkbox di chuyển cùng header
+            int xCheckbox = rect.X + (rect.Width - checkboxSize) / 2 - dgvKhachhang.HorizontalScrollingOffset;
             int yCheckbox = rect.Y + (rect.Height - checkboxSize) / 2;
 
             headerCheckBoxArea = new Rectangle(xCheckbox, yCheckbox, checkboxSize, checkboxSize);
@@ -171,8 +187,6 @@ namespace MayTinhQA.UserControls
                 headerCheckBoxArea,
                 isHeaderCheckBoxChecked ? ButtonState.Checked : ButtonState.Normal
             );
-
-            headerLabelArea = Rectangle.Empty;
 
         }
         private void DgvKhachhang_MouseClick(object sender, MouseEventArgs e)
@@ -205,7 +219,6 @@ namespace MayTinhQA.UserControls
             if (e.ColumnIndex == dgvKhachhang.Columns["check"].Index && !isHeaderCheckBoxClicked)
             {
                 bool isChecked = Convert.ToBoolean(dgvKhachhang.Rows[e.RowIndex].Cells["check"].Value);
-
                 if (isEditing)
                 {
                     if (e.RowIndex != currentEditingRowIndex)
@@ -409,6 +422,14 @@ namespace MayTinhQA.UserControls
 
             isHeaderCheckBoxChecked = false; // Reset trạng thái checkbox đầu
             dgvKhachhang.Invalidate();
+        }
+
+        private void dgvKhachhang_Scroll(object sender, ScrollEventArgs e)
+        {
+            if (e.ScrollOrientation == ScrollOrientation.HorizontalScroll)
+            {
+                dgvKhachhang.Invalidate();
+            }
         }
     }
 }

@@ -39,7 +39,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtemailkhach = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
-            //this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.labelName = new System.Windows.Forms.Label();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
@@ -53,7 +52,6 @@
             this.txtghichu = new Guna.UI2.WinForms.Guna2TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.guna2GradientPanel1.SuspendLayout();
-            //((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // txthovatenkhach
@@ -79,10 +77,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.White;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(8, 132);
+            this.label2.Location = new System.Drawing.Point(10, 143);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(111, 17);
             this.label2.TabIndex = 6;
@@ -91,7 +89,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(419, 77);
@@ -104,7 +102,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.White;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(11, 199);
@@ -138,7 +136,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.White;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(10, 77);
@@ -171,7 +169,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.White;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(221, 143);
@@ -204,26 +202,13 @@
             // guna2GradientPanel1
             // 
             this.guna2GradientPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
-            //this.guna2GradientPanel1.Controls.Add(this.guna2PictureBox1);
             this.guna2GradientPanel1.Controls.Add(this.labelName);
             this.guna2GradientPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2GradientPanel1.Location = new System.Drawing.Point(0, 0);
-            this.guna2GradientPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2GradientPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2GradientPanel1.Name = "guna2GradientPanel1";
             this.guna2GradientPanel1.Size = new System.Drawing.Size(607, 51);
             this.guna2GradientPanel1.TabIndex = 15;
-            // 
-            // guna2PictureBox1
-            // 
-            //this.guna2PictureBox1.Image = global::MayTinhQA.Properties.Resources.white_cross;
-            //this.guna2PictureBox1.ImageRotate = 0F;
-            //this.guna2PictureBox1.Location = new System.Drawing.Point(645, 0);
-            //this.guna2PictureBox1.Name = "guna2PictureBox1";
-            //this.guna2PictureBox1.Size = new System.Drawing.Size(35, 35);
-            //this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            //this.guna2PictureBox1.TabIndex = 5;
-            //this.guna2PictureBox1.TabStop = false;
-            //this.guna2PictureBox1.Click += new System.EventHandler(this.guna2PictureBox1_Click);
             // 
             // labelName
             // 
@@ -257,7 +242,7 @@
             this.dtpkhach.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dtpkhach.Format = System.Windows.Forms.DateTimePickerFormat.Long;
             this.dtpkhach.Location = new System.Drawing.Point(411, 98);
-            this.dtpkhach.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpkhach.Margin = new System.Windows.Forms.Padding(2);
             this.dtpkhach.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtpkhach.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtpkhach.Name = "dtpkhach";
@@ -276,7 +261,7 @@
             this.btnluu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnluu.ForeColor = System.Drawing.Color.White;
             this.btnluu.Location = new System.Drawing.Point(5, 459);
-            this.btnluu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnluu.Margin = new System.Windows.Forms.Padding(2);
             this.btnluu.Name = "btnluu";
             this.btnluu.Size = new System.Drawing.Size(139, 42);
             this.btnluu.TabIndex = 17;
@@ -294,7 +279,7 @@
             this.btnhuy.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnhuy.ForeColor = System.Drawing.Color.White;
             this.btnhuy.Location = new System.Drawing.Point(162, 459);
-            this.btnhuy.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnhuy.Margin = new System.Windows.Forms.Padding(2);
             this.btnhuy.Name = "btnhuy";
             this.btnhuy.Size = new System.Drawing.Size(101, 42);
             this.btnhuy.TabIndex = 18;
@@ -313,7 +298,7 @@
             this.comboBoxtp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.comboBoxtp.ItemHeight = 30;
             this.comboBoxtp.Location = new System.Drawing.Point(240, 216);
-            this.comboBoxtp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxtp.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxtp.Name = "comboBoxtp";
             this.comboBoxtp.Size = new System.Drawing.Size(158, 36);
             this.comboBoxtp.TabIndex = 19;
@@ -331,7 +316,7 @@
             this.comboBoxq.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.comboBoxq.ItemHeight = 30;
             this.comboBoxq.Location = new System.Drawing.Point(411, 216);
-            this.comboBoxq.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxq.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxq.Name = "comboBoxq";
             this.comboBoxq.Size = new System.Drawing.Size(176, 36);
             this.comboBoxq.TabIndex = 20;
@@ -359,7 +344,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.White;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.Location = new System.Drawing.Point(221, 77);
@@ -394,7 +379,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.White;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
             this.label7.Location = new System.Drawing.Point(11, 256);
@@ -430,14 +415,13 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txthovatenkhach);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormAddCutomer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormAddCutomer";
             this.Load += new System.EventHandler(this.FormAddCutomer_Load);
             this.guna2GradientPanel1.ResumeLayout(false);
             this.guna2GradientPanel1.PerformLayout();
-            //((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

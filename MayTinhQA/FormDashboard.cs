@@ -32,9 +32,9 @@ namespace MayTinhQA
 
         private void btnActivity_Click(object sender, EventArgs e)
         {
-            
             UC_Activities uC = new UC_Activities();
             addUserControl(uC);
+         
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
