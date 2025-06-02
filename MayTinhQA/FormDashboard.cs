@@ -34,7 +34,6 @@ namespace MayTinhQA
         {
             UC_Activities uC = new UC_Activities();
             addUserControl(uC);
-         
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -95,5 +94,12 @@ namespace MayTinhQA
             addUserControl(uC);
 
         }
+        
+        public void ShowChooseCustomerControl()
+        {
+            UC_Choose_Customer uC = new UC_Choose_Customer();
+            addUserControl(uC);
+        }
+
     }
 }

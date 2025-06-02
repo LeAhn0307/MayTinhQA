@@ -212,6 +212,12 @@
     <Compile Include="UserControls\UC_Behaviour.Designer.cs">
       <DependentUpon>UC_Behaviour.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UC_Choose Customer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UC_Choose Customer.Designer.cs">
+      <DependentUpon>UC_Choose Customer.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UC_Customer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -308,6 +314,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UC_Behaviour.resx">
       <DependentUpon>UC_Behaviour.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UC_Choose Customer.resx">
+      <DependentUpon>UC_Choose Customer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UC_Customer.resx">
       <DependentUpon>UC_Customer.cs</DependentUpon>

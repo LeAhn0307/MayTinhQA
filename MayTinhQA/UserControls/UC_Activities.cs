@@ -36,7 +36,6 @@ namespace MayTinhQA.UserControls
             dvghoatdong.CellClick += dvghoatdong_CellClick;
             napdgvhoatdong();
 
-
             dvghoatdong.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
             dvghoatdong.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
             dvghoatdong.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
@@ -138,9 +137,9 @@ namespace MayTinhQA.UserControls
         private void guna2Button1_Click(object sender, EventArgs e)
         {
             isAdding = true;
-            FormAddActivities frmdv = new FormAddActivities(this);
-            //frmkh.BatCheDoThem();
-            //frmkh.ShowDialog();
+            FormAddActivities frmkh = new FormAddActivities(this);
+            frmkh.BatCheDoThem();
+            frmkh.ShowDialog();
         }
         private void HeaderCheckBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -303,7 +302,7 @@ namespace MayTinhQA.UserControls
                 }
             }
         }
-
+        
         private void dvghoatdong_Scroll_1(object sender, ScrollEventArgs e)
         {
             if (e.ScrollOrientation == ScrollOrientation.HorizontalScroll)

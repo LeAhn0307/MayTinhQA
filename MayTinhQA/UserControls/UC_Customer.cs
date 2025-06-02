@@ -218,18 +218,16 @@ namespace MayTinhQA.UserControls
         {
             if (e.ColumnIndex == dgvKhachhang.Columns["check"].Index && !isHeaderCheckBoxClicked)
             {
-                bool isChecked = Convert.ToBoolean(dgvKhachhang.Rows[e.RowIndex].Cells["check"].Value);
+                object cellValue = dgvKhachhang.Rows[e.RowIndex].Cells["check"].Value;
+                bool isChecked = cellValue != null && Convert.ToBoolean(cellValue);
                 if (isEditing)
                 {
                     if (e.RowIndex != currentEditingRowIndex)
                     {
-                        // Nếu đang chỉnh sửa, không cho phép chọn checkbox khác
+                        
                         MessageBox.Show("Bạn đang chỉnh sửa khách hàng. Vui lòng lưu hoặc hủy trước khi chọn khách hàng khác.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                        // Quay lại checkbox cũ: giữ checkbox dòng đang sửa luôn được chọn
                         dgvKhachhang.Rows[e.RowIndex].Cells["check"].Value = false;
                         dgvKhachhang.Rows[currentEditingRowIndex].Cells["check"].Value = true;
-
                         return;
                     }
                     else
