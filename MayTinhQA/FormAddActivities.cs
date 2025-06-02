@@ -20,7 +20,7 @@ namespace MayTinhQA
         public string SelectedCustomerName { get; private set; }
         public DataRow SelectedCustomerRow { get; private set; }
         private UC_Activities activitiesControl;
-        private UC_Choose_Customer chooseCustomerControl;
+        
         public FormAddActivities(UC_Activities parent, int idDichvu)
         {
             InitializeComponent();
@@ -37,25 +37,7 @@ namespace MayTinhQA
             InitializeComponent();
             _parent = parent;
         }
-        public FormAddActivities(UC_Activities parent, FormDashboard dashboardForm)
-        {
-            InitializeComponent();
-            this._dashboardForm = dashboardForm;
 
-            this.activitiesControl = parent;
-
-            activitiesControl = new UC_Activities();
-            activitiesControl.Dock = DockStyle.Fill;
-
-            chooseCustomerControl = new UC_Choose_Customer();
-            chooseCustomerControl.Dock = DockStyle.Fill;
-            
-
-
-            this.Controls.Clear();
-            this.Controls.Add(activitiesControl);
-        }
-        
         public void BatCheDoThem()
         {
             isAdding = true;
@@ -219,19 +201,11 @@ namespace MayTinhQA
                 }
             }
         }
-
         private void btnchonkhachhan_Click(object sender, EventArgs e)
         {
-            this.Controls.Clear();
-            this.Controls.Add(chooseCustomerControl);
-            chooseCustomerControl.BringToFront();
-        }
-        
-        private FormDashboard _dashboardForm;
-        
-        
-        
-
-        
+            
+            FormChooseCus chooseCustomerControl = new FormChooseCus();
+            chooseCustomerControl.ShowDialog();
+        } 
     }
 }

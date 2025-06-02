@@ -105,6 +105,12 @@
     <Compile Include="Connection.cs" />
     <Compile Include="Const.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="Form Choose customer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form Choose customer.Designer.cs">
+      <DependentUpon>Form Choose customer.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormAddActivities.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,12 +218,6 @@
     <Compile Include="UserControls\UC_Behaviour.Designer.cs">
       <DependentUpon>UC_Behaviour.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\UC_Choose Customer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\UC_Choose Customer.Designer.cs">
-      <DependentUpon>UC_Choose Customer.cs</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\UC_Customer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -254,6 +254,9 @@
     <Compile Include="UserControls\UC_Reports.Designer.cs">
       <DependentUpon>UC_Reports.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Form Choose customer.resx">
+      <DependentUpon>Form Choose customer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAddActivities.resx">
       <DependentUpon>FormAddActivities.cs</DependentUpon>
     </EmbeddedResource>
@@ -314,9 +317,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UC_Behaviour.resx">
       <DependentUpon>UC_Behaviour.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UC_Choose Customer.resx">
-      <DependentUpon>UC_Choose Customer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UC_Customer.resx">
       <DependentUpon>UC_Customer.cs</DependentUpon>

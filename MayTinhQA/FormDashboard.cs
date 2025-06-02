@@ -95,11 +95,7 @@ namespace MayTinhQA
 
         }
         
-        public void ShowChooseCustomerControl()
-        {
-            UC_Choose_Customer uC = new UC_Choose_Customer();
-            addUserControl(uC);
-        }
+        
 
     }
 }

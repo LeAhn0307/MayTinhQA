@@ -6,22 +6,24 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Forms;
 
-namespace MayTinhQA.UserControls
+namespace MayTinhQA
 {
-    public partial class UC_Choose_Customer : UserControl
+    public partial class FormChooseCus : Form
     {
-        private UC_Choose_Customer ucChooseCustomer;
         private Rectangle headerCheckBoxArea;
         private bool isHeaderCheckBoxChecked = false;
         private bool isHeaderCheckBoxClicked = false;
         public delegate void CustomerSelectedHandler(int id, string name, DataRow fullRow);
         public event CustomerSelectedHandler OnCustomerSelected;
-        public UC_Choose_Customer()
+        public FormChooseCus() 
         {
             InitializeComponent();
-            dgvKhachhang.Paint += dgvKhachhang_Paint_1;
+            LoadData();
+            LoadFilterOptions();
+            dgvKhachhang.Paint += DgvKhachhang_Paint;
             dgvKhachhang.MouseClick += DgvKhachhang_MouseClick;
             dgvKhachhang.DataBindingComplete += DgvKhachhang_DataBindingComplete;
             dgvKhachhang.CellValueChanged += DgvKhachhang_CellValueChanged;
@@ -30,12 +32,10 @@ namespace MayTinhQA.UserControls
                 if (dgvKhachhang.IsCurrentCellDirty)
                     dgvKhachhang.CommitEdit(DataGridViewDataErrorContexts.Commit);
             };
-
             dgvKhachhang.AllowUserToAddRows = false;
             dgvKhachhang.RowHeadersVisible = false;
             dgvKhachhang.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
         }
-        
         private void LoadData()
         {
             DataTable dt = Database.Query("SELECT kh.idkhachhang, kh.tenkhachhang, kh.email, kh.dienthoai, kh.ngaysinh, CONCAT(kh.diachi, ', ', q.tenquanhuyen, ', ', tp.tenthanhpho) AS diachi, ghichu FROM khachhang kh JOIN thanhpho tp ON kh.idthanhpho = tp.idthanhpho JOIN quanhuyen q ON kh.idquanhuyen = q.idquanhuyen");
@@ -67,12 +67,45 @@ namespace MayTinhQA.UserControls
 
             dgvKhachhang.ClearSelection();
         }
+        private void btnxoatimkiem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnchon_Click(object sender, EventArgs e)
+        {
+            if (dgvKhachhang.CurrentRow != null)
+            {
+                int id = Convert.ToInt32(dgvKhachhang.CurrentRow.Cells["idkhachhang"].Value);
+                string name = dgvKhachhang.CurrentRow.Cells["tenkhachhang"].Value.ToString();
+
+                // Lấy DataRow gốc từ DataTable
+                DataTable dt = dgvKhachhang.DataSource as DataTable;
+                if (dt != null)
+                {
+                    string filter = $"idkhachhang = {id}";
+                    DataRow[] matched = dt.Select(filter);
+                    if (matched.Length > 0)
+                    {
+                        OnCustomerSelected?.Invoke(id, name, matched[0]);
+                        return;
+                    }
+                }
+
+                // Fallback nếu không tìm thấy dòng
+                OnCustomerSelected?.Invoke(id, name, null);
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một khách hàng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
         private void LoadFilterOptions()
         {
             cbbFilter.Items.Clear();
             cbbFilter.Items.AddRange(new[] {
-                "Tên khách hàng", "Ngày sinh", "Địa chỉ", "Số điện thoại", "Email", "Ghi chú"
-            });
+                        "Tên khách hàng", "Ngày sinh", "Địa chỉ", "Số điện thoại", "Email", "Ghi chú"
+                    });
             cbbFilter.SelectedIndex = 0;
         }
 
@@ -104,7 +137,7 @@ namespace MayTinhQA.UserControls
             );
 
         }
-        
+
         private void DgvKhachhang_MouseClick(object sender, MouseEventArgs e)
         {
             if (headerCheckBoxArea.Contains(e.Location))
@@ -131,14 +164,14 @@ namespace MayTinhQA.UserControls
                 dgvKhachhang.Invalidate();
             }
         }
-        
 
-        
-        
+
+
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
             string keyword = txtSearch.Text.Trim().ToLower();
-            string field = cbbFilter.SelectedItem?.ToString();
+        string field = cbbFilter.SelectedItem?.ToString();
 
             if (string.IsNullOrWhiteSpace(keyword) || string.IsNullOrWhiteSpace(field)) return;
 
@@ -198,39 +231,11 @@ namespace MayTinhQA.UserControls
             ControlPaint.DrawCheckBox(e.Graphics, headerCheckBoxArea, isHeaderCheckBoxChecked ? ButtonState.Checked : ButtonState.Normal);
         }
 
-        private void btnchon_Click(object sender, EventArgs e)
-        {
-            if (dgvKhachhang.CurrentRow != null)
-            {
-                int id = Convert.ToInt32(dgvKhachhang.CurrentRow.Cells["idkhachhang"].Value);
-                string name = dgvKhachhang.CurrentRow.Cells["tenkhachhang"].Value.ToString();
-
-                // Lấy DataRow gốc từ DataTable
-                DataTable dt = dgvKhachhang.DataSource as DataTable;
-                if (dt != null)
-                {
-                    string filter = $"idkhachhang = {id}";
-                    DataRow[] matched = dt.Select(filter);
-                    if (matched.Length > 0)
-                    {
-                        OnCustomerSelected?.Invoke(id, name, matched[0]);
-                        return;
-                    }
-                }
-
-                // Fallback nếu không tìm thấy dòng
-                OnCustomerSelected?.Invoke(id, name, null);
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng chọn một khách hàng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-        public event EventHandler OnCancel;
         private void btnhuy_Click(object sender, EventArgs e)
         {
-            ucChooseCustomer.Visible = false;
+            this.Close();
         }
-        
     }
 }
+
+   
