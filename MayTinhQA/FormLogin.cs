@@ -30,12 +30,12 @@ namespace MayTinhQA
                 if (modify.users(sql).Count != 0)
                 {
                     TaiKhoan user = modify.users(sql)[0];
-                    Session.CurrentUser = user;
+                    Current_user.CurrentUser = user;
                     MessageBox.Show("Đăng nhập thành công!");
                     this.Hide();
                     
                     if (checkboxkeeplogin.Checked)
-                    {
+                    {   
                         Properties.Settings.Default.SavedUsername = tentaikhoan;
                         Properties.Settings.Default.SavedPassword = matkhau;
                         Properties.Settings.Default.IsRemembered = true;
@@ -104,7 +104,7 @@ namespace MayTinhQA
                 if (modify.users(sql).Count != 0)
                 {
                     TaiKhoan user = modify.users(sql)[0];
-                    Session.CurrentUser = user;
+                    Current_user.CurrentUser = user;
                     FormDashboard home = new FormDashboard();
                     this.Hide();
                     home.ShowDialog();

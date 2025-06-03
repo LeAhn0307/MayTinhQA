@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MayTinhQA.UserControls;
+using static MayTinhQA.frmhome;
 
 namespace MayTinhQA
 {
@@ -20,7 +21,7 @@ namespace MayTinhQA
         public string SelectedCustomerName { get; private set; }
         public DataRow SelectedCustomerRow { get; private set; }
         private UC_Activities activitiesControl;
-        
+
         public FormAddActivities(UC_Activities parent, int idDichvu)
         {
             InitializeComponent();
@@ -28,7 +29,7 @@ namespace MayTinhQA
             this._idDichvu = idDichvu;
             this.isEditing = true;
             LoadThongTinDichVu();
-           
+            
         }
         private UC_Activities _parent;
 
@@ -37,7 +38,7 @@ namespace MayTinhQA
             InitializeComponent();
             _parent = parent;
         }
-
+        
         public void BatCheDoThem()
         {
             isAdding = true;
@@ -53,7 +54,7 @@ namespace MayTinhQA
         }
         private void LoadThongTinDichVu()
         {
-           try
+            try
             {
                 string query = $"SELECT * FROM dichvu WHERE iddichvu = {_idDichvu}";
                 DataTable dt = Database.Query(query);
@@ -63,7 +64,7 @@ namespace MayTinhQA
                     DataRow row = dt.Rows[0];
                     txtiddichvu.Text = row["iddichvu"].ToString();
                     txttendichvu.Text = row["tendichvu"].ToString();
-                    txttenkhachhang.Text = row["tenkhachhang"].ToString();
+                    listboxkhachhang.Text = row["tenkhachhang"].ToString();
                     txttennhanvien.Text = row["tennhanvien"].ToString();
                     txtghichu.Text = row["ghichu"].ToString();
                     dtpngaytao.Value = Convert.ToDateTime(row["ngaytao"]);
@@ -93,7 +94,7 @@ namespace MayTinhQA
                     string tennv = txttennhanvien.Text.Trim();
                     string ngaytao = dtpngaytao.Value.ToString("yyyy-MM-dd");
                     string ghichu = txtghichu.Text.Trim();
-                    string tenkhach = txttenkhachhang.Text.Trim();
+                    string tenkhach = listboxkhachhang.Text.Trim();
 
                     if (comboBoxldv.SelectedValue == null)
                     {
@@ -154,7 +155,7 @@ namespace MayTinhQA
                     string tennv = txttennhanvien.Text.Trim();
                     string ngaytao = dtpngaytao.Value.ToString("yyyy-MM-dd");
                     string ghichu = txtghichu.Text.Trim();
-                    string tenkhach = txttenkhachhang.Text.Trim();
+                    string tenkhach = listboxkhachhang.Text.Trim();
                     int idLoaiDV = (int)comboBoxldv.SelectedValue;
 
                     // Lấy idnhanvien theo tên nhân viên
@@ -201,11 +202,64 @@ namespace MayTinhQA
                 }
             }
         }
+        private List<DataRow> selectedCustomerRows = new List<DataRow>();
         private void btnchonkhachhan_Click(object sender, EventArgs e)
         {
+            FormChooseCus f = new FormChooseCus();
+
+            var selectedNames = listboxkhachhang.Items.Cast<string>().ToList();
+            f.PreselectedCustomerNames = selectedNames;
+            // Truyền sự kiện nhận khách hàng về
+            f.OnCustomerNamesSelected = (newSelectedNames) =>
+            {
+                listboxkhachhang.Items.Clear();
+                foreach (var name in newSelectedNames)
+                {
+                    listboxkhachhang.Items.Add(name);
+                }
+            };
+
+            f.ShowDialog();
+        }
+
+        private void btnhuy_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void listboxkhachhang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txttennhanvien_TextChanged(object sender, EventArgs e)
+        {
             
-            FormChooseCus chooseCustomerControl = new FormChooseCus();
-            chooseCustomerControl.ShowDialog();
-        } 
+        }
+        
+        private void FormAddActivities_Load(object sender, EventArgs e)
+        {
+            if (Current_user.CurrentUser != null)
+            {
+                // Gán tên nhân viên vào textbox
+                txttennhanvien.Text = Database.LayTenNhanVienTheoUser(Current_user.CurrentUser.Idusers);
+                txttennhanvien.Enabled = false;
+
+                // Kiểm tra vai trò: chỉ Admin (idvaitro == 1) mới được chọn nhân viên
+                if (Current_user.CurrentUser.Idvaitro == 1)
+                {
+                    btnchonnhanvien.Visible = true; // Admin có thể chọn
+                }
+                else
+                {
+                    btnchonnhanvien.Visible = false; // Nhân viên không thấy nút
+                }
+            }
+            else
+            {
+                MessageBox.Show("Lỗi: Không có thông tin người dùng hiện tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        
     }
 }

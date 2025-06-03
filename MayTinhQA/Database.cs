@@ -48,5 +48,13 @@ namespace MayTinhQA
                 }
             }
         }
+        public static string LayTenNhanVienTheoUser(int idUser)
+        {
+            string query = $"SELECT tennhanvien FROM nhanvien WHERE idusers = {idUser}";
+            DataTable dt = Query(query);
+            if (dt.Rows.Count > 0)
+                return dt.Rows[0]["tennhanvien"].ToString();
+            return null;
+        }
     }
 }

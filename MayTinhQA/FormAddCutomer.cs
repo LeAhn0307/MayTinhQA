@@ -125,8 +125,8 @@ namespace MayTinhQA
                     }
 
                     string insertKH = $@"
-                        INSERT INTO khachhang (idkhachhang, tenkhachhang, email, dienthoai, diachi, ngaysinh, idthanhpho, idquanhuyen, ghichu)
-                        VALUES ({id}, N'{hoten}', '{email}', '{sdt}', N'{diachi}', '{ngaysinh}', '{idThanhPho}', '{idQuan}', N'{ghichu}')";
+                        INSERT INTO khachhang ( tenkhachhang, email, dienthoai, diachi, ngaysinh, idthanhpho, idquanhuyen, ghichu)
+                        VALUES ( N'{hoten}', '{email}', '{sdt}', N'{diachi}', '{ngaysinh}', '{idThanhPho}', '{idQuan}', N'{ghichu}')";
 
                     Database.Excute(insertKH);
 

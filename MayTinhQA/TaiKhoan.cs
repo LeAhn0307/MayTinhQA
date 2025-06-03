@@ -12,10 +12,11 @@ namespace MayTinhQA
         public string matkhau;
         public string email;
         public int idvaitro;
+        public int idusers;
 
-
-        public TaiKhoan(string tentaikhoan, string matkhau, string email, int idvaitro)
+        public TaiKhoan(int idusers, string tentaikhoan, string matkhau, string email, int idvaitro)
         {
+            this.idusers = idusers;
             this.tentaikhoan = tentaikhoan;
             this.matkhau = matkhau;
             this.email = email;
@@ -27,5 +28,6 @@ namespace MayTinhQA
         public string Email { get => email; set => email = value; }
 
         public int Idvaitro { get => idvaitro; set => idvaitro = value; }
+        public int Idusers { get => idusers; set => idusers = value; }
     }
 }

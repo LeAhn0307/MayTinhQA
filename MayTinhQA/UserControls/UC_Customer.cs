@@ -66,6 +66,7 @@ namespace MayTinhQA.UserControls
 
                 dgvKhachhang.Columns.Insert(0, chk);
             }
+
             if (!dgvKhachhang.Columns.Contains("stt"))
             {
                 DataGridViewTextBoxColumn sttColumn = new DataGridViewTextBoxColumn();
@@ -119,6 +120,7 @@ namespace MayTinhQA.UserControls
             dgvKhachhang.CurrentCell = null;
 
             dgvKhachhang.ReadOnly = false;
+            
             if (!dgvKhachhang.Columns.Contains("Edit"))
             {
                 DataGridViewButtonColumn editColumn = new DataGridViewButtonColumn();
@@ -241,6 +243,17 @@ namespace MayTinhQA.UserControls
                         }
                     }
                 }
+                var row = dgvKhachhang.Rows[e.RowIndex];
+                string name = row.Cells["tenkhachhang"].Value?.ToString();
+
+                if (Convert.ToBoolean(row.Cells["check"].Value))
+                {
+                    selectedCustomerNames.Add(name);
+                }
+                else
+                {
+                    selectedCustomerNames.Remove(name);
+                }
                 bool allChecked = dgvKhachhang.Rows.Cast<DataGridViewRow>()
                     .All(r => Convert.ToBoolean(r.Cells["check"].Value));
                 isHeaderCheckBoxChecked = allChecked;
@@ -327,19 +340,24 @@ namespace MayTinhQA.UserControls
         private void UC_Customer_Load(object sender, EventArgs e)
         {
             cbbFilter.Items.Clear();
-            cbbFilter.Items.Add("Tên khách hàng");
-            cbbFilter.Items.Add("Ngày sinh");
-            cbbFilter.Items.Add("Địa chỉ");
-            cbbFilter.Items.Add("Số điện thoại");
-            cbbFilter.Items.Add("Email");
-            cbbFilter.Items.Add("Ghi chú");
+            cbbFilter.Items.AddRange(new string[]
+            {
+            "Chọn tiêu chí",
+            "Tên khách hàng",
+            "Ngày sinh",
+            "Địa chỉ",
+            "Số điện thoại",
+            "Email",
+            "Ghi chú"
+            });
             cbbFilter.SelectedIndex = 0;
+            RestoreCheckedRows();
             napdgvKhachHang();
         }
 
         private void btntimkiem_Click(object sender, EventArgs e)
         {
-            string tuKhoa = txtSearch.Text.Trim();
+            string tuKhoa = txtSearch.Text.Trim().ToLower();
             string tieuChi = cbbFilter.SelectedItem?.ToString();
             if (string.IsNullOrEmpty(tuKhoa) || string.IsNullOrEmpty(tieuChi)) return;
 
@@ -352,12 +370,14 @@ namespace MayTinhQA.UserControls
             {
                 case "Tên khách hàng":
                     filteredRows = dt.AsEnumerable()
-                        .Where(row => row.Field<string>("tenkhachhang").Contains(tuKhoa));
+                        .Where(row => (row.Field<string>("tenkhachhang") ?? "").ToLower().Contains(tuKhoa));
                     break;
+
                 case "Ngày sinh":
                     filteredRows = dt.AsEnumerable()
                         .Where(row => row.Field<DateTime>("ngaysinh").ToString("dd/MM/yyyy").Contains(tuKhoa));
                     break;
+
                 case "Địa chỉ":
                     string[] parts = tuKhoa.ToLower().Split(new char[] { ' ', ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
                     filteredRows = dt.AsEnumerable()
@@ -367,29 +387,31 @@ namespace MayTinhQA.UserControls
                             return parts.All(p => diachi.Contains(p));
                         });
                     break;
+
                 case "Số điện thoại":
                     filteredRows = dt.AsEnumerable()
-                        .Where(row => row.Field<string>("dienthoai").Contains(tuKhoa));
+                        .Where(row => (row.Field<string>("dienthoai") ?? "").ToLower().Contains(tuKhoa));
                     break;
+
                 case "Email":
                     filteredRows = dt.AsEnumerable()
-                        .Where(row => row.Field<string>("email").Contains(tuKhoa));
+                        .Where(row => (row.Field<string>("email") ?? "").ToLower().Contains(tuKhoa));
                     break;
+
                 case "Ghi chú":
                     filteredRows = dt.AsEnumerable()
-                        .Where(row => row.Field<string>("ghichu").Contains(tuKhoa));
+                        .Where(row => (row.Field<string>("ghichu") ?? "").ToLower().Contains(tuKhoa));
                     break;
             }
-
+            
             if (filteredRows != null && filteredRows.Any())
                 dgvKhachhang.DataSource = filteredRows.CopyToDataTable();
             else
                 dgvKhachhang.DataSource = dt.Clone();
+            RestoreCheckedRows();
             isHeaderCheckBoxChecked = false;
             dgvKhachhang.Invalidate();
         }
-
-        
 
         private void dgvKhachhang_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
@@ -410,24 +432,108 @@ namespace MayTinhQA.UserControls
             }
         }
 
-        private void btnxoatimkiem_Click(object sender, EventArgs e)
-        {
-            txtSearch.Clear();
-
-            cbbFilter.SelectedIndex = cbbFilter.SelectedIndex >= 0 ? cbbFilter.SelectedIndex : 0;
-
-            napdgvKhachHang(); // Nạp lại toàn bộ dữ liệu
-
-            isHeaderCheckBoxChecked = false; // Reset trạng thái checkbox đầu
-            dgvKhachhang.Invalidate();
-        }
-
+       
         private void dgvKhachhang_Scroll(object sender, ScrollEventArgs e)
         {
             if (e.ScrollOrientation == ScrollOrientation.HorizontalScroll)
             {
                 dgvKhachhang.Invalidate();
             }
+        }
+
+        private HashSet<string> selectedCustomerNames = new HashSet<string>();
+        private void RestoreCheckedRows()
+        {
+            foreach (DataGridViewRow row in dgvKhachhang.Rows)
+            {
+                string name = row.Cells["tenkhachhang"].Value?.ToString();
+                if (!string.IsNullOrEmpty(name) && selectedCustomerNames.Contains(name))
+                {
+                    row.Cells["check"].Value = true;
+                }
+            }
+        }
+        private void guna2HtmlLabel1_Click(object sender, EventArgs e)
+        {
+            labelxoatimkiem.Visible = false;
+            txtSearch.Clear();
+
+            cbbFilter.SelectedIndex = cbbFilter.SelectedIndex >= 0 ? cbbFilter.SelectedIndex : 0;
+
+            napdgvKhachHang(); // Nạp lại toàn bộ dữ liệu
+            RestoreCheckedRows();
+            isHeaderCheckBoxChecked = false; // Reset trạng thái checkbox đầu
+            dgvKhachhang.Invalidate();
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            labelxoatimkiem.Visible  = !string.IsNullOrWhiteSpace(txtSearch.Text);
+        }
+
+        private void cbbFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbbFilter.SelectedIndex == 0)
+            {
+                labelloaitieuchi.Visible = false;
+            }
+            else
+            {
+                labelloaitieuchi.Visible = true;
+            }
+            
+        }
+
+        
+
+        private void labelloaitieuchi_Click(object sender, EventArgs e)
+        {
+            labelloaitieuchi.Visible = false;
+            cbbFilter.SelectedIndex = 0; 
+            napdgvKhachHang(); // Nạp lại toàn bộ dữ liệu
+            RestoreCheckedRows();
+            isHeaderCheckBoxChecked = false; // Reset trạng thái checkbox đầu
+            dgvKhachhang.Invalidate();
+        }
+
+        private void picboxsort_Click(object sender, EventArgs e)
+        {
+            string tieuChiSapXep = cbbFilter.SelectedItem?.ToString();
+            if (string.IsNullOrEmpty(tieuChiSapXep)) return;
+
+            DataTable dt = dgvKhachhang.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count == 0) return;
+
+            IEnumerable<DataRow> sortedRows = dt.AsEnumerable();
+
+            switch (tieuChiSapXep)
+            {
+                case "Tên khách hàng":
+                    sortedRows = sortedRows.OrderBy(row => row.Field<string>("tenkhachhang")?.Split(' ').Last());
+                    break;
+                case "Ngày sinh":
+                    sortedRows = sortedRows.OrderBy(row => row.Field<DateTime>("ngaysinh"));
+                    break;
+                case "Địa chỉ":
+                    sortedRows = sortedRows.OrderBy(row => row.Field<string>("diachi"));
+                    break;
+                case "Số điện thoại":
+                    sortedRows = sortedRows.OrderBy(row => row.Field<string>("dienthoai"));
+                    break;
+                case "Email":
+                    sortedRows = sortedRows.OrderBy(row => row.Field<string>("email"));
+                    break;
+                case "Ghi chú":
+                    sortedRows = sortedRows.OrderBy(row => row.Field<string>("ghichu"));
+                    break;
+                default:
+                    return;
+            }
+
+            dgvKhachhang.DataSource = sortedRows.CopyToDataTable();
+            isHeaderCheckBoxChecked = false;
+            dgvKhachhang.Invalidate();
+
         }
     }
 }

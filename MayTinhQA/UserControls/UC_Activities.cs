@@ -217,7 +217,7 @@ namespace MayTinhQA.UserControls
                 }
 
                 isHeaderCheckBoxChecked = !isHeaderCheckBoxChecked;
-                dvghoatdong.Invalidate(); // Vẽ lại header
+                
 
                 isHeaderCheckBoxClicked = true;
 
@@ -227,8 +227,8 @@ namespace MayTinhQA.UserControls
                 }
 
                 dvghoatdong.EndEdit();
-
                 isHeaderCheckBoxClicked = false;
+                dvghoatdong.Invalidate();
             }
         }
         private void dvghoatdong_CellValueChanged(object sender, DataGridViewCellEventArgs e)

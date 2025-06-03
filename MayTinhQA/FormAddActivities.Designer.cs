@@ -46,8 +46,10 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnchonkhachhang = new Guna.UI2.WinForms.Guna2Button();
-            this.txttenkhachhang = new Guna.UI2.WinForms.Guna2TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
+            this.listboxkhachhang = new System.Windows.Forms.ListBox();
+            this.btnchonnhanvien = new Guna.UI2.WinForms.Guna2Button();
             this.guna2GradientPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,7 +59,7 @@
             this.guna2GradientPanel1.Controls.Add(this.labelName);
             this.guna2GradientPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2GradientPanel1.Location = new System.Drawing.Point(0, 0);
-            this.guna2GradientPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2GradientPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2GradientPanel1.Name = "guna2GradientPanel1";
             this.guna2GradientPanel1.Size = new System.Drawing.Size(836, 51);
             this.guna2GradientPanel1.TabIndex = 16;
@@ -91,7 +93,7 @@
             this.comboBoxldv.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.comboBoxldv.ItemHeight = 30;
             this.comboBoxldv.Location = new System.Drawing.Point(245, 159);
-            this.comboBoxldv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxldv.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxldv.Name = "comboBoxldv";
             this.comboBoxldv.Size = new System.Drawing.Size(189, 36);
             this.comboBoxldv.TabIndex = 33;
@@ -105,7 +107,7 @@
             this.dtpngaytao.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dtpngaytao.Format = System.Windows.Forms.DateTimePickerFormat.Long;
             this.dtpngaytao.Location = new System.Drawing.Point(246, 93);
-            this.dtpngaytao.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpngaytao.Margin = new System.Windows.Forms.Padding(2);
             this.dtpngaytao.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtpngaytao.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtpngaytao.Name = "dtpngaytao";
@@ -166,6 +168,7 @@
             this.txttennhanvien.SelectedText = "";
             this.txttennhanvien.Size = new System.Drawing.Size(217, 32);
             this.txttennhanvien.TabIndex = 24;
+            this.txttennhanvien.TextChanged += new System.EventHandler(this.txttennhanvien_TextChanged);
             // 
             // label1
             // 
@@ -223,7 +226,7 @@
             this.btnluu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnluu.ForeColor = System.Drawing.Color.White;
             this.btnluu.Location = new System.Drawing.Point(13, 461);
-            this.btnluu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnluu.Margin = new System.Windows.Forms.Padding(2);
             this.btnluu.Name = "btnluu";
             this.btnluu.Size = new System.Drawing.Size(139, 42);
             this.btnluu.TabIndex = 35;
@@ -241,11 +244,12 @@
             this.btnhuy.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnhuy.ForeColor = System.Drawing.Color.White;
             this.btnhuy.Location = new System.Drawing.Point(170, 461);
-            this.btnhuy.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnhuy.Margin = new System.Windows.Forms.Padding(2);
             this.btnhuy.Name = "btnhuy";
             this.btnhuy.Size = new System.Drawing.Size(101, 42);
             this.btnhuy.TabIndex = 36;
             this.btnhuy.Text = "Hủy";
+            this.btnhuy.Click += new System.EventHandler(this.btnhuy_Click);
             // 
             // txtghichu
             // 
@@ -313,26 +317,6 @@
             this.btnchonkhachhang.Text = "Chọn khách hàng";
             this.btnchonkhachhang.Click += new System.EventHandler(this.btnchonkhachhan_Click);
             // 
-            // txttenkhachhang
-            // 
-            this.txttenkhachhang.BorderRadius = 12;
-            this.txttenkhachhang.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txttenkhachhang.DefaultText = "";
-            this.txttenkhachhang.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txttenkhachhang.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txttenkhachhang.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txttenkhachhang.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txttenkhachhang.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txttenkhachhang.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txttenkhachhang.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txttenkhachhang.Location = new System.Drawing.Point(455, 159);
-            this.txttenkhachhang.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txttenkhachhang.Name = "txttenkhachhang";
-            this.txttenkhachhang.PlaceholderText = "";
-            this.txttenkhachhang.SelectedText = "";
-            this.txttenkhachhang.Size = new System.Drawing.Size(217, 32);
-            this.txttenkhachhang.TabIndex = 21;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -346,14 +330,50 @@
             this.label5.TabIndex = 23;
             this.label5.Text = "Tên khách hàng";
             // 
+            // guna2DragControl1
+            // 
+            this.guna2DragControl1.DockIndicatorTransparencyValue = 0.6D;
+            this.guna2DragControl1.TargetControl = this.guna2GradientPanel1;
+            this.guna2DragControl1.UseTransparentDrag = true;
+            // 
+            // listboxkhachhang
+            // 
+            this.listboxkhachhang.FormattingEnabled = true;
+            this.listboxkhachhang.Location = new System.Drawing.Point(467, 159);
+            this.listboxkhachhang.Name = "listboxkhachhang";
+            this.listboxkhachhang.Size = new System.Drawing.Size(205, 30);
+            this.listboxkhachhang.TabIndex = 39;
+            this.listboxkhachhang.SelectedIndexChanged += new System.EventHandler(this.listboxkhachhang_SelectedIndexChanged);
+            // 
+            // btnchonnhanvien
+            // 
+            this.btnchonnhanvien.BorderRadius = 12;
+            this.btnchonnhanvien.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnchonnhanvien.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnchonnhanvien.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnchonnhanvien.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnchonnhanvien.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
+            this.btnchonnhanvien.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnchonnhanvien.ForeColor = System.Drawing.Color.White;
+            this.btnchonnhanvien.Location = new System.Drawing.Point(455, 55);
+            this.btnchonnhanvien.Margin = new System.Windows.Forms.Padding(2);
+            this.btnchonnhanvien.Name = "btnchonnhanvien";
+            this.btnchonnhanvien.Size = new System.Drawing.Size(170, 30);
+            this.btnchonnhanvien.TabIndex = 35;
+            this.btnchonnhanvien.Text = "Chọn nhân viên";
+            this.btnchonnhanvien.Visible = false;
+            this.btnchonnhanvien.Click += new System.EventHandler(this.btnchonkhachhan_Click);
+            // 
             // FormAddActivities
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(836, 512);
+            this.Controls.Add(this.listboxkhachhang);
             this.Controls.Add(this.txtghichu);
             this.Controls.Add(this.label7);
+            this.Controls.Add(this.btnchonnhanvien);
             this.Controls.Add(this.btnchonkhachhang);
             this.Controls.Add(this.btnluu);
             this.Controls.Add(this.btnhuy);
@@ -366,13 +386,13 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txttenkhachhang);
             this.Controls.Add(this.txttendichvu);
             this.Controls.Add(this.guna2GradientPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormAddActivities";
             this.Text = "FormAddActivities";
+            this.Load += new System.EventHandler(this.FormAddActivities_Load);
             this.guna2GradientPanel1.ResumeLayout(false);
             this.guna2GradientPanel1.PerformLayout();
             this.ResumeLayout(false);
@@ -399,7 +419,9 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label4;
         private Guna.UI2.WinForms.Guna2Button btnchonkhachhang;
-        private Guna.UI2.WinForms.Guna2TextBox txttenkhachhang;
         private System.Windows.Forms.Label label5;
+        private Guna.UI2.WinForms.Guna2DragControl guna2DragControl1;
+        private System.Windows.Forms.ListBox listboxkhachhang;
+        private Guna.UI2.WinForms.Guna2Button btnchonnhanvien;
     }
 }

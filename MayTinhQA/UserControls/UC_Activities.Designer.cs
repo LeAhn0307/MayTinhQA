@@ -37,7 +37,6 @@
             this.btnFilter = new Guna.UI2.WinForms.Guna2Button();
             this.dvghoatdong = new Guna.UI2.WinForms.Guna2DataGridView();
             this.btnthem = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.btnxoa = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)(this.dvghoatdong)).BeginInit();
@@ -192,23 +191,6 @@
             this.btnthem.Text = "Thêm hoạt động";
             this.btnthem.Click += new System.EventHandler(this.guna2Button1_Click);
             // 
-            // guna2Button2
-            // 
-            this.guna2Button2.BorderRadius = 12;
-            this.guna2Button2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
-            this.guna2Button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button2.ForeColor = System.Drawing.Color.White;
-            this.guna2Button2.Location = new System.Drawing.Point(628, 84);
-            this.guna2Button2.Margin = new System.Windows.Forms.Padding(2);
-            this.guna2Button2.Name = "guna2Button2";
-            this.guna2Button2.Size = new System.Drawing.Size(104, 37);
-            this.guna2Button2.TabIndex = 14;
-            this.guna2Button2.Text = "Sửa";
-            // 
             // btnxoa
             // 
             this.btnxoa.BorderRadius = 12;
@@ -250,7 +232,6 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.guna2Button4);
             this.Controls.Add(this.btnxoa);
-            this.Controls.Add(this.guna2Button2);
             this.Controls.Add(this.btnthem);
             this.Controls.Add(this.dvghoatdong);
             this.Controls.Add(this.btnFilter);
@@ -270,7 +251,6 @@
         private Guna.UI2.WinForms.Guna2Button btnFilter;
         private Guna.UI2.WinForms.Guna2DataGridView dvghoatdong;
         private Guna.UI2.WinForms.Guna2Button btnthem;
-        private Guna.UI2.WinForms.Guna2Button guna2Button2;
         private Guna.UI2.WinForms.Guna2Button btnxoa;
         private Guna.UI2.WinForms.Guna2Button guna2Button4;
     }

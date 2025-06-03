@@ -26,7 +26,13 @@ namespace MayTinhQA
                 while (dataReader.Read())
                 {
 
-                    users.Add(new TaiKhoan(dataReader.GetString(1), dataReader.GetString(2), dataReader.GetString(3), dataReader.GetInt32(4))); // Truyền idvaitro kiểu bool
+                    users.Add(new TaiKhoan(
+                    dataReader.GetInt32(0),  
+                    dataReader.GetString(1), 
+                    dataReader.GetString(2), 
+                    dataReader.GetString(3), 
+                    dataReader.GetInt32(4)   
+                    ));
                 }
                 sqlConnection.Close();
             }

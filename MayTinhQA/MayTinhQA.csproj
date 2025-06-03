@@ -104,6 +104,7 @@
   <ItemGroup>
     <Compile Include="Connection.cs" />
     <Compile Include="Const.cs" />
+    <Compile Include="Current user.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Form Choose customer.cs">
       <SubType>Form</SubType>
@@ -354,6 +355,7 @@
     <None Include="Resources\login_icon.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\sort" />
     <None Include="Resources\user_icon.jpg" />
   </ItemGroup>
   <ItemGroup>
