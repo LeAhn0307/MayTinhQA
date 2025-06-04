@@ -35,7 +35,6 @@
             this.comboBoxldv = new Guna.UI2.WinForms.Guna2ComboBox();
             this.dtpngaytao = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.txtiddichvu = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.txttennhanvien = new Guna.UI2.WinForms.Guna2TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -49,7 +48,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.listboxkhachhang = new System.Windows.Forms.ListBox();
-            this.btnchonnhanvien = new Guna.UI2.WinForms.Guna2Button();
+            this.linkLabelnhanvien = new System.Windows.Forms.LinkLabel();
+            this.tooltipnv = new Guna.UI2.WinForms.Guna2HtmlToolTip();
             this.guna2GradientPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,10 +92,10 @@
             this.comboBoxldv.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.comboBoxldv.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.comboBoxldv.ItemHeight = 30;
-            this.comboBoxldv.Location = new System.Drawing.Point(245, 159);
+            this.comboBoxldv.Location = new System.Drawing.Point(466, 93);
             this.comboBoxldv.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxldv.Name = "comboBoxldv";
-            this.comboBoxldv.Size = new System.Drawing.Size(189, 36);
+            this.comboBoxldv.Size = new System.Drawing.Size(249, 36);
             this.comboBoxldv.TabIndex = 33;
             // 
             // dtpngaytao
@@ -127,27 +127,13 @@
             this.txtiddichvu.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtiddichvu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtiddichvu.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtiddichvu.Location = new System.Drawing.Point(78, 201);
+            this.txtiddichvu.Location = new System.Drawing.Point(466, 201);
             this.txtiddichvu.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtiddichvu.Name = "txtiddichvu";
             this.txtiddichvu.PlaceholderText = "";
             this.txtiddichvu.SelectedText = "";
             this.txtiddichvu.Size = new System.Drawing.Size(217, 32);
             this.txtiddichvu.TabIndex = 26;
-            this.txtiddichvu.Visible = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.White;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(15, 138);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(136, 17);
-            this.label3.TabIndex = 25;
-            this.label3.Text = "Nhân viên phụ trách";
             // 
             // txttennhanvien
             // 
@@ -279,7 +265,7 @@
             this.label7.BackColor = System.Drawing.Color.White;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(15, 207);
+            this.label7.Location = new System.Drawing.Point(15, 216);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(43, 17);
@@ -292,7 +278,7 @@
             this.label4.BackColor = System.Drawing.Color.White;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(254, 138);
+            this.label4.Location = new System.Drawing.Point(475, 72);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(103, 17);
@@ -309,10 +295,10 @@
             this.btnchonkhachhang.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
             this.btnchonkhachhang.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnchonkhachhang.ForeColor = System.Drawing.Color.White;
-            this.btnchonkhachhang.Location = new System.Drawing.Point(455, 95);
+            this.btnchonkhachhang.Location = new System.Drawing.Point(465, 158);
             this.btnchonkhachhang.Margin = new System.Windows.Forms.Padding(2);
             this.btnchonkhachhang.Name = "btnchonkhachhang";
-            this.btnchonkhachhang.Size = new System.Drawing.Size(170, 30);
+            this.btnchonkhachhang.Size = new System.Drawing.Size(126, 30);
             this.btnchonkhachhang.TabIndex = 35;
             this.btnchonkhachhang.Text = "Chọn khách hàng";
             this.btnchonkhachhang.Click += new System.EventHandler(this.btnchonkhachhan_Click);
@@ -323,12 +309,12 @@
             this.label5.BackColor = System.Drawing.Color.White;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(464, 138);
+            this.label5.Location = new System.Drawing.Point(254, 138);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(111, 17);
+            this.label5.Size = new System.Drawing.Size(88, 17);
             this.label5.TabIndex = 23;
-            this.label5.Text = "Tên khách hàng";
+            this.label5.Text = " Khách hàng";
             // 
             // guna2DragControl1
             // 
@@ -339,30 +325,32 @@
             // listboxkhachhang
             // 
             this.listboxkhachhang.FormattingEnabled = true;
-            this.listboxkhachhang.Location = new System.Drawing.Point(467, 159);
+            this.listboxkhachhang.Location = new System.Drawing.Point(245, 158);
             this.listboxkhachhang.Name = "listboxkhachhang";
             this.listboxkhachhang.Size = new System.Drawing.Size(205, 30);
             this.listboxkhachhang.TabIndex = 39;
             this.listboxkhachhang.SelectedIndexChanged += new System.EventHandler(this.listboxkhachhang_SelectedIndexChanged);
             // 
-            // btnchonnhanvien
+            // linkLabelnhanvien
             // 
-            this.btnchonnhanvien.BorderRadius = 12;
-            this.btnchonnhanvien.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnchonnhanvien.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnchonnhanvien.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnchonnhanvien.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnchonnhanvien.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
-            this.btnchonnhanvien.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnchonnhanvien.ForeColor = System.Drawing.Color.White;
-            this.btnchonnhanvien.Location = new System.Drawing.Point(455, 55);
-            this.btnchonnhanvien.Margin = new System.Windows.Forms.Padding(2);
-            this.btnchonnhanvien.Name = "btnchonnhanvien";
-            this.btnchonnhanvien.Size = new System.Drawing.Size(170, 30);
-            this.btnchonnhanvien.TabIndex = 35;
-            this.btnchonnhanvien.Text = "Chọn nhân viên";
-            this.btnchonnhanvien.Visible = false;
-            this.btnchonnhanvien.Click += new System.EventHandler(this.btnchonkhachhan_Click);
+            this.linkLabelnhanvien.ActiveLinkColor = System.Drawing.SystemColors.Highlight;
+            this.linkLabelnhanvien.AutoSize = true;
+            this.linkLabelnhanvien.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabelnhanvien.ForeColor = System.Drawing.Color.Black;
+            this.linkLabelnhanvien.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
+            this.linkLabelnhanvien.LinkColor = System.Drawing.Color.Black;
+            this.linkLabelnhanvien.Location = new System.Drawing.Point(15, 139);
+            this.linkLabelnhanvien.Name = "linkLabelnhanvien";
+            this.linkLabelnhanvien.Size = new System.Drawing.Size(124, 16);
+            this.linkLabelnhanvien.TabIndex = 40;
+            this.linkLabelnhanvien.TabStop = true;
+            this.linkLabelnhanvien.Text = "Nhân viên phụ trách";
+            this.linkLabelnhanvien.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // tooltipnv
+            // 
+            this.tooltipnv.AllowLinksHandling = true;
+            this.tooltipnv.MaximumSize = new System.Drawing.Size(0, 0);
             // 
             // FormAddActivities
             // 
@@ -370,17 +358,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(836, 512);
+            this.Controls.Add(this.linkLabelnhanvien);
             this.Controls.Add(this.listboxkhachhang);
             this.Controls.Add(this.txtghichu);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.btnchonnhanvien);
             this.Controls.Add(this.btnchonkhachhang);
             this.Controls.Add(this.btnluu);
             this.Controls.Add(this.btnhuy);
             this.Controls.Add(this.comboBoxldv);
             this.Controls.Add(this.dtpngaytao);
             this.Controls.Add(this.txtiddichvu);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.txttennhanvien);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -408,7 +395,6 @@
         private Guna.UI2.WinForms.Guna2ComboBox comboBoxldv;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtpngaytao;
         private Guna.UI2.WinForms.Guna2TextBox txtiddichvu;
-        private System.Windows.Forms.Label label3;
         private Guna.UI2.WinForms.Guna2TextBox txttennhanvien;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -422,6 +408,7 @@
         private System.Windows.Forms.Label label5;
         private Guna.UI2.WinForms.Guna2DragControl guna2DragControl1;
         private System.Windows.Forms.ListBox listboxkhachhang;
-        private Guna.UI2.WinForms.Guna2Button btnchonnhanvien;
+        private System.Windows.Forms.LinkLabel linkLabelnhanvien;
+        private Guna.UI2.WinForms.Guna2HtmlToolTip tooltipnv;
     }
 }

@@ -79,7 +79,7 @@ namespace MayTinhQA
                     txtghichu.Text = row["ghichu"].ToString();
                     dtpkhach.Value = Convert.ToDateTime(row["ngaysinh"]);
 
-                    txtidkhachhang.Enabled = false;
+                    txtidkhachhang.Visible = false;
                     btnluu.Visible = true;
                     btnhuy.Visible = true;
                 }

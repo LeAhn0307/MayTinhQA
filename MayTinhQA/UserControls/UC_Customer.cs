@@ -222,6 +222,7 @@ namespace MayTinhQA.UserControls
             {
                 object cellValue = dgvKhachhang.Rows[e.RowIndex].Cells["check"].Value;
                 bool isChecked = cellValue != null && Convert.ToBoolean(cellValue);
+               
                 if (isEditing)
                 {
                     if (e.RowIndex != currentEditingRowIndex)
@@ -257,7 +258,7 @@ namespace MayTinhQA.UserControls
                 bool allChecked = dgvKhachhang.Rows.Cast<DataGridViewRow>()
                     .All(r => Convert.ToBoolean(r.Cells["check"].Value));
                 isHeaderCheckBoxChecked = allChecked;
-                dgvKhachhang.Invalidate(); // Vẽ lại header
+                dgvKhachhang.Invalidate();
             }
         }
         private void dgvInformation_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -357,6 +358,7 @@ namespace MayTinhQA.UserControls
 
         private void btntimkiem_Click(object sender, EventArgs e)
         {
+            picboxrs.Visible = true;
             string tuKhoa = txtSearch.Text.Trim().ToLower();
             string tieuChi = cbbFilter.SelectedItem?.ToString();
             if (string.IsNullOrEmpty(tuKhoa) || string.IsNullOrEmpty(tieuChi)) return;
@@ -368,6 +370,9 @@ namespace MayTinhQA.UserControls
 
             switch (tieuChi)
             {
+                case "Chọn tiêu chí":
+                    MessageBox.Show("Vui lòng chọn tiêu chí tìm kiếm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 case "Tên khách hàng":
                     filteredRows = dt.AsEnumerable()
                         .Where(row => (row.Field<string>("tenkhachhang") ?? "").ToLower().Contains(tuKhoa));
@@ -453,18 +458,7 @@ namespace MayTinhQA.UserControls
                 }
             }
         }
-        private void guna2HtmlLabel1_Click(object sender, EventArgs e)
-        {
-            labelxoatimkiem.Visible = false;
-            txtSearch.Clear();
 
-            cbbFilter.SelectedIndex = cbbFilter.SelectedIndex >= 0 ? cbbFilter.SelectedIndex : 0;
-
-            napdgvKhachHang(); // Nạp lại toàn bộ dữ liệu
-            RestoreCheckedRows();
-            isHeaderCheckBoxChecked = false; // Reset trạng thái checkbox đầu
-            dgvKhachhang.Invalidate();
-        }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
@@ -480,24 +474,21 @@ namespace MayTinhQA.UserControls
             else
             {
                 labelloaitieuchi.Visible = true;
-            }
-            
+            }  
         }
-
-        
 
         private void labelloaitieuchi_Click(object sender, EventArgs e)
         {
             labelloaitieuchi.Visible = false;
             cbbFilter.SelectedIndex = 0; 
-            napdgvKhachHang(); // Nạp lại toàn bộ dữ liệu
             RestoreCheckedRows();
-            isHeaderCheckBoxChecked = false; // Reset trạng thái checkbox đầu
+            isHeaderCheckBoxChecked = false; 
             dgvKhachhang.Invalidate();
         }
 
         private void picboxsort_Click(object sender, EventArgs e)
         {
+            picboxrs.Visible = true;
             string tieuChiSapXep = cbbFilter.SelectedItem?.ToString();
             if (string.IsNullOrEmpty(tieuChiSapXep)) return;
 
@@ -534,6 +525,29 @@ namespace MayTinhQA.UserControls
             isHeaderCheckBoxChecked = false;
             dgvKhachhang.Invalidate();
 
+        }
+
+        private void picboxrt_Click(object sender, EventArgs e)
+        {
+            picboxrs.Visible = false;
+            labelxoatimkiem.Visible = false;
+            txtSearch.Clear();
+            cbbFilter.SelectedIndex = cbbFilter.SelectedIndex >= 0 ? cbbFilter.SelectedIndex : 0;
+            napdgvKhachHang();
+            RestoreCheckedRows();
+            isHeaderCheckBoxChecked = false;
+            dgvKhachhang.Invalidate();
+        }
+
+        private void labelxoatimkiem_Click(object sender, EventArgs e)
+        {
+            labelxoatimkiem.Visible = false;
+            txtSearch.Clear();
+
+            cbbFilter.SelectedIndex = cbbFilter.SelectedIndex >= 0 ? cbbFilter.SelectedIndex : 0;
+            RestoreCheckedRows();
+            isHeaderCheckBoxChecked = false; 
+            dgvKhachhang.Invalidate();
         }
     }
 }

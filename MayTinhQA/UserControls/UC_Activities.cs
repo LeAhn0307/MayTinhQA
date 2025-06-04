@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,6 +23,7 @@ namespace MayTinhQA.UserControls
             InitializeComponent();
             dvghoatdong.DataBindingComplete += dvghoatdong_DataBindingComplete;
             dvghoatdong.CellValueChanged += dvghoatdong_CellValueChanged;
+            cbbloaidv.SelectedIndexChanged += cbbloaidv_SelectedIndexChanged;
             dvghoatdong.CurrentCellDirtyStateChanged += (s, e) =>
             {
                 if (dvghoatdong.IsCurrentCellDirty)
@@ -46,9 +48,16 @@ namespace MayTinhQA.UserControls
         private bool isAdding = false;
         private bool isEditing = false;
         private int currentEditingRowIndex = -1;
+        
         public void napdgvhoatdong()
         {
-            DataTable dt = Database.Query("SELECT dv.iddichvu, dv.tendichvu,dv.ngaykhoitao,dv.trangthai,dv.mota,kh.tenkhachhang,nv.tennhanvien FROM dichvu dv join khachhang kh on kh.idkhachhang = dv.idkhachhang join nhanvien nv on nv.idnhanvien = dv.idnhanvien");
+            
+            DataTable dt = Database.Query("SELECT dv.iddichvu, dv.tendichvu, dv.ngaykhoitao, kh.tenkhachhang, nv.tennhanvien, dv.mota, tt.tentrangthai AS trangthai, ldv.tenloaidichvu " +
+            "FROM dichvu dv " +
+            "JOIN khachhang kh ON kh.idkhachhang = dv.idkhachhang " +
+            "JOIN nhanvien nv ON nv.idnhanvien = dv.idnhanvien " +
+            "JOIN trangthaidichvu tt ON tt.idtrangthai = dv.idtrangthai " +
+            "JOIN loaidichvu ldv ON ldv.idloaidichvu = dv.idloaidichvu;");
             dvghoatdong.DataSource = null;
             dvghoatdong.Columns.Clear();
             dvghoatdong.DataSource = dt;
@@ -77,8 +86,10 @@ namespace MayTinhQA.UserControls
             }
             if (dvghoatdong.Columns.Contains("iddichvu"))
                 dvghoatdong.Columns["iddichvu"].Visible = false;
+            if (dvghoatdong.Columns.Contains("tenloaidichvu"))
+                dvghoatdong.Columns["tenloaidichvu"].Visible = false;
             if (dvghoatdong.Columns.Contains("tendichvu"))
-                dvghoatdong.Columns["tendichvu"].HeaderText = "Tên dịch vụ";
+                dvghoatdong.Columns["tendichvu"].HeaderText = "Tên hoạt động";
             if (dvghoatdong.Columns.Contains("ngaykhoitao"))
                 dvghoatdong.Columns["ngaykhoitao"].HeaderText = "Ngày thực hiện";
             if (dvghoatdong.Columns.Contains("trangthai"))
@@ -131,8 +142,8 @@ namespace MayTinhQA.UserControls
             if (dvghoatdong.Controls.Contains(headerCheckBox))
                 dvghoatdong.Controls.Remove(headerCheckBox);
 
-            
-  
+
+           
         }
         private void guna2Button1_Click(object sender, EventArgs e)
         {
@@ -235,18 +246,16 @@ namespace MayTinhQA.UserControls
         {
             if (e.ColumnIndex == dvghoatdong.Columns["check"].Index && !isHeaderCheckBoxClicked)
             {
-                bool isChecked = Convert.ToBoolean(dvghoatdong.Rows[e.RowIndex].Cells["check"].Value);
+                object cellValue = dvghoatdong.Rows[e.RowIndex].Cells["check"].Value;
+                bool isChecked = cellValue != null && Convert.ToBoolean(cellValue);
                 if (isEditing)
                 {
                     if (e.RowIndex != currentEditingRowIndex)
                     {
-                        // Nếu đang chỉnh sửa, không cho phép chọn checkbox khác
-                        MessageBox.Show("Bạn đang chỉnh sửa khách hàng. Vui lòng lưu hoặc hủy trước khi chọn khách hàng khác.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                        // Quay lại checkbox cũ: giữ checkbox dòng đang sửa luôn được chọn
+                        MessageBox.Show("Bạn đang chỉnh sửa hoạt động. Vui lòng lưu hoặc hủy trước khi chọn hoạt động khác.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         dvghoatdong.Rows[e.RowIndex].Cells["check"].Value = false;
                         dvghoatdong.Rows[currentEditingRowIndex].Cells["check"].Value = true;
-
                         return;
                     }
                     else
@@ -254,18 +263,18 @@ namespace MayTinhQA.UserControls
                         // Nếu đang chỉnh sửa dòng đó, không cho bỏ tích checkbox
                         if (!isChecked)
                         {
-                            MessageBox.Show("Không thể bỏ chọn checkbox khách hàng đang chỉnh sửa. Vui lòng lưu hoặc hủy trước.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("Không thể bỏ chọn checkbox đang chỉnh sửa. Vui lòng lưu hoặc hủy trước.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             dvghoatdong.Rows[e.RowIndex].Cells["check"].Value = true;
                             return;
                         }
                     }
                 }
                 bool allChecked = dvghoatdong.Rows.Cast<DataGridViewRow>()
-    .All(r => Convert.ToBoolean(r.Cells["check"].Value));
+                .All(r => Convert.ToBoolean(r.Cells["check"].Value));
 
                 headerCheckBox.CheckedChanged -= HeaderCheckBox_CheckedChanged;
                 headerCheckBox.Checked = allChecked;
-                headerCheckBox.CheckedChanged += HeaderCheckBox_CheckedChanged; // Vẽ lại header
+                headerCheckBox.CheckedChanged += HeaderCheckBox_CheckedChanged;
             }
         }
 
@@ -277,15 +286,15 @@ namespace MayTinhQA.UserControls
                 isEditing = true;
                 currentEditingRowIndex = e.RowIndex;
 
-                int iddicvu = Convert.ToInt32(dvghoatdong.Rows[e.RowIndex].Cells["iddichvu"].Value);
-                FormAddActivities formAddHD = new FormAddActivities(this, iddicvu);
-                formAddHD.FormClosed += (s, args) =>
+                int iddichvu= Convert.ToInt32(dvghoatdong.Rows[e.RowIndex].Cells["iddichvu"].Value);
+                FormAddActivities formAddActivities = new FormAddActivities(this, iddichvu);
+                formAddActivities.FormClosed += (s, args) =>
                 {
                     isEditing = false;
                     currentEditingRowIndex = -1;
                     napdgvhoatdong();
                 };
-                formAddHD.ShowDialog();
+                formAddActivities.ShowDialog();
             }
         }
        
@@ -297,7 +306,7 @@ namespace MayTinhQA.UserControls
                 {
                     dvghoatdong.ClearSelection();
                     dvghoatdong.Rows[currentEditingRowIndex].Selected = true;
-                    MessageBox.Show("Bạn đang chỉnh sửa. Vui lòng lưu hoặc hủy trước khi chọn khách hàng khác!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Bạn đang chỉnh sửa. Vui lòng lưu hoặc hủy trước khi chọn hoạt động!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
             }
@@ -310,6 +319,246 @@ namespace MayTinhQA.UserControls
                 dvghoatdong.Invalidate();
             }
         }
-        
+        private HashSet<string> selectedCustomerNames = new HashSet<string>();
+        private void RestoreCheckedRows()
+        {
+            foreach (DataGridViewRow row in dvghoatdong.Rows)
+            {
+                string name = row.Cells["tenkhachhang"].Value?.ToString();
+                if (!string.IsNullOrEmpty(name) && selectedCustomerNames.Contains(name))
+                {
+                    row.Cells["check"].Value = true;
+                }
+            }
+        }
+        private void UC_Activities_Load(object sender, EventArgs e)
+        {
+            cbbFilter.Items.Clear();
+            cbbFilter.Items.AddRange(new string[]
+            {
+            "Chọn tiêu chí",
+            "Tên hoạt động",
+            "Ngày tạo",
+            "Tên khách hàng",
+            "Tên nhân viên",
+            "Email",
+            "Ghi chú"
+            });
+            cbbFilter.SelectedIndex = 0;
+            cbbloaidv.Items.Clear();
+            cbbloaidv.Items.AddRange(new string[]
+            {
+            "Loại dịch vụ",
+            "Báo giá đơn hàng tiềm năng",
+            "Chăm sóc khách hàng định kỳ",
+            "Đổi trả & bảo hành sửa chữa",
+            "Giải đáp khiếu nại",
+            });
+            cbbloaidv.SelectedIndex = 0;
+            RestoreCheckedRows();
+            napdgvhoatdong();
+        }
+
+        private void btntimkiem_Click_1(object sender, EventArgs e)
+        {
+            picboxrs.Visible = true;
+            string tuKhoa = txtSearch.Text.Trim().ToLower();
+            string tieuChi = cbbFilter.SelectedItem?.ToString();
+
+            if (string.IsNullOrEmpty(tuKhoa) || string.IsNullOrEmpty(tieuChi) || tieuChi == "Chọn tiêu chí")
+            {
+                MessageBox.Show("Vui lòng nhập từ khóa và chọn tiêu chí tìm kiếm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DataTable dt = dvghoatdong.DataSource as DataTable;
+            if (dt == null) return;
+
+            IEnumerable<DataRow> filteredRows = null;
+
+            switch (tieuChi)
+            {
+                case "Tên khách hàng":
+                    filteredRows = dt.AsEnumerable()
+                        .Where(row => (row.Field<string>("tenkhachhang") ?? "").ToLower().Contains(tuKhoa));
+                    break;
+
+                case "Tên hoạt động":
+                    filteredRows = dt.AsEnumerable()
+                        .Where(row => (row.Field<string>("tendichvu") ?? "").ToLower().Contains(tuKhoa));
+                    break;
+
+                case "Tên nhân viên":
+                    filteredRows = dt.AsEnumerable()
+                        .Where(row => (row.Field<string>("tennhanvien") ?? "").ToLower().Contains(tuKhoa));
+                    break;
+
+                case "Ngày tạo":
+                    filteredRows = dt.AsEnumerable()
+                        .Where(row => row.Field<DateTime>("ngaykhoitao").ToString("dd/MM/yyyy").Contains(tuKhoa));
+                    break;
+
+                case "Trạng thái":
+                    filteredRows = dt.AsEnumerable()
+                        .Where(row => (row.Field<string>("trangthai") ?? "").ToLower().Contains(tuKhoa));
+                    break;
+
+                case "Mô tả":
+                case "Ghi chú": // Cùng tra trong cột "mota"
+                    filteredRows = dt.AsEnumerable()
+                        .Where(row => (row.Field<string>("mota") ?? "").ToLower().Contains(tuKhoa));
+                    break;
+
+                default:
+                    MessageBox.Show("Tiêu chí tìm kiếm không hợp lệ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+            }
+
+            if (filteredRows != null && filteredRows.Any())
+                dvghoatdong.DataSource = filteredRows.CopyToDataTable();
+            else
+                dvghoatdong.DataSource = dt.Clone(); // Trả về bảng rỗng nếu không tìm thấy
+
+            RestoreCheckedRows();
+            isHeaderCheckBoxChecked = false;
+            dvghoatdong.Invalidate();
+        }
+
+        private void labelxoatimkiem_Click(object sender, EventArgs e)
+        {
+            labelxoatimkiem.Visible = false;
+            txtSearch.Clear();
+
+            cbbFilter.SelectedIndex = cbbFilter.SelectedIndex >= 0 ? cbbFilter.SelectedIndex : 0;
+            RestoreCheckedRows();
+            isHeaderCheckBoxChecked = false;
+            dvghoatdong.Invalidate();
+        }
+
+        private void labelloaitieuchi_Click(object sender, EventArgs e)
+        {
+            labelloaitieuchi.Visible = false;
+            cbbFilter.SelectedIndex = 0;
+            RestoreCheckedRows();
+            isHeaderCheckBoxChecked = false;
+            dvghoatdong.Invalidate();
+        }
+
+        private void picboxsort_Click(object sender, EventArgs e)
+        {
+            picboxrs.Visible = true;
+            string tieuChiSapXep = cbbFilter.SelectedItem?.ToString();
+            if (string.IsNullOrEmpty(tieuChiSapXep) || tieuChiSapXep == "Chọn tiêu chí") return;
+
+            DataTable dt = dvghoatdong.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count == 0) return;
+
+            IEnumerable<DataRow> sortedRows = dt.AsEnumerable();
+
+            switch (tieuChiSapXep)
+            {
+                case "Tên khách hàng":
+                    sortedRows = sortedRows.OrderBy(row => row.Field<string>("tenkhachhang")?.Split(' ').Last() ?? "");
+                    break;
+
+                case "Tên hoạt động":
+                    sortedRows = sortedRows.OrderBy(row => row.Field<string>("tendichvu") ?? "");
+                    break;
+
+                case "Tên nhân viên":
+                    sortedRows = sortedRows.OrderBy(row => row.Field<string>("tennhanvien")?.Split(' ').Last() ?? "");
+                    break;
+
+                case "Ngày tạo":
+                    sortedRows = sortedRows.OrderBy(row => row.Field<DateTime>("ngaykhoitao"));
+                    break;
+
+                case "Trạng thái":
+                    sortedRows = sortedRows.OrderBy(row => row.Field<string>("trangthai") ?? "");
+                    break;
+
+                case "Mô tả":
+                    sortedRows = sortedRows.OrderBy(row => row.Field<string>("mota") ?? "");
+                    break;
+
+                default:
+                    MessageBox.Show("Tiêu chí sắp xếp không hợp lệ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+            }
+
+            dvghoatdong.DataSource = sortedRows.CopyToDataTable();
+            isHeaderCheckBoxChecked = false;
+            dvghoatdong.Invalidate();
+        }
+
+        private void picboxrs_Click(object sender, EventArgs e)
+        {
+            picboxrs.Visible = false;
+            labelxoatimkiem.Visible = false;
+            txtSearch.Clear();
+            cbbFilter.SelectedIndex = 0;
+            cbbloaidv.SelectedIndex = 0; 
+            napdgvhoatdong();
+            RestoreCheckedRows();
+            isHeaderCheckBoxChecked = false;
+            dvghoatdong.Invalidate();
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            labelxoatimkiem.Visible = !string.IsNullOrWhiteSpace(txtSearch.Text);
+        }
+
+        private void cbbFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbbFilter.SelectedIndex == 0)
+            {
+                labelloaitieuchi.Visible = false;
+            }
+            else
+            {
+                labelloaitieuchi.Visible = true;
+            }
+        }
+
+        private void cbbloaidv_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbbloaidv.SelectedIndex == 0)
+            {
+                labelloaidichvu.Visible = false;
+                napdgvhoatdong();
+                RestoreCheckedRows();
+                isHeaderCheckBoxChecked = false;
+                dvghoatdong.Invalidate();
+                return;
+            }
+
+            labelloaidichvu.Visible = true;
+
+            string selectedLoaiDV = cbbloaidv.SelectedItem?.ToString();
+            string query =
+            @"SELECT dv.iddichvu, dv.tendichvu, dv.ngaykhoitao, kh.tenkhachhang, nv.tennhanvien, dv.mota,
+            tt.tentrangthai AS trangthai, ldv.tenloaidichvu
+            FROM dichvu dv
+            JOIN khachhang kh ON kh.idkhachhang = dv.idkhachhang
+            JOIN nhanvien nv ON nv.idnhanvien = dv.idnhanvien
+            JOIN trangthaidichvu tt ON tt.idtrangthai = dv.idtrangthai
+            JOIN loaidichvu ldv ON ldv.idloaidichvu = dv.idloaidichvu WHERE ldv.tenloaidichvu = N'" + selectedLoaiDV.Replace("'", "''") + "'";
+            DataTable dt = Database.Query(query);
+            dvghoatdong.DataSource = dt;
+            RestoreCheckedRows();
+            isHeaderCheckBoxChecked = false;
+            dvghoatdong.Invalidate();
+        }
+
+
+        private void labelloaidichvu_Click(object sender, EventArgs e)
+        {
+            labelloaidichvu.Visible = false;
+            cbbloaidv.SelectedIndex = 0;
+            RestoreCheckedRows();
+            isHeaderCheckBoxChecked = false;
+            dvghoatdong.Invalidate();
+        }
     }
 }
