@@ -48,16 +48,22 @@ namespace MayTinhQA.UserControls
         private int currentEditingRowIndex = -1;
         public void napdgvdonhang()
         {
-            DataTable dt = Database.Query(@"SELECT chitietdonhang.idchitietdh,
-khachhang.tenkhachhang,
-sanpham.tensanpham,sanpham.gia,chitietdonhang.soluong,
-FORMAT(sanpham.gia, 'N0', 'vi-VN') AS DonGia,
-FORMAT((chitietdonhang.soluong * sanpham.gia), 'N0', 'vi-VN') AS ThanhTien,
-donhang.trangthai
+            DataTable dt = Database.Query(@"SELECT 
+    chitietdonhang.idchitietdh,
+    khachhang.tenkhachhang,
+    sanpham.tensanpham,
+    sanpham.gia AS GiaGoc,
+    chitietdonhang.soluong,
+    khuyenmai.magiamgia,
+    khuyenmai.giatri AS PhanTramGiamGia,
+    FORMAT(sanpham.gia * (1 - khuyenmai.giatri / 100.0), 'N0', 'vi-VN') AS DonGia,
+    FORMAT((sanpham.gia * (1 - khuyenmai.giatri / 100.0)) * chitietdonhang.soluong, 'N0', 'vi-VN') AS ThanhTien,
+    donhang.trangthai
 FROM chitietdonhang
 JOIN donhang ON donhang.iddonhang = chitietdonhang.iddonhang
 JOIN khachhang ON khachhang.idkhachhang = chitietdonhang.idkhachhang
-JOIN sanpham ON sanpham.idsanpham = chitietdonhang.idsanpham");
+JOIN sanpham ON sanpham.idsanpham = chitietdonhang.idsanpham
+JOIN khuyenmai ON khuyenmai.idkhuyenmai = chitietdonhang.idkhuyenmai");
             dgvdonhang.DataSource = null;
             dgvdonhang.Columns.Clear();
             dgvdonhang.DataSource = dt;
@@ -88,8 +94,14 @@ JOIN sanpham ON sanpham.idsanpham = chitietdonhang.idsanpham");
                 dgvdonhang.Columns["idchitietdh"].Visible = false;
             if (dgvdonhang.Columns.Contains("gia"))
                 dgvdonhang.Columns["gia"].Visible = false;
+            if (dgvdonhang.Columns.Contains("giatri"))
+                dgvdonhang.Columns["giatri"].Visible = false;
+            if (dgvdonhang.Columns.Contains("PhanTramGiamGia"))
+                dgvdonhang.Columns["PhanTramGiamGia"].Visible = false;
             if (dgvdonhang.Columns.Contains("trangthai"))
                 dgvdonhang.Columns["trangthai"].HeaderText = "Trạng thái";
+            if (dgvdonhang.Columns.Contains("magiamgia"))
+                dgvdonhang.Columns["magiamgia"].HeaderText = "Khuyến mãi";
             if (dgvdonhang.Columns.Contains("tenkhachhang"))
                 dgvdonhang.Columns["tenkhachhang"].HeaderText = "Tên khách hàng";
             if (dgvdonhang.Columns.Contains("soluong"))
@@ -98,17 +110,23 @@ JOIN sanpham ON sanpham.idsanpham = chitietdonhang.idsanpham");
                 dgvdonhang.Columns["tensanpham"].HeaderText = "Tên sản phẩm";
             if (dgvdonhang.Columns.Contains("DonGia"))
                 dgvdonhang.Columns["DonGia"].HeaderText = "Đơn Giá";
+            if (dgvdonhang.Columns.Contains("GiaGoc"))
+                dgvdonhang.Columns["GiaGoc"].HeaderText = "Giá sản phẩm";
             if (dgvdonhang.Columns.Contains("ThanhTien"))
                 dgvdonhang.Columns["ThanhTien"].HeaderText = "Thành tiền";
             dgvdonhang.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
 
             if (dgvdonhang.Columns.Contains("trangthai"))
-                dgvdonhang.Columns["trangthai"].Width = 160;
+                dgvdonhang.Columns["trangthai"].Width = 150;
+            if (dgvdonhang.Columns.Contains("GiaGoc"))
+                dgvdonhang.Columns["GiaGoc"].Width = 150;
             if (dgvdonhang.Columns.Contains("soluong"))
                 dgvdonhang.Columns["soluong"].Width = 160;
             if (dgvdonhang.Columns.Contains("tenkhachhang"))
                 dgvdonhang.Columns["tenkhachhang"].Width = 162;
             if (dgvdonhang.Columns.Contains("tensanpham"))
+                dgvdonhang.Columns["magiamgia"].Width = 160;
+            if (dgvdonhang.Columns.Contains("magiamgia"))
                 dgvdonhang.Columns["tensanpham"].Width = 160;
             if (dgvdonhang.Columns.Contains("DonGia"))
                 dgvdonhang.Columns["DonGia"].Width = 160;
@@ -340,6 +358,7 @@ JOIN sanpham ON sanpham.idsanpham = chitietdonhang.idsanpham");
             "Tên khách hàng",
             "Sản phẩm",
             "Khuyến mãi",
+            "Trạng thái"
             });
             cbbFilter.SelectedIndex = 0;
             
@@ -370,31 +389,19 @@ JOIN sanpham ON sanpham.idsanpham = chitietdonhang.idsanpham");
                     filteredRows = dt.AsEnumerable()
                         .Where(row => (row.Field<string>("tenkhachhang") ?? "").ToLower().Contains(tuKhoa));
                     break;
-
-                case "Tên hoạt động":
+                case "Tên Sản phẩm ":
                     filteredRows = dt.AsEnumerable()
-                        .Where(row => (row.Field<string>("tendichvu") ?? "").ToLower().Contains(tuKhoa));
+                        .Where(row => (row.Field<string>("tensanpham") ?? "").ToLower().Contains(tuKhoa));
                     break;
 
-                case "Tên nhân viên":
+                case "Khuyến mãi":
                     filteredRows = dt.AsEnumerable()
-                        .Where(row => (row.Field<string>("tennhanvien") ?? "").ToLower().Contains(tuKhoa));
-                    break;
-
-                case "Ngày tạo":
-                    filteredRows = dt.AsEnumerable()
-                        .Where(row => row.Field<DateTime>("ngaykhoitao").ToString("dd/MM/yyyy").Contains(tuKhoa));
+                        .Where(row => (row.Field<string>("magiamgia") ?? "").ToLower().Contains(tuKhoa));
                     break;
 
                 case "Trạng thái":
                     filteredRows = dt.AsEnumerable()
                         .Where(row => (row.Field<string>("trangthai") ?? "").ToLower().Contains(tuKhoa));
-                    break;
-
-                case "Mô tả":
-                case "Ghi chú": // Cùng tra trong cột "mota"
-                    filteredRows = dt.AsEnumerable()
-                        .Where(row => (row.Field<string>("mota") ?? "").ToLower().Contains(tuKhoa));
                     break;
 
                 default:
@@ -449,24 +456,16 @@ JOIN sanpham ON sanpham.idsanpham = chitietdonhang.idsanpham");
                     sortedRows = sortedRows.OrderBy(row => row.Field<string>("tenkhachhang")?.Split(' ').Last() ?? "");
                     break;
 
-                case "Tên hoạt động":
-                    sortedRows = sortedRows.OrderBy(row => row.Field<string>("tendichvu") ?? "");
+                case "Tên sản phẩm":
+                    sortedRows = sortedRows.OrderBy(row => row.Field<string>("tensanpham")?.Split(' ').Last() ?? "");
                     break;
 
-                case "Tên nhân viên":
-                    sortedRows = sortedRows.OrderBy(row => row.Field<string>("tennhanvien")?.Split(' ').Last() ?? "");
-                    break;
-
-                case "Ngày tạo":
-                    sortedRows = sortedRows.OrderBy(row => row.Field<DateTime>("ngaykhoitao"));
+                case "Khuyến mãi":
+                    sortedRows = sortedRows.OrderBy(row => row.Field<string>("magiamgia")?.Split(' ').Last() ?? "");
                     break;
 
                 case "Trạng thái":
                     sortedRows = sortedRows.OrderBy(row => row.Field<string>("trangthai") ?? "");
-                    break;
-
-                case "Mô tả":
-                    sortedRows = sortedRows.OrderBy(row => row.Field<string>("mota") ?? "");
                     break;
 
                 default:
@@ -485,7 +484,6 @@ JOIN sanpham ON sanpham.idsanpham = chitietdonhang.idsanpham");
             labelxoatimkiem.Visible = false;
             txtSearch.Clear();
             cbbFilter.SelectedIndex = 0;
-            //cbbloaidv.SelectedIndex = 0;
             napdgvdonhang();
             RestoreCheckedRows();
             isHeaderCheckBoxChecked = false;
@@ -533,24 +531,29 @@ JOIN sanpham ON sanpham.idsanpham = chitietdonhang.idsanpham");
             DialogResult result = MessageBox.Show($"Bạn có chắc chắn muốn xóa {selectedIds.Count} dòng đã chọn không?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.No) return;
 
-            foreach (int iddv in selectedIds)
+            foreach (int iddh in selectedIds)
             {
                 try
                 {
-                    //Database.Excute($"DELETE FROM lienlac WHERE iddichvu = {iddv}");
-                    //Database.Excute($"DELETE FROM donhang WHERE iddichvu = {iddv}");
-                    //Database.Excute($"DELETE FROM phanhoi WHERE iddichvu = {iddv}");
-                    //Database.Excute($"DELETE FROM phieubaohanh WHERE iddichvu = {iddv}");
-                    //Database.Excute($"DELETE FROM phieudoitra WHERE iddichvu = {iddv}");
-                    //Database.Excute($"DELETE FROM dichvu WHERE iddichvu = {iddv}");
+                    DataTable dt = Database.Query($"SELECT iddonhang FROM chitietdonhang WHERE idchitietdh = {iddh}");
+                    if (dt.Rows.Count > 0)
+                    {
+                        int iddonhang = Convert.ToInt32(dt.Rows[0]["iddonhang"]);
+                        Database.Excute($"DELETE FROM chitietdonhang WHERE idchitietdh = {iddh}");
+                        DataTable check = Database.Query($"SELECT idchitietdh FROM chitietdonhang WHERE iddonhang = {iddonhang}");
+                        if (check.Rows.Count == 0)
+                        {
+                            Database.Excute($"DELETE FROM donhang WHERE iddonhang = {iddonhang}");
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Lỗi khi xóa hoạt động ID {iddv}: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Lỗi khi xóa đơn hàng ID {iddh}: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
-            MessageBox.Show("Đã xóa hoạt động thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Đã xóa đơn hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             napdgvdonhang();
         }
