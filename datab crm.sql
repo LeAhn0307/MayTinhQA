@@ -10,11 +10,12 @@ create Table khachhang (
   ngaysinh date,
   idthanhpho int foreign key references thanhpho(idthanhpho),
   idquanhuyen int foreign key references quanhuyen(idquanhuyen),
+  idloaikhachhang int foreign key references loaikhachhang(idloaikhachhang),
   ghichu nvarchar(max)
 )
 create Table loaikhachhang(
-idkhachhang int foreign key references khachhang(idkhachhang),
-loaikhachhang nvarchar(100),
+idloaikhachhang int primary key,
+loaikhachhang nvarchar(100)
 )
 create table thanhpho(
 idthanhpho int identity primary key,
@@ -48,7 +49,8 @@ create Table donhang (
   iddonhang int identity  primary key,
   trangthai nvarchar(100),
   ngaytao datetime default getdate(),
-  idkhachhang int foreign key references khachhang(idkhachhang)
+  idkhachhang int foreign key references khachhang(idkhachhang),
+  iddichvu int foreign key references dichvu(iddichvu)
 )
 create Table sanpham (
   idsanpham int identity  primary key,
@@ -71,7 +73,9 @@ create Table nhanvien (
 create table phanhoi (
   idphanhoi int identity  primary key,
   idkhachhang int foreign key references khachhang(idkhachhang),
-  thongtinphanhoi nvarchar(100)
+  thongtinphanhoi nvarchar(100),
+  iddichvu int foreign key references dichvu(iddichvu),
+  idlienlac INT FOREIGN KEY REFERENCES lienlac(idlienlac)
 )
 create Table danhmuc (
   idkhachhang int foreign key references khachhang(idkhachhang),
@@ -84,13 +88,15 @@ create Table phieubaohanh (
   ngaybatdau datetime,
   ngayketthuc datetime,
   idsanpham int foreign key references sanpham(idsanpham),
-  idnhanvien int foreign key references nhanvien(idnhanvien)
+  idnhanvien int foreign key references nhanvien(idnhanvien),
+  iddichvu int foreign key references dichvu(iddichvu)
 )
 create Table phieudoitra (
   idphieudoitra int identity  primary key,
   ngaytao datetime default getdate(),
   idsanpham int foreign key references sanpham(idsanpham),
-  idnhanvien int foreign key references nhanvien(idnhanvien)
+  idnhanvien int foreign key references nhanvien(idnhanvien),
+  iddichvu int foreign key references dichvu(iddichvu)
 )
 
 create Table dichvu (
@@ -134,7 +140,7 @@ create Table chitietdonhang (
   soluong int,
   idkhuyenmai int foreign key references khuyenmai(idkhuyenmai),
   dongia money,
-  idnhanvien int foreign key references nhanvien(idnhanvien),
+  idnhanvien int foreign key references nhanvien(idnhanvien)
 )
 
 create table thongke (
@@ -197,3 +203,26 @@ INSERT INTO users (tennguoidung, matkhau, email, idvaitro)
 VALUES ('nhanvien1', '123456', 'nhanvien1@gmail.com', 2);
 INSERT INTO nhanvien (tennhanvien, chucvu, idusers)
 VALUES (N'Nguyễn Văn An', 1, 2);
+
+alter table lienlac add iddichvu int foreign key references dichvu(iddichvu)
+
+CREATE TABLE lienlac (
+  idlienlac INT IDENTITY PRIMARY KEY,
+  idkhachhang INT FOREIGN KEY REFERENCES khachhang(idkhachhang), 
+  idnhanvien INT FOREIGN KEY REFERENCES nhanvien(idnhanvien),   
+  thoigian DATETIME DEFAULT GETDATE(),                          
+  hinhthuc NVARCHAR(50),    
+  tieude NVARCHAR(200),    
+  noidung NVARCHAR(MAX),    
+  ketqua NVARCHAR(200),     
+  ghichu NVARCHAR(MAX),
+  iddichvu int foreign key references dichvu(iddichvu)
+)
+INSERT INTO loaikhachhang (idloaikhachhang, loaikhachhang) VALUES
+(1, N'VIP'),
+(2, N'Trung thành'),
+(3, N'Tiềm năng'),
+(4, N'Ngủ quên'),
+(5, N'Mới');
+sELECT kh.idkhachhang, kh.tenkhachhang, kh.email,kh.dienthoai,kh.ngaysinh,kh.diachi,tp.tenthanhpho, qh.tenquanhuyen,  lkh.loaikhachhang,  kh.ghichu FROM khachhang kh LEFT JOIN thanhpho tp ON kh.idthanhpho = tp.idthanhpho LEFT JOIN quanhuyen qh ON kh.idquanhuyen = qh.idquanhuyen LEFT JOIN loaikhachhang lkh ON kh.idloaikhachhang = lkh.idloaikhachhang where idkhachhang = 1
+
