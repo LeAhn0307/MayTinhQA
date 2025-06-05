@@ -48,7 +48,7 @@ namespace MayTinhQA.UserControls
         private int currentEditingRowIndex = -1;
         public void napdgvKhachHang()
         {
-            DataTable dt = Database.Query("SELECT kh.idkhachhang, kh.tenkhachhang, kh.email, kh.dienthoai,kh.ngaysinh, CONCAT(kh.diachi, ', ', q.tenquanhuyen, ', ', tp.tenthanhpho) AS diachi,ghichu FROM khachhang kh JOIN thanhpho tp ON kh.idthanhpho = tp.idthanhpho JOIN quanhuyen q ON kh.idquanhuyen = q.idquanhuyen");
+            DataTable dt = Database.Query("SELECT kh.idkhachhang, kh.tenkhachhang, kh.email, kh.dienthoai,kh.ngaysinh, CONCAT(kh.diachi, ', ', q.tenquanhuyen, ', ', tp.tenthanhpho) AS diachi,lkh.loaikhachhang, kh.ghichu FROM khachhang kh LEFT JOIN quanhuyen q ON kh.idquanhuyen = q.idquanhuyen LEFT JOIN thanhpho tp ON kh.idthanhpho = tp.idthanhpho LEFT JOIN loaikhachhang lkh ON kh.idloaikhachhang = lkh.idloaikhachhang");
             dgvKhachhang.DataSource = null; 
             dgvKhachhang.Columns.Clear(); 
             dgvKhachhang.DataSource = dt;
@@ -80,6 +80,8 @@ namespace MayTinhQA.UserControls
             dgvKhachhang.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             if (dgvKhachhang.Columns.Contains("idkhachhang"))
                 dgvKhachhang.Columns["idkhachhang"].Visible = false;
+            if (dgvKhachhang.Columns.Contains("loaikhachhang"))
+                dgvKhachhang.Columns["loaikhachhang"].Visible = false;
             if (dgvKhachhang.Columns.Contains("tenkhachhang"))
             {
                 dgvKhachhang.Columns["tenkhachhang"].HeaderText = "Họ Tên";
@@ -302,23 +304,23 @@ namespace MayTinhQA.UserControls
             {
                 try
                 {
-                    Database.Excute($"DELETE FROM thongke WHERE idphanhoi IN (SELECT idphanhoi FROM phanhoi WHERE idkhachhang = {idkh})");
-                    Database.Excute($"DELETE FROM thongke WHERE iddonhang IN (SELECT iddonhang FROM donhang WHERE idkhachhang = {idkh})");
-                    Database.Excute($"DELETE FROM chitietdonhang WHERE idkhachhang = {idkh}");
-                    Database.Excute($"DELETE FROM dichvu WHERE idkhachhang = {idkh}");
-                    Database.Excute($"DELETE FROM danhmuc WHERE idkhachhang = {idkh}");
-                    Database.Excute($"DELETE FROM phanhoi WHERE idkhachhang = {idkh}");
-                    Database.Excute($"DELETE FROM donhang WHERE idkhachhang = {idkh}");
-                    Database.Excute($"DELETE FROM khuyenmai WHERE idkhachhang = {idkh}");
-                    Database.Excute($"DELETE FROM loaikhachhang WHERE idkhachhang = {idkh}");
-                    Database.Excute($"DELETE FROM khachhang WHERE idkhachhang = {idkh}");
+                    Database.Excute($@"
+                    DELETE FROM thongke WHERE idphanhoi IN (SELECT idphanhoi FROM phanhoi WHERE idkhachhang = {idkh})
+                    OR iddonhang IN (SELECT iddonhang FROM donhang WHERE idkhachhang = {idkh})
+                    OR idkhachhang = {idkh};
+                    DELETE FROM danhmuc WHERE idkhachhang = {idkh};
+                    DELETE FROM lienlac WHERE idkhachhang = {idkh};
+                    DELETE FROM phanhoi WHERE idkhachhang = {idkh};
+                    DELETE FROM chitietdonhang WHERE idkhachhang = {idkh};
+                    DELETE FROM donhang WHERE idkhachhang = {idkh};
+                    DELETE FROM dichvu WHERE idkhachhang = {idkh};
+                    DELETE FROM khachhang WHERE idkhachhang = {idkh};");
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Lỗi khi xóa khách hàng ID {idkh}: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
             MessageBox.Show("Đã xóa khách hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             napdgvKhachHang();

@@ -108,6 +108,7 @@ namespace MayTinhQA
                     string diachi = txtdiachikhach.Text.Trim();
                     string ngaysinh = dtpkhach.Value.ToString("yyyy-MM-dd");
                     string ghichu = txtghichu.Text.Trim();
+                    string tenTrangThai = "Mới";
 
                     if (comboBoxtp.SelectedValue == null || comboBoxq.SelectedValue == null || (int)comboBoxtp.SelectedValue == -1 || (int)comboBoxq.SelectedValue == -1)
                     {
@@ -125,13 +126,21 @@ namespace MayTinhQA
                     }
 
                     string insertKH = $@"
-                        INSERT INTO khachhang ( tenkhachhang, email, dienthoai, diachi, ngaysinh, idthanhpho, idquanhuyen, ghichu)
-                        VALUES ( N'{hoten}', '{email}', '{sdt}', N'{diachi}', '{ngaysinh}', '{idThanhPho}', '{idQuan}', N'{ghichu}')";
+INSERT INTO khachhang 
+(tenkhachhang, email, dienthoai, diachi, ngaysinh, idthanhpho, idquanhuyen, idloaikhachhang, ghichu)
+VALUES 
+(N'{hoten}', '{email}', '{sdt}', N'{diachi}', '{ngaysinh}', {idThanhPho}, {idQuan}, 
+ (SELECT idloaikhachhang FROM loaikhachhang WHERE loaikhachhang = N'Mới'), 
+ N'{ghichu}')";
 
+                    // Thực thi câu lệnh insert
                     Database.Excute(insertKH);
 
                     MessageBox.Show("Thêm khách hàng thành công!", "Thông báo", MessageBoxButtons.OK);
+
+                    // Load lại danh sách khách hàng trong UC_Customer
                     UC_Customer.napdgvKhachHang();
+
                     this.Close();
                     isAdding = false;
                 }

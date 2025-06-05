@@ -560,5 +560,51 @@ namespace MayTinhQA.UserControls
             isHeaderCheckBoxChecked = false;
             dvghoatdong.Invalidate();
         }
+
+        private void btnxoa_Click(object sender, EventArgs e)
+        {
+            List<int> selectedIds = new List<int>();
+
+            foreach (DataGridViewRow row in dvghoatdong.Rows)
+            {
+                if (row.Cells["check"].Value != null && Convert.ToBoolean(row.Cells["check"].Value))
+                {
+                    if (int.TryParse(row.Cells["iddichvu"].Value?.ToString(), out int id))
+                    {
+                        selectedIds.Add(id);
+                    }
+                }
+            }
+
+            if (selectedIds.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn ít nhất một dòng để xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult result = MessageBox.Show($"Bạn có chắc chắn muốn xóa {selectedIds.Count} dòng đã chọn không?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.No) return;
+
+            foreach (int iddv in selectedIds)
+            {
+                try
+                {
+                    Database.Excute($"DELETE FROM lienlac WHERE iddichvu = {iddv}");
+                    Database.Excute($"DELETE FROM donhang WHERE iddichvu = {iddv}");
+                    Database.Excute($"DELETE FROM phanhoi WHERE iddichvu = {iddv}");
+                    Database.Excute($"DELETE FROM phieubaohanh WHERE iddichvu = {iddv}");
+                    Database.Excute($"DELETE FROM phieudoitra WHERE iddichvu = {iddv}");
+                    Database.Excute($"DELETE FROM dichvu WHERE iddichvu = {iddv}");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi khi xóa hoạt động ID {iddv}: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            MessageBox.Show("Đã xóa hoạt động thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            napdgvhoatdong();
+        }
     }
 }
