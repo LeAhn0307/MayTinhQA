@@ -102,6 +102,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddDonHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddDonHang.Designer.cs">
+      <DependentUpon>AddDonHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="Connection.cs" />
     <Compile Include="Const.cs" />
     <Compile Include="Current user.cs" />
@@ -237,6 +243,12 @@
     <Compile Include="UserControls\UC_CustomerNeeds.Designer.cs">
       <DependentUpon>UC_CustomerNeeds.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UC_DonHang.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UC_DonHang.Designer.cs">
+      <DependentUpon>UC_DonHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UC_Home.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -255,6 +267,9 @@
     <Compile Include="UserControls\UC_Reports.Designer.cs">
       <DependentUpon>UC_Reports.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddDonHang.resx">
+      <DependentUpon>AddDonHang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form Choose customer.resx">
       <DependentUpon>Form Choose customer.cs</DependentUpon>
     </EmbeddedResource>
@@ -327,6 +342,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UC_CustomerNeeds.resx">
       <DependentUpon>UC_CustomerNeeds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UC_DonHang.resx">
+      <DependentUpon>UC_DonHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UC_Home.resx">
       <DependentUpon>UC_Home.cs</DependentUpon>

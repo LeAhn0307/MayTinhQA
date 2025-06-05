@@ -195,7 +195,7 @@
             this.guna2GradientPanel1.Location = new System.Drawing.Point(0, 0);
             this.guna2GradientPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2GradientPanel1.Name = "guna2GradientPanel1";
-            this.guna2GradientPanel1.Size = new System.Drawing.Size(675, 51);
+            this.guna2GradientPanel1.Size = new System.Drawing.Size(684, 51);
             this.guna2GradientPanel1.TabIndex = 15;
             // 
             // labelName
@@ -386,8 +386,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(675, 562);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(684, 562);
             this.Controls.Add(this.txtghichu);
             this.Controls.Add(this.btnluu);
             this.Controls.Add(this.comboBoxq);

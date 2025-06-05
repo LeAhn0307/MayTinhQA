@@ -90,7 +90,7 @@ namespace MayTinhQA
 
         private void btnNeeds_Click(object sender, EventArgs e)
         {
-            UC_CustomerNeeds uC = new UC_CustomerNeeds();
+            UC_DonHang uC = new UC_DonHang();
             addUserControl(uC);
 
         }
