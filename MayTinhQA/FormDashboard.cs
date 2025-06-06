@@ -16,6 +16,20 @@ namespace MayTinhQA
         public FormDashboard()
         {
             InitializeComponent();
+            ToolStripMenuItem profile = new ToolStripMenuItem("Hồ sơ");
+            ToolStripMenuItem changePassword = new ToolStripMenuItem("Đổi mật khẩu");
+            ToolStripMenuItem deleteAccount = new ToolStripMenuItem("Xoá tài khoản");
+            ToolStripMenuItem logout = new ToolStripMenuItem("Đăng xuất");
+
+            contextMenuStrip1.Items.Add(profile);
+            contextMenuStrip1.Items.Add(changePassword);
+            contextMenuStrip1.Items.Add(deleteAccount);
+            contextMenuStrip1.Items.Add(logout);
+
+            profile.Click += toolStripMenuItem1_Click;
+            changePassword.Click += toolStripMenuItem2_Click;
+            deleteAccount.Click += toolStripMenuItem3_Click;
+            logout.Click += toolStripMenuItem4_Click;
             UC_Home uC = new UC_Home();
             addUserControl(uC);
             //UC_Image uC = new UC_Image();
@@ -39,23 +53,14 @@ namespace MayTinhQA
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn có muốn đăng xuất?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
-            {
-                this.Hide();
-                FormLogin dangnhap = new FormLogin();
-                dangnhap.ShowDialog();
-            }
+            
         }
 
         private void btnDashBoard_Click(object sender, EventArgs e)
         {
             UC_Home uC = new UC_Home();
             addUserControl(uC);
-            //UC_Image uC = new UC_Image();
-            //addUserControl(uC);
-
         }
-
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
@@ -90,6 +95,34 @@ namespace MayTinhQA
             UC_CustomerNeeds uC = new UC_CustomerNeeds();
             addUserControl(uC);
 
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmhoso hoso = new frmhoso();
+            hoso.ShowDialog();
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            frmdoimatkhau doimk = new frmdoimatkhau();
+            doimk.ShowDialog();
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            frmxoataikhoan xoatk = new frmxoataikhoan();
+            xoatk.ShowDialog();
+        }
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Bạn có muốn đăng xuất?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                this.Hide();
+                FormLogin dangnhap = new FormLogin();
+                dangnhap.ShowDialog();
+            }
         }
     }
 }

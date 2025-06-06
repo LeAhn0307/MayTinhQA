@@ -8,10 +8,11 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>MayTinhQA</RootNamespace>
     <AssemblyName>MayTinhQA</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -171,11 +172,29 @@
     <Compile Include="FormTrangchu.Designer.cs">
       <DependentUpon>FormTrangchu.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmdoimatkhau.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmdoimatkhau.Designer.cs">
+      <DependentUpon>frmdoimatkhau.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmxoataikhoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmxoataikhoan.Designer.cs">
+      <DependentUpon>frmxoataikhoan.cs</DependentUpon>
+    </Compile>
     <Compile Include="HoaDon.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HoaDon.Designer.cs">
       <DependentUpon>HoaDon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HoSo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HoSo.Designer.cs">
+      <DependentUpon>HoSo.cs</DependentUpon>
     </Compile>
     <Compile Include="KhuyenMai.cs">
       <SubType>Form</SubType>
@@ -199,6 +218,7 @@
     <Compile Include="SanPham.Designer.cs">
       <DependentUpon>SanPham.cs</DependentUpon>
     </Compile>
+    <Compile Include="Session.cs" />
     <Compile Include="TaiKhoan.cs" />
     <Compile Include="UserControls\UC_Activities.cs">
       <SubType>UserControl</SubType>
@@ -281,8 +301,17 @@
     <EmbeddedResource Include="FormTrangchu.resx">
       <DependentUpon>FormTrangchu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmdoimatkhau.resx">
+      <DependentUpon>frmdoimatkhau.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmxoataikhoan.resx">
+      <DependentUpon>frmxoataikhoan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HoaDon.resx">
       <DependentUpon>HoaDon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HoSo.resx">
+      <DependentUpon>HoSo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KhuyenMai.resx">
       <DependentUpon>KhuyenMai.cs</DependentUpon>
