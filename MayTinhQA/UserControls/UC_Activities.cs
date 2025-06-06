@@ -260,7 +260,6 @@ namespace MayTinhQA.UserControls
                     }
                     else
                     {
-                        // Nếu đang chỉnh sửa dòng đó, không cho bỏ tích checkbox
                         if (!isChecked)
                         {
                             MessageBox.Show("Không thể bỏ chọn checkbox đang chỉnh sửa. Vui lòng lưu hoặc hủy trước.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -427,7 +426,6 @@ namespace MayTinhQA.UserControls
         {
             labelxoatimkiem.Visible = false;
             txtSearch.Clear();
-
             cbbFilter.SelectedIndex = cbbFilter.SelectedIndex >= 0 ? cbbFilter.SelectedIndex : 0;
             RestoreCheckedRows();
             isHeaderCheckBoxChecked = false;
@@ -606,6 +604,9 @@ namespace MayTinhQA.UserControls
             napdgvhoatdong();
         }
 
-        
+        private void dgvhoatdong_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

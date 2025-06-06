@@ -79,7 +79,7 @@ JOIN sanpham ON sanpham.idsanpham = chitietdonhang.idsanpham";
                 VALUES ((SELECT TOP 1 iddonhang FROM donhang WHERE idkhachhang = (SELECT idkhachhang FROM khachhang WHERE tenkhachhang = N'" + txthovatenkhach.Text + "') ORDER BY iddonhang DESC),(SELECT idkhachhang FROM khachhang WHERE tenkhachhang = N'" + txthovatenkhach.Text + "'), (SELECT idsanpham FROM sanpham WHERE tensanpham = N'" + txtsanpham.Text + "')," + txtsoluong.Text + ")";
                 myCommand = new SqlCommand(sql2, myConnection);
                 myCommand.ExecuteNonQuery();
-
+                    
             
                 Display();
                 MessageBox.Show("Thêm đơn hàng thành công!", "Thông báo");

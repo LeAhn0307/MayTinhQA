@@ -48,22 +48,25 @@ namespace MayTinhQA.UserControls
         private int currentEditingRowIndex = -1;
         public void napdgvdonhang()
         {
-            DataTable dt = Database.Query(@"SELECT 
-    chitietdonhang.idchitietdh,
-    khachhang.tenkhachhang,
-    sanpham.tensanpham,
-    sanpham.gia AS GiaGoc,
-    chitietdonhang.soluong,
-    khuyenmai.magiamgia,
-    khuyenmai.giatri AS PhanTramGiamGia,
-    FORMAT(sanpham.gia * (1 - khuyenmai.giatri / 100.0), 'N0', 'vi-VN') AS DonGia,
-    FORMAT((sanpham.gia * (1 - khuyenmai.giatri / 100.0)) * chitietdonhang.soluong, 'N0', 'vi-VN') AS ThanhTien,
-    donhang.trangthai
-FROM chitietdonhang
-JOIN donhang ON donhang.iddonhang = chitietdonhang.iddonhang
-JOIN khachhang ON khachhang.idkhachhang = chitietdonhang.idkhachhang
-JOIN sanpham ON sanpham.idsanpham = chitietdonhang.idsanpham
-JOIN khuyenmai ON khuyenmai.idkhuyenmai = chitietdonhang.idkhuyenmai");
+            DataTable dt = Database.Query(@"
+SELECT 
+    ctdh.idchitietdh,
+    dh.madonhang AS [MaDonHang],
+    kh.tenkhachhang AS [KhachHang],
+    STRING_AGG(
+        sp.tensanpham + ' (x' + CAST(ctdh.soluong AS NVARCHAR) + ')', 
+        ', '
+    ) WITHIN GROUP (ORDER BY sp.tensanpham) AS [DanhSachSanPham],
+    FORMAT(SUM(sp.gia * ctdh.soluong), 'N0', 'vi-VN') AS [TongTien],
+    tt.tentrangthai AS [TrangThai]
+FROM chitietdonhang ctdh
+JOIN donhang dh ON dh.iddonhang = ctdh.iddonhang
+JOIN khachhang kh ON kh.idkhachhang = dh.idkhachhang
+JOIN sanpham sp ON sp.idsanpham = ctdh.idsanpham
+LEFT JOIN trangthaidonhang tt ON dh.idtrangthai = tt.idtrangthai
+GROUP BY dh.madonhang, kh.tenkhachhang, tt.tentrangthai, ctdh.idchitietdh
+ORDER BY dh.madonhang DESC;
+");
             dgvdonhang.DataSource = null;
             dgvdonhang.Columns.Clear();
             dgvdonhang.DataSource = dt;
@@ -80,6 +83,7 @@ JOIN khuyenmai ON khuyenmai.idkhuyenmai = chitietdonhang.idkhuyenmai");
                 chk.ReadOnly = false;
                 dgvdonhang.Columns.Insert(0, chk);
             }
+
             if (!dgvdonhang.Columns.Contains("stt"))
             {
                 DataGridViewTextBoxColumn sttColumn = new DataGridViewTextBoxColumn();
@@ -92,46 +96,28 @@ JOIN khuyenmai ON khuyenmai.idkhuyenmai = chitietdonhang.idkhuyenmai");
             }
             if (dgvdonhang.Columns.Contains("idchitietdh"))
                 dgvdonhang.Columns["idchitietdh"].Visible = false;
-            if (dgvdonhang.Columns.Contains("gia"))
-                dgvdonhang.Columns["gia"].Visible = false;
-            if (dgvdonhang.Columns.Contains("giatri"))
-                dgvdonhang.Columns["giatri"].Visible = false;
-            if (dgvdonhang.Columns.Contains("PhanTramGiamGia"))
-                dgvdonhang.Columns["PhanTramGiamGia"].Visible = false;
-            if (dgvdonhang.Columns.Contains("trangthai"))
-                dgvdonhang.Columns["trangthai"].HeaderText = "Trạng thái";
-            if (dgvdonhang.Columns.Contains("magiamgia"))
-                dgvdonhang.Columns["magiamgia"].HeaderText = "Khuyến mãi";
-            if (dgvdonhang.Columns.Contains("tenkhachhang"))
-                dgvdonhang.Columns["tenkhachhang"].HeaderText = "Tên khách hàng";
-            if (dgvdonhang.Columns.Contains("soluong"))
-                dgvdonhang.Columns["soluong"].HeaderText = "Số lượng";
-            if (dgvdonhang.Columns.Contains("tensanpham"))
-                dgvdonhang.Columns["tensanpham"].HeaderText = "Tên sản phẩm";
-            if (dgvdonhang.Columns.Contains("DonGia"))
-                dgvdonhang.Columns["DonGia"].HeaderText = "Đơn Giá";
-            if (dgvdonhang.Columns.Contains("GiaGoc"))
-                dgvdonhang.Columns["GiaGoc"].HeaderText = "Giá sản phẩm";
-            if (dgvdonhang.Columns.Contains("ThanhTien"))
-                dgvdonhang.Columns["ThanhTien"].HeaderText = "Thành tiền";
+            if (dgvdonhang.Columns.Contains("MaDonHang"))
+                dgvdonhang.Columns["MaDonHang"].HeaderText = "Mã đơn hàng";
+            if (dgvdonhang.Columns.Contains("KhachHang"))
+                dgvdonhang.Columns["KhachHang"].HeaderText = "Khách hàng";
+            if (dgvdonhang.Columns.Contains("DanhSachSanPham"))
+                dgvdonhang.Columns["DanhSachSanPham"].HeaderText = "Danh sách sản phẩm";
+            if (dgvdonhang.Columns.Contains("TongTien"))
+                dgvdonhang.Columns["TongTien"].HeaderText = "Tổng tiền";
+            if (dgvdonhang.Columns.Contains("TrangThai"))
+                dgvdonhang.Columns["TrangThai"].HeaderText = "Trạng thái";
             dgvdonhang.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
 
-            if (dgvdonhang.Columns.Contains("trangthai"))
-                dgvdonhang.Columns["trangthai"].Width = 150;
-            if (dgvdonhang.Columns.Contains("GiaGoc"))
-                dgvdonhang.Columns["GiaGoc"].Width = 150;
-            if (dgvdonhang.Columns.Contains("soluong"))
-                dgvdonhang.Columns["soluong"].Width = 160;
-            if (dgvdonhang.Columns.Contains("tenkhachhang"))
-                dgvdonhang.Columns["tenkhachhang"].Width = 162;
-            if (dgvdonhang.Columns.Contains("tensanpham"))
-                dgvdonhang.Columns["magiamgia"].Width = 160;
-            if (dgvdonhang.Columns.Contains("magiamgia"))
-                dgvdonhang.Columns["tensanpham"].Width = 160;
-            if (dgvdonhang.Columns.Contains("DonGia"))
-                dgvdonhang.Columns["DonGia"].Width = 160;
-            if (dgvdonhang.Columns.Contains("ThanhTien"))
-                dgvdonhang.Columns["ThanhTien"].Width = 160;
+            if (dgvdonhang.Columns.Contains("MaDonHang"))
+                dgvdonhang.Columns["MaDonHang"].Width = 130;
+            if (dgvdonhang.Columns.Contains("KhachHang"))
+                dgvdonhang.Columns["KhachHang"].Width = 160;
+            if (dgvdonhang.Columns.Contains("DanhSachSanPham"))
+                dgvdonhang.Columns["DanhSachSanPham"].Width = 300;
+            if (dgvdonhang.Columns.Contains("TongTien"))
+                dgvdonhang.Columns["TongTien"].Width = 130;
+            if (dgvdonhang.Columns.Contains("TrangThai"))
+                dgvdonhang.Columns["TrangThai"].Width = 140;
             dgvdonhang.ClearSelection();
             dgvdonhang.CurrentCell = null;
 
@@ -304,14 +290,14 @@ JOIN khuyenmai ON khuyenmai.idkhuyenmai = chitietdonhang.idkhuyenmai");
                 currentEditingRowIndex = e.RowIndex;
 
                 int idchitietdh = Convert.ToInt32(dgvdonhang.Rows[e.RowIndex].Cells["idchitietdh"].Value);
-                AddDonHang addDonHang = new AddDonHang(this, idchitietdh);
-                addDonHang.FormClosed += (s, args) =>
+                AddDonHang f = new AddDonHang(this, idchitietdh);
+                f.FormClosed += (s, args) =>
                 {
                     isEditing = false;
                     currentEditingRowIndex = -1;
                     napdgvdonhang();
                 };
-                addDonHang.ShowDialog();
+                f.ShowDialog();
             }
         }
 
@@ -341,7 +327,7 @@ JOIN khuyenmai ON khuyenmai.idkhuyenmai = chitietdonhang.idkhuyenmai");
         {
             foreach (DataGridViewRow row in dgvdonhang.Rows)
             {
-                string name = row.Cells["tenkhachhang"].Value?.ToString();
+                string name = row.Cells["madonhang"].Value?.ToString();
                 if (!string.IsNullOrEmpty(name) && selectedCustomerNames.Contains(name))
                 {
                     row.Cells["check"].Value = true;
@@ -355,9 +341,9 @@ JOIN khuyenmai ON khuyenmai.idkhuyenmai = chitietdonhang.idkhuyenmai");
             cbbFilter.Items.AddRange(new string[]
             {
             "Chọn tiêu chí",
-            "Tên khách hàng",
+            "Mã đơn hàng",
+            "Khách hàng",
             "Sản phẩm",
-            "Khuyến mãi",
             "Trạng thái"
             });
             cbbFilter.SelectedIndex = 0;
@@ -385,23 +371,21 @@ JOIN khuyenmai ON khuyenmai.idkhuyenmai = chitietdonhang.idkhuyenmai");
 
             switch (tieuChi)
             {
-                case "Tên khách hàng":
+                case "Khách hàng":
                     filteredRows = dt.AsEnumerable()
-                        .Where(row => (row.Field<string>("tenkhachhang") ?? "").ToLower().Contains(tuKhoa));
+                        .Where(row => (row.Field<string>("KhachHang") ?? "").ToLower().Contains(tuKhoa));
                     break;
-                case "Tên Sản phẩm ":
+                case "Mã đơn hàng":
                     filteredRows = dt.AsEnumerable()
-                        .Where(row => (row.Field<string>("tensanpham") ?? "").ToLower().Contains(tuKhoa));
+                        .Where(row => (row.Field<string>("MaDonHang") ?? "").ToLower().Contains(tuKhoa));
                     break;
-
-                case "Khuyến mãi":
+                case "Sản phẩm":
                     filteredRows = dt.AsEnumerable()
-                        .Where(row => (row.Field<string>("magiamgia") ?? "").ToLower().Contains(tuKhoa));
+                        .Where(row => (row.Field<string>("DanhSachSanPham") ?? "").ToLower().Contains(tuKhoa));
                     break;
-
                 case "Trạng thái":
                     filteredRows = dt.AsEnumerable()
-                        .Where(row => (row.Field<string>("trangthai") ?? "").ToLower().Contains(tuKhoa));
+                        .Where(row => (row.Field<string>("TrangThai") ?? "").ToLower().Contains(tuKhoa));
                     break;
 
                 default:
@@ -452,20 +436,20 @@ JOIN khuyenmai ON khuyenmai.idkhuyenmai = chitietdonhang.idkhuyenmai");
 
             switch (tieuChiSapXep)
             {
-                case "Tên khách hàng":
-                    sortedRows = sortedRows.OrderBy(row => row.Field<string>("tenkhachhang")?.Split(' ').Last() ?? "");
+                case "Khách hàng":
+                    sortedRows = sortedRows.OrderBy(row => row.Field<string>("KhachHang")?.Split(' ').Last() ?? "");
                     break;
 
-                case "Tên sản phẩm":
-                    sortedRows = sortedRows.OrderBy(row => row.Field<string>("tensanpham")?.Split(' ').Last() ?? "");
+                case "Sản phẩm":
+                    sortedRows = sortedRows.OrderBy(row => row.Field<string>("DanhSachSanPham")?.Split(' ').Last() ?? "");
                     break;
 
-                case "Khuyến mãi":
-                    sortedRows = sortedRows.OrderBy(row => row.Field<string>("magiamgia")?.Split(' ').Last() ?? "");
+                case "Mã đơn hàng":
+                    sortedRows = sortedRows.OrderBy(row => row.Field<string>("MaDonHang")?.Split(' ').Last() ?? "");
                     break;
 
                 case "Trạng thái":
-                    sortedRows = sortedRows.OrderBy(row => row.Field<string>("trangthai") ?? "");
+                    sortedRows = sortedRows.OrderBy(row => row.Field<string>("Trangthai") ?? "");
                     break;
 
                 default:

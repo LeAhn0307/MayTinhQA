@@ -308,6 +308,7 @@
             this.dgvhoatdong.ThemeStyle.RowsStyle.Height = 24;
             this.dgvhoatdong.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvhoatdong.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvhoatdong.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvhoatdong_CellContentClick);
             this.dgvhoatdong.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvhoatdong_RowEnter);
             this.dgvhoatdong.Paint += new System.Windows.Forms.PaintEventHandler(this.dgvhoatdong_Paint);
             this.dgvhoatdong.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvhoatdong_MouseClick);
@@ -326,7 +327,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.guna2HtmlLabel1);
             this.Controls.Add(this.dgvhoatdong);
             this.Controls.Add(this.picboxrs);

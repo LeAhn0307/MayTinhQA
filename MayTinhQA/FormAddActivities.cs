@@ -51,29 +51,30 @@ namespace MayTinhQA
             txttennhanvien.Clear();
             txtiddichvu.Clear();
             dtpngaytao.Value = DateTime.Now;
-            LoadLoaiDichVu();
-
+            DataTable dtLoaiDV = LoadLoaiDichVu();
+            BindLoaiDichVuToComboBox(dtLoaiDV);
         }
         private void LoadThongTinDichVu()
         {
             try
             {
                 string query = $@"
-        SELECT dv.iddichvu, dv.tendichvu, dv.ngaykhoitao, dv.mota, 
-               kh.idkhachhang, kh.tenkhachhang, 
-               nv.idnhanvien, nv.tennhanvien,
-               dv.idloaidichvu
-        FROM dichvu dv
-        JOIN khachhang kh ON kh.idkhachhang = dv.idkhachhang
-        JOIN nhanvien nv ON nv.idnhanvien = dv.idnhanvien
-        LEFT JOIN loaidichvu ld ON dv.idloaidichvu = ld.idloaidichvu
-        WHERE dv.iddichvu = {_idDichvu}";
+            SELECT dv.iddichvu, dv.tendichvu, dv.ngaykhoitao, dv.mota, 
+                   kh.idkhachhang, kh.tenkhachhang, 
+                   nv.idnhanvien, nv.tennhanvien,
+                   dv.idloaidichvu
+            FROM dichvu dv
+            JOIN khachhang kh ON kh.idkhachhang = dv.idkhachhang
+            JOIN nhanvien nv ON nv.idnhanvien = dv.idnhanvien
+            WHERE dv.iddichvu = {_idDichvu}";
 
                 DataTable dt = Database.Query(query);
 
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     DataRow row = dt.Rows[0];
+
+           
                     txtiddichvu.Text = row["iddichvu"].ToString();
                     txttendichvu.Text = row["tendichvu"].ToString();
                     txttennhanvien.Text = row["tennhanvien"].ToString();
@@ -87,15 +88,16 @@ namespace MayTinhQA
                     listboxkhachhang.Items.Add(row["tenkhachhang"].ToString());
 
                     int idLoaiDV = Convert.ToInt32(row["idloaidichvu"]);
-
                     DataTable dtLoaiDV = LoadLoaiDichVu();
                     BindLoaiDichVuToComboBox(dtLoaiDV);
 
-                    comboBoxldv.SelectedValue = idLoaiDV;
-
-                    if (!dtLoaiDV.AsEnumerable().Any(r => Convert.ToInt32(r["idloaidichvu"]) == idLoaiDV))
+                    if (dtLoaiDV.AsEnumerable().Any(r => Convert.ToInt32(r["idloaidichvu"]) == idLoaiDV))
                     {
-                        comboBoxldv.SelectedIndex = 0; // hoặc -1 nếu không muốn chọn
+                        comboBoxldv.SelectedValue = idLoaiDV;
+                    }
+                    else
+                    {
+                        comboBoxldv.SelectedIndex = 0;
                         MessageBox.Show("Loại dịch vụ không tồn tại trong danh sách.", "Thông báo");
                     }
 
@@ -249,7 +251,7 @@ namespace MayTinhQA
 
             var selectedNames = listboxkhachhang.Items.Cast<string>().ToList();
             f.PreselectedCustomerNames = selectedNames;
-            // Truyền sự kiện nhận khách hàng về
+ 
             f.OnCustomerNamesSelected = (newSelectedNames) =>
             {
                 listboxkhachhang.Items.Clear();
@@ -293,7 +295,6 @@ namespace MayTinhQA
         {
             if (Current_user.CurrentUser != null)
             {
-
                 if (isAdding)
                 {
                     txttennhanvien.Text = Database.LayTenNhanVienTheoUser(Current_user.CurrentUser.Idusers);
@@ -315,13 +316,16 @@ namespace MayTinhQA
                     linkLabelnhanvien.LinkBehavior = LinkBehavior.NeverUnderline;
                     linkLabelnhanvien.Cursor = Cursors.Default;
                     linkLabelnhanvien.Links.Clear();
-                } 
-                
+                }  
             }
             else
             {
                 MessageBox.Show("Lỗi: Không có thông tin người dùng hiện tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
+            
+           
+            
         }
         private DataTable LoadLoaiDichVu()
         {
@@ -347,6 +351,11 @@ namespace MayTinhQA
             {
                 return ;
             }
+        }
+
+        private void comboBoxldv_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

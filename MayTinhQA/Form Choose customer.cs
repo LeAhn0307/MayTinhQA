@@ -23,45 +23,43 @@ namespace MayTinhQA
             InitializeComponent();
             LoadData();
             LoadFilterOptions();
-            dgvKhachhang.Paint += DgvKhachhang_Paint;
-            dgvKhachhang.MouseClick += DgvKhachhang_MouseClick;
-            dgvKhachhang.DataBindingComplete += DgvKhachhang_DataBindingComplete;
-            dgvKhachhang.CellValueChanged += DgvKhachhang_CellValueChanged;
-            dgvKhachhang.CurrentCellDirtyStateChanged += (s, e) =>
+            dgvkhachhang.Paint += DgvKhachhang_Paint;
+            dgvkhachhang.MouseClick += DgvKhachhang_MouseClick;
+            dgvkhachhang.DataBindingComplete += DgvKhachhang_DataBindingComplete;
+            dgvkhachhang.CellValueChanged += DgvKhachhang_CellValueChanged;
+            dgvkhachhang.CurrentCellDirtyStateChanged += (s, e) =>
             {
-                if (dgvKhachhang.IsCurrentCellDirty)
-                    dgvKhachhang.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                if (dgvkhachhang.IsCurrentCellDirty)
+                    dgvkhachhang.CommitEdit(DataGridViewDataErrorContexts.Commit);
             };
-            dgvKhachhang.AllowUserToAddRows = false;
-            dgvKhachhang.RowHeadersVisible = false;
-            dgvKhachhang.ColumnWidthChanged += (s, e) => dgvKhachhang.Invalidate();
-            dgvKhachhang.Scroll += (s, e) => dgvKhachhang.Invalidate();
-            dgvKhachhang.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+            dgvkhachhang.AllowUserToAddRows = false;
+            dgvkhachhang.RowHeadersVisible = false;
+            dgvkhachhang.ColumnWidthChanged += (s, e) => dgvkhachhang.Invalidate();
+            dgvkhachhang.Scroll += (s, e) => dgvkhachhang.Invalidate();
+            dgvkhachhang.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
         }
         private void LoadData()
         {
             DataTable dt = Database.Query("SELECT kh.idkhachhang, kh.tenkhachhang, kh.email, kh.dienthoai, kh.ngaysinh, CONCAT(kh.diachi, ', ', q.tenquanhuyen, ', ', tp.tenthanhpho) AS diachi, ghichu FROM khachhang kh JOIN thanhpho tp ON kh.idthanhpho = tp.idthanhpho JOIN quanhuyen q ON kh.idquanhuyen = q.idquanhuyen");
 
-            dgvKhachhang.DataSource = null;
-            dgvKhachhang.Columns.Clear();
-            dgvKhachhang.DataSource = dt;
+            dgvkhachhang.DataSource = null;
+            dgvkhachhang.Columns.Clear();
+            dgvkhachhang.DataSource = dt;
 
-            if (!dgvKhachhang.Columns.Contains("check"))
+            if (!dgvkhachhang.Columns.Contains("check"))
             {
                 DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
                 chk.HeaderText = "";
-                chk.Name = "check"; 
+                chk.Name = "check";
                 chk.Width = 30;
                 chk.Resizable = DataGridViewTriState.False;
                 chk.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 chk.ReadOnly = false;
-
-                // Thêm cột checkbox vào dgv
-                dgvKhachhang.Columns.Insert(0, chk);
+                dgvkhachhang.Columns.Insert(0, chk);
             }
 
-            
-            if (!dgvKhachhang.Columns.Contains("stt"))
+
+            if (!dgvkhachhang.Columns.Contains("stt"))
             {
                 DataGridViewTextBoxColumn sttColumn = new DataGridViewTextBoxColumn();
                 sttColumn.HeaderText = "STT";
@@ -69,83 +67,70 @@ namespace MayTinhQA
                 sttColumn.Width = 50;
                 sttColumn.ReadOnly = true;
                 sttColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dgvKhachhang.Columns.Insert(1, sttColumn);
+                dgvkhachhang.Columns.Insert(1, sttColumn);
             }
-            
-            
-            dgvKhachhang.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
-            if (dgvKhachhang.Columns.Contains("idkhachhang"))
-                dgvKhachhang.Columns["idkhachhang"].Visible = false;
-            if (dgvKhachhang.Columns.Contains("tenkhachhang"))
+
+
+            dgvkhachhang.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            if (dgvkhachhang.Columns.Contains("idkhachhang"))
+                dgvkhachhang.Columns["idkhachhang"].Visible = false;
+            if (dgvkhachhang.Columns.Contains("tenkhachhang"))
             {
-                dgvKhachhang.Columns["tenkhachhang"].HeaderText = "Họ Tên";
-                dgvKhachhang.Columns["tenkhachhang"].Width = 128;
+                dgvkhachhang.Columns["tenkhachhang"].HeaderText = "Họ Tên";
+                dgvkhachhang.Columns["tenkhachhang"].Width = 128;
             }
 
-            if (dgvKhachhang.Columns.Contains("ngaysinh"))
+            if (dgvkhachhang.Columns.Contains("ngaysinh"))
             {
-                dgvKhachhang.Columns["ngaysinh"].HeaderText = "Ngày Sinh";
-                dgvKhachhang.Columns["ngaysinh"].Width = 128;
+                dgvkhachhang.Columns["ngaysinh"].HeaderText = "Ngày Sinh";
+                dgvkhachhang.Columns["ngaysinh"].Width = 128;
             }
 
-            if (dgvKhachhang.Columns.Contains("email"))
+            if (dgvkhachhang.Columns.Contains("email"))
             {
-                dgvKhachhang.Columns["email"].HeaderText = "Email";
-                dgvKhachhang.Columns["email"].Width = 128;
+                dgvkhachhang.Columns["email"].HeaderText = "Email";
+                dgvkhachhang.Columns["email"].Width = 128;
             }
 
-            if (dgvKhachhang.Columns.Contains("dienthoai"))
+            if (dgvkhachhang.Columns.Contains("dienthoai"))
             {
-                dgvKhachhang.Columns["dienthoai"].HeaderText = "Điện Thoại";
-                dgvKhachhang.Columns["dienthoai"].Width = 128;
+                dgvkhachhang.Columns["dienthoai"].HeaderText = "Điện Thoại";
+                dgvkhachhang.Columns["dienthoai"].Width = 128;
             }
 
-            if (dgvKhachhang.Columns.Contains("diachi"))
+            if (dgvkhachhang.Columns.Contains("diachi"))
             {
-                dgvKhachhang.Columns["diachi"].HeaderText = "Địa Chỉ";
-                dgvKhachhang.Columns["diachi"].Width = 128;
+                dgvkhachhang.Columns["diachi"].HeaderText = "Địa Chỉ";
+                dgvkhachhang.Columns["diachi"].Width = 128;
             }
 
-            if (dgvKhachhang.Columns.Contains("ghichu"))
+            if (dgvkhachhang.Columns.Contains("ghichu"))
             {
-                dgvKhachhang.Columns["ghichu"].HeaderText = "Ghi chú";
-                dgvKhachhang.Columns["ghichu"].Width = 320;
+                dgvkhachhang.Columns["ghichu"].HeaderText = "Ghi chú";
+                dgvkhachhang.Columns["ghichu"].Width = 320;
             }
 
-            dgvKhachhang.ClearSelection();
-            dgvKhachhang.CurrentCell = null;
+            dgvkhachhang.ClearSelection();
+            dgvkhachhang.CurrentCell = null;
 
-            dgvKhachhang.ReadOnly = false;
+            dgvkhachhang.ReadOnly = false;
 
             DgvKhachhang_DataBindingComplete(null, null);
-            if (dgvKhachhang.Columns.Contains("stt"))
+            if (dgvkhachhang.Columns.Contains("stt"))
             {
-                dgvKhachhang.Columns["stt"].HeaderText = "STT";
-                dgvKhachhang.Columns["stt"].Width = 50;
-                dgvKhachhang.Columns["stt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dgvKhachhang.Columns["stt"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dgvKhachhang.Columns["stt"].DefaultCellStyle.Font = dgvKhachhang.DefaultCellStyle.Font;
+                dgvkhachhang.Columns["stt"].HeaderText = "STT";
+                dgvkhachhang.Columns["stt"].Width = 50;
+                dgvkhachhang.Columns["stt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgvkhachhang.Columns["stt"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgvkhachhang.Columns["stt"].DefaultCellStyle.Font = dgvkhachhang.DefaultCellStyle.Font;
             }
-
-        }
-        private void btnxoatimkiem_Click(object sender, EventArgs e)
-        {
-            labelxoatimkiem.Visible = false;
-            txtSearch.Clear();
-
-            cbbFilter.SelectedIndex = cbbFilter.SelectedIndex >= 0 ? cbbFilter.SelectedIndex : 0;
-
-            LoadData(); // Nạp lại toàn bộ dữ liệu
-
-            isHeaderCheckBoxChecked = false; // Reset trạng thái checkbox đầu
-            dgvKhachhang.Invalidate();
         }
         public Action<List<DataRow>> OnCustomersSelected;
         public Action<List<string>> OnCustomerNamesSelected;
         public List<string> PreselectedCustomerNames { get; set; } = new List<string>();
         private void btnchon_Click(object sender, EventArgs e)
         {
-            if (!(dgvKhachhang.DataSource is DataTable dt) || dt.Rows.Count == 0)
+            if (!(dgvkhachhang.DataSource is DataTable dt) || dt.Rows.Count == 0)
             {
                 MessageBox.Show("Không có dữ liệu khách hàng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -153,7 +138,7 @@ namespace MayTinhQA
 
             List<string> selectedNames = new List<string>();
 
-            foreach (DataGridViewRow row in dgvKhachhang.Rows)
+            foreach (DataGridViewRow row in dgvkhachhang.Rows)
             {
                 if (row.Cells["check"].Value != null && Convert.ToBoolean(row.Cells["check"].Value))
                 {
@@ -169,10 +154,9 @@ namespace MayTinhQA
                 return;
             }
 
-            // Gửi danh sách tên về form gọi nó
+
             OnCustomerNamesSelected?.Invoke(selectedNames);
 
-            // Đóng form
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -188,10 +172,10 @@ namespace MayTinhQA
         private void DgvKhachhang_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             Font defaultFont = new Font("Segoe UI", 10); // Cỡ chữ chuẩn
-            dgvKhachhang.DefaultCellStyle.Font = defaultFont;
-            dgvKhachhang.DefaultCellStyle.ForeColor = Color.Black; // Màu chữ
+            dgvkhachhang.DefaultCellStyle.Font = defaultFont;
+            dgvkhachhang.DefaultCellStyle.ForeColor = Color.Black; // Màu chữ
 
-            foreach (DataGridViewRow row in dgvKhachhang.Rows)
+            foreach (DataGridViewRow row in dgvkhachhang.Rows)
             {
                 row.DefaultCellStyle.Font = defaultFont;
 
@@ -201,26 +185,26 @@ namespace MayTinhQA
                 }
             }
 
-            if (!dgvKhachhang.Columns.Contains("stt")) return;
+            if (!dgvkhachhang.Columns.Contains("stt")) return;
 
-            for (int i = 0; i < dgvKhachhang.Rows.Count; i++)
+            for (int i = 0; i < dgvkhachhang.Rows.Count; i++)
             {
-                if (!dgvKhachhang.Rows[i].IsNewRow)
+                if (!dgvkhachhang.Rows[i].IsNewRow)
                 {
-                    dgvKhachhang.Rows[i].Cells["stt"].Value = (i + 1).ToString();
+                    dgvkhachhang.Rows[i].Cells["stt"].Value = (i + 1).ToString();
                 }
             }
         }
         private void DgvKhachhang_Paint(object sender, PaintEventArgs e)
         {
-            if (dgvKhachhang.Columns.Count == 0) return;
+            if (dgvkhachhang.Columns.Count == 0) return;
 
-            Rectangle rect = dgvKhachhang.GetCellDisplayRectangle(0, -1, true);
+            Rectangle rect = dgvkhachhang.GetCellDisplayRectangle(0, -1, true);
 
             int checkboxSize = 14; // Kích thước checkbox (tuỳ chỉnh nếu cần)
 
             // ✅ Trừ đi phần cuộn ngang để checkbox di chuyển cùng header
-            int xCheckbox = rect.X + (rect.Width - checkboxSize) / 2 - dgvKhachhang.HorizontalScrollingOffset;
+            int xCheckbox = rect.X + (rect.Width - checkboxSize) / 2 - dgvkhachhang.HorizontalScrollingOffset;
             int yCheckbox = rect.Y + (rect.Height - checkboxSize) / 2;
 
             headerCheckBoxArea = new Rectangle(xCheckbox, yCheckbox, checkboxSize, checkboxSize);
@@ -240,22 +224,22 @@ namespace MayTinhQA
                 isHeaderCheckBoxChecked = !isHeaderCheckBoxChecked;
                 isHeaderCheckBoxClicked = true;
 
-                foreach (DataGridViewRow row in dgvKhachhang.Rows)
+                foreach (DataGridViewRow row in dgvkhachhang.Rows)
                 {
                     row.Cells["check"].Value = isHeaderCheckBoxChecked;
                 }
 
-                dgvKhachhang.EndEdit();
+                dgvkhachhang.EndEdit();
                 isHeaderCheckBoxClicked = false;
-                dgvKhachhang.Invalidate(); // Vẽ lại header
+                dgvkhachhang.Invalidate(); 
             }
         }
         private HashSet<string> selectedCustomerNames = new HashSet<string>();
         private void DgvKhachhang_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == dgvKhachhang.Columns["check"].Index && !isHeaderCheckBoxClicked)
+            if (e.ColumnIndex == dgvkhachhang.Columns["check"].Index && !isHeaderCheckBoxClicked)
             {
-                var row = dgvKhachhang.Rows[e.RowIndex];
+                var row = dgvkhachhang.Rows[e.RowIndex];
                 string name = row.Cells["tenkhachhang"].Value?.ToString();
 
                 if (Convert.ToBoolean(row.Cells["check"].Value))
@@ -267,13 +251,11 @@ namespace MayTinhQA
                     selectedCustomerNames.Remove(name);
                 }
 
-                // Cập nhật trạng thái header checkbox
-                bool allChecked = dgvKhachhang.Rows.Cast<DataGridViewRow>()
+                bool allChecked = dgvkhachhang.Rows.Cast<DataGridViewRow>()
                                     .All(r => Convert.ToBoolean(r.Cells["check"].Value));
                 isHeaderCheckBoxChecked = allChecked;
-                dgvKhachhang.Invalidate();
+                dgvkhachhang.Invalidate();
             }
-
         }
 
         private void btnhuy_Click(object sender, EventArgs e)
@@ -295,10 +277,11 @@ namespace MayTinhQA
 
         private void picboxsort_Click(object sender, EventArgs e)
         {
+            picboxrs.Visible = true;
             string tieuChiSapXep = cbbFilter.SelectedItem?.ToString();
             if (string.IsNullOrEmpty(tieuChiSapXep)) return;
 
-            DataTable dt = dgvKhachhang.DataSource as DataTable;
+            DataTable dt = dgvkhachhang.DataSource as DataTable;
             if (dt == null || dt.Rows.Count == 0) return;
 
             IEnumerable<DataRow> sortedRows = dt.AsEnumerable();
@@ -327,9 +310,9 @@ namespace MayTinhQA
                     return;
             }
 
-            dgvKhachhang.DataSource = sortedRows.CopyToDataTable();
+            dgvkhachhang.DataSource = sortedRows.CopyToDataTable();
             isHeaderCheckBoxChecked = false;
-            dgvKhachhang.Invalidate();
+            dgvkhachhang.Invalidate();
         }
 
         private void FormChooseCus_Load(object sender, EventArgs e)
@@ -345,7 +328,7 @@ namespace MayTinhQA
         }
         private void RestoreCheckedRows()
         {
-            foreach (DataGridViewRow row in dgvKhachhang.Rows)
+            foreach (DataGridViewRow row in dgvkhachhang.Rows)
             {
                 string name = row.Cells["tenkhachhang"].Value?.ToString();
                 if (!string.IsNullOrEmpty(name) && selectedCustomerNames.Contains(name))
@@ -359,7 +342,7 @@ namespace MayTinhQA
             if (PreselectedCustomerNames == null || PreselectedCustomerNames.Count == 0)
                 return;
 
-            foreach (DataGridViewRow row in dgvKhachhang.Rows)
+            foreach (DataGridViewRow row in dgvkhachhang.Rows)
             {
                 string name = row.Cells["tenkhachhang"].Value?.ToString();
                 if (!string.IsNullOrEmpty(name) && PreselectedCustomerNames.Contains(name))
@@ -372,25 +355,21 @@ namespace MayTinhQA
         {
             labelloaitieuchi.Visible = false;
             cbbFilter.SelectedIndex = 0;
-            isHeaderCheckBoxChecked = false; // Reset trạng thái checkbox đầu
-            LoadData(); // Nạp lại toàn bộ dữ liệu
-            RestoreCheckedRows(); // <<< Thêm dòng này
-            dgvKhachhang.Invalidate();
+            isHeaderCheckBoxChecked = false; 
+            LoadData(); 
+            RestoreCheckedRows(); 
+            dgvkhachhang.Invalidate();
         }
 
         private void labelxoatimkiem_Click(object sender, EventArgs e)
         {
             labelxoatimkiem.Visible = false;
             txtSearch.Clear();
-
             cbbFilter.SelectedIndex = cbbFilter.SelectedIndex >= 0 ? cbbFilter.SelectedIndex : 0;
-
-            // Nạp lại toàn bộ dữ liệu
-
-            isHeaderCheckBoxChecked = false; // Reset trạng thái checkbox đầu
-            LoadData(); // Nạp lại toàn bộ dữ liệu
-            RestoreCheckedRows(); // <<< Thêm dòng này
-            dgvKhachhang.Invalidate();
+            isHeaderCheckBoxChecked = false; 
+            LoadData(); 
+            RestoreCheckedRows(); 
+            dgvkhachhang.Invalidate();
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -400,11 +379,12 @@ namespace MayTinhQA
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
+            picboxrs.Visible = true;
             string tuKhoa = txtSearch.Text.Trim().ToLower();
             string tieuChi = cbbFilter.SelectedItem?.ToString();
             if (string.IsNullOrEmpty(tuKhoa) || string.IsNullOrEmpty(tieuChi)) return;
 
-            DataTable dt = dgvKhachhang.DataSource as DataTable;
+            DataTable dt = dgvkhachhang.DataSource as DataTable;
             if (dt == null) return;
 
             IEnumerable<DataRow> filteredRows = null;
@@ -448,12 +428,24 @@ namespace MayTinhQA
             }
             
             if (filteredRows != null && filteredRows.Any())
-                dgvKhachhang.DataSource = filteredRows.CopyToDataTable();
+                dgvkhachhang.DataSource = filteredRows.CopyToDataTable();
             else
-                dgvKhachhang.DataSource = dt.Clone();
+                dgvkhachhang.DataSource = dt.Clone();
             RestoreCheckedRows();
             isHeaderCheckBoxChecked = false;
-            dgvKhachhang.Invalidate();
+            dgvkhachhang.Invalidate();
+        }
+
+        private void picboxrs_Click(object sender, EventArgs e)
+        {
+            picboxrs.Visible = false;
+            labelxoatimkiem.Visible = false;
+            txtSearch.Clear();
+            cbbFilter.SelectedIndex = cbbFilter.SelectedIndex >= 0 ? cbbFilter.SelectedIndex : 0;
+            LoadData(); 
+            RestoreCheckedRows();
+            isHeaderCheckBoxChecked = false;
+            dgvkhachhang.Invalidate();
         }
     }
 }

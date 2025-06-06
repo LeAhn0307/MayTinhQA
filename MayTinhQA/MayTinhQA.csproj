@@ -130,6 +130,12 @@
     <Compile Include="FormAddCutomer.Designer.cs">
       <DependentUpon>FormAddCutomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormChonSp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormChonSp.Designer.cs">
+      <DependentUpon>FormChonSp.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -278,6 +284,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAddCutomer.resx">
       <DependentUpon>FormAddCutomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormChonSp.resx">
+      <DependentUpon>FormChonSp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDashboard.resx">
       <DependentUpon>FormDashboard.cs</DependentUpon>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,9 +19,8 @@ namespace MayTinhQA
         private bool isAdding = false;
         private bool isEditing = false;
         private int currentEditingRowIndex = -1;
-        
-        private int _idNhanVien;
-        private int _idKhachHang;
+        private string _idKhachHang;
+        private string _idSanpham;
         public AddDonHang(UC_DonHang parent, int idDonhang)
         {
             InitializeComponent();
@@ -42,11 +42,9 @@ namespace MayTinhQA
             btnluu.Visible = true;
             btnhuy.Visible = true;
 
-            txttendichvu.Clear();
-            txtghichu.Clear();
-            txttennhanvien.Clear();
-            txtiddichvu.Clear();
-            dtpngaytao.Value = DateTime.Now;
+            txtmadh.Clear();
+            txtidchitietdh.Clear();
+
 
         }
         private void LoadThongDonhang()
@@ -54,34 +52,26 @@ namespace MayTinhQA
             try
             {
                 string query = $@"
-        SELECT dv.iddichvu, dv.tendichvu, dv.ngaykhoitao, dv.mota, 
-               kh.idkhachhang, kh.tenkhachhang, 
-               nv.idnhanvien, nv.tennhanvien,
-               dv.idloaidichvu
-        FROM dichvu dv
-        JOIN khachhang kh ON kh.idkhachhang = dv.idkhachhang
-        JOIN nhanvien nv ON nv.idnhanvien = dv.idnhanvien
-        LEFT JOIN loaidichvu ld ON dv.idloaidichvu = ld.idloaidichvu
-        WHERE dv.iddichvu = {_idDonhang}";
+select ctdh.idchitietdh, dh.madonhang,sp.tensanpham,kh.tenkhachhang,ctdh.soluong,sp.gia,tt.tentrangthai from chitietdonhang ctdh
+join donhang dh on ctdh.iddonhang=dh.iddonhang
+join sanpham sp on ctdh.idsanpham=sp.idsanpham
+join khachhang kh on dh.idkhachhang=kh.idkhachhang
+join trangthaidonhang tt on dh.idtrangthai= tt.idtrangthai
+where ctdh.idchitietdh= {_idDonhang}";
 
                 DataTable dt = Database.Query(query);
 
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     DataRow row = dt.Rows[0];
-                    txtiddichvu.Text = row["iddichvu"].ToString();
-                    txttendichvu.Text = row["tendichvu"].ToString();
-                    txttennhanvien.Text = row["tennhanvien"].ToString();
-                    txtghichu.Text = row["mota"].ToString();
-                    dtpngaytao.Value = Convert.ToDateTime(row["ngaykhoitao"]);
+                    txtidchitietdh.Text = row["idchitietdh"].ToString();
+                    txtmadh.Text = row["madonhang"].ToString();
 
-                    _idNhanVien = Convert.ToInt32(row["idnhanvien"]);
-                    _idKhachHang = Convert.ToInt32(row["idkhachhang"]);
-
+                    _idKhachHang = row["tenkhachhang"].ToString();
                     listboxkhachhang.Items.Clear();
                     listboxkhachhang.Items.Add(row["tenkhachhang"].ToString());
 
-                    txtiddichvu.Visible = false;
+                    txtidchitietdh.Visible = false;
                     btnluu.Visible = true;
                     btnhuy.Visible = true;
                 }
@@ -93,7 +83,7 @@ namespace MayTinhQA
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi tải thông tin dịch vụ: " + ex.Message);
+                MessageBox.Show("Lỗi khi tải thông tin đơn hàng: " + ex.Message);
             }
         }
 
@@ -104,35 +94,12 @@ namespace MayTinhQA
                 try
                 {
                     string SafeSql(string input) => input.Replace("'", "''");
-                    string id = txtiddichvu.Text.Trim();
-                    string tendv = SafeSql(txttendichvu.Text.Trim());
-                    string ghichu = SafeSql(txtghichu.Text.Trim());
-                    string tennv = txttennhanvien.Text.Trim();
-                    string ngaytao = dtpngaytao.Value.ToString("yyyy-MM-dd");
-                    int idLoaiDV = (int)comboBoxldv.SelectedValue;
-                    string tenTrangThai = "Mới tạo";
-
-
-                    if (comboBoxldv.SelectedValue == null)
-                    {
-                        MessageBox.Show("Vui lòng chọn loại dịch vụ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
-                    if (string.IsNullOrWhiteSpace(tendv))
-                    {
-                        MessageBox.Show("Vui lòng nhập đầy đủ tên hoạt động.", "Thông báo", MessageBoxButtons.OK);
-                        return;
-                    }
-
-                    string queryNhanVien = $"SELECT idnhanvien FROM nhanvien WHERE tennhanvien = N'{tennv}'";
-                    DataTable dtNV = Database.Query(queryNhanVien);
-                    if (dtNV.Rows.Count == 0)
-                    {
-                        MessageBox.Show("Không tìm thấy nhân viên!");
-                        return;
-                    }
-                    int idNhanVien = Convert.ToInt32(dtNV.Rows[0][0]);
+                    string madh = SafeSql(txtmadh.Text.Trim());
+                    string today = DateTime.Now.ToString("yyyy-MM-dd");
+                    string queryCount = $"SELECT COUNT(*) + 1 FROM donhang WHERE CAST(ngaytao AS DATE) = '{today}'";
+                    DataTable dtCount = Database.Query(queryCount);
+                    int sttTrongNgay = Convert.ToInt32(dtCount.Rows[0][0]);
+                    string maDon = $"DH{DateTime.Now:yyyyMMdd}{sttTrongNgay.ToString("D3")}";
 
                     var selectedCustomers = listboxkhachhang.Items.Cast<string>().ToList();
 
@@ -153,68 +120,124 @@ namespace MayTinhQA
                         }
                         int idKhachHang = Convert.ToInt32(dtKH.Rows[0][0]);
 
-                        string queryTrangThai = $@"
-                    SELECT idtrangthai 
-                    FROM trangthaidichvu 
-                    WHERE tentrangthai = N'{tenTrangThai}' AND idloaidichvu = {idLoaiDV}
-                    ";
 
-                        DataTable dt = Database.Query(queryTrangThai);
-                        if (dt.Rows.Count == 0)
+                        string queryDV = $@"
+                    SELECT TOP 1 iddichvu FROM dichvu 
+                    WHERE idkhachhang = {idKhachHang} AND idloaidichvu = 1 
+                    ORDER BY ngaykhoitao DESC";
+                        DataTable dtDV = Database.Query(queryDV);
+                        if (dtDV.Rows.Count == 0)
                         {
-                            MessageBox.Show("Không tìm thấy trạng thái phù hợp!");
+                            MessageBox.Show("Khách hàng chưa có dịch vụ báo giá!");
                             return;
                         }
+                        int idDichVu = Convert.ToInt32(dtDV.Rows[0][0]);
 
-                        int idTrangThai = Convert.ToInt32(dt.Rows[0][0]);
 
-                        string insertDV = $@"
-                    INSERT INTO dichvu (
-                    tendichvu, idnhanvien, ngaykhoitao, mota, idkhachhang, idloaidichvu, idtrangthai)
-                    VALUES (N'{tendv}', {idNhanVien}, '{ngaytao}', N'{ghichu}', {idKhachHang}, {idLoaiDV}, {idTrangThai})";
+                        string insertDonHang = $@"
+                        INSERT INTO donhang (madonhang, idkhachhang, idtrangthai, iddichvu, ngaytao)
+                        VALUES (N'{maDon}', {idKhachHang},(SELECT idtrangthai FROM trangthaidonhang WHERE tentrangthai = N'Khởi tạo'), {idDichVu}, '{today}')";
 
-                        Database.Excute(insertDV);
+                        Database.Excute(insertDonHang);
+
+
+                        string queryDonhang = $"SELECT TOP 1 iddonhang FROM donhang WHERE madonhang = N'{maDon}' ORDER BY iddonhang DESC";
+                        DataTable dtDH = Database.Query(queryDonhang);
+                        if (dtDH.Rows.Count == 0)
+                        {
+                            MessageBox.Show("Không tìm thấy đơn hàng vừa tạo!");
+                            return;
+                        }
+                        int idDonHang = Convert.ToInt32(dtDH.Rows[0][0]);
+
+                        foreach (string item in listBoxsanpham.Items)
+                        {
+
+                            var parts = item.Split(new[] { " - SL: " }, StringSplitOptions.None);
+
+                            if (parts.Length < 2)
+                            {
+                                MessageBox.Show($"Định dạng sản phẩm không đúng: {item}");
+                                continue;
+                            }
+
+                            string tenSanPham = parts[0].Trim();
+                            if (!int.TryParse(parts[1].Trim(), out int soLuong))
+                            {
+                                MessageBox.Show($"Số lượng không hợp lệ trong: {item}");
+                                continue;
+                            }
+
+                            string querySP = $"SELECT idsanpham, gia FROM sanpham WHERE tensanpham = N'{SafeSql(tenSanPham)}'";
+                            DataTable dtSP = Database.Query(querySP);
+                            if (dtSP.Rows.Count == 0)
+                            {
+                                MessageBox.Show($"Không tìm thấy sản phẩm: {tenSanPham}!");
+                                continue;
+                            }
+
+                            int idSanPham = Convert.ToInt32(dtSP.Rows[0]["idsanpham"]);
+                            decimal donGia = Convert.ToDecimal(dtSP.Rows[0]["gia"]);
+
+                            string insertChiTiet = $@"
+INSERT INTO chitietdonhang (iddonhang, idsanpham, soluong, dongia)
+VALUES ({idDonHang}, {idSanPham}, {soLuong}, {donGia.ToString(CultureInfo.InvariantCulture)})";
+                            Database.Excute(insertChiTiet);
+                        }
+
+                        MessageBox.Show("Tạo đơn hàng thành công!", "Thông báo", MessageBoxButtons.OK);
+                        UC_DonHang.napdgvdonhang();
+                        isAdding = false;
+                        this.Close();
                     }
-                    MessageBox.Show("Thêm dịch vụ thành công!", "Thông báo", MessageBoxButtons.OK);
-                    UC_DonHang.napdgvdonhang();
-                    this.Close();
-                    isAdding = false;
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi thêm dịch vụ: " + ex.Message);
+                    MessageBox.Show("Lỗi thêm đơn hàng: " + ex.Message);
                 }
             }
             else if (isEditing)
             {
                 try
                 {
-                    string id = txtiddichvu.Text.Trim();
-                    string tendv = txttendichvu.Text.Trim();
-                    string ngaytao = dtpngaytao.Value.ToString("yyyy-MM-dd");
-                    string ghichu = txtghichu.Text.Trim();
-                    int idLoaiDV = (int)comboBoxldv.SelectedValue;
-
-                    if (idLoaiDV == 0)
+                    string SafeSql(string input) => input.Replace("'", "''");
+                    string id = txtidchitietdh.Text.Trim();
+                    int idChiTietDH = Convert.ToInt32(txtidchitietdh.Text.Trim());
+                    foreach (string item in listBoxsanpham.Items)
                     {
-                        MessageBox.Show("Vui lòng chọn loại dịch vụ.", "Thông báo", MessageBoxButtons.OK);
-                        return;
+                        var parts = item.Split(new[] { " - SL: " }, StringSplitOptions.None);
+
+                        if (parts.Length < 2)
+                        {
+                            MessageBox.Show($"Định dạng sản phẩm không đúng: {item}");
+                            continue;
+                        }
+
+                        string tenSanPham = parts[0].Trim();
+                        if (!int.TryParse(parts[1].Trim(), out int soLuong))
+                        {
+                            MessageBox.Show($"Số lượng không hợp lệ trong: {item}");
+                            continue;
+                        }
+                        string querySP = $"SELECT idsanpham, gia FROM sanpham WHERE tensanpham = N'{SafeSql(tenSanPham)}'";
+                        DataTable dtSP = Database.Query(querySP);
+                        if (dtSP.Rows.Count == 0)
+                        {
+                            MessageBox.Show($"Không tìm thấy sản phẩm: {tenSanPham}!");
+                            continue;
+                        }
+                        int idSanPham = Convert.ToInt32(dtSP.Rows[0]["idsanpham"]);
+                        decimal donGia = Convert.ToDecimal(dtSP.Rows[0]["gia"]);
+                        string updateChiTiet = $@"
+                        UPDATE chitietdonhang
+                         SET 
+                         soluong = {soLuong},
+                          dongia = {donGia.ToString(CultureInfo.InvariantCulture)}
+                         WHERE idchitietdh = {idChiTietDH}";
+                        Database.Excute(updateChiTiet);
                     }
 
-                    string updateQuery = $@"
-        UPDATE dichvu
-        SET 
-            tendichvu = N'{tendv}',
-            idnhanvien = N'{_idNhanVien}',
-            idkhachhang = N'{_idKhachHang}',
-            idloaidichvu = {idLoaiDV},
-            ngaykhoitao = '{ngaytao}',
-            mota = N'{ghichu}'
-        WHERE iddichvu = {id}";
-
-                    Database.Excute(updateQuery);
-                    MessageBox.Show("Cập nhật dịch vụ thành công!", "Thông báo", MessageBoxButtons.OK);
-
+                    MessageBox.Show("Cập nhật chi tiết đơn hàng thành công!", "Thông báo", MessageBoxButtons.OK);
                     isEditing = false;
                     currentEditingRowIndex = -1;
                     UC_DonHang.napdgvdonhang();
@@ -222,7 +245,7 @@ namespace MayTinhQA
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi cập nhật dịch vụ: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Lỗi cập nhật chi tiết đơn hàng: " + ex.Message);
                 }
             }
         }
@@ -233,7 +256,7 @@ namespace MayTinhQA
 
             var selectedNames = listboxkhachhang.Items.Cast<string>().ToList();
             f.PreselectedCustomerNames = selectedNames;
-            // Truyền sự kiện nhận khách hàng về
+
             f.OnCustomerNamesSelected = (newSelectedNames) =>
             {
                 listboxkhachhang.Items.Clear();
@@ -265,37 +288,23 @@ namespace MayTinhQA
 
         private void AddDonHang_Load(object sender, EventArgs e)
         {
-            if (Current_user.CurrentUser != null)
-            {
+        }
 
-                if (isAdding)
-                {
-                    txttennhanvien.Text = Database.LayTenNhanVienTheoUser(Current_user.CurrentUser.Idusers);
-                }
-                txttennhanvien.Enabled = false;
-                if (Current_user.CurrentUser.Idvaitro == 1)
-                {
-                    txttennhanvien.Enabled = true;
-                    linkLabelnhanvien.ActiveLinkColor = Color.Blue;
-                    linkLabelnhanvien.LinkBehavior = LinkBehavior.AlwaysUnderline;
-                    linkLabelnhanvien.Cursor = Cursors.Hand;
-                    tooltipnv.SetToolTip(linkLabelnhanvien, "Click để chọn nhân viên");
-                }
-                else
-                {
-                    linkLabelnhanvien.LinkColor = this.ForeColor;
-                    linkLabelnhanvien.ActiveLinkColor = this.ForeColor;
-                    linkLabelnhanvien.VisitedLinkColor = this.ForeColor;
-                    linkLabelnhanvien.LinkBehavior = LinkBehavior.NeverUnderline;
-                    linkLabelnhanvien.Cursor = Cursors.Default;
-                    linkLabelnhanvien.Links.Clear();
-                }
+        private void btnchonsanpham_Click(object sender, EventArgs e)
+        {
+            FormChonSp f = new FormChonSp();
 
-            }
-            else
+            var selectedNames = listBoxsanpham.Items.Cast<string>().ToList();
+            f.OnProductNamesSelected = (newSelectedNames) =>
             {
-                MessageBox.Show("Lỗi: Không có thông tin người dùng hiện tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                listBoxsanpham.Items.Clear();
+                foreach (var item in newSelectedNames)
+                {
+                    listBoxsanpham.Items.Add(item);
+                }
+            };
+
+            f.ShowDialog();
         }
     }
 }

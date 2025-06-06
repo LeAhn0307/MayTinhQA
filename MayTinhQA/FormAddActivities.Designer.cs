@@ -97,6 +97,7 @@
             this.comboBoxldv.Name = "comboBoxldv";
             this.comboBoxldv.Size = new System.Drawing.Size(249, 36);
             this.comboBoxldv.TabIndex = 33;
+            this.comboBoxldv.SelectedIndexChanged += new System.EventHandler(this.comboBoxldv_SelectedIndexChanged);
             // 
             // dtpngaytao
             // 
@@ -134,6 +135,7 @@
             this.txtiddichvu.SelectedText = "";
             this.txtiddichvu.Size = new System.Drawing.Size(217, 32);
             this.txtiddichvu.TabIndex = 26;
+            this.txtiddichvu.Visible = false;
             // 
             // txttennhanvien
             // 
