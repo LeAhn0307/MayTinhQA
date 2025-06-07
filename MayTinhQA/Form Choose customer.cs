@@ -58,7 +58,6 @@ namespace MayTinhQA
                 dgvkhachhang.Columns.Insert(0, chk);
             }
 
-
             if (!dgvkhachhang.Columns.Contains("stt"))
             {
                 DataGridViewTextBoxColumn sttColumn = new DataGridViewTextBoxColumn();
@@ -201,9 +200,8 @@ namespace MayTinhQA
 
             Rectangle rect = dgvkhachhang.GetCellDisplayRectangle(0, -1, true);
 
-            int checkboxSize = 14; // Kích thước checkbox (tuỳ chỉnh nếu cần)
+            int checkboxSize = 14; 
 
-            // ✅ Trừ đi phần cuộn ngang để checkbox di chuyển cùng header
             int xCheckbox = rect.X + (rect.Width - checkboxSize) / 2 - dgvkhachhang.HorizontalScrollingOffset;
             int yCheckbox = rect.Y + (rect.Height - checkboxSize) / 2;
 

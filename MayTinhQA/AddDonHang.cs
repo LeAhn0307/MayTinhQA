@@ -81,6 +81,8 @@ where ctdh.idchitietdh= {_idDonhang}";
                     txtidchitietdh.Visible = false;
                     btnluu.Visible = true;
                     btnhuy.Visible = true;
+                    listboxkhachhang.Enabled = false;
+                    btnchonkhachhang.Enabled = false;
                 }
                 else
                 {

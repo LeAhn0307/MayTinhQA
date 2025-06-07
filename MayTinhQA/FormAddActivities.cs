@@ -351,6 +351,24 @@ namespace MayTinhQA
             {
                 return ;
             }
+            else
+            {
+                FormChonNhanVien f = new FormChonNhanVien();
+
+                var selectedNames = listboxkhachhang.Items.Cast<string>().ToList();
+                f.PreselectedEmployeeNames = selectedNames;
+
+                f.OnEmployeeNamesSelected = (newSelectedNames) =>
+                {
+                    txttennhanvien.Clear();
+                    txttennhanvien.Text = string.Join(", ", newSelectedNames);
+                    foreach (var name in newSelectedNames)
+                    {
+                        txttennhanvien.Text = string.Join(", ", newSelectedNames);
+                    }
+                };
+                f.ShowDialog();
+            }
         }
 
         private void comboBoxldv_SelectedIndexChanged(object sender, EventArgs e)

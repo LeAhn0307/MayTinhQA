@@ -226,18 +226,20 @@ namespace MayTinhQA
             if (dgvsanpham.Columns.Count == 0) return;
 
             Rectangle rect = dgvsanpham.GetCellDisplayRectangle(0, -1, true);
+
             int checkboxSize = 14;
 
-            int x = rect.X + (rect.Width - checkboxSize) / 2;
-            int y = rect.Y + (rect.Height - checkboxSize) / 2;
+            int xCheckbox = rect.X + (rect.Width - checkboxSize) / 2 - dgvsanpham.HorizontalScrollingOffset;
+            int yCheckbox = rect.Y + (rect.Height - checkboxSize) / 2;
 
-            headerCheckBoxArea = new Rectangle(x, y, checkboxSize, checkboxSize);
+            headerCheckBoxArea = new Rectangle(xCheckbox, yCheckbox, checkboxSize, checkboxSize);
 
             ControlPaint.DrawCheckBox(
                 e.Graphics,
                 headerCheckBoxArea,
                 isHeaderCheckBoxChecked ? ButtonState.Checked : ButtonState.Normal
             );
+
         }
 
         private void dgvsanpham_MouseClick(object sender, MouseEventArgs e)
@@ -254,7 +256,7 @@ namespace MayTinhQA
 
                 dgvsanpham.EndEdit();
                 isHeaderCheckBoxClicked = false;
-                dgvsanpham.Invalidate(); // Vẽ lại header
+                dgvsanpham.Invalidate(); 
             }
         }
         private HashSet<string> selectedProductNames = new HashSet<string>();
@@ -342,7 +344,6 @@ namespace MayTinhQA
             {
             "Loại sản phẩm",
             "Laptop"
-            
             });
             
             cbbloaisp.SelectedIndex = 0;
