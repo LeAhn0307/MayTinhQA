@@ -47,11 +47,26 @@ insert into loaisanpham values(N'Laptop')
 
 create Table donhang (
   iddonhang int identity  primary key,
-  trangthai nvarchar(100),
+  madonhang varchar(100),
   ngaytao datetime default getdate(),
   idkhachhang int foreign key references khachhang(idkhachhang),
-  iddichvu int foreign key references dichvu(iddichvu)
+  iddichvu int foreign key references dichvu(iddichvu),
+  idtrangthai INT FOREIGN KEY REFERENCES trangthaidonhang(idtrangthai)
 )
+CREATE TABLE trangthaidonhang (
+    idtrangthai INT identity PRIMARY KEY ,
+    tentrangthai NVARCHAR(100) NOT NULL
+);
+
+INSERT INTO trangthaidonhang ( tentrangthai) VALUES
+(N'Khởi tạo'),
+(N'Chờ báo giá'),
+( N'Đã báo giá'),
+( N'Khách cần tư vấn thêm'),
+( N'Chờ khách phản hồi'),
+( N'Đã chuyển thành đơn thật'),
+( N'Đã hủy / Không quan tâm');
+
 create Table sanpham (
   idsanpham int identity  primary key,
   tensanpham nvarchar(100),
@@ -135,14 +150,10 @@ create Table loaikhuyenmai (
 create Table chitietdonhang (
   idchitietdh int identity   primary key,
   iddonhang int foreign key references donhang(iddonhang),
-  idkhachhang int foreign key references khachhang(idkhachhang),
   idsanpham int foreign key references sanpham(idsanpham),
   soluong int,
-  idkhuyenmai int foreign key references khuyenmai(idkhuyenmai),
-  dongia money,
-  idnhanvien int foreign key references nhanvien(idnhanvien)
+  dongia money
 )
-
 create table thongke (
 idkhachhang int foreign key references khachhang(idkhachhang),
 idphanhoi int foreign key references phanhoi(idphanhoi),
@@ -226,3 +237,118 @@ INSERT INTO loaikhachhang (idloaikhachhang, loaikhachhang) VALUES
 (5, N'Mới');
 sELECT kh.idkhachhang, kh.tenkhachhang, kh.email,kh.dienthoai,kh.ngaysinh,kh.diachi,tp.tenthanhpho, qh.tenquanhuyen,  lkh.loaikhachhang,  kh.ghichu FROM khachhang kh LEFT JOIN thanhpho tp ON kh.idthanhpho = tp.idthanhpho LEFT JOIN quanhuyen qh ON kh.idquanhuyen = qh.idquanhuyen LEFT JOIN loaikhachhang lkh ON kh.idloaikhachhang = lkh.idloaikhachhang where idkhachhang = 1
 
+INSERT INTO loaisanpham (tenloaisanpham)
+VALUES (N'Laptop');
+
+INSERT INTO sanpham (tensanpham, gia, idloaisanpham, soluong, mota)
+VALUES
+(N'Laptop Dell XPS 13',      25000000, 1, 10, N'Intel Core i7-1250U, RAM 16GB, SSD 512GB, màn hình 13.4" FHD+'),
+(N'Laptop HP Envy 15',       23000000, 1, 15, N'Intel Core i7-12700H, RAM 16GB, SSD 1TB, màn hình 15.6" FHD'),
+(N'Laptop Asus ROG Strix',   32000000, 1, 8,  N'AMD Ryzen 7 6800H, RAM 16GB, SSD 1TB, RTX 3060, màn hình 15.6" 144Hz'),
+(N'Laptop Acer Aspire 5',    17000000, 1, 12, N'Intel Core i5-1240P, RAM 8GB, SSD 512GB, màn hình 15.6" FHD'),
+(N'Laptop MacBook Air M1',   28000000, 1, 9,  N'Apple M1, RAM 8GB, SSD 256GB, màn hình 13.3" Retina'),
+(N'Laptop Lenovo ThinkPad X1',29000000,1, 7,  N'Intel Core i7-1260P, RAM 16GB, SSD 512GB, màn hình 14" WUXGA'),
+(N'Laptop MSI GF63',         21000000, 1, 10, N'Intel Core i5-11400H, RAM 8GB, SSD 512GB, GTX 1650, màn hình 15.6" FHD'),
+(N'Laptop Gigabyte Aero 15', 34000000, 1, 6,  N'Intel Core i7-11800H, RAM 16GB, SSD 1TB, RTX 3070, màn hình 15.6" 4K AMOLED'),
+(N'Laptop Dell Inspiron 14', 19000000, 1, 14, N'Intel Core i5-1235U, RAM 8GB, SSD 512GB, màn hình 14" FHD'),
+(N'Laptop Asus ZenBook 14',  26000000, 1, 11, N'Intel Core i7-1260P, RAM 16GB, SSD 512GB, màn hình 14" OLED 2.8K');
+
+INSERT INTO donhang (madonhang, idkhachhang, idtrangthai, iddichvu, ngaytao)
+VALUES (N'{maDon}', {idKhachHang},(SELECT idtrangthai FROM trangthaidonhang WHERE tentrangthai = N'Khởi tạo'), {idDichVu}, '{today}')
+
+ INSERT INTO chitietdonhang (iddonhang, idsanpham, soluong, dongia)
+ VALUES ('{idDonHang}', '{idSanPham}', '{soLuong}', '{donGia}')
+
+ SELECT COLUMN_NAME, IS_NULLABLE, COLUMN_DEFAULT
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'donhang'
+SELECT 
+    dh.madonhang AS [MaDonHang],
+    kh.tenkhachhang AS [KhachHang],
+    STRING_AGG(
+        sp.tensanpham + ' (x' + CAST(ctdh.soluong AS NVARCHAR) + ')', 
+        ', '
+    ) WITHIN GROUP (ORDER BY sp.tensanpham) AS [DanhSachSanPham],
+    FORMAT(
+        SUM(sp.gia * ctdh.soluong), 
+        'N0', 'vi-VN'
+    ) AS [TongTien],
+    tt.tentrangthai AS [TrangThai]
+FROM chitietdonhang ctdh
+JOIN donhang dh ON dh.iddonhang = ctdh.iddonhang
+JOIN khachhang kh ON kh.idkhachhang = dh.idkhachhang
+JOIN sanpham sp ON sp.idsanpham = ctdh.idsanpham
+
+LEFT JOIN trangthaidonhang tt ON dh.idtrangthai = tt.idtrangthai
+WHERE dh.iddonhang = 4
+GROUP BY dh.madonhang, kh.tenkhachhang, tt.tentrangthai
+ORDER BY dh.madonhang DESC
+
+select * from chitietdonhang
+
+SELECT 
+    dh.madonhang AS [MaDonHang],
+    kh.tenkhachhang AS [KhachHang],
+    STRING_AGG(
+        sp.tensanpham + ' (x' + CAST(ctdh.soluong AS NVARCHAR) + ')', 
+        ', '
+    ) WITHIN GROUP (ORDER BY sp.tensanpham) AS [DanhSachSanPham],
+    
+    FORMAT(SUM(sp.gia * ctdh.soluong), 'N0', 'vi-VN') AS [TongTien],
+    
+    tt.tentrangthai AS [TrangThai]
+FROM chitietdonhang ctdh
+JOIN donhang dh ON dh.iddonhang = ctdh.iddonhang
+JOIN khachhang kh ON kh.idkhachhang = dh.idkhachhang
+JOIN sanpham sp ON sp.idsanpham = ctdh.idsanpham
+LEFT JOIN trangthaidonhang tt ON dh.idtrangthai = tt.idtrangthai
+GROUP BY dh.madonhang, kh.tenkhachhang, tt.tentrangthai
+ORDER BY dh.madonhang DESC
+
+SELECT 
+    dh.madonhang AS [MaDonHang],
+    kh.tenkhachhang AS [KhachHang],
+    STRING_AGG(
+        sp.tensanpham + ' (x' + CAST(ctdh.soluong AS NVARCHAR) + ')', 
+        ', '
+    ) WITHIN GROUP (ORDER BY sp.tensanpham) AS [DanhSachSanPham],
+    
+    FORMAT(SUM(sp.gia * ctdh.soluong), 'N0', 'vi-VN') AS [TongTien],
+    
+    tt.tentrangthai AS [TrangThai]
+FROM chitietdonhang ctdh
+JOIN donhang dh ON dh.iddonhang = ctdh.iddonhang
+JOIN khachhang kh ON kh.idkhachhang = dh.idkhachhang
+JOIN sanpham sp ON sp.idsanpham = ctdh.idsanpham
+LEFT JOIN trangthaidonhang tt ON dh.idtrangthai = tt.idtrangthai
+GROUP BY dh.madonhang, kh.tenkhachhang, tt.tentrangthai
+ORDER BY dh.madonhang DESC;
+
+SELECT 
+    ctdh.idchitietdh,
+    dh.madonhang AS [MaDonHang],
+    kh.tenkhachhang AS [KhachHang],
+    STRING_AGG(
+        sp.tensanpham + ' (x' + CAST(ctdh.soluong AS NVARCHAR) + ')', 
+        ', '
+    ) WITHIN GROUP (ORDER BY sp.tensanpham) AS [DanhSachSanPham],
+    FORMAT(
+        SUM(sp.gia * ctdh.soluong), 
+        'N0', 'vi-VN'
+    ) AS [TongTien],
+    tt.tentrangthai AS [TrangThai]
+FROM chitietdonhang ctdh
+JOIN donhang dh ON dh.iddonhang = ctdh.iddonhang
+JOIN khachhang kh ON kh.idkhachhang = dh.idkhachhang
+JOIN sanpham sp ON sp.idsanpham = ctdh.idsanpham
+LEFT JOIN trangthaidonhang tt ON dh.idtrangthai = tt.idtrangthai
+WHERE ctdh.idchitietdh=8
+GROUP BY ctdh.idchitietdh, dh.madonhang, kh.tenkhachhang, tt.tentrangthai
+ORDER BY dh.madonhang DESC
+
+select ctdh.idchitietdh, dh.madonhang,sp.tensanpham,kh.tenkhachhang,ctdh.soluong,sp.gia,tt.tentrangthai from chitietdonhang ctdh
+join donhang dh on ctdh.iddonhang=dh.iddonhang
+join sanpham sp on ctdh.idsanpham=sp.idsanpham
+join khachhang kh on dh.idkhachhang=kh.idkhachhang
+join trangthaidonhang tt on dh.idtrangthai= tt.idtrangthai
+where ctdh.idchitietdh=8
