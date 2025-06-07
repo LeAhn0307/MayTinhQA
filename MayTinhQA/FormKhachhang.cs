@@ -52,7 +52,19 @@ namespace MayTinhQA
         private int currentEditingRowIndex = -1;
         private void napdgvKhachHang()
         {
-            DataTable dt = Database.Query("select * from khachhang");
+            DataTable dt = Database.Query(@"
+SELECT 
+    k.idkhachhang,
+    k.tenkhachhang,
+    k.ngaysinh,
+    k.email,
+    k.dienthoai,
+    
+    CAST(k.diachi AS VARCHAR(MAX)) + ', ' + q.tenquanhuyen + ', ' + t.tenthanhpho AS diachidaydu
+FROM khachhang k
+INNER JOIN quanhuyen q ON k.idquanhuyen = q.idquanhuyen
+INNER JOIN thanhpho t ON k.idthanhpho = t.idthanhpho
+WHERE t.tenthanhpho IN (N'Hà Nội', N'Hải Phòng');");
             dgvKhachhang.DataSource = null; // Ngắt DataSource cũ nếu có
 
             dgvKhachhang.Columns.Clear(); // Xóa tất cả cột cũ
@@ -166,17 +178,17 @@ namespace MayTinhQA
                     }
                 }
 
-                if (isChecked)
-                {
-                    // Bỏ chọn tất cả checkbox khác (nếu không đang chỉnh sửa)
-                    foreach (DataGridViewRow row in dgvKhachhang.Rows)
-                    {
-                        if (row.Index != e.RowIndex)
-                        {
-                            row.Cells["check"].Value = false;
-                        }
-                    }
-                }
+                //if (isChecked)
+                //{
+                //    // Bỏ chọn tất cả checkbox khác (nếu không đang chỉnh sửa)
+                //    foreach (DataGridViewRow row in dgvKhachhang.Rows)
+                //    {
+                //        if (row.Index != e.RowIndex)
+                //        {
+                //            row.Cells["check"].Value = false;
+                //        }
+                //    }
+                //}
 
                 // Cập nhật lại trạng thái header checkbox
                 bool allChecked = dgvKhachhang.Rows.Cast<DataGridViewRow>()
@@ -185,9 +197,28 @@ namespace MayTinhQA
                 dgvKhachhang.Invalidate(); // Vẽ lại header
             }
         }
-        
 
+        private void LoadThanhPho()
+        {
+            DataTable dt = Database.Query("SELECT idthanhpho, tenthanhpho FROM thanhpho");
+            comboBoxtp.DataSource = dt;
+            comboBoxtp.DisplayMember = "tenthanhpho";
+            comboBoxtp.ValueMember = "idthanhpho";
 
+            // Tùy chọn: chọn mặc định thành phố đầu tiên
+            if (comboBoxtp.Items.Count > 0)
+                comboBoxtp.SelectedIndex = 0;
+        }
+        private void LoadQuanHuyenTheoThanhPho(int idThanhPho)
+        {
+            DataTable dt = Database.Query($"SELECT idquanhuyen, tenquanhuyen FROM quanhuyen WHERE idthanhpho = {idThanhPho}");
+            comboBoxq.DataSource = dt;
+            comboBoxq.DisplayMember = "tenquanhuyen";
+            comboBoxq.ValueMember = "idquanhuyen";
+
+            if (comboBoxq.Items.Count > 0)
+                comboBoxq.SelectedIndex = 0;
+        }
         private void btnthem_Click(object sender, EventArgs e)
         {
             if (isAdding || isEditing)
@@ -222,34 +253,66 @@ namespace MayTinhQA
 
         private void btnxoa_Click(object sender, EventArgs e)
         {
-            try
+            List<int> selectedIds = new List<int>();
+
+            // Duyệt qua tất cả các dòng trong DataGridView
+            foreach (DataGridViewRow row in dgvKhachhang.Rows)
             {
-                if (dgvKhachhang.CurrentRow != null)
+                // Kiểm tra nếu checkbox được chọn
+                if (Convert.ToBoolean(row.Cells["check"].Value) == true)
                 {
-                    string idkhachhang = dgvKhachhang.CurrentRow.Cells["idkhachhang"].Value.ToString();
-                    string deleteGiaoDich = "DELETE FROM giaodich WHERE idkhachhang = " + idkhachhang;
-                    Database.Excute(deleteGiaoDich);
-                    string deleteHoaDon = "DELETE FROM hoadon WHERE idkhachhang = " + idkhachhang;
-                    Database.Excute(deleteHoaDon);
-                    string deleteChiTiet = "DELETE FROM chitietdonhang WHERE idkhachhang = " + idkhachhang;
-                    Database.Excute(deleteChiTiet);
-                    string deleteDonHang = "DELETE FROM donhang WHERE idkhachhang = " + idkhachhang;
-                    Database.Excute(deleteDonHang);
-                    string deleteLoaiKH = "DELETE FROM loaikhachhang WHERE idkhachhang = " + idkhachhang;
-                    Database.Excute(deleteLoaiKH);
-                    string sql = "delete khachhang where idkhachhang =" + idkhachhang;
-                    Database.Excute(sql);
-                    napdgvKhachHang();
-                }
-                else
-                {
-                    MessageBox.Show("Vui lòng chọn một khách hàng để xóa!", "Thông báo", MessageBoxButtons.OK);
+                    if (int.TryParse(row.Cells["idkhachhang"].Value?.ToString(), out int id))
+                    {
+                        selectedIds.Add(id);
+                    }
                 }
             }
-            catch (Exception ex)
+
+            // Nếu không có khách hàng nào được chọn
+            if (selectedIds.Count == 0)
             {
-                MessageBox.Show("Có lỗi dữ liệu! " + ex.Message, "Thông báo", MessageBoxButtons.OK);
+                MessageBox.Show("Vui lòng chọn ít nhất một khách hàng để xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
+
+            // Xác nhận xóa
+            DialogResult result = MessageBox.Show($"Bạn có chắc chắn muốn xóa {selectedIds.Count} khách hàng đã chọn không?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.No)
+            {
+                return;
+            }
+
+            // Thực hiện xóa từng khách hàng
+            foreach (int idkh in selectedIds)
+            {
+                try
+                {
+                    // Xóa bảng con trước, theo thứ tự tránh lỗi FK
+                    Database.Excute($"DELETE FROM giaodich WHERE idkhachhang = {idkh}");
+                    Database.Excute($"DELETE FROM thongke WHERE idphanhoi IN (SELECT idphanhoi FROM phanhoi WHERE idkhachhang = {idkh})");
+                    Database.Excute($"DELETE FROM thongke WHERE idgiaodich IN (SELECT idgiaodich FROM giaodich WHERE idkhachhang = {idkh})");
+                    Database.Excute($"DELETE FROM thongke WHERE idcongno IN (SELECT idcongno FROM congno WHERE idkhachhang = {idkh})");
+
+                    Database.Excute($"DELETE FROM congno WHERE idkhachhang = {idkh}");
+                    Database.Excute($"DELETE FROM hoadon WHERE idkhachhang = {idkh}");
+                    Database.Excute($"DELETE FROM chitietdonhang WHERE idkhachhang = {idkh}");
+                    Database.Excute($"DELETE FROM dichvu WHERE idkhachhang = {idkh}");
+                    Database.Excute($"DELETE FROM danhmuc WHERE idkhachhang = {idkh}");
+                    Database.Excute($"DELETE FROM phanhoi WHERE idkhachhang = {idkh}");
+                    Database.Excute($"DELETE FROM donhang WHERE idkhachhang = {idkh}");
+                    Database.Excute($"DELETE FROM loaikhachhang WHERE idkhachhang = {idkh}");
+
+                    // Cuối cùng xóa khách hàng
+                    Database.Excute($"DELETE FROM khachhang WHERE idkhachhang = {idkh}");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi khi xóa khách hàng ID {idkh}: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            MessageBox.Show("Đã xóa khách hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            napdgvKhachHang();
 
         }
         private void EnableTextBoxes(bool enable)
@@ -329,6 +392,15 @@ namespace MayTinhQA
         private void frmkhachhang_Load_1(object sender, EventArgs e)
         {
             LoadComboBox();
+      
+            LoadThanhPho();
+            comboBoxtp.SelectedIndexChanged += (s, args) =>
+            {
+                if (comboBoxtp.SelectedValue != null && int.TryParse(comboBoxtp.SelectedValue.ToString(), out int idThanhPho))
+                {
+                    LoadQuanHuyenTheoThanhPho(idThanhPho);
+                }
+            };
         }
 
         private void btntimkiem_Click(object sender, EventArgs e)
@@ -391,6 +463,10 @@ namespace MayTinhQA
                     string diachi = txtdiachikhach.Text.Trim();
                     string ngaysinh = dtpkhach.Value.ToString("yyyy-MM-dd");
 
+                    // Lấy id thành phố và quận từ ComboBox (giả sử bạn dùng ComboBox để chọn)
+                    int idThanhPho = (int)comboBoxtp.SelectedValue;  // ComboBox bound with id
+                    int idQuan = (int)comboBoxq.SelectedValue;          // ComboBox bound with id
+
                     if (string.IsNullOrWhiteSpace(hoten) || string.IsNullOrWhiteSpace(email))
                     {
                         MessageBox.Show("Vui lòng nhập đầy đủ họ tên và email.", "Thông báo", MessageBoxButtons.OK);
@@ -398,8 +474,8 @@ namespace MayTinhQA
                     }
 
                     string insertKH = $@"
-INSERT INTO khachhang (tenkhachhang, email, dienthoai, diachi, ngaysinh)
-VALUES (N'{hoten}', '{email}', '{sdt}', N'{diachi}', '{ngaysinh}')";
+INSERT INTO khachhang (tenkhachhang, email, dienthoai, diachi, ngaysinh, idthanhpho, idquanhuyen)
+VALUES (N'{hoten}', '{email}', '{sdt}', N'{diachi}', '{ngaysinh}', {idThanhPho}, {idQuan})";
 
                     Database.Excute(insertKH);
 
@@ -424,25 +500,19 @@ SELECT TOP 1 idkhachhang FROM khachhang ORDER BY idkhachhang DESC");
                 {
                     MessageBox.Show("Lỗi thêm khách hàng: " + ex.Message);
                 }
+            
             }
             else if (isEditing)
             {
                 try
                 {
-                    if (dgvKhachhang.CurrentRow == null)
-                    {
-                        MessageBox.Show("Vui lòng chọn khách hàng để lưu cập nhật.", "Thông báo", MessageBoxButtons.OK);
-                        return;
-                    }
-
-                    DataGridViewRow row = dgvKhachhang.CurrentRow;
-
-                    string id = row.Cells["idkhachhang"].Value.ToString();
-                    string ten = row.Cells["tenkhachhang"].Value?.ToString() ?? "";
-                    string email = row.Cells["email"].Value?.ToString() ?? "";
-                    string sdt = row.Cells["dienthoai"].Value?.ToString() ?? "";
-                    string diachi = row.Cells["diachi"].Value?.ToString() ?? "";
-                    string ngaysinh = Convert.ToDateTime(row.Cells["ngaysinh"].Value).ToString("yyyy-MM-dd");
+                    // Lấy dữ liệu từ TextBox, DateTimePicker (đã chỉnh sửa)
+                    string id = txtidkhachhang.Text.Trim();
+                    string ten = txthovatenkhach.Text.Trim();
+                    string email = txtemailkhach.Text.Trim();
+                    string sdt = txtsdtkhach.Text.Trim();
+                    string diachi = txtdiachikhach.Text.Trim();
+                    string ngaysinh = dtpkhach.Value.ToString("yyyy-MM-dd");
 
                     if (string.IsNullOrWhiteSpace(ten) || string.IsNullOrWhiteSpace(email))
                     {
@@ -468,12 +538,15 @@ WHERE idkhachhang = {id}";
                     btnluu.Visible = false;
                     btnhuy.Visible = false;
                     currentEditingRowIndex = -1;
+
+                    // Load lại dữ liệu mới lên dgv
                     napdgvKhachHang();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Lỗi khi cập nhật khách hàng:\n" + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
             }
         }
 

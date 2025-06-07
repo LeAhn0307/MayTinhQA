@@ -5,18 +5,15 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
-using System.Data.SqlClient;
 
 namespace MayTinhQA
 {
-    public partial class frmdangki : Form
+    public partial class FormSignUp : Form
     {
-        private static string connectionString = @"Data Source=DESKTOP-5ET5TOG;Initial Catalog=crm;Integrated Security=True;";
-        
-        public frmdangki()
+        public FormSignUp()
         {
             InitializeComponent();
         }
@@ -29,7 +26,7 @@ namespace MayTinhQA
             return Regex.IsMatch(em, @"^[a-zA-Z0-9_.]{6,20}@gmail.com(.vn|)$");
         }
         Modify modify = new Modify();
-        private void btndangki_Click(object sender, EventArgs e)
+        private void btnSignup_Click(object sender, EventArgs e)
         {
             {
                 string tentaikhoan = txttentaikhoan.Text;
@@ -45,24 +42,32 @@ namespace MayTinhQA
                     MessageBox.Show("Email này đã được đăng kí, vui lòng đăng kí bằng Email khác!");
                     return;
                 }
-                    try
-                    {
+                try
+                {
                     string sql = "insert into users VALUES ('" + tentaikhoan + "','" + matkhau + "','" + email + "',2)";
                     modify.Command(sql);
-                   
+
                     if (MessageBox.Show("Đăng kí thành công! Bạn có muốn đăng nhập?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
-                        {
+                    {
                         this.Hide();
-                        frmhome home = new frmhome();
+                        FormDashboard home = new FormDashboard();
                         home.ShowDialog();
                         this.Close();
-                        }
                     }
-                    catch
-                    {
-                        MessageBox.Show("Tên tài khoản này đã được đăng kí, vui lòng đăng kí tên tài khoản khác!");
-                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Tên tài khoản này đã được đăng kí, vui lòng đăng kí tên tài khoản khác!");
+                }
             }
+        }
+
+        private void labelLogin_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormLogin dangnhap = new FormLogin();
+            dangnhap.ShowDialog();
+            
         }
     }
 }

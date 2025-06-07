@@ -17,11 +17,8 @@ namespace MayTinhQA.UserControls
         public UC_Home()
         {
             InitializeComponent();
-            LoadChart();
-        }
-        private void LoadChart()
-        {
             
         }
+        
     }
 }

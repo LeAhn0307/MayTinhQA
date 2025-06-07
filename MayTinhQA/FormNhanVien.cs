@@ -22,7 +22,14 @@ namespace MayTinhQA
         }
         private void napdgvNhanVien()
         {
-            dgvNhanVien.DataSource = Database.Query("Select * from nhanvien");
+            dgvNhanVien.DataSource = Database.Query("Select nv.idnhanvien,nv.tennhanvien,cv.tenchucvu from nhanvien nv inner join chucvu cv on cv.idchucvu=nv.chucvu ");
+            if (dgvNhanVien.Columns.Contains("idnhanvien"))
+                dgvNhanVien.Columns["idnhanvien"].HeaderText = "ID";
+            if (dgvNhanVien.Columns.Contains("tennhanvien"))
+                dgvNhanVien.Columns["tennhanvien"].HeaderText = "Họ Tên";
+            if (dgvNhanVien.Columns.Contains("tenchucvu"))
+                dgvNhanVien.Columns["tenchucvu"].HeaderText = "Chức vụ";
+            
         }
         private void btnthem_Click(object sender, EventArgs e)
         {
@@ -111,9 +118,9 @@ namespace MayTinhQA
         {
             try
             {
-                DataGridViewRow row = dgvNhanVien.Rows[e.RowIndex];
-                txttennhanvien.Text = row.Cells["tennhanvien"].Value.ToString();
-                txtchucvu.Text = row.Cells["tenkhachhang"].Value.ToString();
+                //DataGridViewRow row = dgvNhanVien.Rows[e.RowIndex];
+                //txttennhanvien.Text = row.Cells["tennhanvien"].Value.ToString();
+                //txtchucvu.Text = row.Cells["chucvu"].Value.ToString();
             }
             catch (Exception) { }
         }
