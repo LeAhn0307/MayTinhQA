@@ -218,6 +218,52 @@ namespace MayTinhQA
             guna2GroupBox2.Visible = false;
             guna2GroupBox3.Visible = false;
         }
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            frmXoaTaiKhoan xoatk = new frmXoaTaiKhoan();
+            xoatk.ShowDialog();
+        }
+
+        private void btnhoso_Click(object sender, EventArgs e)
+        {
+            frmHoSo hs = new frmHoSo();
+            hs.ShowDialog();
+        }
+
+        private void btndoimatkhau_Click(object sender, EventArgs e)
+        {
+            frmDoiMatKhau doimk = new frmDoiMatKhau();
+            doimk.ShowDialog();
+        }
+
+        private void btndoitra_Click(object sender, EventArgs e)
+        {
+            frmdoitra doitra = new frmdoitra();
+            doitra.ShowDialog();
+        }
+
+        private void btnNeeds_Click(object sender, EventArgs e)
+        {
+            UC_CustomerNeeds uc = new UC_CustomerNeeds();
+            addUserControl(uc);
+        }
+
+        private void btnbh_Click(object sender, EventArgs e)
+        {
+            frmbaohanh bh = new frmbaohanh();
+            bh.ShowDialog();
+        }
+
+        private void btndoitra_Click_1(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnkhuyenmai_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
