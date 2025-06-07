@@ -16,28 +16,45 @@ namespace MayTinhQA
         public FormDashboard()
         {
             InitializeComponent();
-            UC_Home uC = new UC_Home();
+            guna2GroupBox1.Visible = false;
+            guna2GroupBox2.Visible = false;
+            guna2GroupBox3.Visible = false;
+            UC_Customer uC = new UC_Customer();
             addUserControl(uC);
-            //UC_Image uC = new UC_Image();
-            //addUserControl(uC);
+            btnCustomer.Checked= true;
+            this.MouseClick += FormDashboard_MouseClick;
         }
-        
+
         private void addUserControl(UserControl uc)
         {
+            foreach (Control ctrl in panel3.Controls.OfType<UserControl>().ToList())
+            {
+                panel3.Controls.Remove(ctrl); 
+                ctrl.Dispose(); 
+            }
+
             uc.Dock = DockStyle.Fill;
-            panel3.Controls.Clear();
             panel3.Controls.Add(uc);
             uc.BringToFront();
         }
 
         private void btnActivity_Click(object sender, EventArgs e)
         {
-            UC_Activities uC = new UC_Activities();
-            addUserControl(uC);
+            if (guna2GroupBox1.Visible)
+            {
+                guna2GroupBox1.Visible = false;
+            }
+            else
+            {
+                HideAllGroupBoxes();
+                guna2GroupBox1.Visible = true;
+                guna2GroupBox1.BringToFront();
+            }
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
+            HideAllGroupBoxes();
             if (MessageBox.Show("Bạn có muốn đăng xuất?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
             {
                 Properties.Settings.Default.SavedUsername = "";
@@ -50,32 +67,16 @@ namespace MayTinhQA
             }
         }
 
-        private void btnDashBoard_Click(object sender, EventArgs e)
-        {
-            UC_Home uC = new UC_Home();
-            addUserControl(uC);
-            //UC_Image uC = new UC_Image();
-            //addUserControl(uC);
-
-        }
-
-
         private void guna2Button1_Click(object sender, EventArgs e)
         {
             this.Close();
         }
         private void btnCustomer_Click(object sender, EventArgs e)
         {
+            HideAllGroupBoxes();
             UC_Customer uC = new UC_Customer();
             addUserControl(uC);
         }
-
-        private void btnReport_Click(object sender, EventArgs e)
-        {
-            //UC_Reports uC = new UC_Reports();
-            //addUserControl(uC);
-        }
-
         private void btnHistory_Click(object sender, EventArgs e)
         {
             UC_CustomerHistory uC = new UC_CustomerHistory();
@@ -87,15 +88,136 @@ namespace MayTinhQA
             UC_Behaviour uC = new UC_Behaviour();
             addUserControl(uC);
         }
-
-        private void btnNeeds_Click(object sender, EventArgs e)
+        private void btndonhang_Click(object sender, EventArgs e)
         {
             UC_DonHang uC = new UC_DonHang();
             addUserControl(uC);
+        }
+
+        private void btnlienlac_Click(object sender, EventArgs e)
+        {
+            FormEmail uC = new FormEmail();
+            uC.ShowDialog();
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
 
         }
-        
-        
 
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            if (guna2GroupBox3.Visible)
+            {
+                guna2GroupBox3.Visible = false;
+            }
+            else
+            {
+                HideAllGroupBoxes();
+                guna2GroupBox3.Visible = true;
+                guna2GroupBox3.BringToFront();
+            }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void guna2GroupBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2GroupBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2GroupBox3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnthoat_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show("Bạn có muốn thoát?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    Application.Exit();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+        }
+
+        private void btnhide_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btndanhsach_Click(object sender, EventArgs e)
+        {
+            UC_Activities uC = new UC_Activities();
+            addUserControl(uC);
+        }
+
+        private void btnbaocao_Click(object sender, EventArgs e)
+        {
+            if (guna2GroupBox2.Visible)
+            {
+                guna2GroupBox2.Visible = false;
+            }
+            else
+            {
+                HideAllGroupBoxes();
+                guna2GroupBox2.Visible = true;
+                guna2GroupBox2.BringToFront();
+            }
+        }
+        private void FormDashboard_MouseClick(object sender, MouseEventArgs e)
+        {
+            base.OnMouseClick(e);
+            Point clickLocation = this.PointToClient(Cursor.Position);
+
+            if (!guna2GroupBox1.Bounds.Contains(clickLocation) &&
+                !btnActivity.Bounds.Contains(clickLocation))
+            {
+                guna2GroupBox1.Visible = false;
+            }
+
+            if (!guna2GroupBox2.Bounds.Contains(clickLocation) &&
+                !btnbaocao.Bounds.Contains(clickLocation))
+            {
+                guna2GroupBox2.Visible = false;
+            }
+
+            if (!guna2GroupBox3.Bounds.Contains(clickLocation) &&
+                !pictureBox2.Bounds.Contains(clickLocation))
+            {
+                guna2GroupBox3.Visible = false;
+            }
+        }
+        private void HideAllGroupBoxes()
+        {
+            guna2GroupBox1.Visible = false;
+            guna2GroupBox2.Visible = false;
+            guna2GroupBox3.Visible = false;
+        }
     }
 }
+

@@ -373,5 +373,14 @@
   <ItemGroup>
     <None Include="Resources\reset.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-128-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\line.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\line1.PNG" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
