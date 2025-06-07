@@ -54,6 +54,8 @@ namespace MayTinhQA
             this.guna2GroupBox3 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
+            this.btnbaohanh = new Guna.UI2.WinForms.Guna2Button();
+            this.btndoitra = new Guna.UI2.WinForms.Guna2Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.guna2GroupBox2.SuspendLayout();
@@ -221,13 +223,15 @@ namespace MayTinhQA
             // 
             // guna2GroupBox2
             // 
+            this.guna2GroupBox2.Controls.Add(this.btndoitra);
+            this.guna2GroupBox2.Controls.Add(this.btnbaohanh);
             this.guna2GroupBox2.Controls.Add(this.btnBehaviour);
             this.guna2GroupBox2.Controls.Add(this.btnHistory);
             this.guna2GroupBox2.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2GroupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             this.guna2GroupBox2.Location = new System.Drawing.Point(297, 0);
             this.guna2GroupBox2.Name = "guna2GroupBox2";
-            this.guna2GroupBox2.Size = new System.Drawing.Size(124, 96);
+            this.guna2GroupBox2.Size = new System.Drawing.Size(124, 196);
             this.guna2GroupBox2.TabIndex = 9;
             this.guna2GroupBox2.Text = "guna2GroupBox2";
             this.guna2GroupBox2.Click += new System.EventHandler(this.guna2GroupBox2_Click);
@@ -469,6 +473,47 @@ namespace MayTinhQA
             this.guna2Button5.Text = "Bảo mật";
             this.guna2Button5.Click += new System.EventHandler(this.btnLogout_Click);
             // 
+            // btnbaohanh
+            // 
+            this.btnbaohanh.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.btnbaohanh.CheckedState.CustomBorderColor = System.Drawing.Color.Transparent;
+            this.btnbaohanh.CheckedState.FillColor = System.Drawing.Color.Navy;
+            this.btnbaohanh.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 3);
+            this.btnbaohanh.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnbaohanh.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnbaohanh.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnbaohanh.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnbaohanh.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
+            this.btnbaohanh.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnbaohanh.ForeColor = System.Drawing.Color.White;
+            this.btnbaohanh.Location = new System.Drawing.Point(0, 93);
+            this.btnbaohanh.Margin = new System.Windows.Forms.Padding(2);
+            this.btnbaohanh.Name = "btnbaohanh";
+            this.btnbaohanh.Size = new System.Drawing.Size(122, 51);
+            this.btnbaohanh.TabIndex = 7;
+            this.btnbaohanh.Text = "Bảo hành";
+            // 
+            // btndoitra
+            // 
+            this.btndoitra.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.btndoitra.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.btndoitra.CheckedState.CustomBorderColor = System.Drawing.Color.Transparent;
+            this.btndoitra.CheckedState.FillColor = System.Drawing.Color.Navy;
+            this.btndoitra.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 3);
+            this.btndoitra.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btndoitra.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btndoitra.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btndoitra.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btndoitra.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
+            this.btndoitra.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btndoitra.ForeColor = System.Drawing.Color.White;
+            this.btndoitra.Location = new System.Drawing.Point(0, 142);
+            this.btndoitra.Margin = new System.Windows.Forms.Padding(2);
+            this.btndoitra.Name = "btndoitra";
+            this.btndoitra.Size = new System.Drawing.Size(122, 55);
+            this.btndoitra.TabIndex = 7;
+            this.btndoitra.Text = "Đổi trả";
+            // 
             // FormDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -520,5 +565,7 @@ namespace MayTinhQA
         private Guna.UI2.WinForms.Guna2Button guna2Button4;
         private Guna.UI2.WinForms.Guna2Button guna2Button5;
         private Guna.UI2.WinForms.Guna2Button btndanhsach;
+        private Guna.UI2.WinForms.Guna2Button btnbaohanh;
+        private Guna.UI2.WinForms.Guna2Button btndoitra;
     }
 }
