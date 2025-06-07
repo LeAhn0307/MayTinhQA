@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MayTinhQA.UserControls;
-using static MayTinhQA.frmhome;
+using static MayTinhQA.FormDashboard;
 
 namespace MayTinhQA
 {
