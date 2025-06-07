@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MayTinhQA.UserControls;
+using static MayTinhQA.FormChonSp;
 
 namespace MayTinhQA
 {
@@ -27,7 +28,7 @@ namespace MayTinhQA
             this.UC_DonHang = parent;
             this._idDonhang = idDonhang;
             isEditing = true;
-            LoadThongDonhang();
+            LoadThongDonhang(); 
         }
 
         public AddDonHang(UC_DonHang parent)
@@ -71,6 +72,12 @@ where ctdh.idchitietdh= {_idDonhang}";
                     listboxkhachhang.Items.Clear();
                     listboxkhachhang.Items.Add(row["tenkhachhang"].ToString());
 
+                    foreach (DataRow spRow in dt.Rows)
+                    {
+                        string tenSp = spRow["tensanpham"].ToString();
+                        int soLuong = Convert.ToInt32(spRow["soluong"]);
+                        listBoxsanpham.Items.Add($"{tenSp} - SL: {soLuong}");
+                    }
                     txtidchitietdh.Visible = false;
                     btnluu.Visible = true;
                     btnhuy.Visible = true;
@@ -289,22 +296,46 @@ VALUES ({idDonHang}, {idSanPham}, {soLuong}, {donGia.ToString(CultureInfo.Invari
         private void AddDonHang_Load(object sender, EventArgs e)
         {
         }
-
+        public Action<string> OnProductSelected;
         private void btnchonsanpham_Click(object sender, EventArgs e)
         {
-            FormChonSp f = new FormChonSp();
+            FormChonSp form = new FormChonSp();
+            List<SelectedProduct> preselected = new List<SelectedProduct>();
+            foreach (string item in listBoxsanpham.Items)
+            {
+                var parts = item.Split(new[] { " - SL: " }, StringSplitOptions.None);
+                if (parts.Length == 2 && int.TryParse(parts[1], out int soLuong))
+                {
+                    string tenSanPham = parts[0].Trim();
 
-            var selectedNames = listBoxsanpham.Items.Cast<string>().ToList();
-            f.OnProductNamesSelected = (newSelectedNames) =>
+                    // Truy vấn ID sản phẩm từ tên
+                    string querySP = $"SELECT idsanpham, gia FROM sanpham WHERE tensanpham = N'{tenSanPham.Replace("'", "''")}'";
+                    DataTable dtSP = Database.Query(querySP);
+                    if (dtSP.Rows.Count > 0)
+                    {
+                        int idSanPham = Convert.ToInt32(dtSP.Rows[0]["idsanpham"]);
+                        decimal gia = Convert.ToDecimal(dtSP.Rows[0]["gia"]);
+
+                        preselected.Add(new FormChonSp.SelectedProduct
+                        {
+                            IdSanPham = idSanPham,
+                            TenSanPham = tenSanPham,
+                            Gia = gia,
+                            SoLuong = soLuong
+                        });
+                    }
+                }
+            }
+            form.PreselectedProducts = preselected;
+            form.OnProductSelected += (List<SelectedProduct> selectedProducts) =>
             {
                 listBoxsanpham.Items.Clear();
-                foreach (var item in newSelectedNames)
+                foreach (var sp in selectedProducts)
                 {
-                    listBoxsanpham.Items.Add(item);
+                    listBoxsanpham.Items.Add($"{sp.TenSanPham} - SL: {sp.SoLuong}");
                 }
             };
-
-            f.ShowDialog();
+            form.ShowDialog();
         }
     }
 }

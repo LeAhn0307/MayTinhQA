@@ -135,8 +135,15 @@ namespace MayTinhQA
             RestoreCheckedRows();
             dgvsanpham.Invalidate();
         }
-        public Action<List<DataRow>> OnProductSelected;
-        public Action<List<string>> OnProductNamesSelected;
+        public Action<List<SelectedProduct>> OnProductSelected;
+        public List<SelectedProduct> PreselectedProducts { get; set; } = new List<SelectedProduct>();
+        public class SelectedProduct
+        {
+            public int IdSanPham { get; set; }
+            public string TenSanPham { get; set; }
+            public decimal Gia { get; set; }
+            public int SoLuong { get; set; }
+        }
         public List<string> PreselectedProductName { get; set; } = new List<string>();
         private void btnchon_Click(object sender, EventArgs e)
         {
@@ -144,19 +151,17 @@ namespace MayTinhQA
             {
                 MessageBox.Show("Không có dữ liệu sản phẩm.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            } 
-            List<string> selectedNames = new List<string>();
+            }
+
+            List<SelectedProduct> selectedProducts = new List<SelectedProduct>();
 
             foreach (DataGridViewRow row in dgvsanpham.Rows)
             {
                 if (row.Cells["check"].Value != null && Convert.ToBoolean(row.Cells["check"].Value))
                 {
-                    int soluong = 0;
-                    int.TryParse(Convert.ToString(row.Cells["SoluongMua"].Value), out soluong);
-
-                    if (soluong <= 0)
+                    if (!int.TryParse(Convert.ToString(row.Cells["SoluongMua"].Value), out int soLuong) || soLuong <= 0)
                     {
-                        MessageBox.Show("Vui lòng nhập số lượng cho sản phẩm đã chọn.", "Lưu ý", MessageBoxButtons.OK);
+                        MessageBox.Show($"Vui lòng nhập số lượng hợp lệ cho sản phẩm: {row.Cells["tensanpham"].Value}", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
@@ -164,24 +169,23 @@ namespace MayTinhQA
                     string tenSanPham = Convert.ToString(row.Cells["tensanpham"].Value);
                     decimal gia = Convert.ToDecimal(row.Cells["gia"].Value);
 
-                    if (row.Cells["check"].Value != null && Convert.ToBoolean(row.Cells["check"].Value))
+                    selectedProducts.Add(new SelectedProduct
                     {
-                        string name = row.Cells["tensanpham"].Value?.ToString();
-                        if (!string.IsNullOrEmpty(name))
-                            selectedNames.Add(name);
-                    }
+                        IdSanPham = idSanPham,
+                        TenSanPham = tenSanPham,
+                        Gia = gia,
+                        SoLuong = soLuong
+                    });
                 }
             }
 
-            if (selectedNames.Count == 0)
+            if (selectedProducts.Count == 0)
             {
                 MessageBox.Show("Vui lòng chọn ít nhất một sản phẩm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-
-            OnProductNamesSelected?.Invoke(selectedNames);
-
+            OnProductSelected?.Invoke(selectedProducts); 
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -340,10 +344,29 @@ namespace MayTinhQA
             "Laptop"
             
             });
+            
             cbbloaisp.SelectedIndex = 0;
-            RestoreCheckedRows();
-            MarkPreselectedRows();
             LoadData();
+            if (PreselectedProducts != null)
+            {
+                foreach (var sp in PreselectedProducts)
+                {
+                    foreach (DataGridViewRow row in dgvsanpham.Rows)
+                    {
+                        if (row.Cells["idsanpham"].Value == null)
+                            continue;
+
+                        int idSpInGrid = Convert.ToInt32(row.Cells["idsanpham"].Value);
+                        if (idSpInGrid == sp.IdSanPham)
+                        {
+                            row.Cells["check"].Value = true;
+                            row.Cells["SoluongMua"].Value = sp.SoLuong;
+                            break;
+                        }
+                    }
+                }
+            }
+
         }
         private void RestoreCheckedRows()
         {
@@ -351,20 +374,6 @@ namespace MayTinhQA
             {
                 string name = row.Cells["tensanpham"].Value?.ToString();
                 if (!string.IsNullOrEmpty(name) && selectedProductNames.Contains(name))
-                {
-                    row.Cells["check"].Value = true;
-                }
-            }
-        }
-        private void MarkPreselectedRows()
-        {
-            if (PreselectedProductName == null || PreselectedProductName.Count == 0)
-                return;
-
-            foreach (DataGridViewRow row in dgvsanpham.Rows)
-            {
-                string name = row.Cells["tensanpham"].Value?.ToString();
-                if (!string.IsNullOrEmpty(name) && PreselectedProductName.Contains(name))
                 {
                     row.Cells["check"].Value = true;
                 }

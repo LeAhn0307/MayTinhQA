@@ -281,7 +281,15 @@ ORDER BY dh.madonhang DESC;
             headerCheckBox.Checked = allChecked;
             headerCheckBox.CheckedChanged += HeaderCheckBox_CheckedChanged;
         }
-
+        private int LayIdDonHangTuChiTiet(int idchitietdh)
+        {
+            DataTable dt = Database.Query($"SELECT iddonhang FROM chitietdonhang WHERE idchitietdh = {idchitietdh}");
+            if (dt.Rows.Count > 0)
+            {
+                return Convert.ToInt32(dt.Rows[0]["iddonhang"]);
+            }
+            return -1;
+        }
         private void dgvdonhang_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && dgvdonhang.Columns[e.ColumnIndex].Name == "Edit")
@@ -290,6 +298,7 @@ ORDER BY dh.madonhang DESC;
                 currentEditingRowIndex = e.RowIndex;
 
                 int idchitietdh = Convert.ToInt32(dgvdonhang.Rows[e.RowIndex].Cells["idchitietdh"].Value);
+                int iddonhang = LayIdDonHangTuChiTiet(idchitietdh);
                 AddDonHang f = new AddDonHang(this, idchitietdh);
                 f.FormClosed += (s, args) =>
                 {
