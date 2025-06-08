@@ -15,7 +15,7 @@ create Table khachhang (
 )
 alter table khachhang add ghichu nvarchar(max)
 INSERT INTO khachhang (idkhachhang, tenkhachhang, email, dienthoai, diachi, ngaysinh, idthanhpho, idquanhuyen)
-VALUES ({id},N'{hoten}', '{email}', '{sdt}', N'{diachi}', '{ngaysinh}', {idThanhPho}, {idQuan})"
+VALUES ({id},N'{hoten}', '{email}', '{sdt}', N'{diachi}', '{ngaysinh}', {idThanhPho}, {idQuan})
 create Table loaikhachhang(
 idkhachhang int foreign key references khachhang(idkhachhang),
 loaikhachhang nvarchar(100),
