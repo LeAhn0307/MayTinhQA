@@ -146,7 +146,7 @@
             this.dgvKhachhang.RowHeadersVisible = false;
             this.dgvKhachhang.RowHeadersWidth = 48;
             this.dgvKhachhang.RowTemplate.Height = 24;
-            this.dgvKhachhang.Size = new System.Drawing.Size(962, 314);
+            this.dgvKhachhang.Size = new System.Drawing.Size(962, 342);
             this.dgvKhachhang.TabIndex = 6;
             this.dgvKhachhang.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvKhachhang.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

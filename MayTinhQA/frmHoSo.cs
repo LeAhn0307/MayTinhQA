@@ -16,7 +16,6 @@ namespace MayTinhQA
         {
             InitializeComponent();
         }
-
         private void frmHoSo_Load(object sender, EventArgs e)
         {
             if (Session.CurrentUser != null)
