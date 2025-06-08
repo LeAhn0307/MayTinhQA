@@ -131,7 +131,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvKhachhang.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvKhachhang.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
-            this.dgvKhachhang.Location = new System.Drawing.Point(-3, 143);
+            this.dgvKhachhang.Location = new System.Drawing.Point(-3, 141);
             this.dgvKhachhang.Margin = new System.Windows.Forms.Padding(2);
             this.dgvKhachhang.Name = "dgvKhachhang";
             this.dgvKhachhang.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -146,7 +146,7 @@
             this.dgvKhachhang.RowHeadersVisible = false;
             this.dgvKhachhang.RowHeadersWidth = 48;
             this.dgvKhachhang.RowTemplate.Height = 24;
-            this.dgvKhachhang.Size = new System.Drawing.Size(962, 342);
+            this.dgvKhachhang.Size = new System.Drawing.Size(962, 344);
             this.dgvKhachhang.TabIndex = 6;
             this.dgvKhachhang.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvKhachhang.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

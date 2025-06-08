@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -48,6 +49,24 @@ namespace MayTinhQA.UserControls
         private int currentEditingRowIndex = -1;
         public void napdgvKhachHang()
         {
+            try
+            {
+                using (SqlConnection conn = Connection.GetSqlConnection())
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("PhanLoaiKhachHang_PhanLoaiMoi", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandTimeout = 60;
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi gọi procedure phân loại: " + ex.Message);
+                return;
+            }
             DataTable dt = Database.Query("SELECT kh.idkhachhang, kh.tenkhachhang, kh.email, kh.dienthoai,kh.ngaysinh, CONCAT(kh.diachi, ', ', q.tenquanhuyen, ', ', tp.tenthanhpho) AS diachi,lkh.loaikhachhang, kh.ghichu FROM khachhang kh LEFT JOIN quanhuyen q ON kh.idquanhuyen = q.idquanhuyen LEFT JOIN thanhpho tp ON kh.idthanhpho = tp.idthanhpho LEFT JOIN loaikhachhang lkh ON kh.idloaikhachhang = lkh.idloaikhachhang");
             dgvKhachhang.DataSource = null; 
             dgvKhachhang.Columns.Clear(); 
@@ -80,8 +99,6 @@ namespace MayTinhQA.UserControls
             dgvKhachhang.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             if (dgvKhachhang.Columns.Contains("idkhachhang"))
                 dgvKhachhang.Columns["idkhachhang"].Visible = false;
-            if (dgvKhachhang.Columns.Contains("loaikhachhang"))
-                dgvKhachhang.Columns["loaikhachhang"].Visible = false;
             if (dgvKhachhang.Columns.Contains("tenkhachhang"))
             {
                 dgvKhachhang.Columns["tenkhachhang"].HeaderText = "Họ Tên";
@@ -117,7 +134,11 @@ namespace MayTinhQA.UserControls
                 dgvKhachhang.Columns["ghichu"].HeaderText = "Ghi chú";
                 dgvKhachhang.Columns["ghichu"].Width = 320;
             }
-
+            if (dgvKhachhang.Columns.Contains("loaikhachhang"))
+            {
+                dgvKhachhang.Columns["loaikhachhang"].HeaderText = "Loại khách hàng";
+                dgvKhachhang.Columns["loaikhachhang"].Width = 128;
+            }
             dgvKhachhang.ClearSelection();
             dgvKhachhang.CurrentCell = null;
 
@@ -305,13 +326,13 @@ namespace MayTinhQA.UserControls
                 try
                 {
                     Database.Excute($@"
-                    DELETE FROM thongke WHERE idphanhoi IN (SELECT idphanhoi FROM phanhoi WHERE idkhachhang = {idkh})
+                    DELETE FROM thongke 
+                    WHERE idphanhoi IN (SELECT idphanhoi FROM phanhoi WHERE idkhachhang = {idkh})
                     OR iddonhang IN (SELECT iddonhang FROM donhang WHERE idkhachhang = {idkh})
                     OR idkhachhang = {idkh};
                     DELETE FROM danhmuc WHERE idkhachhang = {idkh};
                     DELETE FROM lienlac WHERE idkhachhang = {idkh};
                     DELETE FROM phanhoi WHERE idkhachhang = {idkh};
-                    DELETE FROM chitietdonhang WHERE idkhachhang = {idkh};
                     DELETE FROM donhang WHERE idkhachhang = {idkh};
                     DELETE FROM dichvu WHERE idkhachhang = {idkh};
                     DELETE FROM khachhang WHERE idkhachhang = {idkh};");
@@ -550,6 +571,11 @@ namespace MayTinhQA.UserControls
             RestoreCheckedRows();
             isHeaderCheckBoxChecked = false; 
             dgvKhachhang.Invalidate();
+        }
+
+        private void btnphanloai_Click(object sender, EventArgs e)
+        {
+            //napdgvKhachHang();
         }
     }
 }

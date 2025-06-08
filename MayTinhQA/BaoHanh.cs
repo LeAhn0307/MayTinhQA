@@ -22,7 +22,20 @@ namespace MayTinhQA
         }
         private void napdgvPhieubaohanh()
         {
-            dgvPhieubaohanh.DataSource = Database.Query("select * from phieubaohanh");
+            dgvPhieubaohanh.DataSource = Database.Query("select bh.idphieubaohanh,bh.ngaytao,bh.ngayketthuc,bh.idsanpham,bh.idnhanvien,dv.iddichvu from phieubaohanh bh join dichvu dv on dv.iddichvu=bh.iddichvu");
+            if (dgvPhieubaohanh.Columns.Contains("idphieubaohanh"))
+                dgvPhieubaohanh.Columns["idphieubaohanh"].Visible = false;
+            if (dgvPhieubaohanh.Columns.Contains("ngaytao"))
+                dgvPhieubaohanh.Columns["ngaytao"].HeaderText= "Ngày tạo";
+            if (dgvPhieubaohanh.Columns.Contains("ngayketthuc"))
+                dgvPhieubaohanh.Columns["ngayketthuc"].HeaderText = "Ngày kết thúc bảo hành";
+            if (dgvPhieubaohanh.Columns.Contains("idsanpham"))
+                dgvPhieubaohanh.Columns["idsanpham"].HeaderText = "Id sản phẩm";
+            if (dgvPhieubaohanh.Columns.Contains("idnhanvien"))
+                dgvPhieubaohanh.Columns["idnhanvien"].HeaderText = "Id nhân viên";
+            if (dgvPhieubaohanh.Columns.Contains(" iddichvu "))
+                dgvPhieubaohanh.Columns[" iddichvu"].Visible = false;
+
         }
 
         private void btntao_Click(object sender, EventArgs e)
