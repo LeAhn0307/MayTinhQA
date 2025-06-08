@@ -27,11 +27,12 @@ namespace MayTinhQA
 
         private void btntao_Click(object sender, EventArgs e)
         {
-            string ngaytao = dtpngaytao.Value.ToString("dd/MM/yyyy");
+            string maphieu = txtidphieubaohanh.Text;
+            //string ngaytao = dtpngaytao.Value.ToString("dd/MM/yyyy");
             string ngayketthuc = dtpngayketthuc.Value.ToString("dd/MM/yyyy");
             string masp = txtidsanpham.Text;
             string manv = txtidnhanvien.Text;
-            Database.Excute("insert phieubaohanh values('" + ngaytao + "', '" + ngayketthuc + "', '" + masp + "', '" + manv + "')");
+            Database.Excute("INSERT INTO phieubaohanh (idphieubaohanh, ngayketthuc, idsanpham, idnhanvien) VALUES ('" + maphieu + "', '" + ngayketthuc + "', '" + masp + "', '" + manv + "')");
             napdgvPhieubaohanh();
         }
 

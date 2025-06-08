@@ -71,11 +71,11 @@ namespace MayTinhQA
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(293, 10);
+            this.label1.Location = new System.Drawing.Point(293, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(200, 29);
             this.label1.TabIndex = 70;
-            this.label1.Text = "PHIẾU ĐỎI TRẢ";
+            this.label1.Text = "PHIẾU ĐỔI TRẢ";
             // 
             // btnxoa
             // 
@@ -109,6 +109,7 @@ namespace MayTinhQA
             // 
             // dtpngaytao
             // 
+            this.dtpngaytao.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpngaytao.Location = new System.Drawing.Point(181, 135);
             this.dtpngaytao.Name = "dtpngaytao";
             this.dtpngaytao.Size = new System.Drawing.Size(200, 26);

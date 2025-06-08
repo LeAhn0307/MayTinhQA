@@ -90,6 +90,7 @@ namespace MayTinhQA
             // 
             // dtpngayketthuc
             // 
+            this.dtpngayketthuc.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpngayketthuc.Location = new System.Drawing.Point(183, 162);
             this.dtpngayketthuc.Name = "dtpngayketthuc";
             this.dtpngayketthuc.Size = new System.Drawing.Size(200, 26);
@@ -97,6 +98,7 @@ namespace MayTinhQA
             // 
             // dtpngaytao
             // 
+            this.dtpngaytao.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpngaytao.Location = new System.Drawing.Point(183, 123);
             this.dtpngaytao.Name = "dtpngaytao";
             this.dtpngaytao.Size = new System.Drawing.Size(200, 26);
