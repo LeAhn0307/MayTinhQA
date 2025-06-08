@@ -29,6 +29,7 @@ namespace MayTinhQA
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.lblTenNhanVien = new System.Windows.Forms.Label();
             this.btnback = new System.Windows.Forms.Button();
@@ -37,6 +38,7 @@ namespace MayTinhQA
             this.txttennguoidung = new System.Windows.Forms.TextBox();
             this.txtchucvu = new System.Windows.Forms.TextBox();
             this.txtemail = new System.Windows.Forms.TextBox();
+            this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -44,18 +46,18 @@ namespace MayTinhQA
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.SystemColors.Control;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(115, 40);
+            this.label1.Location = new System.Drawing.Point(102, 32);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(235, 29);
+            this.label1.Size = new System.Drawing.Size(197, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Thông tin tài khoản";
             // 
             // lblTenNhanVien
             // 
             this.lblTenNhanVien.AutoSize = true;
-            this.lblTenNhanVien.Location = new System.Drawing.Point(67, 120);
+            this.lblTenNhanVien.Location = new System.Drawing.Point(60, 96);
             this.lblTenNhanVien.Name = "lblTenNhanVien";
-            this.lblTenNhanVien.Size = new System.Drawing.Size(119, 20);
+            this.lblTenNhanVien.Size = new System.Drawing.Size(100, 16);
             this.lblTenNhanVien.TabIndex = 1;
             this.lblTenNhanVien.Text = "Tên người dùng";
             // 
@@ -64,9 +66,10 @@ namespace MayTinhQA
             this.btnback.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnback.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnback.ForeColor = System.Drawing.Color.White;
-            this.btnback.Location = new System.Drawing.Point(192, 245);
+            this.btnback.Location = new System.Drawing.Point(171, 196);
+            this.btnback.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnback.Name = "btnback";
-            this.btnback.Size = new System.Drawing.Size(90, 54);
+            this.btnback.Size = new System.Drawing.Size(80, 43);
             this.btnback.TabIndex = 4;
             this.btnback.Text = "Back";
             this.btnback.UseVisualStyleBackColor = false;
@@ -75,47 +78,55 @@ namespace MayTinhQA
             // lblVaiTro
             // 
             this.lblVaiTro.AutoSize = true;
-            this.lblVaiTro.Location = new System.Drawing.Point(67, 162);
+            this.lblVaiTro.Location = new System.Drawing.Point(60, 130);
             this.lblVaiTro.Name = "lblVaiTro";
-            this.lblVaiTro.Size = new System.Drawing.Size(48, 20);
+            this.lblVaiTro.Size = new System.Drawing.Size(41, 16);
             this.lblVaiTro.TabIndex = 3;
             this.lblVaiTro.Text = "Email";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(67, 204);
+            this.label3.Location = new System.Drawing.Point(60, 163);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 20);
+            this.label3.Size = new System.Drawing.Size(54, 16);
             this.label3.TabIndex = 6;
             this.label3.Text = "Chức vụ";
             // 
             // txttennguoidung
             // 
-            this.txttennguoidung.Location = new System.Drawing.Point(192, 117);
+            this.txttennguoidung.Location = new System.Drawing.Point(171, 94);
+            this.txttennguoidung.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txttennguoidung.Name = "txttennguoidung";
-            this.txttennguoidung.Size = new System.Drawing.Size(247, 26);
+            this.txttennguoidung.Size = new System.Drawing.Size(220, 22);
             this.txttennguoidung.TabIndex = 7;
             // 
             // txtchucvu
             // 
-            this.txtchucvu.Location = new System.Drawing.Point(192, 201);
+            this.txtchucvu.Location = new System.Drawing.Point(171, 161);
+            this.txtchucvu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtchucvu.Name = "txtchucvu";
-            this.txtchucvu.Size = new System.Drawing.Size(247, 26);
+            this.txtchucvu.Size = new System.Drawing.Size(220, 22);
             this.txtchucvu.TabIndex = 9;
             // 
             // txtemail
             // 
-            this.txtemail.Location = new System.Drawing.Point(192, 159);
+            this.txtemail.Location = new System.Drawing.Point(171, 127);
+            this.txtemail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtemail.Name = "txtemail";
-            this.txtemail.Size = new System.Drawing.Size(247, 26);
+            this.txtemail.Size = new System.Drawing.Size(220, 22);
             this.txtemail.TabIndex = 10;
+            // 
+            // guna2Elipse1
+            // 
+            this.guna2Elipse1.BorderRadius = 12;
+            this.guna2Elipse1.TargetControl = this;
             // 
             // frmHoSo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(516, 371);
+            this.ClientSize = new System.Drawing.Size(459, 297);
             this.Controls.Add(this.txtemail);
             this.Controls.Add(this.txtchucvu);
             this.Controls.Add(this.txttennguoidung);
@@ -124,7 +135,10 @@ namespace MayTinhQA
             this.Controls.Add(this.lblVaiTro);
             this.Controls.Add(this.lblTenNhanVien);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmHoSo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HỒ SƠ";
             this.Load += new System.EventHandler(this.frmHoSo_Load);
             this.ResumeLayout(false);
@@ -142,5 +156,6 @@ namespace MayTinhQA
         private System.Windows.Forms.TextBox txttennguoidung;
         private System.Windows.Forms.TextBox txtchucvu;
         private System.Windows.Forms.TextBox txtemail;
+        private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
     }
 }
