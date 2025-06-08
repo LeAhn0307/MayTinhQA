@@ -19,6 +19,7 @@ namespace MayTinhQA
             guna2GroupBox1.Visible = false;
             guna2GroupBox2.Visible = false;
             guna2GroupBox3.Visible = false;
+            guna2GroupBox4.Visible = false;
             UC_Customer uC = new UC_Customer();
             addUserControl(uC);
             btnCustomer.Checked= true;
@@ -211,12 +212,18 @@ namespace MayTinhQA
             {
                 guna2GroupBox3.Visible = false;
             }
+            if (!guna2GroupBox4.Bounds.Contains(clickLocation) &&
+                !btndichvu.Bounds.Contains(clickLocation))
+            {
+                guna2GroupBox4.Visible = false;
+            }
         }
         private void HideAllGroupBoxes()
         {
             guna2GroupBox1.Visible = false;
             guna2GroupBox2.Visible = false;
             guna2GroupBox3.Visible = false;
+            guna2GroupBox4.Visible = false;
         }
 
         private void guna2Button2_Click(object sender, EventArgs e)
@@ -263,6 +270,20 @@ namespace MayTinhQA
         private void btnkhuyenmai_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btndichvu_Click(object sender, EventArgs e)
+        {
+            if (guna2GroupBox4.Visible)
+            {
+                guna2GroupBox4.Visible = false;
+            }
+            else
+            {
+                HideAllGroupBoxes();
+                guna2GroupBox4.Visible = true;
+                guna2GroupBox4.BringToFront();
+            }
         }
     }
 }

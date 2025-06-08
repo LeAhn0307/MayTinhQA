@@ -18,7 +18,6 @@ namespace MayTinhQA
         {
             InitializeComponent();
         }
-
         private void frmHoSo_Load(object sender, EventArgs e)
         {
             LoadUserProfile();
