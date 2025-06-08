@@ -7,14 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data;
 using System.Data.SqlClient;
 
 namespace MayTinhQA.UserControls
 {
     public partial class UC_CustomerNeeds : UserControl
     {
-        private string connecttionString = "Data Source=DESKTOP-2023ILB\\SQLEXPRESS01;Initial Catalog=crm;Integrated Security=True";
+        private string connecttionString = "Data Source=.\\SQLEXPRESS;Initial Catalog=crm1;Integrated Security=True";
         public UC_CustomerNeeds()
         {
             InitializeComponent();
