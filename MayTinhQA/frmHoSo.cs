@@ -27,8 +27,8 @@ namespace MayTinhQA
         {
             if (Session.CurrentUser != null)
             {
-                int userId = Session.CurrentUser.Idusers;
-                txtemail.Text = Session.CurrentUser.Email;
+                int userId = Current_user.CurrentUser.Idusers;
+                txtemail.Text = Current_user.CurrentUser.Email;
                 LoadNhanVienAndChucVu(userId);
             }
             else
