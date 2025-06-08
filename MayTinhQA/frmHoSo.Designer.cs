@@ -31,9 +31,12 @@ namespace MayTinhQA
         {
             this.label1 = new System.Windows.Forms.Label();
             this.lblTenNhanVien = new System.Windows.Forms.Label();
-            this.lblEmail = new System.Windows.Forms.Label();
-            this.lblVaiTro = new System.Windows.Forms.Label();
             this.btnback = new System.Windows.Forms.Button();
+            this.lblVaiTro = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txttennguoidung = new System.Windows.Forms.TextBox();
+            this.txtchucvu = new System.Windows.Forms.TextBox();
+            this.txtemail = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -41,8 +44,9 @@ namespace MayTinhQA
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.SystemColors.Control;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(169, 44);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+
+            this.label1.Location = new System.Drawing.Point(115, 40);
+
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(163, 20);
             this.label1.TabIndex = 0;
@@ -51,52 +55,85 @@ namespace MayTinhQA
             // lblTenNhanVien
             // 
             this.lblTenNhanVien.AutoSize = true;
-            this.lblTenNhanVien.Location = new System.Drawing.Point(129, 96);
-            this.lblTenNhanVien.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+
+            this.lblTenNhanVien.Location = new System.Drawing.Point(67, 120);
             this.lblTenNhanVien.Name = "lblTenNhanVien";
-            this.lblTenNhanVien.Size = new System.Drawing.Size(35, 13);
+            this.lblTenNhanVien.Size = new System.Drawing.Size(119, 20);
+
             this.lblTenNhanVien.TabIndex = 1;
-            this.lblTenNhanVien.Text = "label2";
+            this.lblTenNhanVien.Text = "Tên người dùng";
             // 
-            // lblEmail
+            // btnback
             // 
-            this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(129, 120);
-            this.lblEmail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(35, 13);
-            this.lblEmail.TabIndex = 2;
-            this.lblEmail.Text = "label3";
+
+            this.btnback.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnback.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnback.ForeColor = System.Drawing.Color.White;
+            this.btnback.Location = new System.Drawing.Point(192, 245);
+            this.btnback.Name = "btnback";
+            this.btnback.Size = new System.Drawing.Size(90, 54);
+            this.btnback.TabIndex = 4;
+            this.btnback.Text = "Back";
+            this.btnback.UseVisualStyleBackColor = false;
+            this.btnback.Click += new System.EventHandler(this.btnback_Click);
+
             // 
             // lblVaiTro
             // 
             this.lblVaiTro.AutoSize = true;
-            this.lblVaiTro.Location = new System.Drawing.Point(129, 144);
-            this.lblVaiTro.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+
+            this.lblVaiTro.Location = new System.Drawing.Point(67, 162);
             this.lblVaiTro.Name = "lblVaiTro";
-            this.lblVaiTro.Size = new System.Drawing.Size(35, 13);
+            this.lblVaiTro.Size = new System.Drawing.Size(48, 20);
+
             this.lblVaiTro.TabIndex = 3;
-            this.lblVaiTro.Text = "label4";
+            this.lblVaiTro.Text = "Email";
             // 
-            // btnback
+            // label3
             // 
-            this.btnback.Location = new System.Drawing.Point(132, 171);
-            this.btnback.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnback.Name = "btnback";
-            this.btnback.Size = new System.Drawing.Size(60, 35);
-            this.btnback.TabIndex = 4;
-            this.btnback.Text = "Back";
-            this.btnback.UseVisualStyleBackColor = true;
-            this.btnback.Click += new System.EventHandler(this.btnback_Click);
+
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(67, 204);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(66, 20);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Chức vụ";
+            // 
+            // txttennguoidung
+            // 
+            this.txttennguoidung.Location = new System.Drawing.Point(192, 117);
+            this.txttennguoidung.Name = "txttennguoidung";
+            this.txttennguoidung.Size = new System.Drawing.Size(247, 26);
+            this.txttennguoidung.TabIndex = 7;
+            // 
+            // txtchucvu
+            // 
+            this.txtchucvu.Location = new System.Drawing.Point(192, 201);
+            this.txtchucvu.Name = "txtchucvu";
+            this.txtchucvu.Size = new System.Drawing.Size(247, 26);
+            this.txtchucvu.TabIndex = 9;
+            // 
+            // txtemail
+            // 
+            this.txtemail.Location = new System.Drawing.Point(192, 159);
+            this.txtemail.Name = "txtemail";
+            this.txtemail.Size = new System.Drawing.Size(247, 26);
+            this.txtemail.TabIndex = 10;
+
             // 
             // frmHoSo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(533, 292);
+
+            this.ClientSize = new System.Drawing.Size(516, 371);
+            this.Controls.Add(this.txtemail);
+            this.Controls.Add(this.txtchucvu);
+            this.Controls.Add(this.txttennguoidung);
+            this.Controls.Add(this.label3);
+
             this.Controls.Add(this.btnback);
             this.Controls.Add(this.lblVaiTro);
-            this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.lblTenNhanVien);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
@@ -112,8 +149,11 @@ namespace MayTinhQA
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblTenNhanVien;
-        private System.Windows.Forms.Label lblEmail;
-        private System.Windows.Forms.Label lblVaiTro;
         private System.Windows.Forms.Button btnback;
+        private System.Windows.Forms.Label lblVaiTro;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txttennguoidung;
+        private System.Windows.Forms.TextBox txtchucvu;
+        private System.Windows.Forms.TextBox txtemail;
     }
 }
