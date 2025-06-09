@@ -49,15 +49,15 @@
             this.labelName = new System.Windows.Forms.Label();
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
-            this.picboxsort = new Guna.UI2.WinForms.Guna2PictureBox();
             this.labelloaitieuchi = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.cbbFilter = new Guna.UI2.WinForms.Guna2ComboBox();
             this.labelxoatimkiem = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.picboxrs = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.picboxsort = new Guna.UI2.WinForms.Guna2PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvkhachhang)).BeginInit();
             this.guna2GradientPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picboxsort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picboxrs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picboxsort)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvkhachhang
@@ -96,8 +96,8 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvkhachhang.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvkhachhang.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
-            this.dgvkhachhang.Location = new System.Drawing.Point(1, 155);
-            this.dgvkhachhang.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvkhachhang.Location = new System.Drawing.Point(17, 219);
+            this.dgvkhachhang.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvkhachhang.Name = "dgvkhachhang";
             this.dgvkhachhang.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -111,7 +111,7 @@
             this.dgvkhachhang.RowHeadersVisible = false;
             this.dgvkhachhang.RowHeadersWidth = 48;
             this.dgvkhachhang.RowTemplate.Height = 24;
-            this.dgvkhachhang.Size = new System.Drawing.Size(835, 356);
+            this.dgvkhachhang.Size = new System.Drawing.Size(1076, 400);
             this.dgvkhachhang.TabIndex = 13;
             this.dgvkhachhang.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvkhachhang.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -181,10 +181,10 @@
             this.btnchon.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
             this.btnchon.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnchon.ForeColor = System.Drawing.Color.White;
-            this.btnchon.Location = new System.Drawing.Point(671, 56);
-            this.btnchon.Margin = new System.Windows.Forms.Padding(2);
+            this.btnchon.Location = new System.Drawing.Point(895, 69);
+            this.btnchon.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnchon.Name = "btnchon";
-            this.btnchon.Size = new System.Drawing.Size(78, 41);
+            this.btnchon.Size = new System.Drawing.Size(104, 50);
             this.btnchon.TabIndex = 10;
             this.btnchon.Text = "Chọn";
             this.btnchon.Click += new System.EventHandler(this.btnchon_Click);
@@ -202,12 +202,12 @@
             this.txtSearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSearch.Location = new System.Drawing.Point(1, 56);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtSearch.Location = new System.Drawing.Point(1, 69);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PlaceholderText = "";
             this.txtSearch.SelectedText = "";
-            this.txtSearch.Size = new System.Drawing.Size(280, 41);
+            this.txtSearch.Size = new System.Drawing.Size(373, 50);
             this.txtSearch.TabIndex = 9;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
@@ -221,10 +221,10 @@
             this.guna2Button1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
             this.guna2Button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2Button1.ForeColor = System.Drawing.Color.White;
-            this.guna2Button1.Location = new System.Drawing.Point(286, 56);
-            this.guna2Button1.Margin = new System.Windows.Forms.Padding(2);
+            this.guna2Button1.Location = new System.Drawing.Point(381, 69);
+            this.guna2Button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.Size = new System.Drawing.Size(101, 41);
+            this.guna2Button1.Size = new System.Drawing.Size(135, 50);
             this.guna2Button1.TabIndex = 11;
             this.guna2Button1.Text = "Tìm kiếm";
             this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
@@ -239,10 +239,10 @@
             this.btnhuy.FillColor = System.Drawing.Color.Red;
             this.btnhuy.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnhuy.ForeColor = System.Drawing.Color.White;
-            this.btnhuy.Location = new System.Drawing.Point(753, 56);
-            this.btnhuy.Margin = new System.Windows.Forms.Padding(2);
+            this.btnhuy.Location = new System.Drawing.Point(1004, 69);
+            this.btnhuy.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnhuy.Name = "btnhuy";
-            this.btnhuy.Size = new System.Drawing.Size(78, 41);
+            this.btnhuy.Size = new System.Drawing.Size(104, 50);
             this.btnhuy.TabIndex = 12;
             this.btnhuy.Text = "Hủy";
             this.btnhuy.Click += new System.EventHandler(this.btnhuy_Click);
@@ -260,9 +260,9 @@
             this.guna2GradientPanel1.Controls.Add(this.labelName);
             this.guna2GradientPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2GradientPanel1.Location = new System.Drawing.Point(0, 0);
-            this.guna2GradientPanel1.Margin = new System.Windows.Forms.Padding(2);
+            this.guna2GradientPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2GradientPanel1.Name = "guna2GradientPanel1";
-            this.guna2GradientPanel1.Size = new System.Drawing.Size(836, 50);
+            this.guna2GradientPanel1.Size = new System.Drawing.Size(1115, 62);
             this.guna2GradientPanel1.TabIndex = 16;
             // 
             // labelName
@@ -270,10 +270,9 @@
             this.labelName.AutoSize = true;
             this.labelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelName.ForeColor = System.Drawing.Color.White;
-            this.labelName.Location = new System.Drawing.Point(9, 15);
-            this.labelName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelName.Location = new System.Drawing.Point(12, 18);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(149, 20);
+            this.labelName.Size = new System.Drawing.Size(182, 25);
             this.labelName.TabIndex = 4;
             this.labelName.Text = "Chọn khách hàng";
             // 
@@ -287,25 +286,14 @@
             // 
             this.guna2Elipse1.BorderRadius = 12;
             // 
-            // picboxsort
-            // 
-            this.picboxsort.Image = global::MayTinhQA.Properties.Resources.sort;
-            this.picboxsort.ImageRotate = 0F;
-            this.picboxsort.Location = new System.Drawing.Point(186, 113);
-            this.picboxsort.Name = "picboxsort";
-            this.picboxsort.Size = new System.Drawing.Size(23, 27);
-            this.picboxsort.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picboxsort.TabIndex = 19;
-            this.picboxsort.TabStop = false;
-            this.picboxsort.Click += new System.EventHandler(this.picboxsort_Click);
-            // 
             // labelloaitieuchi
             // 
             this.labelloaitieuchi.BackColor = System.Drawing.Color.Transparent;
             this.labelloaitieuchi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelloaitieuchi.Location = new System.Drawing.Point(144, 113);
+            this.labelloaitieuchi.Location = new System.Drawing.Point(195, 135);
+            this.labelloaitieuchi.Margin = new System.Windows.Forms.Padding(4);
             this.labelloaitieuchi.Name = "labelloaitieuchi";
-            this.labelloaitieuchi.Size = new System.Drawing.Size(11, 18);
+            this.labelloaitieuchi.Size = new System.Drawing.Size(14, 22);
             this.labelloaitieuchi.TabIndex = 18;
             this.labelloaitieuchi.Text = "X";
             this.labelloaitieuchi.Visible = false;
@@ -323,9 +311,10 @@
             this.cbbFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
             this.cbbFilter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.cbbFilter.ItemHeight = 30;
-            this.cbbFilter.Location = new System.Drawing.Point(1, 104);
+            this.cbbFilter.Location = new System.Drawing.Point(1, 128);
+            this.cbbFilter.Margin = new System.Windows.Forms.Padding(4);
             this.cbbFilter.Name = "cbbFilter";
-            this.cbbFilter.Size = new System.Drawing.Size(179, 36);
+            this.cbbFilter.Size = new System.Drawing.Size(237, 36);
             this.cbbFilter.TabIndex = 17;
             this.cbbFilter.SelectedIndexChanged += new System.EventHandler(this.cbbFilter_SelectedIndexChanged);
             // 
@@ -333,9 +322,10 @@
             // 
             this.labelxoatimkiem.BackColor = System.Drawing.Color.Transparent;
             this.labelxoatimkiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelxoatimkiem.Location = new System.Drawing.Point(254, 66);
+            this.labelxoatimkiem.Location = new System.Drawing.Point(339, 81);
+            this.labelxoatimkiem.Margin = new System.Windows.Forms.Padding(4);
             this.labelxoatimkiem.Name = "labelxoatimkiem";
-            this.labelxoatimkiem.Size = new System.Drawing.Size(11, 18);
+            this.labelxoatimkiem.Size = new System.Drawing.Size(14, 22);
             this.labelxoatimkiem.TabIndex = 20;
             this.labelxoatimkiem.Text = "X";
             this.labelxoatimkiem.Visible = false;
@@ -346,20 +336,35 @@
             this.picboxrs.FillColor = System.Drawing.SystemColors.Control;
             this.picboxrs.Image = global::MayTinhQA.Properties.Resources.reset;
             this.picboxrs.ImageRotate = 0F;
-            this.picboxrs.Location = new System.Drawing.Point(215, 113);
+            this.picboxrs.Location = new System.Drawing.Point(287, 131);
+            this.picboxrs.Margin = new System.Windows.Forms.Padding(4);
             this.picboxrs.Name = "picboxrs";
-            this.picboxrs.Size = new System.Drawing.Size(24, 27);
+            this.picboxrs.Size = new System.Drawing.Size(32, 33);
             this.picboxrs.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picboxrs.TabIndex = 21;
             this.picboxrs.TabStop = false;
             this.picboxrs.Visible = false;
             this.picboxrs.Click += new System.EventHandler(this.picboxrs_Click);
             // 
+            // picboxsort
+            // 
+            this.picboxsort.Image = global::MayTinhQA.Properties.Resources.sort;
+            this.picboxsort.ImageRotate = 0F;
+            this.picboxsort.Location = new System.Drawing.Point(248, 131);
+            this.picboxsort.Margin = new System.Windows.Forms.Padding(4);
+            this.picboxsort.Name = "picboxsort";
+            this.picboxsort.Size = new System.Drawing.Size(31, 33);
+            this.picboxsort.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picboxsort.TabIndex = 19;
+            this.picboxsort.TabStop = false;
+            this.picboxsort.Click += new System.EventHandler(this.picboxsort_Click);
+            // 
             // FormChooseCus
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(836, 512);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(1115, 630);
             this.Controls.Add(this.picboxrs);
             this.Controls.Add(this.labelxoatimkiem);
             this.Controls.Add(this.picboxsort);
@@ -372,14 +377,16 @@
             this.Controls.Add(this.guna2Button1);
             this.Controls.Add(this.btnhuy);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormChooseCus";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.FormChooseCus_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvkhachhang)).EndInit();
             this.guna2GradientPanel1.ResumeLayout(false);
             this.guna2GradientPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picboxsort)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picboxrs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picboxsort)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

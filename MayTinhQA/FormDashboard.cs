@@ -97,8 +97,8 @@ namespace MayTinhQA
 
         private void btnlienlac_Click(object sender, EventArgs e)
         {
-            FormEmail uC = new FormEmail();
-            uC.ShowDialog();
+            UC_Email uC = new UC_Email();
+            addUserControl(uC);
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)

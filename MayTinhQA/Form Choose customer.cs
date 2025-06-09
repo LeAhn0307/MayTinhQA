@@ -159,6 +159,24 @@ namespace MayTinhQA
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+        // Thêm property này vào class FormChooseCus
+        public List<string> SelectedEmails
+        {
+            get
+            {
+                var emails = new List<string>();
+                foreach (DataGridViewRow row in dgvkhachhang.Rows)
+                {
+                    if (row.Cells["check"].Value != null && Convert.ToBoolean(row.Cells["check"].Value))
+                    {
+                        string email = row.Cells["email"].Value?.ToString();
+                        if (!string.IsNullOrEmpty(email))
+                            emails.Add(email);
+                    }
+                }
+                return emails;
+            }
+        }
         private void LoadFilterOptions()
         {
             cbbFilter.Items.Clear();

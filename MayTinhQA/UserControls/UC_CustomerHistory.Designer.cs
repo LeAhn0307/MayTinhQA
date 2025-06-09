@@ -38,62 +38,68 @@
             // 
             // btntk
             // 
-            this.btntk.Location = new System.Drawing.Point(226, 459);
+            this.btntk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
+            this.btntk.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btntk.ForeColor = System.Drawing.Color.White;
+            this.btntk.Location = new System.Drawing.Point(100, 450);
             this.btntk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btntk.Name = "btntk";
-            this.btntk.Size = new System.Drawing.Size(109, 68);
+            this.btntk.Size = new System.Drawing.Size(128, 75);
             this.btntk.TabIndex = 9;
             this.btntk.Text = "TÌM KIẾM";
-            this.btntk.UseVisualStyleBackColor = true;
+            this.btntk.UseVisualStyleBackColor = false;
             // 
             // txttktheotenkhach
             // 
-            this.txttktheotenkhach.Location = new System.Drawing.Point(363, 459);
+            this.txttktheotenkhach.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txttktheotenkhach.Location = new System.Drawing.Point(253, 450);
             this.txttktheotenkhach.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txttktheotenkhach.Name = "txttktheotenkhach";
-            this.txttktheotenkhach.Size = new System.Drawing.Size(130, 26);
+            this.txttktheotenkhach.Size = new System.Drawing.Size(137, 27);
             this.txttktheotenkhach.TabIndex = 8;
             // 
             // txttktheoiddonhang
             // 
-            this.txttktheoiddonhang.Location = new System.Drawing.Point(363, 499);
+            this.txttktheoiddonhang.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txttktheoiddonhang.Location = new System.Drawing.Point(253, 498);
             this.txttktheoiddonhang.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txttktheoiddonhang.Name = "txttktheoiddonhang";
-            this.txttktheoiddonhang.Size = new System.Drawing.Size(130, 26);
+            this.txttktheoiddonhang.Size = new System.Drawing.Size(137, 27);
             this.txttktheoiddonhang.TabIndex = 7;
             // 
             // lbltongsogiaodich
             // 
             this.lbltongsogiaodich.AutoSize = true;
-            this.lbltongsogiaodich.Location = new System.Drawing.Point(965, 459);
+            this.lbltongsogiaodich.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbltongsogiaodich.Location = new System.Drawing.Point(889, 478);
             this.lbltongsogiaodich.Name = "lbltongsogiaodich";
-            this.lbltongsogiaodich.Size = new System.Drawing.Size(133, 20);
+            this.lbltongsogiaodich.Size = new System.Drawing.Size(141, 20);
             this.lbltongsogiaodich.TabIndex = 6;
             this.lbltongsogiaodich.Text = "Tổng số giao dịch";
             // 
             // dgvlichsugiaodich
             // 
             this.dgvlichsugiaodich.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvlichsugiaodich.Location = new System.Drawing.Point(226, 19);
+            this.dgvlichsugiaodich.Location = new System.Drawing.Point(100, 13);
             this.dgvlichsugiaodich.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvlichsugiaodich.Name = "dgvlichsugiaodich";
             this.dgvlichsugiaodich.RowHeadersWidth = 62;
             this.dgvlichsugiaodich.RowTemplate.Height = 28;
-            this.dgvlichsugiaodich.Size = new System.Drawing.Size(997, 415);
+            this.dgvlichsugiaodich.Size = new System.Drawing.Size(1009, 389);
             this.dgvlichsugiaodich.TabIndex = 5;
             // 
             // UC_CustomerHistory
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.btntk);
             this.Controls.Add(this.txttktheotenkhach);
             this.Controls.Add(this.txttktheoiddonhang);
             this.Controls.Add(this.lbltongsogiaodich);
             this.Controls.Add(this.dgvlichsugiaodich);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "UC_CustomerHistory";
-            this.Size = new System.Drawing.Size(1442, 746);
+            this.Size = new System.Drawing.Size(1282, 597);
             ((System.ComponentModel.ISupportInitialize)(this.dgvlichsugiaodich)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

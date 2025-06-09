@@ -16,6 +16,7 @@ namespace MayTinhQA
 {
     public partial class FormEmail : Form
     {
+        private string connectionString = "Data Source=.\\SQLEXPRESS;Initial Catalog=crm1;Integrated Security=True"; 
         public FormEmail()
         {
             InitializeComponent();
@@ -23,7 +24,7 @@ namespace MayTinhQA
         }
         private void LoadKhachHang()
         {
-            string connectionString = "Data Source=DESKTOP-2023ILB\\SQLEXPRESS01;Initial Catalog=crm;Integrated Security=True "; 
+            
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -78,7 +79,7 @@ namespace MayTinhQA
         private string GetEmailById(int idKhachHang)
         {
             string email = string.Empty;
-            string connectionString = "Data Source=DESKTOP-2023ILB\\SQLEXPRESS01;Initial Catalog=crm;Integrated Security=True "; 
+
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

@@ -256,6 +256,12 @@
     <Compile Include="UserControls\UC_DonHang.Designer.cs">
       <DependentUpon>UC_DonHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UC_Email.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UC_Email.Designer.cs">
+      <DependentUpon>UC_Email.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UC_Home.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -355,6 +361,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UC_DonHang.resx">
       <DependentUpon>UC_DonHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UC_Email.resx">
+      <DependentUpon>UC_Email.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UC_Home.resx">
       <DependentUpon>UC_Home.cs</DependentUpon>
