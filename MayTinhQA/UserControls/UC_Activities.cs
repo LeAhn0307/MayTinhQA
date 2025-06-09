@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -557,7 +558,38 @@ namespace MayTinhQA.UserControls
             isHeaderCheckBoxChecked = false;
             dgvhoatdong.Invalidate();
         }
+        private bool KiemTraDichVuTruocKhiXoa(int idDichVu)
+        {
+            string[] danhSachTruyVan = new string[]
+            {
+        $"SELECT COUNT(*) FROM donhang ct JOIN chitietdonhang dh ON ct.iddonhang = dh.iddonhang WHERE ct.iddichvu = {idDichVu}",
+        $"SELECT COUNT(*) FROM phieubaohanh WHERE iddichvu = {idDichVu}",
+        $"SELECT COUNT(*) FROM phieudoitra WHERE iddichvu = {idDichVu}",
+        $"SELECT COUNT(*) FROM lienlac WHERE iddichvu = {idDichVu}"
+            };
+            string[] tenBang = { "đơn hàng","bảo hành", "đổi trả", "liên lạc" };
+            using (SqlConnection conn = Connection.GetSqlConnection())
+            {
+                conn.Open();
+                for (int i = 0; i < danhSachTruyVan.Length; i++)
+                {
+                    using (SqlCommand cmd = new SqlCommand(danhSachTruyVan[i], conn))
+                    {
+                        int count = (int)cmd.ExecuteScalar();
+                        if (count > 0)
+                        {
+                            MessageBox.Show($"Dịch vụ đang được sử dụng trong {tenBang[i]}.\nVui lòng xóa các dữ liệu liên quan trước.",
+                                            "Không thể xóa dịch vụ",
+                                            MessageBoxButtons.OK,
+                                            MessageBoxIcon.Warning);
+                            return false;
+                        }
+                    }
+                }
+            }
 
+            return true; 
+        }
         private void btnxoa_Click(object sender, EventArgs e)
         {
             List<int> selectedIds = new List<int>();
@@ -581,9 +613,10 @@ namespace MayTinhQA.UserControls
 
             DialogResult result = MessageBox.Show($"Bạn có chắc chắn muốn xóa {selectedIds.Count} dòng đã chọn không?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.No) return;
-
             foreach (int iddv in selectedIds)
             {
+                if (!KiemTraDichVuTruocKhiXoa(iddv))
+                    return;
                 try
                 {
                     Database.Excute($"DELETE FROM lienlac WHERE iddichvu = {iddv}");

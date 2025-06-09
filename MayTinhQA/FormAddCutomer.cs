@@ -160,8 +160,14 @@ VALUES
                     string diachi = txtdiachikhach.Text.Trim();
                     string ngaysinh = dtpkhach.Value.ToString("yyyy-MM-dd");
                     string ghichu = txtghichu.Text.Trim();
-                    int idThanhPho = (int)comboBoxtp.SelectedValue;
-                    int idQuan = (int)comboBoxq.SelectedValue;
+                    if (comboBoxtp.SelectedValue == null || comboBoxq.SelectedValue == null)
+                    {
+                        MessageBox.Show("Vui lòng chọn đầy đủ Tỉnh/Thành phố và Quận/Huyện.", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    int idThanhPho = Convert.ToInt32(comboBoxtp.SelectedValue);
+                    int idQuan = Convert.ToInt32(comboBoxq.SelectedValue);
 
                     string sql = $@"
                         UPDATE khachhang 

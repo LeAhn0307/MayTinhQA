@@ -238,14 +238,15 @@ VALUES ({idDonHang}, {idSanPham}, {soLuong}, {donGia.ToString(CultureInfo.Invari
                         int idSanPham = Convert.ToInt32(dtSP.Rows[0]["idsanpham"]);
                         decimal donGia = Convert.ToDecimal(dtSP.Rows[0]["gia"]);
                         string updateChiTiet = $@"
-                        UPDATE chitietdonhang
-                         SET 
-                         soluong = {soLuong},
-                          dongia = {donGia.ToString(CultureInfo.InvariantCulture)}
-                         WHERE idchitietdh = {idChiTietDH}";
+    UPDATE chitietdonhang
+    SET 
+        idsanpham = {idSanPham},
+        soluong = {soLuong},
+        dongia = {donGia.ToString(CultureInfo.InvariantCulture)}
+    WHERE idchitietdh = {idChiTietDH}";
+
                         Database.Excute(updateChiTiet);
                     }
-
                     MessageBox.Show("Cập nhật chi tiết đơn hàng thành công!", "Thông báo", MessageBoxButtons.OK);
                     isEditing = false;
                     currentEditingRowIndex = -1;

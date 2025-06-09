@@ -122,13 +122,19 @@ namespace MayTinhQA
             {
                 try
                 {
+                    if (comboBoxldv.SelectedValue == null || comboBoxldv.SelectedValue == null)
+                    {
+                        MessageBox.Show("Vui lòng chọn loại dịch vụ.", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
                     string SafeSql(string input) => input.Replace("'", "''");
                     string id = txtiddichvu.Text.Trim();
                     string tendv = SafeSql(txttendichvu.Text.Trim());
                     string ghichu = SafeSql(txtghichu.Text.Trim());
                     string tennv = txttennhanvien.Text.Trim();
                     string ngaytao = dtpngaytao.Value.ToString("yyyy-MM-dd");
-                    int idLoaiDV = (int)comboBoxldv.SelectedValue;
+                    int idLoaiDV = Convert.ToInt32(comboBoxldv.SelectedValue);
                     string tenTrangThai = "Mới tạo";
                     
 
