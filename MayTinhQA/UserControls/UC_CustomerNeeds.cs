@@ -14,7 +14,7 @@ namespace MayTinhQA.UserControls
 {
     public partial class UC_CustomerNeeds : UserControl
     {
-        private string connecttionString = "Data Source=DESKTOP-5ET5TOG;Initial Catalog=crm;Integrated Security=True";
+        private string connecttionString = "Data Source=.\\SQLEXPRESS;Initial Catalog=crm1;Integrated Security=True";
         public UC_CustomerNeeds()
         {
             InitializeComponent();

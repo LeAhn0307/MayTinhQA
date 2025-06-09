@@ -14,7 +14,7 @@ namespace MayTinhQA
 {
     public partial class frmhanhvi : Form
     {
-        private string connectionString = "Data Source=DESKTOP-2023ILB\\SQLEXPRESS01;Initial Catalog=crm;Integrated Security=True";
+        private string connectionString = "Data Source=.\\SQLEXPRESS;Initial Catalog=crm1;Integrated Security=True";
         public frmhanhvi()
         {
             InitializeComponent();
@@ -63,73 +63,6 @@ namespace MayTinhQA
             BieuDoGiaoDich();
             BieuDoPhanKhuc();
         }
-        private void PhanKhucKhachHang()
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                string query = @"
-        SELECT 
-            k.tenkhachhang AS TenKhachHang,
-            CASE 
-                WHEN COUNT(d.iddonhang) > 5 THEN 'Trung Thanh'
-                WHEN COUNT(d.iddonhang) BETWEEN 1 AND 5 THEN 'Moi'
-                ELSE 'Khong Hoat Dong'
-            END AS PhanKhuc
-        FROM 
-            khachhang k
-        LEFT JOIN 
-            donhang d ON k.idkhachhang = d.idkhachhang
-        GROUP BY 
-            k.tenkhachhang
-        ORDER BY 
-            PhanKhuc;";
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
-                    dgvphankhuc.Rows.Clear();
-                    while (reader.Read())
-                    {
-                        dgvphankhuc.Rows.Add(
-                            reader["TenKhachHang"],
-                            reader["PhanKhuc"]);
-                    }
-                }
-            }
-        }
-        private void BieuDoPhanKhuc()
-        {
-            chartphankhuc.Series["Phân Khúc Khách Hàng"].Points.Clear();
-
-            foreach (DataGridViewRow row in dgvphankhuc.Rows)
-            {
-                if (row.Cells["PhanKhuc"].Value != null)
-                {
-                    string phanKhuc = row.Cells["PhanKhuc"].Value.ToString();
-                    int soKhachHang = 1;
-                    var point = chartphankhuc.Series["Phân Khúc Khách Hàng"].Points.AddXY(phanKhuc, soKhachHang);
-                    chartphankhuc.Series["Phân Khúc Khách Hàng"].Points[point].Label = phanKhuc;
-                }
-            }
-        }
-        private void BieuDoGiaoDich()
-        {
-            chartgiaodich.Series["Số Giao Dịch"].Points.Clear();
-
-            foreach (DataGridViewRow row in dgvthongke.Rows)
-            {
-                if (row.Cells["SoLanMua"].Value != null && row.Cells["TenKhachHang"].Value != null && row.Cells["Ngay"].Value != null)
-                {
-                    int soLanMua = Convert.ToInt32(row.Cells["SoLanMua"].Value);
-                    string ngay = row.Cells["Ngay"].Value.ToString();
-
-                    var point = chartgiaodich.Series["Số Giao Dịch"].Points.AddXY(ngay, soLanMua);
-                    chartgiaodich.Series["Số Giao Dịch"].Points[point].Label = soLanMua.ToString();
-
-                }
-            }
-        }
         private void ThongKeMuaSam()
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -164,6 +97,98 @@ namespace MayTinhQA
                             reader["SoLanMua"],
                             string.Format("{0:C}", reader["TongGiaTri"]));
                     }
+                }
+            }
+        }
+        private void PhanKhucKhachHang()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+        SELECT 
+            k.tenkhachhang AS TenKhachHang,
+            CASE 
+                WHEN COUNT(d.iddonhang) > 5 THEN 'Trung Thanh'
+                WHEN COUNT(d.iddonhang) BETWEEN 1 AND 5 THEN 'Moi'
+                ELSE 'Khong Hoat Dong'
+            END AS PhanKhuc
+        FROM 
+            khachhang k
+        LEFT JOIN 
+            donhang d ON k.idkhachhang = d.idkhachhang
+        GROUP BY 
+            k.tenkhachhang
+        ORDER BY 
+            PhanKhuc;";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    dgvphankhuc.Rows.Clear();
+                    while (reader.Read())
+                    {
+                        dgvphankhuc.Rows.Add(
+                            reader["TenKhachHang"],
+                            reader["PhanKhuc"]);
+                    }
+                }
+            }
+        }
+        private void BieuDoPhanKhuc()
+        {
+            chartphankhuc.Series["Phân Khúc Khách Hàng"].Points.Clear();
+            chartphankhuc.Legends.Clear();
+            var colors = new Dictionary<string, Color>
+    {
+        { "Khong Hoat Dong", Color.Red },
+        { "Moi", Color.Yellow },
+        { "Trung Thanh", Color.Green }
+    };
+
+            var phanKhucCount = new Dictionary<string, int>();
+
+            foreach (DataGridViewRow row in dgvphankhuc.Rows)
+            {
+                if (row.Cells["PhanKhuc"].Value != null)
+                {
+                    string phanKhuc = row.Cells["PhanKhuc"].Value.ToString();
+                    if (!phanKhucCount.ContainsKey(phanKhuc))
+                    {
+                        phanKhucCount[phanKhuc] = 0;
+                    }
+                    phanKhucCount[phanKhuc]++;
+                }
+            }
+
+            foreach (var item in phanKhucCount)
+            {
+                var point = chartphankhuc.Series["Phân Khúc Khách Hàng"].Points.AddXY(item.Key, item.Value);
+                if (colors.ContainsKey(item.Key))
+                {
+                    chartphankhuc.Series["Phân Khúc Khách Hàng"].Points[point].Color = colors[item.Key];
+                    chartphankhuc.Series["Phân Khúc Khách Hàng"].Points[point].LegendText = item.Key;
+                }
+                chartphankhuc.Series["Phân Khúc Khách Hàng"].Points[point].Label = item.Value.ToString();
+            }
+
+            chartphankhuc.Legends.Add("Legend");
+            chartphankhuc.Legends[0].Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Right;
+            chartphankhuc.Legends[0].Alignment = StringAlignment.Center;
+        }
+        private void BieuDoGiaoDich()
+        {
+            chartgiaodich.Series["Số Giao Dịch"].Points.Clear();
+
+            foreach (DataGridViewRow row in dgvthongke.Rows)
+            {
+                if (row.Cells["SoLanMua"].Value != null && row.Cells["TenKhachHang"].Value != null && row.Cells["Ngay"].Value != null)
+                {
+                    int soLanMua = Convert.ToInt32(row.Cells["SoLanMua"].Value);
+                    string ngay = row.Cells["Ngay"].Value.ToString();
+
+                    var point = chartgiaodich.Series["Số Giao Dịch"].Points.AddXY(ngay, soLanMua);
+                    chartgiaodich.Series["Số Giao Dịch"].Points[point].Label = soLanMua.ToString();
+
                 }
             }
         }
