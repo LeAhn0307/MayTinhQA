@@ -23,7 +23,7 @@ namespace MayTinhQA
         }
         private void LoadKhachHang()
         {
-            string connectionString = "Data Source=DESKTOP-2023ILB\\SQLEXPRESS01;Initial Catalog=crm;Integrated Security=True "; 
+            string connectionString = "Data Source=DESKTOP-5ET5TOG;Initial Catalog=crm;Integrated Security=True "; 
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -78,7 +78,7 @@ namespace MayTinhQA
         private string GetEmailById(int idKhachHang)
         {
             string email = string.Empty;
-            string connectionString = "Data Source=DESKTOP-2023ILB\\SQLEXPRESS01;Initial Catalog=crm;Integrated Security=True "; 
+            string connectionString = "Data Source=DESKTOP-5ET5TOG;Initial Catalog=crm;Integrated Security=True "; 
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
