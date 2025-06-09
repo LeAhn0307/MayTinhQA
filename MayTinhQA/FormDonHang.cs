@@ -16,7 +16,7 @@ namespace MayTinhQA
 {
     public partial class frmdonhang : Form
     {
-        private static string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=crm;Integrated Security=True";
+        private static string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=crm1;Integrated Security=True";
         private SqlDataAdapter myDataAdapter;
         private SqlCommand myCommand;
         private SqlConnection myConnection;

@@ -13,7 +13,7 @@ namespace MayTinhQA.UserControls
 {
     public partial class UC_CustomerHistory : UserControl
     {
-        private string connectionString = "Data Source=DESKTOP-5ET5TOG;Initial Catalog=crm;Integrated Security=True";
+        private string connectionString = "Data Source=.\\SQLEXPRESS;Initial Catalog=crm1;Integrated Security=True";
 
         public UC_CustomerHistory()
         {

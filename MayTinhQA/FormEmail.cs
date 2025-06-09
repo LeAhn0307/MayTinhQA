@@ -16,7 +16,7 @@ namespace MayTinhQA
 {
     public partial class FormEmail : Form
     {
-        private string connectionString = "Data Source=DESKTOP-5ET5TOG;Initial Catalog=crm;Integrated Security=True"; 
+        private string connectionString = "Data Source=.\\SQLEXPRESS;Initial Catalog=crm1;Integrated Security=True"; 
         public FormEmail()
         {
             InitializeComponent();
