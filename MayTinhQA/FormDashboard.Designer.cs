@@ -54,7 +54,6 @@ namespace MayTinhQA
             this.btnlienlac = new Guna.UI2.WinForms.Guna2Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.guna2GroupBox4 = new Guna.UI2.WinForms.Guna2GroupBox();
-            this.btnkhuyenmai = new Guna.UI2.WinForms.Guna2Button();
             this.btndoitra = new Guna.UI2.WinForms.Guna2Button();
             this.btnbh = new Guna.UI2.WinForms.Guna2Button();
             this.guna2GroupBox3 = new Guna.UI2.WinForms.Guna2GroupBox();
@@ -86,7 +85,7 @@ namespace MayTinhQA
             this.panel1.Controls.Add(this.guna2Button3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(962, 64);
             this.panel1.TabIndex = 0;
@@ -96,7 +95,7 @@ namespace MayTinhQA
             // 
             this.pictureBox1.Image = global::MayTinhQA.Properties.Resources.QA;
             this.pictureBox1.Location = new System.Drawing.Point(7, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(189, 62);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -117,7 +116,7 @@ namespace MayTinhQA
             this.btnhide.ForeColor = System.Drawing.Color.White;
             this.btnhide.Image = global::MayTinhQA.Properties.Resources.line1;
             this.btnhide.Location = new System.Drawing.Point(910, 2);
-            this.btnhide.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnhide.Margin = new System.Windows.Forms.Padding(2);
             this.btnhide.Name = "btnhide";
             this.btnhide.Size = new System.Drawing.Size(21, 14);
             this.btnhide.TabIndex = 4;
@@ -136,7 +135,7 @@ namespace MayTinhQA
             this.guna2Button3.ForeColor = System.Drawing.Color.White;
             this.guna2Button3.Image = global::MayTinhQA.Properties.Resources.close_icon;
             this.guna2Button3.Location = new System.Drawing.Point(935, 3);
-            this.guna2Button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Button3.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button3.Name = "guna2Button3";
             this.guna2Button3.Size = new System.Drawing.Size(23, 13);
             this.guna2Button3.TabIndex = 4;
@@ -157,7 +156,7 @@ namespace MayTinhQA
             this.btnCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCustomer.ForeColor = System.Drawing.Color.White;
             this.btnCustomer.Location = new System.Drawing.Point(7, 5);
-            this.btnCustomer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCustomer.Margin = new System.Windows.Forms.Padding(2);
             this.btnCustomer.Name = "btnCustomer";
             this.btnCustomer.Size = new System.Drawing.Size(133, 37);
             this.btnCustomer.TabIndex = 1;
@@ -179,7 +178,7 @@ namespace MayTinhQA
             this.btnActivity.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnActivity.ForeColor = System.Drawing.Color.White;
             this.btnActivity.Location = new System.Drawing.Point(154, 4);
-            this.btnActivity.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnActivity.Margin = new System.Windows.Forms.Padding(2);
             this.btnActivity.Name = "btnActivity";
             this.btnActivity.Size = new System.Drawing.Size(124, 37);
             this.btnActivity.TabIndex = 2;
@@ -201,7 +200,7 @@ namespace MayTinhQA
             this.btnbaocao.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnbaocao.ForeColor = System.Drawing.Color.White;
             this.btnbaocao.Location = new System.Drawing.Point(282, -1);
-            this.btnbaocao.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnbaocao.Margin = new System.Windows.Forms.Padding(2);
             this.btnbaocao.Name = "btnbaocao";
             this.btnbaocao.Size = new System.Drawing.Size(157, 47);
             this.btnbaocao.TabIndex = 7;
@@ -220,7 +219,7 @@ namespace MayTinhQA
             this.guna2Button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2Button1.ForeColor = System.Drawing.Color.Red;
             this.guna2Button1.Location = new System.Drawing.Point(1201, 3);
-            this.guna2Button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Button1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button1.Name = "guna2Button1";
             this.guna2Button1.Size = new System.Drawing.Size(115, 45);
             this.guna2Button1.TabIndex = 5;
@@ -255,7 +254,7 @@ namespace MayTinhQA
             this.btnNeeds.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNeeds.ForeColor = System.Drawing.Color.White;
             this.btnNeeds.Location = new System.Drawing.Point(0, 93);
-            this.btnNeeds.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnNeeds.Margin = new System.Windows.Forms.Padding(2);
             this.btnNeeds.Name = "btnNeeds";
             this.btnNeeds.Size = new System.Drawing.Size(122, 51);
             this.btnNeeds.TabIndex = 7;
@@ -277,7 +276,7 @@ namespace MayTinhQA
             this.btnBehaviour.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBehaviour.ForeColor = System.Drawing.Color.White;
             this.btnBehaviour.Location = new System.Drawing.Point(0, 49);
-            this.btnBehaviour.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBehaviour.Margin = new System.Windows.Forms.Padding(2);
             this.btnBehaviour.Name = "btnBehaviour";
             this.btnBehaviour.Size = new System.Drawing.Size(122, 47);
             this.btnBehaviour.TabIndex = 7;
@@ -299,7 +298,7 @@ namespace MayTinhQA
             this.btnHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHistory.ForeColor = System.Drawing.Color.White;
             this.btnHistory.Location = new System.Drawing.Point(0, 0);
-            this.btnHistory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnHistory.Margin = new System.Windows.Forms.Padding(2);
             this.btnHistory.Name = "btnHistory";
             this.btnHistory.Size = new System.Drawing.Size(122, 49);
             this.btnHistory.TabIndex = 6;
@@ -317,7 +316,7 @@ namespace MayTinhQA
             this.panel2.Controls.Add(this.btnCustomer);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 64);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(962, 48);
             this.panel2.TabIndex = 1;
@@ -338,7 +337,7 @@ namespace MayTinhQA
             this.btndichvu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btndichvu.ForeColor = System.Drawing.Color.White;
             this.btndichvu.Location = new System.Drawing.Point(436, 0);
-            this.btndichvu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btndichvu.Margin = new System.Windows.Forms.Padding(2);
             this.btndichvu.Name = "btndichvu";
             this.btndichvu.Size = new System.Drawing.Size(122, 47);
             this.btndichvu.TabIndex = 8;
@@ -349,7 +348,7 @@ namespace MayTinhQA
             // 
             this.pictureBox2.Image = global::MayTinhQA.Properties.Resources.user_128_64;
             this.pictureBox2.Location = new System.Drawing.Point(911, 2);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(40, 37);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -369,7 +368,7 @@ namespace MayTinhQA
             this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogout.ForeColor = System.Drawing.Color.White;
             this.btnLogout.Location = new System.Drawing.Point(2, 83);
-            this.btnLogout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(2);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(122, 31);
             this.btnLogout.TabIndex = 4;
@@ -405,7 +404,7 @@ namespace MayTinhQA
             this.btndanhsach.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btndanhsach.ForeColor = System.Drawing.Color.White;
             this.btndanhsach.Location = new System.Drawing.Point(2, 0);
-            this.btndanhsach.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btndanhsach.Margin = new System.Windows.Forms.Padding(2);
             this.btndanhsach.Name = "btndanhsach";
             this.btndanhsach.Size = new System.Drawing.Size(122, 49);
             this.btndanhsach.TabIndex = 8;
@@ -427,7 +426,7 @@ namespace MayTinhQA
             this.btndonhang.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btndonhang.ForeColor = System.Drawing.Color.White;
             this.btndonhang.Location = new System.Drawing.Point(2, 49);
-            this.btndonhang.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btndonhang.Margin = new System.Windows.Forms.Padding(2);
             this.btndonhang.Name = "btndonhang";
             this.btndonhang.Size = new System.Drawing.Size(122, 49);
             this.btndonhang.TabIndex = 8;
@@ -449,7 +448,7 @@ namespace MayTinhQA
             this.btnlienlac.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnlienlac.ForeColor = System.Drawing.Color.White;
             this.btnlienlac.Location = new System.Drawing.Point(2, 97);
-            this.btnlienlac.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnlienlac.Margin = new System.Windows.Forms.Padding(2);
             this.btnlienlac.Name = "btnlienlac";
             this.btnlienlac.Size = new System.Drawing.Size(122, 51);
             this.btnlienlac.TabIndex = 8;
@@ -463,7 +462,7 @@ namespace MayTinhQA
             this.panel3.Controls.Add(this.guna2GroupBox2);
             this.panel3.Controls.Add(this.guna2GroupBox1);
             this.panel3.Location = new System.Drawing.Point(0, 110);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(962, 491);
             this.panel3.TabIndex = 5;
@@ -471,38 +470,15 @@ namespace MayTinhQA
             // 
             // guna2GroupBox4
             // 
-            this.guna2GroupBox4.Controls.Add(this.btnkhuyenmai);
             this.guna2GroupBox4.Controls.Add(this.btndoitra);
             this.guna2GroupBox4.Controls.Add(this.btnbh);
             this.guna2GroupBox4.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2GroupBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             this.guna2GroupBox4.Location = new System.Drawing.Point(436, 0);
             this.guna2GroupBox4.Name = "guna2GroupBox4";
-            this.guna2GroupBox4.Size = new System.Drawing.Size(124, 144);
+            this.guna2GroupBox4.Size = new System.Drawing.Size(122, 98);
             this.guna2GroupBox4.TabIndex = 10;
             this.guna2GroupBox4.Text = "guna2GroupBox4";
-            // 
-            // btnkhuyenmai
-            // 
-            this.btnkhuyenmai.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.btnkhuyenmai.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.btnkhuyenmai.CheckedState.CustomBorderColor = System.Drawing.Color.Transparent;
-            this.btnkhuyenmai.CheckedState.FillColor = System.Drawing.Color.Navy;
-            this.btnkhuyenmai.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 3);
-            this.btnkhuyenmai.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnkhuyenmai.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnkhuyenmai.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnkhuyenmai.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnkhuyenmai.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
-            this.btnkhuyenmai.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnkhuyenmai.ForeColor = System.Drawing.Color.White;
-            this.btnkhuyenmai.Location = new System.Drawing.Point(0, 93);
-            this.btnkhuyenmai.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnkhuyenmai.Name = "btnkhuyenmai";
-            this.btnkhuyenmai.Size = new System.Drawing.Size(122, 51);
-            this.btnkhuyenmai.TabIndex = 8;
-            this.btnkhuyenmai.Text = "Khuyến mại";
-            this.btnkhuyenmai.Click += new System.EventHandler(this.btnkhuyenmai_Click);
             // 
             // btndoitra
             // 
@@ -519,7 +495,7 @@ namespace MayTinhQA
             this.btndoitra.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btndoitra.ForeColor = System.Drawing.Color.White;
             this.btndoitra.Location = new System.Drawing.Point(0, 49);
-            this.btndoitra.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btndoitra.Margin = new System.Windows.Forms.Padding(2);
             this.btndoitra.Name = "btndoitra";
             this.btndoitra.Size = new System.Drawing.Size(122, 47);
             this.btndoitra.TabIndex = 7;
@@ -540,7 +516,7 @@ namespace MayTinhQA
             this.btnbh.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnbh.ForeColor = System.Drawing.Color.White;
             this.btnbh.Location = new System.Drawing.Point(0, 0);
-            this.btnbh.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnbh.Margin = new System.Windows.Forms.Padding(2);
             this.btnbh.Name = "btnbh";
             this.btnbh.Size = new System.Drawing.Size(122, 51);
             this.btnbh.TabIndex = 7;
@@ -574,7 +550,7 @@ namespace MayTinhQA
             this.btnxoataikhoan.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnxoataikhoan.ForeColor = System.Drawing.Color.White;
             this.btnxoataikhoan.Location = new System.Drawing.Point(2, 55);
-            this.btnxoataikhoan.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnxoataikhoan.Margin = new System.Windows.Forms.Padding(2);
             this.btnxoataikhoan.Name = "btnxoataikhoan";
             this.btnxoataikhoan.Size = new System.Drawing.Size(122, 30);
             this.btnxoataikhoan.TabIndex = 5;
@@ -594,7 +570,7 @@ namespace MayTinhQA
             this.btnhoso.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnhoso.ForeColor = System.Drawing.Color.White;
             this.btnhoso.Location = new System.Drawing.Point(2, 0);
-            this.btnhoso.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnhoso.Margin = new System.Windows.Forms.Padding(2);
             this.btnhoso.Name = "btnhoso";
             this.btnhoso.Size = new System.Drawing.Size(122, 31);
             this.btnhoso.TabIndex = 4;
@@ -614,7 +590,7 @@ namespace MayTinhQA
             this.btndoimatkhau.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btndoimatkhau.ForeColor = System.Drawing.Color.White;
             this.btndoimatkhau.Location = new System.Drawing.Point(2, 28);
-            this.btndoimatkhau.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btndoimatkhau.Margin = new System.Windows.Forms.Padding(2);
             this.btndoimatkhau.Name = "btndoimatkhau";
             this.btndoimatkhau.Size = new System.Drawing.Size(122, 30);
             this.btndoimatkhau.TabIndex = 4;
@@ -630,7 +606,7 @@ namespace MayTinhQA
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CRM QuangAnh";
@@ -677,7 +653,6 @@ namespace MayTinhQA
         private Guna.UI2.WinForms.Guna2Button btnxoataikhoan;
         private Guna.UI2.WinForms.Guna2Button btndichvu;
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox4;
-        private Guna.UI2.WinForms.Guna2Button btnkhuyenmai;
         private Guna.UI2.WinForms.Guna2Button btndoitra;
         private Guna.UI2.WinForms.Guna2Button btnbh;
     }
