@@ -36,19 +36,21 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dgvKetQua = new System.Windows.Forms.DataGridView();
             this.btnphantich = new System.Windows.Forms.Button();
+            this.listboxspmuakem = new System.Windows.Forms.ListBox();
+            this.btnmuakem = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKetQua)).BeginInit();
             this.SuspendLayout();
             // 
             // dtpketthuc
             // 
-            this.dtpketthuc.Location = new System.Drawing.Point(506, 179);
+            this.dtpketthuc.Location = new System.Drawing.Point(278, 151);
             this.dtpketthuc.Name = "dtpketthuc";
             this.dtpketthuc.Size = new System.Drawing.Size(200, 26);
             this.dtpketthuc.TabIndex = 15;
             // 
             // dtpbatdau
             // 
-            this.dtpbatdau.Location = new System.Drawing.Point(506, 128);
+            this.dtpbatdau.Location = new System.Drawing.Point(278, 100);
             this.dtpbatdau.Name = "dtpbatdau";
             this.dtpbatdau.Size = new System.Drawing.Size(200, 26);
             this.dtpbatdau.TabIndex = 14;
@@ -56,7 +58,7 @@
             // cbxsp
             // 
             this.cbxsp.FormattingEnabled = true;
-            this.cbxsp.Location = new System.Drawing.Point(506, 85);
+            this.cbxsp.Location = new System.Drawing.Point(278, 57);
             this.cbxsp.Name = "cbxsp";
             this.cbxsp.Size = new System.Drawing.Size(200, 28);
             this.cbxsp.TabIndex = 13;
@@ -64,7 +66,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(357, 184);
+            this.label3.Location = new System.Drawing.Point(129, 156);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(106, 20);
             this.label3.TabIndex = 12;
@@ -73,7 +75,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(357, 133);
+            this.label2.Location = new System.Drawing.Point(129, 105);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(103, 20);
             this.label2.TabIndex = 11;
@@ -82,7 +84,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(357, 88);
+            this.label1.Location = new System.Drawing.Point(129, 60);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(121, 20);
             this.label1.TabIndex = 10;
@@ -91,7 +93,7 @@
             // dgvKetQua
             // 
             this.dgvKetQua.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvKetQua.Location = new System.Drawing.Point(361, 270);
+            this.dgvKetQua.Location = new System.Drawing.Point(133, 242);
             this.dgvKetQua.Name = "dgvKetQua";
             this.dgvKetQua.RowHeadersWidth = 62;
             this.dgvKetQua.RowTemplate.Height = 28;
@@ -100,7 +102,7 @@
             // 
             // btnphantich
             // 
-            this.btnphantich.Location = new System.Drawing.Point(361, 218);
+            this.btnphantich.Location = new System.Drawing.Point(133, 190);
             this.btnphantich.Name = "btnphantich";
             this.btnphantich.Size = new System.Drawing.Size(114, 46);
             this.btnphantich.TabIndex = 8;
@@ -108,10 +110,31 @@
             this.btnphantich.UseVisualStyleBackColor = true;
             this.btnphantich.Click += new System.EventHandler(this.btnphantich_Click);
             // 
+            // listboxspmuakem
+            // 
+            this.listboxspmuakem.FormattingEnabled = true;
+            this.listboxspmuakem.ItemHeight = 20;
+            this.listboxspmuakem.Location = new System.Drawing.Point(522, 52);
+            this.listboxspmuakem.Name = "listboxspmuakem";
+            this.listboxspmuakem.Size = new System.Drawing.Size(367, 184);
+            this.listboxspmuakem.TabIndex = 16;
+            // 
+            // btnmuakem
+            // 
+            this.btnmuakem.Location = new System.Drawing.Point(364, 190);
+            this.btnmuakem.Name = "btnmuakem";
+            this.btnmuakem.Size = new System.Drawing.Size(114, 46);
+            this.btnmuakem.TabIndex = 17;
+            this.btnmuakem.Text = "Mua kèm";
+            this.btnmuakem.UseVisualStyleBackColor = true;
+            this.btnmuakem.Click += new System.EventHandler(this.btnmuakem_Click);
+            // 
             // UC_CustomerNeeds
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnmuakem);
+            this.Controls.Add(this.listboxspmuakem);
             this.Controls.Add(this.dtpketthuc);
             this.Controls.Add(this.dtpbatdau);
             this.Controls.Add(this.cbxsp);
@@ -139,5 +162,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvKetQua;
         private System.Windows.Forms.Button btnphantich;
+        private System.Windows.Forms.ListBox listboxspmuakem;
+        private System.Windows.Forms.Button btnmuakem;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using MayTinhQA.UserControls;
 
 namespace MayTinhQA
 {
@@ -13,7 +14,7 @@ namespace MayTinhQA
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormEmail());
+            Application.Run(new frmhanhvi());
         }
     }
 }

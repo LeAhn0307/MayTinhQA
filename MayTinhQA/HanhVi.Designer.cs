@@ -102,7 +102,7 @@ namespace MayTinhQA
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1158, 475);
+            this.ClientSize = new System.Drawing.Size(1171, 635);
             this.Controls.Add(this.chartphankhuc);
             this.Controls.Add(this.chartgiaodich);
             this.Controls.Add(this.dgvphankhuc);

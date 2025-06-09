@@ -14,7 +14,7 @@ namespace MayTinhQA.UserControls
 {
     public partial class UC_CustomerNeeds : UserControl
     {
-        private string connecttionString = "Data Source=DESKTOP-2023ILB\\SQLEXPRESS01;Initial Catalog=crm;Integrated Security=True";
+        private string connectionString = "Data Source=DESKTOP-2023ILB\\SQLEXPRESS01;Initial Catalog=crm;Integrated Security=True";
         public UC_CustomerNeeds()
         {
             InitializeComponent();
@@ -27,7 +27,7 @@ namespace MayTinhQA.UserControls
         }
         private void loadSanPham()
         {
-            using (SqlConnection con = new SqlConnection(connecttionString))
+            using (SqlConnection con = new SqlConnection(connectionString))
             {
                 string sql = "select tensanpham from sanpham";
                 using (SqlCommand command = new SqlCommand(sql, con))
@@ -53,7 +53,7 @@ namespace MayTinhQA.UserControls
             DateTime ngaybatdau = dtpbatdau.Value;
             DateTime ngayketthuc = dtpketthuc.Value;
 
-            using (SqlConnection con = new SqlConnection(connecttionString))
+            using (SqlConnection con = new SqlConnection(connectionString))
             {
                 string sql = @"
         SELECT 
@@ -93,6 +93,10 @@ namespace MayTinhQA.UserControls
                     }
                 }
             }
+        }
+
+        private void btnmuakem_Click(object sender, EventArgs e)
+        {
         }
     }
 }

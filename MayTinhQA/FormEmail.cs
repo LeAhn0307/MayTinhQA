@@ -99,7 +99,7 @@ namespace MayTinhQA
             {
                 MailMessage mail = new MailMessage("katoriii372003@gmail.com", toEmail)
                 {
-                    Subject = "Thông báo từ hệ thống",
+                    Subject = "Thông báo từ cửa hàng máy tính Quang Anh",
                     Body = messageBody,
                     IsBodyHtml = false
                 };

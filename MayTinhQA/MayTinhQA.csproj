@@ -215,6 +215,12 @@
       <DependentUpon>HanhVi.cs</DependentUpon>
     </Compile>
     <Compile Include="Modify.cs" />
+    <Compile Include="nhucau.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="nhucau.Designer.cs">
+      <DependentUpon>nhucau.cs</DependentUpon>
+    </Compile>
     <Compile Include="Phanloaikh.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -327,6 +333,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HanhVi.resx">
       <DependentUpon>HanhVi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="nhucau.resx">
+      <DependentUpon>nhucau.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

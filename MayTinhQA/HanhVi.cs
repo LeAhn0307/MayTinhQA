@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data;
 using System.Data.SqlClient;
+using MayTinhQA.UserControls;
 
 namespace MayTinhQA
 {
@@ -102,16 +103,42 @@ namespace MayTinhQA
         {
             chartphankhuc.Series["Phân Khúc Khách Hàng"].Points.Clear();
 
+            var colors = new Dictionary<string, Color>
+    {
+        { "Khong Hoat Dong", Color.Red },
+        { "Moi", Color.Yellow },
+        { "Trung Thanh", Color.Green }
+    };
+
+            var phanKhucCount = new Dictionary<string, int>();
+
             foreach (DataGridViewRow row in dgvphankhuc.Rows)
             {
                 if (row.Cells["PhanKhuc"].Value != null)
                 {
                     string phanKhuc = row.Cells["PhanKhuc"].Value.ToString();
-                    int soKhachHang = 1;
-                    var point = chartphankhuc.Series["Phân Khúc Khách Hàng"].Points.AddXY(phanKhuc, soKhachHang);
-                    chartphankhuc.Series["Phân Khúc Khách Hàng"].Points[point].Label = phanKhuc;
+                    if (!phanKhucCount.ContainsKey(phanKhuc))
+                    {
+                        phanKhucCount[phanKhuc] = 0;
+                    }
+                    phanKhucCount[phanKhuc]++;
                 }
             }
+            foreach (var item in phanKhucCount)
+            {
+                var point = chartphankhuc.Series["Phân Khúc Khách Hàng"].Points.AddXY(item.Key, item.Value);
+                if (colors.ContainsKey(item.Key))
+                {
+                    chartphankhuc.Series["Phân Khúc Khách Hàng"].Points[point].Color = colors[item.Key];
+                    chartphankhuc.Series["Phân Khúc Khách Hàng"].Points[point].LegendText = item.Key; // Thêm chú thích
+                }
+                chartphankhuc.Series["Phân Khúc Khách Hàng"].Points[point].Label = item.Value.ToString();
+            }
+
+            // Thêm chú thích cho biểu đồ
+            chartphankhuc.Legends.Add("Legend");
+            chartphankhuc.Legends[0].Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Right;
+            chartphankhuc.Legends[0].Alignment = StringAlignment.Center;
         }
         private void BieuDoGiaoDich()
         {
@@ -166,6 +193,11 @@ namespace MayTinhQA
                     }
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+   
         }
     }
 }
