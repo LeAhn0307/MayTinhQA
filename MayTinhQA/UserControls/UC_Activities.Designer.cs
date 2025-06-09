@@ -34,6 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnthem = new Guna.UI2.WinForms.Guna2Button();
             this.btnxoa = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
             this.labelloaitieuchi = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.labelxoatimkiem = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.btntimkiem = new Guna.UI2.WinForms.Guna2Button();
@@ -60,8 +61,8 @@
             this.btnthem.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(71)))), ((int)(((byte)(171)))));
             this.btnthem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnthem.ForeColor = System.Drawing.Color.White;
-            this.btnthem.Location = new System.Drawing.Point(791, 65);
-            this.btnthem.Margin = new System.Windows.Forms.Padding(2);
+            this.btnthem.Location = new System.Drawing.Point(1055, 80);
+            this.btnthem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnthem.Name = "btnthem";
             this.btnthem.Size = new System.Drawing.Size(225, 46);
             this.btnthem.TabIndex = 13;
@@ -346,6 +347,7 @@
             this.Controls.Add(this.cbbloaidv);
             this.Controls.Add(this.cbbFilter);
             this.Controls.Add(this.txtSearch);
+            this.Controls.Add(this.guna2Button4);
             this.Controls.Add(this.btnxoa);
             this.Controls.Add(this.btnthem);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -363,6 +365,7 @@
         #endregion
         private Guna.UI2.WinForms.Guna2Button btnthem;
         private Guna.UI2.WinForms.Guna2Button btnxoa;
+        private Guna.UI2.WinForms.Guna2Button guna2Button4;
         private Guna.UI2.WinForms.Guna2PictureBox picboxrs;
         private Guna.UI2.WinForms.Guna2PictureBox picboxsort;
         private Guna.UI2.WinForms.Guna2HtmlLabel labelloaitieuchi;
