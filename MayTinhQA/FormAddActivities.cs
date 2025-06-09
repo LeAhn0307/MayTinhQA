@@ -328,10 +328,7 @@ namespace MayTinhQA
             {
                 MessageBox.Show("Lỗi: Không có thông tin người dùng hiện tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
-            
-           
-            
+
         }
         private DataTable LoadLoaiDichVu()
         {

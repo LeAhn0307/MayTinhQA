@@ -15,7 +15,7 @@ namespace MayTinhQA.UserControls
 {
     public partial class UC_Email : UserControl
     {
-        private string connectionString = "Data Source=.\\SQLEXPRESS;Initial Catalog=crm1;Integrated Security=True";
+        private string connectionString = "Data Source=DESKTOP-5ET5TOG;Initial Catalog=crm;Integrated Security=True";
         private List<dynamic> selectedCustomers = new List<dynamic>();
         private List<string> selectedEmails = new List<string>();
 

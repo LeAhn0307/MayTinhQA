@@ -10,7 +10,7 @@ namespace MayTinhQA
 {
     class Database
     {
-        private static string connectionString = "Data Source=.\\SQLEXPRESS;Initial Catalog=crm1;Integrated Security=True";
+        private static string connectionString = "Data Source=DESKTOP-5ET5TOG;Initial Catalog=crm;Integrated Security=True";
         public static DataTable Query(string sql)
         //Select --> Table
         {

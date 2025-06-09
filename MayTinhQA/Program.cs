@@ -14,7 +14,7 @@ namespace MayTinhQA
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormEmail());
+            Application.Run(new FormLogin());
         }
     }
 }
