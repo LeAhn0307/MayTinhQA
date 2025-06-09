@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace MayTinhQA
 {
@@ -18,21 +20,60 @@ namespace MayTinhQA
         }
         private void frmHoSo_Load(object sender, EventArgs e)
         {
+            LoadUserProfile();
+        }
+        private void LoadUserProfile()
+        {
             if (Session.CurrentUser != null)
             {
-                lblTenNhanVien.Text = "Tên: " + Session.CurrentUser.Tentaikhoan;
-                lblEmail.Text = "Email: " + Session.CurrentUser.Email;
-                lblVaiTro.Text = "Vai Trò: " + Session.CurrentUser.Idvaitro.ToString();
+                int userId = Current_user.CurrentUser.Idusers;
+                txtemail.Text = Current_user.CurrentUser.Email;
+                LoadNhanVienAndChucVu(userId);
             }
             else
             {
-                MessageBox.Show("Vui lòng đăng nhập trước.");
+                MessageBox.Show("Chưa có người dùng nào đăng nhập.");
             }
         }
+        private void LoadNhanVienAndChucVu(int userId)
+        {
+            string connectionString = " ";
 
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = @"
+                    SELECT nv.tennhanvien, cv.tenchucvu
+                    FROM nhanvien nv
+                    JOIN chucvu cv ON nv.chucvu = cv.idchucvu
+                    WHERE nv.idusers = @userId";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@userId", userId);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            string tenNhanVien = reader["tennhanvien"].ToString();
+                            string tenChucVu = reader["tenchucvu"].ToString();
+                            txttennguoidung.Text = tenNhanVien; 
+                            txtchucvu.Text = tenChucVu; 
+                        }
+                        else
+                        {
+                            MessageBox.Show("Không tìm thấy thông tin nhân viên.");
+                        }
+                    }
+                }
+            }
+        }
         private void btnback_Click(object sender, EventArgs e)
         {
             this.Close();
         }
     }
+
 }
+
