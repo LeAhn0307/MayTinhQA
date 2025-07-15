@@ -108,7 +108,7 @@ namespace MayTinhQA
                 SmtpClient smtpClient = new SmtpClient("smtp.gmail.com") 
                 {
                     Port = 587,
-                    Credentials = new NetworkCredential("katoriii372003@gmail.com", "pddj kpii mcpj omcj"),  
+                    Credentials = new NetworkCredential("katoriii372003@gmail.com", ""),  
                     EnableSsl = true
                 };
 
